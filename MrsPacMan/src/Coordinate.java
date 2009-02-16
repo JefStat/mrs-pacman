@@ -1,5 +1,14 @@
 import java.awt.Point;
-
+/*
+ * This class establishes what positions are current for each player.  In addition
+ * to this there are only 5 set cases for what items can be on the map.  The space on
+ * the map is either empty, a wall, a PacMan pellet, a power pellet, or fruit.  When
+ * all of these items are gone then the level is considered completed.
+ * 
+ * Title: Coorindate Class version 1.1
+ * Date: February 16, 2009
+ * Author: Nicole Waldrum and Jef Statham
+ */
 
 public class Coordinate {
 	
