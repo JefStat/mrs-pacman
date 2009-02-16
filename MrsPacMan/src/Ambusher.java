@@ -7,9 +7,8 @@ import java.awt.Point;
  * The Ambushers takes a more roundabout route to PacMan which is deadly.
  * The repsective corner is the top left of the screen.
  * 
- * Title: Ambusher Class version 1.0
- * Date: February 15, 2009
- * Author: Nicole Waldrum
+ * Date: February 16, 2009
+ * Author: Nicole Waldrum and Jef Statham
  */
 public class Ambusher extends Character {
 	
