@@ -22,11 +22,11 @@ public abstract class Character extends PacManGame implements ActionListener {
 	//the point is the position of the character at any given moment
 	private Coordinate position;
 	//the name of each character
-	private String name;
+	protected String name;
 	//provides the information of whether the character is dead or alive
 	private boolean alive;
 	//provides the personality for each ghost
-	private int personality;
+	protected int personality;
 	//what the character is currently doing
 	
 	public abstract void actionPerformed(ActionEvent arg0);
