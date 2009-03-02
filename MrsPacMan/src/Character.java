@@ -2,57 +2,65 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
-* This character class establishes the basic behaviour which each character will
-* inherit based on what they're  personalities are.  Each ghost has its own individual
-* personality which we will attempt to incorporate in order to make the game more dynamic.
-* 
-* The ghost will stay on its path until it reaches an intersection at which point it will 
-* turn left or right.  When PacMan eats a power pellet the ghosts will reverse directions 
-* and head for their respective corners.  Once eaten by PacMan the ghost will return to their
-* prison and when freed be their original colour.
-* 
-* The reason for the Chaser and Ambushers names are because they can attack together so the
-* player should beware of the corner when there.
+* This character class establishes the abstract outline of the characters of the PacMan game.
+* These characters include PacMan and the four ghosts.  Each subclass overrides the character 
+* class.
 * 
 * Title: Character Class version 1.1
 * Date: February 16, 2009
 * Author: Nicole Waldrum and Jef Statham
+* 
+* 
+* Milestone2 
+* Date: March 1, 2009
+* Updated by: Nicole Waldrum
+* Made character an abstract class as it doesn't actually implement anything and will just be 
+* overridden by the Ghost and PacMan classes
 */
 
 
-public class Character implements ActionListener {
-	private final int CHASER = 0;
-	private final int AMBUSHER = 1;
-	private final int FICKLE = 2;
-	private final int STUPID = 3;
-	private final int PACMAN = 4;
-	
+public abstract class Character implements ActionListener {
+	//the point is the position of the character at any given moment
 	private Point position;
+	//the name of each character
 	private String name;
-	private boolean incarcerated;
-	private boolean scared;
-	private boolean scatter;
+	//provides the information of whether the character is dead or alive
+	private boolean alive;
+	//provides the personality for each ghost
 	private int personality;
+	//what the character is currently doing
 	
-	
-	public void Ghost(int p){
-		
+	public abstract void actionPerformed(ActionEvent arg0);
+	//sets the position of the character
+	public void setPosition(Point position) {
+		this.position = position;
 	}
-	
-	public void movetoPacMan(PacMan P){
-		
+	//gets the position of the character
+	public Point getPosition() {
+		return position;
 	}
-	
-	public void movetoPrison(Point p){
-		
+	// sets the name of the character
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public void runAway(PacMan p){
-		
+	//gets the name of the character
+	public String getName() {
+		return name;
 	}
-	
-	public void actionPerformed(ActionEvent arg0) {
-
+	//set the alive status of the character
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
-
+	//checks the boolean state of alive
+	public boolean isAlive() {
+		return alive;
+	}
+	// sets the personality of the character
+	public void setPersonality(int personality) {
+		this.personality = personality;
+	}
+	// gets the personality of the character
+	public int getPersonality() {
+		return personality;
+	}
 }

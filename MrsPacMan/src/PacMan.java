@@ -12,19 +12,21 @@ import java.awt.Point;
  * Date: February 16, 2009
 * Author: Nicole Waldrum and Jef Statham
 */
+import java.awt.event.ActionEvent;
 
 public class PacMan extends Character {
 
 	private final int DEFAULTLIVES = 3;
 	private final Point STARTINGPOINT = new Point();
+	private final int PACMAN = 4;
 
 	private int livesLeft;
 	
 	/*
-	 * Default Constuctor
+	 * This creates a default position for PacMan
 	 */
 	public PacMan(){
-		
+			
 	}
 	
 	/*
@@ -34,5 +36,7 @@ public class PacMan extends Character {
 		
 	}
 	
-	
+	public void actionPerformed(ActionEvent arg0){
+		
+	}
 }
