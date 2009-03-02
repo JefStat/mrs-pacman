@@ -145,7 +145,10 @@ public class PacManGame implements ActionListener {
 			    "W\n",
 			"S","A","D"
 		};
-		int move = -1;
+		final int UP = 0;
+		final int RIGHT = 1;
+		final int LEFT = 2;
+		final int DOWN = 3;
 		
 		if ((choice == -1)) {		// need an assert or throwing and exception or make the window unable to be closed with red x aka unable to throw a -1 also consider user crashing option dialog crt alt del
 			return false;
@@ -156,8 +159,9 @@ public class PacManGame implements ActionListener {
 		case NEWGAME: {
 			do {
 			map.printMap();
+			int move = JOptionPane.showOptionDialog(null, "Select direction", "Movement Box", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, movementOptions, movementOptions[0]);
 			}
-			while(Characters.get(PacMan.PACMAN));
+			while((Characters.get(0).isAlive())&&(map.getPacdots()>= 0));
 			return true; // display map wait for user input
 		}
 		case LOADMAP: return true; // load a map functionality still to be determined. Load from a text document or open a text editor ect.
