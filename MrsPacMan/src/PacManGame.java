@@ -56,7 +56,7 @@ public class PacManGame implements ActionListener {
 		Characters[4] = new Ghost(new Coordinate(0,0));
 		map = new Map();
 		score = 0;
-		PlayersTurn = true;
+		playersTurn = true;
 		startGame();
 	}
 	
@@ -92,16 +92,20 @@ public class PacManGame implements ActionListener {
 		
 	}
 
-	
+	/*
+	 * 
+	 */
 	private void startGame(){
 		String[] startGameOptions = {
 				  "New Game",
 				  "Load Map",
 				  };
-		JOptionPane Game;
-		Game.addActionListener(this);
+		JOptionPane Game = null;
 		Game.showOptionDialog(null, "Howdy Doody!\nWhat would you like to do?", "Mrs Pac Man", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, null);
-		
+		if (!(Game.getValue() == JOptionPane.UNINITIALIZED_VALUE)) {
+			// Find value that is returned for each press and then create action for return value.
+			System.out.println(Game.getValue());		
+		}	
 	}
 	/*
 	 * This is where the magic happens. 
@@ -115,14 +119,6 @@ public class PacManGame implements ActionListener {
 	
 	
 public static void main(String[] args) {
-
 	
-	if 1 
-	pacmangame();
-	} else if 2
-	//pacmangame(map);
-	Jnoticepane("not implemented",);
-	}
-
-
+}
 }
