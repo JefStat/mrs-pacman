@@ -26,24 +26,25 @@ public class Map {
 	//public Map(){
 	//	Map(DEFAULTSIZE);
 	//}
-	
+
 	/*
 	 * constructor to make a map s x s size
 	 */
 	public Map(int s){
+		level = new Coordinate[s][s];
 		this.size = s;
 		
-		//intialization of all coordinates to empty space
+		//Initialisation of all coordinates to empty space
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      level[i][j] = new Coordinate(i,j,0);}}
 
 		//Loop to create a border
 		for (int i = 0; i<s; i++){
-			level[s][i].setIdentity(Coordinate.WALL); //Right wall created
+			level[s-1][i].setIdentity(Coordinate.WALL); //Right wall created
 			level[0][i].setIdentity(Coordinate.WALL); //Left wall created
 			level[i][0].setIdentity(Coordinate.WALL);// Bottom wall created
-			level[i][s].setIdentity(Coordinate.WALL); //Top wall created
+			level[i][s-1].setIdentity(Coordinate.WALL); //Top wall created
 		}
 		
 		//Fill all non walls with a pacdot, and counts all pacdots inserted
@@ -54,7 +55,11 @@ public class Map {
 			    	  NUMBEROFPACDOTS++;}
 			      }
 			   }
-		
+		//temporary default starting point and prison
+		level[15][15].setIdentity(Coordinate.PRISON);
+		setPrison(level[15][15]);
+		level[1][1].setIdentity(Coordinate.EMPTY);
+		setPacManStart(level[1][1]);
 	}
 	
 	/*
@@ -67,6 +72,34 @@ public class Map {
 	 */
 	public int getPacdots(){return NUMBEROFPACDOTS;}
 	
+	/**
+	 * @param prison the prison to set
+	 */
+	private void setPrison(Coordinate prison) {
+		this.prison = prison;
+	}
+
+	/**
+	 * @return the prison
+	 */
+	public Coordinate getPrison() {
+		return prison;
+	}
+
+	/**
+	 * @param pacManStart the pacManStart to set
+	 */
+	private void setPacManStart(Coordinate pacManStart) {
+		this.pacManStart = pacManStart;
+	}
+
+	/**
+	 * @return the pacManStart
+	 */
+	public Coordinate getPacManStart() {
+		return pacManStart;
+	}
+
 	/*
 	 * Prints the map in console - NEEDS TO BE IMPLEMENTED
 	 */
