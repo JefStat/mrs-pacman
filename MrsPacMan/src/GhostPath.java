@@ -1,34 +1,38 @@
-import java.awt.Point;
-import java.math.*;
 import java.util.Vector;
-
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-
 import sun.management.Agent;
-import sun.org.mozilla.javascript.internal.Node;
-
+/*
+ * The GhostPath class determines the shortest path to PacMan once it is implemented in the Ghost Class
+ * 
+ * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari 
+ * 
+ * Version: GhostPath Class 1.1
+ * Date: March 2, 2009
+ * Author: Nicole Waldrum And Jef Statham
+ */
 
 public class GhostPath extends PacManGame{
 	double typicalPath; // default one
     Hashtable open;
     Hashtable closed;
+    //creates the map
     Coordinate[][] map;
-    
-    int[][] grid;
-    int[] costs;
+    //the identity of the item avoiding
+    int[] identity;
+    //The start and goal coordinates that are necessary to determine the location
     Coordinate startPosition, goalPosition;
-    
-    public AStar(Map, int identity[], Coordinate startPosition, Coordinate goalPosition) {
-        this.map = map.getMap();
+    //Creates the default constructor to find the shortest path
+    public void AStar(Map map2, int identity[], Coordinate startPosition, Coordinate goalPosition) {
+        this.map = map2.getMap();
         this.identity = identity;
-        this.startLoc = startPosition;
-        this.goalLoc = goalPosition;
-        this.typicalCost = getTypicalPath(new Coordinate(0, 0), new Coordinate(map.length - 1, map[0].length - 1));
+        this.startPosition = startPosition;
+        this.goalPosition = goalPosition;
+        this.typicalPath = getTypicalPath(new Coordinate(0,0, map[0][0].getIdentity()), new Coordinate(map.length - 1, map[0].length - 1, map[map.length - 1][ map[0].length - 1].getIdentity()));
         this.open = new Hashtable(map.length * map[0].length);
         this.closed = new Hashtable(map.length * map[0].length);
     }
-    
-    private double getTypicalIdentity(Coordinate startPosition, Coordinate goalPosition) {
+    //Finds the typical path that could be taken
+    private double getTypicalPath(Coordinate startPosition, Coordinate goalPosition) {
         int left = Math.min(startPosition.x, goalPosition.x);
         int top = Math.min(startPosition.y, goalPosition.y);
         int right = Math.max(startPosition.x, goalPosition.x);
@@ -46,27 +50,22 @@ public class GhostPath extends PacManGame{
         
         return (double)count / 1.1;
     }
-
+    //Determines the shortest path to the goal
     public Vector <Node> AStarSearch(Agent agent) {
     
         PriorityQueue openQueue = new PriorityQueue();
         
         // initialise a start node
-        Node startNode = new Node();
-        startNode.position = startPosition;
-        startNode.h = 0;
-        startNode.g = pathCostEstimate(startPosition, goalPosition, agent);
-        startNode.f = startNode.h + startNode.g;
-        startNode.parent = null;
-        
+        Node startNode = new Node(startPosition, 0, pathCostEstimate(startPosition, goalPosition, agent), null);
+                
         openQueue.add(startNode);
         open.put(startNode.position, startNode);
         
         // process the list until success or failure
         while(openQueue.size() > 0) {
         
-            Node node = openQueue.pop();
-            open.remove(node.poisition);
+            Node node = (Node) openQueue.pop();
+            open.remove(node.position);
             
             // if at a goal, we're done
             if(node.position.equals(goalPosition)) {
@@ -111,10 +110,10 @@ public class GhostPath extends PacManGame{
         }
         return null; // failure
     }
-    
-    private Vector getNeighbors(Node node) {
+    //Checks the items to determine what the shortest path is
+    private Vector <Node> getNeighbors(Node node) {
         Coordinate nodePosition = node.position;
-        Vector neighbors = new Vector();
+        Vector <Node> neighbors = new Vector<Node>();
         addConditional(neighbors, nodePosition, -1, 0);
         addConditional(neighbors, nodePosition, 0, -1);
         addConditional(neighbors, nodePosition, 0, 1);
@@ -126,9 +125,9 @@ public class GhostPath extends PacManGame{
         
         return neighbors;
     }
-    
-    private void addConditional(Vector addTo, Location loc, int x, int y) {
-        int newX = loc.x + x, newY = loc.y + y;
+    //Creates a list of alternative paths to see what the shortest is
+    private void addConditional(Vector <Node> addTo, Coordinate position, int x, int y) {
+        int newX = position.x + x, newY = position.y + y;
         if(newX < 0 || newX >= map.length) {
             return;
         }
@@ -136,39 +135,37 @@ public class GhostPath extends PacManGame{
             return;
         }
 
-        if(map[newX][newY] == map.getIdentity(4)) {
+        if(map[newX][newY].getIdentity() == Coordinate.WALL) {
             return;
         }
         
-        Node newNode = new Node();
-        newNode.position = new Coordinate(newX, newY);
+        Node newNode = new Node(new Coordinate(newX, newY,map[newX][newY].getIdentity()), 0, 0, null);
         addTo.addElement(newNode);
     }
-    
+    //Determines the cost of the path that will be taken
     private double pathCostEstimate(Coordinate start, Coordinate goal, Agent agent) {
         if(agent == null ) { // default agent
             int dx = Math.abs(goal.x - start.x);
             int dy = Math.abs(goal.y - start.y);
-            double diff = (double)Math.abs(dx - dy);
         
             return typicalPath * (dx + dy);
         } else {
             return 1;
         }
     }
-    
+    //Checks the cost that it would to take the shortest path
     private double traverseCost(Node node, Node newNode, Agent agent) {
         if(agent == null ) { // default agent
-            Coodinate position1 = node.position, position2 = newNode.position;
+            Coordinate position1 = node.position, position2 = newNode.position;
             int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
-            return identity[map[newNode.position.x][newNode.position.y]] + 0.1 * (dx + dy - 1);
+            return 0.1 * (dx + dy - 1);
         } else {
             return 1;
         }
     }
-    
-    private Vector solve(Node node) {
-        Vector solution = new Vector();
+    //adds the elements to the node to make the shortest path
+    private Vector <Node> solve(Node node) {
+        Vector <Node> solution = new Vector<Node>();
         
         solution.addElement(node);
         while(node.parent != null) {
