@@ -15,6 +15,9 @@ public class Map {
 	private int size;
 	Coordinate[][] level;
 	private int NUMBEROFPACDOTS = 0;
+	// need to be initialized and getters made.
+	private Coordinate prison;
+	private Coordinate pacManStart;
 	
 	/*
 	 * Default constructor making the map the Defaultsize x Defaultsize
