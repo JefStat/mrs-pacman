@@ -108,7 +108,7 @@ public class Map {
 	}
 	
 	/*
-	 * Prints the map in console - NEEDS TO BE IMPLEMENTED
+	 * Prints the map in console - Row by Row
 	 */
 	public void printMap(){
 		int track = 0;
