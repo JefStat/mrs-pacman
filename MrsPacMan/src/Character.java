@@ -16,9 +16,10 @@ import java.awt.event.ActionListener;
 * Made character an abstract class as it doesn't actually implement anything and will just be 
 * overridden by the Ghost and PacMan classes
 */
+import java.util.Observer;
 
 
-public abstract class Character extends PacManGame implements ActionListener {
+public abstract class Character extends PacManGame implements Observer {
 	//the point is the position of the character at any given moment
 	private Coordinate position;
 	//the name of each character
@@ -29,7 +30,6 @@ public abstract class Character extends PacManGame implements ActionListener {
 	protected int personality;
 	//what the character is currently doing
 	
-	public abstract void actionPerformed(ActionEvent arg0);
 	//sets the position of the character
 	public void setPosition(Coordinate position) {
 		this.position = position;
