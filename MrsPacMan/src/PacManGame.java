@@ -42,7 +42,7 @@ public class PacManGame implements ActionListener {
 	private boolean playersTurn;
 	private long score;
 	private ArrayList<Character> Characters = new ArrayList<Character>();
-	private Map map;
+	protected Map map;
 	
 	
 	/*
