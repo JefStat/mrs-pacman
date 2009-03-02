@@ -1,5 +1,9 @@
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 /*
  * Group Awesomeness Legendary PacManGame 
  *  
@@ -18,29 +22,59 @@ import java.util.ArrayList;
  */
 
 
-public class PacManGame {
+/*
+ * Class PacManGame
+ * 
+ * PacMan game runs the rules set for pacman currently accepting user input and notifying
+ * the other elements of the game that the user has taken an action. The class also starts
+ * the game based on limited user options and has the main method for running the program. 
+ */
 
-	private final int CHARS = 5;
+
+public class PacManGame implements ActionListener {
+
+	private final int CHARS = 4;
 	private final long FREELIFE = 10000; 
 	
+	private boolean playersTurn;
 	private long score;
-	private ArrayList Characters;
-	private ArrayList Map;
+	private ArrayList Characters = new ArrayList(CHARS);
+	private Map map;
+	
 	
 	/*
-	 * Default constructor with a default map
+	 * Default constructor for a standard pac man game, 
+	 * with the default pac-man map and set of standard ghosts.
+	 * 
 	 */
 	
 	public PacManGame(){
-		
+		Characters[0] = new PacMan();
+		Characters[1] = new Ghost(new Coordinate(0,0));
+		Characters[2] = new Ghost(new Coordinate(0,0));
+		Characters[3] = new Ghost(new Coordinate(0,0));
+		Characters[4] = new Ghost(new Coordinate(0,0));
+		map = new Map();
+		score = 0;
+		PlayersTurn = true;
+		startGame();
 	}
 	
 	/*
-	 * Constructor for loading a custom map
+	 * Constructor for loading a custom map with
+	 * standard ghost set.
 	 */
-	public PacManGame(ArrayList M){
+	public PacManGame(Map M){
 		
 	}
+	/*
+	 * Checks to see if game is ready for more input from user
+	 */
+	private boolean isPlayersTurn() {
+	
+		return playersTurn;
+	}
+		
 	
 	/*
 	 * Checking the map if coordinate p is a valid move
@@ -57,4 +91,38 @@ public class PacManGame {
 	public void notify(Object o){
 		
 	}
+
+	
+	private void startGame(){
+		String[] startGameOptions = {
+				  "New Game",
+				  "Load Map",
+				  };
+		JOptionPane Game;
+		Game.addActionListener(this);
+		Game.showOptionDialog(null, "Howdy Doody!\nWhat would you like to do?", "Mrs Pac Man", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, null);
+		
+	}
+	/*
+	 * This is where the magic happens. 
+	 */
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+public static void main(String[] args) {
+
+	
+	if 1 
+	pacmangame();
+	} else if 2
+	//pacmangame(map);
+	Jnoticepane("not implemented",);
+	}
+
+
 }
