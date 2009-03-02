@@ -84,7 +84,7 @@ public class Map {
 	/**
 	 * @return the prison
 	 */
-	public Coordinate getPrison() {
+	public static Coordinate getPrison() {
 		return prison;
 	}
 
