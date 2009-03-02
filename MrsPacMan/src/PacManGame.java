@@ -33,12 +33,14 @@ import javax.swing.JOptionPane;
 
 public class PacManGame implements ActionListener {
 
+	private static final String STARTMESSAGE = "Howdy Doody!\nWhat would you like to do?";
+	private static final String GAMETITLE = "Mrs Pac Man";
 	private final int CHARS = 4;
 	private final long FREELIFE = 10000; 
 	
 	private boolean playersTurn;
 	private long score;
-	private ArrayList Characters = new ArrayList(CHARS);
+	private ArrayList<Character> Characters = new ArrayList<Character>();
 	private Map map;
 	
 	
@@ -49,13 +51,13 @@ public class PacManGame implements ActionListener {
 	 */
 	
 	public PacManGame(){
-		Characters[0] = new PacMan();
-		Characters[1] = new Ghost(new Coordinate(0,0));
-		Characters[2] = new Ghost(new Coordinate(0,0));
-		Characters[3] = new Ghost(new Coordinate(0,0));
-		Characters[4] = new Ghost(new Coordinate(0,0));
-		map = new Map();
-		score = 0;
+		Characters.add(new PacMan());
+		Characters.add(new Ghost());
+		Characters.add(new Ghost());
+		Characters.add(new Ghost());
+		Characters.add(new Ghost());
+		setMap(new Map(30)); 	//using magic number while waiting for implementation
+		setScore(0);		//magic number make final STARTING SCORE
 		playersTurn = true;
 		startGame();
 	}
@@ -67,6 +69,34 @@ public class PacManGame implements ActionListener {
 	public PacManGame(Map M){
 		
 	}
+	/**
+	 * @param map the map to set
+	 */
+	private void setMap(Map map) {
+		this.map = map;
+	}
+
+	/**
+	 * @return the map
+	 */
+	public Map getMap() {
+		return map;
+	}
+
+	/**
+	 * @param score the score to set
+	 */
+	private void setScore(long score) {
+		this.score = score;
+	}
+
+	/**
+	 * @return the score
+	 */
+	private long getScore() {
+		return score;
+	}
+
 	/*
 	 * Checks to see if game is ready for more input from user
 	 */
@@ -93,24 +123,45 @@ public class PacManGame implements ActionListener {
 	}
 
 	/*
+	 * Opens the Starting dialog for the game with choices to close
 	 * 
+	 * return true if valid selection is made false otherwise
 	 */
-	private void startGame(){
-		String[] startGameOptions = {
+	private boolean startGame(){
+		String[] startGameOptions = {	// consider adding and instructions option
 				  "New Game",
 				  "Load Map",
+				  "Close"
 				  };
-		JOptionPane Game = null;
-		Game.showOptionDialog(null, "Howdy Doody!\nWhat would you like to do?", "Mrs Pac Man", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, null);
-		if (!(Game.getValue() == JOptionPane.UNINITIALIZED_VALUE)) {
-			// Find value that is returned for each press and then create action for return value.
-			System.out.println(Game.getValue());		
-		}	
+		final int NEWGAME = 0;
+		final int LOADMAP = 1;
+		final int CLOSE = 2;
+		
+		//Opens a window with Title 
+		int choice = JOptionPane.showOptionDialog(null, STARTMESSAGE, GAMETITLE, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, startGameOptions[2]);
+		
+		if ((choice == -1)) {		// need an assert or throwing and exception or make the window unable to be closed with red x aka unable to throw a -1 also consider user crashing option dialog crt alt del
+			return false;
+		}
+		
+		switch(choice){			//possibly smelly, suggestions welcome
+		
+		case NEWGAME: {
+			map.printMap();
+			return true; // display map wait for user input
+		}
+		case LOADMAP: return true; // load a map functionality still to be determined. Load from a text document or open a text editor ect.
+		case CLOSE: return true;   // Do nothing
+		
+		}
+		
+			System.out.println(choice);		
+	return false;
 	}
+	
 	/*
 	 * This is where the magic happens. 
 	 */
-	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -119,6 +170,6 @@ public class PacManGame implements ActionListener {
 	
 	
 public static void main(String[] args) {
-	
+	new PacManGame();
 }
 }
