@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /*
  * Group Awesomeness Legendary PacManGame 
@@ -140,6 +141,12 @@ public class PacManGame implements ActionListener {
 		//Opens a window with Title 
 		int choice = JOptionPane.showOptionDialog(null, STARTMESSAGE, GAMETITLE, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, startGameOptions[2]);
 		
+		String[] movementOptions = {
+			    "W\n",
+			"S","A","D"
+		};
+		int move = -1;
+		
 		if ((choice == -1)) {		// need an assert or throwing and exception or make the window unable to be closed with red x aka unable to throw a -1 also consider user crashing option dialog crt alt del
 			return false;
 		}
@@ -147,7 +154,10 @@ public class PacManGame implements ActionListener {
 		switch(choice){			//possibly smelly, suggestions welcome
 		
 		case NEWGAME: {
+			do {
 			map.printMap();
+			}
+			while(Characters.get(PacMan.PACMAN));
 			return true; // display map wait for user input
 		}
 		case LOADMAP: return true; // load a map functionality still to be determined. Load from a text document or open a text editor ect.
