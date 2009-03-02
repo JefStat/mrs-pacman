@@ -99,7 +99,14 @@ public class Map {
 	public Coordinate getPacManStart() {
 		return pacManStart;
 	}
-
+	
+	/*
+	 * returns map temporary for a* algorithm
+	 */
+	public Coordinate[][] getMap(){
+		return level;
+	}
+	
 	/*
 	 * Prints the map in console - NEEDS TO BE IMPLEMENTED
 	 */
