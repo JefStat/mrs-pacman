@@ -17,7 +17,14 @@ import java.awt.Point;
 * Author: Nicole Waldrum and Jef Statham
  */
 import java.awt.event.ActionEvent;
-
+/*
+ * This Ghost class overrides the Character Class to implement the typical characteristics of all 4 ghosts.
+ * Each individual ghost will override the MoveToPacMan Class when their individual personalities are implemented.
+ * 
+ * Version: Ghost Class 2.3
+ * Date: March 2, 2009
+ * Author: Nicole Waldrum
+ */
 
 public class Ghost extends Character {
 	private final int CHASER = 0;
@@ -29,7 +36,7 @@ public class Ghost extends Character {
 	private boolean scared;
 	private boolean scatter;
 	private Coordinate previousPosition;
-	private final Coordinate STARTINGPOINT = map.getprison();
+	private final Coordinate STARTINGPOINT = map.getPrison();
 	
 	//constructor that creates an instance of ghost and ensures that everything is set to false
 	public void Ghost(){
