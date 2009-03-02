@@ -29,9 +29,11 @@ public class Ghost extends Character {
 	private boolean scared;
 	private boolean scatter;
 	private Coordinate previousPosition;
+	private final Coordinate STARTINGPOINT = map.getprison();
 	
 	//constructor that creates an instance of ghost and ensures that everything is set to false
 	public void Ghost(){
+		Coordinate startPosition = setPosition(STARTINGPOINT);
 		incarcerated = false;
 		scared = false;
 	}
@@ -49,9 +51,9 @@ public class Ghost extends Character {
 		}
 	}
 	//moves the ghost to prison after they are eaten
-	public void movetoPrison(Point p){
+	public void movetoPrison(Coordinate p){
 		if (this.isAlive()== false){
-			this.setPosition(p);
+			this.setPosition(map.getprison());
 			this.setAlive(true);
 			this.incarcerated = false;
 			this.scared = false;

@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 */
 
 
-public abstract class Character implements ActionListener {
+public abstract class Character extends PacManGame implements ActionListener {
 	//the point is the position of the character at any given moment
 	private Coordinate position;
 	//the name of each character
@@ -38,10 +38,6 @@ public abstract class Character implements ActionListener {
 	//gets the position of the character
 	public Coordinate getPosition() {
 		return position;
-	}
-	// sets the name of the character
-	public void setName(String name) {
-		this.name = name;
 	}
 	//gets the name of the character
 	public String getName() {
