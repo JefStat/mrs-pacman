@@ -42,21 +42,23 @@ public class testMap extends TestCase {
 		assertEquals(15,regularmap.getPrison().y);
 		assertEquals(782,regularmap.getPacdots());
 	}
+
+	/**
+	 * Test method for {@link Map#printMap()}.
+	 */
+
 	public void testPrintMap() {
 		Map regularmap = new Map(30);
 		regularmap.printMap();
 		fail("Not yet implemented"); // TODO
 	}
+	
 	/**
 	 * Test method for {@link Map#getMap()}.
 	 */
 	public void testGetMap() {
 		fail("Not yet implemented"); // TODO
 	}
-
-	/**
-	 * Test method for {@link Map#printMap()}.
-	 */
 
 
 }
