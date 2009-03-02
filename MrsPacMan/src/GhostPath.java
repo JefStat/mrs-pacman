@@ -47,7 +47,7 @@ public class GhostPath extends PacManGame{
         return (double)count / 1.1;
     }
 
-    public Vector AStarSearch(Agent agent) {
+    public Vector <Node> AStarSearch(Agent agent) {
     
         PriorityQueue openQueue = new PriorityQueue();
         
@@ -59,20 +59,20 @@ public class GhostPath extends PacManGame{
         startNode.f = startNode.h + startNode.g;
         startNode.parent = null;
         
-        openQ.add(startNode);
+        openQueue.add(startNode);
         open.put(startNode.position, startNode);
         
         // process the list until success or failure
-        while(openQ.size() > 0) {
+        while(openQueue.size() > 0) {
         
-            Node node = openQ.pop();
-            open.remove(node.location);
+            Node node = openQueue.pop();
+            open.remove(node.poisition);
             
             // if at a goal, we're done
             if(node.position.equals(goalPosition)) {
                 return solve(node);
             } else {
-                Vector neighbors = getNeighbors(node);
+                Vector <Node> neighbors = getNeighbors(node);
                 for(int i = 0; i < neighbors.size(); i++) {
                     Node newNode = (Node)neighbors.elementAt(i);
                     double newCostEstimate = pathCostEstimate(newNode.position, goalPosition, agent);

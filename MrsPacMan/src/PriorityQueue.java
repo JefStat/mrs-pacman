@@ -1,7 +1,7 @@
 import java.util.Vector;
 
 public class PriorityQueue {
-	Vector queue = new Vector();
+	Vector <Node> queue = new Vector<Node>();
     
     public Node pop() {
         Node node = (Node)queue.elementAt(0);
@@ -14,7 +14,7 @@ public class PriorityQueue {
             queue.addElement(node);
         } else {
             int i;
-            for(i = 0; i < q.size(); i++) {
+            for(i = 0; i < queue.size(); i++) {
                 Node holder = (Node)queue.elementAt(i);
                 if(holder.f >= node.f) {
                     queue.insertElementAt(node, i);
