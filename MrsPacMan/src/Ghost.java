@@ -28,7 +28,7 @@ public class Ghost extends Character {
 	private boolean incarcerated;
 	private boolean scared;
 	private boolean scatter;
-	private Point previousPosition;
+	private Coordinate previousPosition;
 	
 	//constructor that creates an instance of ghost and ensures that everything is set to false
 	public void Ghost(){

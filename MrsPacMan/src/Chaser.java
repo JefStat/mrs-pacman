@@ -17,7 +17,7 @@ import java.awt.Point;
 public class Chaser extends Ghost{
 	
 	private final String NAME = "CLYDE";
-	private final Point CORNER = new Point(Max,Max);
+	private final Coordinate CORNER = new Point(Max,Max);
 	
 	/*
 	 * Default Constructor

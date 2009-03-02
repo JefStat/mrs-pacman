@@ -13,7 +13,7 @@ import java.awt.Point;
 public class Fickle extends Ghost {
 	
 	private final String NAME = "Inky";
-	private final Point CORNER = new Point(Max,0);
+	private final Coordinate CORNER = new Point(Max,0);
 	
 	/*
 	 * Default Constructor

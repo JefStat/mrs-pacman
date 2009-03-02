@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 public class PacMan extends Character {
 
 	private final int DEFAULTLIVES = 3;
-	private final Point STARTINGPOINT = new Point();
+	private final Coordinate STARTINGPOINT = new Point();
 	private final int PACMAN = 4;
 
 	private int livesLeft;
@@ -32,7 +32,7 @@ public class PacMan extends Character {
 	/*
 	 * Constructor to pick the starting point p of PacMan
 	 */
-	public PacMan(Point p){
+	public PacMan(Coordinate p){
 		
 	}
 	

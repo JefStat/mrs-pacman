@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 
 public abstract class Character implements ActionListener {
 	//the point is the position of the character at any given moment
-	private Point position;
+	private Coordinate position;
 	//the name of each character
 	private String name;
 	//provides the information of whether the character is dead or alive
@@ -32,11 +32,11 @@ public abstract class Character implements ActionListener {
 	
 	public abstract void actionPerformed(ActionEvent arg0);
 	//sets the position of the character
-	public void setPosition(Point position) {
+	public void setPosition(Coordinate position) {
 		this.position = position;
 	}
 	//gets the position of the character
-	public Point getPosition() {
+	public Coordinate getPosition() {
 		return position;
 	}
 	// sets the name of the character

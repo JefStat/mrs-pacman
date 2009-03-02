@@ -13,7 +13,7 @@ import java.awt.Point;
 public class Ambusher extends Ghost {
 	
 	private final String NAME = "Pinky";
-	private final Point CORNER = new Point(0,Max);
+	private final Coordinate CORNER = new Point(0,Max);
 	
 	/*
 	 * Default Constructor
