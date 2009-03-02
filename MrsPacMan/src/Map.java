@@ -58,8 +58,10 @@ public class Map {
 		//temporary default starting point and prison
 		level[15][15].setIdentity(Coordinate.PRISON);
 		setPrison(level[15][15]);
+		NUMBEROFPACDOTS--;
 		level[1][1].setIdentity(Coordinate.EMPTY);
 		setPacManStart(level[1][1]);
+		NUMBEROFPACDOTS--;
 	}
 	
 	/*
