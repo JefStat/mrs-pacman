@@ -34,7 +34,7 @@ public class Map {
 		level = new Coordinate[s][s];
 		this.size = s;
 		
-		//Initialisation of all coordinates to empty space
+		//Initialization of all coordinates to empty space
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      level[i][j] = new Coordinate(i,j,0);}}
@@ -111,6 +111,17 @@ public class Map {
 	 * Prints the map in console - NEEDS TO BE IMPLEMENTED
 	 */
 	public void printMap(){
+		int track = 0;
+		for(int i = 0; i < size; i++){
+			   for(int j = 0; j < size; j++){
+				   System.out.print(level[j][i].getIdentity());
+				   track++;//after a number of iterations, track will skip a line and then reset
+				   if (track == size) {
+					   System.out.println("");
+					   track = 0;
+				   }
+			     }
+			   }
 	}
 
 }
