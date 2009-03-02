@@ -4,7 +4,7 @@ import sun.management.Agent;
 /*
  * The GhostPath class determines the shortest path to PacMan once it is implemented in the Ghost Class
  * 
- * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari 
+ * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari told us not to reinvent the wheel.
  * 
  * Version: GhostPath Class 1.1
  * Date: March 2, 2009
