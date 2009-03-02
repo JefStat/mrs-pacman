@@ -43,16 +43,31 @@ public class Map {
 			level[i][s].setIdentity(Coordinate.WALL); //Top wall created
 		}
 		
-		//Fill all non walls with a pacdot
+		//Fill all non walls with a pacdot, and counts all pacdots inserted
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      if (level[i][j].getIdentity() != Coordinate.WALL) {
-			    	  level[i][j].setIdentity(2);
+			    	  level[i][j].setIdentity(Coordinate.PACDOT);
 			    	  NUMBEROFPACDOTS++;}
 			      }
 			   }
 		
 	}
+	
+	/*
+	 * Returns the width/length of the map
+	 */
 	public int getSize(){return size;}
+	
+	/*
+	 * Returns the number of pacdots within the map
+	 */
+	public int getPacdots(){return NUMBEROFPACDOTS;}
+	
+	/*
+	 * Prints the map in console - NEEDS TO BE IMPLEMENTED
+	 */
+	public void printMap(){
+	}
 
 }
