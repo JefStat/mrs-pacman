@@ -84,7 +84,7 @@ public class Map {
 	/**
 	 * @return the prison
 	 */
-	public static Coordinate getPrison() {
+	public Coordinate getPrison() {
 		return prison;
 	}
 
@@ -117,7 +117,8 @@ public class Map {
 		for(int i = 0; i < size; i++){
 			   for(int j = 0; j < size; j++){
 				   System.out.print(level[j][i].getIdentity() + " ");
-				   track++;//after a number of iterations, track will skip a line and then reset
+				   track++;
+				   //after row has been printed, track will skip a line and then reset
 				   if (track == size) {
 					   System.out.println("");
 					   track = 0;
