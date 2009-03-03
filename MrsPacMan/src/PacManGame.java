@@ -2,6 +2,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,17 +27,16 @@ import javax.swing.JOptionPane;
 /*
  * Class PacManGame
  * 
- * PacMan game runs the rules set for pacman currently accepting user input and notifying
+ * PacMangame runs the rules set for pacman currently accepting user input and notifying
  * the other elements of the game that the user has taken an action. The class also starts
  * the game based on limited user options and has the main method for running the program. 
  */
 
 
-public class PacManGame implements ActionListener {
+public class PacManGame extends Observable{
 
 	private static final String STARTMESSAGE = "Howdy Doody!\nWhat would you like to do?";
 	private static final String GAMETITLE = "Mrs Pac Man";
-	private final int CHARS = 4;
 	private final long FREELIFE = 10000; 
 	
 	private boolean playersTurn;
@@ -52,13 +52,19 @@ public class PacManGame implements ActionListener {
 	 */
 	
 	public PacManGame(){
-		Characters.add(new PacMan());
-		Characters.add(new Ghost());
-		Characters.add(new Ghost());
-		Characters.add(new Ghost());
-		Characters.add(new Ghost());
+	//	Characters.add(new PacMan());
+	//	Characters.add(new Ghost());
+	//	Characters.add(new Ghost());
+	//	Characters.add(new Ghost());
+	//	Characters.add(new Ghost());
+		
+		//template for changing this class and program to the observer pattern
+		this.addObserver(new PacMan());
+		this.addObserver(new Ghost());
+		
+		
 		setMap(new Map(30)); 	//using magic number while waiting for implementation
-		setScore(0);		//magic number make final STARTING SCORE
+		setScore(0);		//magic number make a final STARTING SCORE
 		playersTurn = true;
 		startGame();
 	}
@@ -70,13 +76,6 @@ public class PacManGame implements ActionListener {
 	public PacManGame(Map M){
 		
 	}
-	/**
-	 * @param map the map to set
-	 */
-	private void setMap(Map map) {
-		this.map = map;
-	}
-
 	/**
 	 * @return the map
 	 */
@@ -112,15 +111,8 @@ public class PacManGame implements ActionListener {
 	 * 
 	 * return true if valid false otherwise
 	 */
-	public boolean CheckMovement(Point p){
+	public boolean CheckMovement(Coordinate p){
 		return false;	
-	}
-	
-	/*
-	 * Updates all the characters to a valid movement input
-	 */
-	public void notify(Object o){
-		
 	}
 
 	/*
@@ -142,46 +134,35 @@ public class PacManGame implements ActionListener {
 		int choice = JOptionPane.showOptionDialog(null, STARTMESSAGE, GAMETITLE, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, startGameOptions[2]);
 		
 		String[] movementOptions = {
-			    "W\n",
-			"S","A","D"
+			    "Up\n",
+			"Left","Down","Right"
 		};
 		final int UP = 0;
-		final int RIGHT = 1;
-		final int LEFT = 2;
-		final int DOWN = 3;
+		final int LEFT = 1;
+		final int DOWN = 2;
+		final int RIGHT = 3;
 		
-		if ((choice == -1)) {		// need an assert or throwing and exception or make the window unable to be closed with red x aka unable to throw a -1 also consider user crashing option dialog crt alt del
+		if ((choice == -1)) {	// need an assert or throwing and exception or make the window unable to be closed with red x aka unable to throw a -1 also consider user crashing option dialog crt alt del
 			return false;
 		}
 		
 		switch(choice){			//possibly smelly, suggestions welcome
 		
-		case NEWGAME: {
+		case NEWGAME: {			// display map wait for user input
 			do {
 			map.printMap();
 			int move = JOptionPane.showOptionDialog(null, "Select direction", "Movement Box", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, movementOptions, movementOptions[0]);
+			this.notifyObservers(move);
 			}
 			while((Characters.get(0).isAlive())&&(map.getPacdots()>= 0));
-			return true; // display map wait for user input
+			return true; 
 		}
 		case LOADMAP: return true; // load a map functionality still to be determined. Load from a text document or open a text editor ect.
 		case CLOSE: return true;   // Do nothing
 		
-		}
-		
-			System.out.println(choice);		
+		}		
 	return false;
 	}
-	
-	/*
-	 * This is where the magic happens. 
-	 */
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 public static void main(String[] args) {
 	new PacManGame();
