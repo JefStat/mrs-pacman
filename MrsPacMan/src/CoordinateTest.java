@@ -8,17 +8,14 @@ public class CoordinateTest extends TestCase {
 	}
 
 	public void testCoordinate() {
-		fail("Not yet implemented");
-	}
-
-	public void testGetIdentity() {
-		fail("Not yet implemented");
+		Coordinate coordinate1= new Coordinate(1,2,5);
+		assertEquals(coordinate1.getIdentity(), 5);
 	}
 
 	public void testSetIdentity() {
-		Coordinate c1 = new Coordinate(1,2,3);
-		c1.setIdentity(1);
-		assertEquals(c1.getIdentity(), 1);
+		Coordinate coordinate2 = new Coordinate(1,2,3);
+		coordinate2.setIdentity(1);
+		assertEquals(coordinate2.getIdentity(), 1);
 	}
 
 }
