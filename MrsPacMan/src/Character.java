@@ -1,5 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 /*
 * This character class establishes the abstract outline of the characters of the PacMan game.
 * These characters include PacMan and the four ghosts.  Each subclass overrides the character 
