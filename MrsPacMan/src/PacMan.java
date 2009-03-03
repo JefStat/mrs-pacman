@@ -13,12 +13,13 @@ import java.awt.Point;
 * Author: Nicole Waldrum and Jef Statham
 */
 import java.awt.event.ActionEvent;
+import java.util.Observable;
 
 public class PacMan extends Character {
 
 	private static final String PACMANNAME = "PacMan";
 	private final int DEFAULTLIVES = 3;
-	private Coordinate STARTINGPOINT = Map.getPacManStart();
+	private Coordinate STARTINGPOINT = map.getPacManStart();
 	private final int PACMAN = 4;
 
 	private int livesLeft;
@@ -39,6 +40,12 @@ public class PacMan extends Character {
 	}
 	
 	public void actionPerformed(ActionEvent arg0){
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
 		
 	}
 }
