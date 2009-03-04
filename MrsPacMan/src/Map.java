@@ -34,6 +34,8 @@ public class Map {
 	 * constructor to make a map s x s size
 	 */
 	@SuppressWarnings("deprecation")
+	
+	//---------------TEST-----------------------
 	public static void main(String[] args) {
 		Map x = new Map(30);
 		MapGUI f = new MapGUI("Map GUI");
@@ -42,6 +44,8 @@ public class Map {
 		f.show();
 		x.printMap(f);
 	}
+	//---------------TEST-----------------------
+	
 	public Map(int s){
 		level = new Coordinate[s][s];
 		this.size = s;
