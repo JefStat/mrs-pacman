@@ -8,6 +8,10 @@
  * Milestone 2: WRITTEN/MODIFIED by: Nahim Nasser
  * Updated: Function bodies added
  */
+import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import java.lang.Integer;
 
 public class Map {
 	
@@ -126,5 +130,57 @@ public class Map {
 			     }
 			   }
 	}
+	
+	/*
+	 * Incomplete implementation of import map
+	 */
+	 public void ImportMap(String filename) throws Exception{
+         File file = new java.io.File(filename);
+         int track = 0;
+      //Scanner input = new Scanner(file);
+      //create  a scanner for input
+         Scanner input = new java.util.Scanner(file);
+         Integer integer = Integer.parseInt(input.next());
+        this.size = integer.intValue();
+      //a while loop that makes the table
+        this.NUMBEROFPACDOTS = 0;      
+         while(input.hasNext()){
+				for(int i = 0; i < size; i++){
+					   for(int j = 0; j < size; j++){
+						   integer = Integer.parseInt(input.next());
+						   if (integer.intValue() == Coordinate.PACDOT){NUMBEROFPACDOTS++;}
+						   if (integer.intValue() == Coordinate.PRISON){this.prison = level[j][i];}
+						   if (integer.intValue() == Coordinate.EMPTY){this.pacManStart = level[j][i];}
+						   level[j][i].setIdentity(integer.intValue());
+						   track++;
+					     }
+					   }
+         }
+         input.close();
+      }
+	 
+		/*
+		 * Exports the map to filename.txt in the root directory.
+		 */ 
+	 public void ExportMap(String filename) throws Exception{
+                  java.io.File output = new java.io.File(filename);
+						java.io.PrintWriter outfile = new java.io.PrintWriter(output);
+						int track = 0;
+						outfile.println(size);
+						for(int i = 0; i < size; i++){
+							   for(int j = 0; j < size; j++){
+								   outfile.print(level[j][i].getIdentity() + " ");
+								   track++;
+								   //after row has been printed, track will skip a line and then reset
+								   if (track == size) {
+									   outfile.println("");
+									   track = 0;
+								   }
+							     }
+							   }
+						outfile.close();
+
+	 }
+
 
 }
