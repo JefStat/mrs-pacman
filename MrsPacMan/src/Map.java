@@ -180,6 +180,4 @@ public class Map {
 						outfile.close();
 
 	 }
-
-
 }
