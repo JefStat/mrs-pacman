@@ -41,6 +41,7 @@ public class testMap extends TestCase {
 		assertEquals(15,regularmap.getPrison().x);
 		assertEquals(15,regularmap.getPrison().y);
 		assertEquals(782,regularmap.getPacdots());
+		assertEquals(new Coordinate(1,1,Coordinate.EMPTY),regularmap.getPacManStart());
 	}
 
 	/**
@@ -50,7 +51,33 @@ public class testMap extends TestCase {
 	public void testPrintMap() {
 		Map regularmap = new Map(30);
 		regularmap.printMap();
-		fail("Not yet implemented"); // TODO
+	}
+	
+	public void testExportMap(){
+		Map regularmap = new Map(30);
+		try {
+			regularmap.ExportMap("BasicMap.txt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void testImportMap(){
+		Map regularmap = new Map(30);
+		try {
+			regularmap.ExportMap("BasicMap.txt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			regularmap.ImportMap("BasicMap.txt");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(30, regularmap.getSize());
+		assertEquals(new Coordinate(15,15,Coordinate.PRISON),regularmap.getPrison());
+		assertEquals(new Coordinate(1,1,Coordinate.EMPTY),regularmap.getPacManStart());
 	}
 	
 	/**
