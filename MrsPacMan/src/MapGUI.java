@@ -9,41 +9,33 @@
 import java.awt.*;
 import javax.swing.*;
 
-//CURRENTLY IN PRIMITIVE STATE USING ADDRESSBOOK CODE
-
 @SuppressWarnings("serial")
 public class MapGUI extends JFrame {
-	public JTextField TF;
+	private JTextArea TF;
 	public MapGUI(String label) {
 		super(label);
 		new WindowHandler(this); //create the listener
 		
 		JMenuBar MB = new JMenuBar();
 		setJMenuBar(MB);
-		JMenu createMenu = new JMenu( "Create" );
-	    MB.add( createMenu );
-	    JMenuItem createAddressBook = new JMenuItem("Address Book");
-	    JMenuItem createBuddy = new JMenuItem("Buddy Info");
-	    createMenu.add(createAddressBook);
-	    createMenu.add(createBuddy);
+		JMenu importMenu = new JMenu( "Import" );
+	    MB.add( importMenu );
+	    JMenuItem importMap = new JMenuItem("Map");
+	    importMenu.add(importMap);
 	    
-	    JMenu addMenu = new JMenu( "Add" );
-	    MB.add( addMenu );
-	    JMenuItem addAddressBook = new JMenuItem("Address Book");
-	    JMenuItem addBuddy = new JMenuItem("Buddy Info");
-	    addMenu.add(addAddressBook);
-	    addMenu.add(addBuddy);
-	    
-	    JMenu saveMenu = new JMenu( "Save" );
-	    JMenuItem saveAll = new JMenuItem("Save All");
-	    saveMenu.add(saveAll);
+	    JMenu saveMenu = new JMenu( "Export" );
+	    JMenuItem exportMap = new JMenuItem("Export/Save Map");
+	    saveMenu.add(exportMap);
 	    MB.add( saveMenu );
 
-		TF = new JTextField(1);         
+		TF = new JTextArea();         
 		TF.setBackground(Color.white);
 		TF.setVisible(true);
 		TF.setEditable(false);
 		setContentPane(TF);
 		}
+	public void changeText(String input){
+		TF.setText(input);
+	}
 		public MapGUI() { this(""); }
 }

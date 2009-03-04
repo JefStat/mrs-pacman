@@ -33,6 +33,15 @@ public class Map {
 	/*
 	 * constructor to make a map s x s size
 	 */
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		Map x = new Map(30);
+		MapGUI f = new MapGUI("Map GUI");
+		f.setSize(800,600);
+		f.changeText("TEST" +"\n" +"next");
+		f.show();
+		x.printMap(f);
+	}
 	public Map(int s){
 		level = new Coordinate[s][s];
 		this.size = s;
@@ -113,21 +122,23 @@ public class Map {
 	}
 	
 	/*
-	 * Prints the map in console - Row by Row
+	 * Prints the map in a specified GUI
 	 */
-	public void printMap(){
+	public void printMap(MapGUI f){
+		String strLevel = "\n";
 		int track = 0;
 		for(int i = 0; i < size; i++){
 			   for(int j = 0; j < size; j++){
-				   System.out.print(level[j][i].getIdentity() + " ");
+				   strLevel += level[j][i].getIdentity() + " ";
 				   track++;
 				   //after row has been printed, track will skip a line and then reset
 				   if (track == size) {
-					   System.out.println("");
+					   strLevel += "\n";
 					   track = 0;
 				   }
 			     }
 			   }
+		f.changeText(strLevel);
 	}
 	
 	/*
