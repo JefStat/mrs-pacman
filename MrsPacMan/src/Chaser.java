@@ -19,9 +19,10 @@ import java.awt.Point;
  * 
  * Implemented all the methods for Chaser.
  */
+import java.util.Observable;
 
 public class Chaser extends Ghost{
-	
+	private final int CHASER = 0;
 	private final String NAME = "BLINKY";
 	private final Coordinate[][] map;
 	private final Ghost blinky;
@@ -33,16 +34,22 @@ public class Chaser extends Ghost{
 	public Chaser(){
 		String name = NAME;
 		Ghost blinky = new Ghost();
-		clyde.runAway(CORNER);	
+		blinky.runAway(CORNER);	
 	}
-	
+	//Moves Chaser towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){
 		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(blinky.getPosition(), p, blinky)))){
 			
 		}
 	}
+	//returns the corner that Chaser runs to.
 	public Coordinate chaserCorner(){
 		return CORNER;
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

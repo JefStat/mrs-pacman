@@ -19,7 +19,7 @@ import java.math.*;
 import java.util.Observable;
 
 public class Fickle extends Ghost{
-	
+	private final int FICKLE = 2;
 	private final String NAME = "Inky";
 	private final Coordinate[][] map;
 	private final Ghost inky;
@@ -33,14 +33,15 @@ public class Fickle extends Ghost{
 		Ghost inky = new Ghost();
 		inky.runAway(CORNER);
 	}
-	
+	//Moves Fickle towards PacMan as the defined personality indicates
 	public void movetoPacMan(Coordinate p){
 		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky)))){
 			
 		}
 		
 	}
-	public Coordinate ambusherCorner(){
+	//Returns the corner that Fickle runs to
+	public Coordinate fickleCorner(){
 		return CORNER;
 	}
 

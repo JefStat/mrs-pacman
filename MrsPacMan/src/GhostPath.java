@@ -1,27 +1,8 @@
 import java.util.Vector;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-import sun.management.Agent;
-/*
- * The GhostPath class determines the shortest path to PacMan once it is implemented in the Ghost Class
- * 
- * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari told us not to reinvent the wheel.
- * 
- * Version: GhostPath Class 1.1
- * Date: March 2, 2009
- * Author: Nicole Waldrum And Jef Statham
- * 
- * Milestone 3
- * 
- * Due to Nicole's previous incompetence, Jen and Nicole revisited the A* Search algorithm to restructure what had already been implemented.
- * The code originally created has key ideas necessary but did not entire apply to what was required for PacMan.  With this in mind the AStarSearch
- * was recoded to better suit the needs of PacMan.
- * 
- * Date: March 6th, 2009
- * Written/Modified: Jen Kasun and Nicole Waldrum
- */
 
 public class GhostPath extends PacManGame{
-	int typicalPath; // default one
+	static int typicalPath; // default one
 	Hashtable open;
     Hashtable closed;
     //creates the map
@@ -41,7 +22,7 @@ public class GhostPath extends PacManGame{
     }
     
   //Determines the cost of the path that will be taken
-    private double pathDistanceEstimate(Coordinate start, Coordinate goal, Character p) {
+    public static double pathDistanceEstimate(Coordinate start, Coordinate goal, Character p) {
         if(p == null ) { // default agent
             int dx = Math.abs(goal.x - start.x);
             int dy = Math.abs(goal.y - start.y);

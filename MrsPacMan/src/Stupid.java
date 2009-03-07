@@ -18,7 +18,7 @@ import java.util.Observable;
  */
 
 public class Stupid extends Ghost {
-	
+	private final int STUPID = 3;
 	private final String NAME = "CLYDE";
 	private final Coordinate[][] map;
 	private final Ghost clyde;
@@ -33,12 +33,13 @@ public class Stupid extends Ghost {
 		clyde.runAway(CORNER);
 				
 	}
-	
+	//Moves Stupid towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){
 		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(clyde.getPosition(), p, clyde)))){
 			
 		}
 	}
+	//Returns the cornere that Stupis goes to
 	public Coordinate stupidCorner(){
 		return CORNER;
 	}

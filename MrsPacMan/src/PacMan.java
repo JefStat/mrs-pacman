@@ -20,7 +20,7 @@ public class PacMan extends Character {
 	private final int DEFAULTLIVES = 3;
 	private Coordinate STARTINGPOINT = map.getPacManStart();
 	private final int PACMAN = 4;
-	private Coordinate position;
+	private static Coordinate position;
 
 	private int livesLeft;
 	
@@ -30,6 +30,7 @@ public class PacMan extends Character {
 	public PacMan(){
 		name = PACMANNAME;
 		livesLeft = DEFAULTLIVES;
+		position = STARTINGPOINT;
 	}
 	
 	/*
@@ -38,12 +39,12 @@ public class PacMan extends Character {
 	public PacMan(Coordinate p){
 		
 	}
-	public Coordinate getPosition(){
+	public static Coordinate getPosition(){
 		return position;
 		
 	}
 	
-	public void setPosition(Coordinate p){
+	public static void setPosition(Coordinate p){
 		position = p;
 	}
 	public void actionPerformed(ActionEvent arg0){
