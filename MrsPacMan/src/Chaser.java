@@ -12,13 +12,19 @@ import java.awt.Point;
  * Title: Chaser Class version 1.1
  * Date: February 16, 2009
  * Author: Nicole Waldrum and Jef Statham
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Implemented all the methods for Chaser.
  */
 
 public class Chaser extends Ghost{
 	
-	private final String NAME = "CLYDE";
+	private final String NAME = "BLINKY";
 	private final Coordinate[][] map;
-	private final Ghost inky;
+	private final Ghost blinky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX, Map.MAX, map[Map.MAX][Map.MAX].getIdentity());
 	
 	/*
@@ -26,12 +32,12 @@ public class Chaser extends Ghost{
 	 */
 	public Chaser(){
 		String name = NAME;
-		Ghost clyde = new Ghost();
+		Ghost blinky = new Ghost();
 		clyde.runAway(CORNER);	
 	}
 	
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(blinky.getPosition(), p, blinky)))){
 			
 		}
 	}

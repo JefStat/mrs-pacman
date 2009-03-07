@@ -24,6 +24,12 @@ import java.awt.event.ActionEvent;
  * Version: Ghost Class 2.3
  * Date: March 2, 2009
  * Author: Nicole Waldrum
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Implemented all the methods for Ghost.
  */
 
 public abstract class Ghost extends Character {
@@ -56,10 +62,10 @@ public abstract class Ghost extends Character {
 		}
 		else if(this.isAlive()== true && P.getPosition() != this.getPosition()){
 			if(this.scared == true){
-				ambusherCorner();
-				fickleCorner();
-				stupidCorner();
-				chaserCorner();
+				Ambusher.ambusherCorner();
+				Fickle.fickleCorner();
+				Stupid.stupidCorner();
+				Chaser.chaserCorner();
 			}
 			else if(this.scared == false){
 				GhostPath.AStarSearch(P);

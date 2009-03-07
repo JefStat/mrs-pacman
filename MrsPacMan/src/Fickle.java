@@ -35,7 +35,7 @@ public class Fickle extends Ghost{
 	}
 	
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky)))){
 			
 		}
 		

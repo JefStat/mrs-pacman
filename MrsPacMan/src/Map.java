@@ -59,7 +59,7 @@ public class Map {
 	
 	public Map(int s){
 		level = new Coordinate[s][s];
-		this.size = s;
+		Map.setSize(s);
 		
 		//Initialisation of all coordinates to empty space
 		for(int i = 0; i < s; i++){
@@ -153,12 +153,12 @@ public class Map {
 	public void printMap(MapGUI f){
 		String strLevel = "\n";
 		int track = 0;
-		for(int i = 0; i < size; i++){
-			   for(int j = 0; j < size; j++){
+		for(int i = 0; i < getSize(); i++){
+			   for(int j = 0; j < getSize(); j++){
 				   strLevel += level[j][i].getIdentity() + " ";
 				   track++;
 				   //after row has been printed, track will skip a line and then reset
-				   if (track == size) {
+				   if (track == getSize()) {
 					   strLevel += "\n";
 					   track = 0;
 				   }
@@ -177,12 +177,12 @@ public class Map {
       //create  a scanner for input
          Scanner input = new java.util.Scanner(file);
          Integer integer = Integer.parseInt(input.next());
-        this.size = integer.intValue();
+        Map.setSize(integer.intValue());
       //a while loop that makes the table
         this.NUMBEROFPACDOTS = 0;      
          while(input.hasNext()){
-				for(int i = 0; i < size; i++){
-					   for(int j = 0; j < size; j++){
+				for(int i = 0; i < getSize(); i++){
+					   for(int j = 0; j < getSize(); j++){
 						   integer = Integer.parseInt(input.next());
 						   if (integer.intValue() == Coordinate.PACDOT){NUMBEROFPACDOTS++;}
 						   if (integer.intValue() == Coordinate.PRISON){this.prison = level[j][i];}
@@ -202,13 +202,13 @@ public class Map {
 	      java.io.File output = new java.io.File(filename);
 				java.io.PrintWriter outfile = new java.io.PrintWriter(output);
 				int track = 0;
-				outfile.println(size);
-				for(int i = 0; i < size; i++){
-					   for(int j = 0; j < size; j++){
+				outfile.println(getSize());
+				for(int i = 0; i < getSize(); i++){
+					   for(int j = 0; j < getSize(); j++){
 						   outfile.print(level[j][i].getIdentity() + " ");
 						   track++;
 						   //after row has been printed, track will skip a line and then reset
-						   if (track == size) {
+						   if (track == getSize()) {
 							   outfile.println("");
 							   track = 0;
 						   }
@@ -217,4 +217,8 @@ public class Map {
 				outfile.close();
 
 	 }
+
+	public static void setSize(int size) {
+		Map.size = size;
+	}
 }

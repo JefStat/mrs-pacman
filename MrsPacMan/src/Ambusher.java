@@ -9,12 +9,18 @@ import java.awt.Point;
  * 
  * Date: February 16, 2009
  * Author: Nicole Waldrum and Jef Statham
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Implemented all the methods for Ambusher.
  */
 public class Ambusher extends Ghost {
 	
 	private final String NAME = "Pinky";
 	private final Coordinate[][] map;
-	private final Coordinate[][] STARTINGPOINT = map.getAmbusherStart();
+	private final Coordinate[][] STARTINGPOINT = map[0][Map.MAX].getAmbusherStart();
 	private final Ghost pinky;
 	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map[0][Map.MAX].getIdentity());
 	
@@ -29,7 +35,7 @@ public class Ambusher extends Ghost {
 	}
 	
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(pinky.getPosition(), p, pinky)))){
 			
 		}
 	}

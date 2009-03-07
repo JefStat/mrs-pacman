@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.Observable;
 /*
  * This Stupid class is the orange ghost, whose behaviour is pokey.
  * This ghost is released from the ghost prison last.
@@ -8,6 +9,12 @@ import java.awt.Point;
  * Title: Stupid Class version 1.1
  * Date: February 16, 2009
  * Author: Nicole Waldrum and Jef Statham
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Implemented all the methods for Stupid.
  */
 
 public class Stupid extends Ghost {
@@ -28,12 +35,18 @@ public class Stupid extends Ghost {
 	}
 	
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(clyde.getPosition(), p, clyde)))){
 			
 		}
 	}
 	public Coordinate stupidCorner(){
 		return CORNER;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
