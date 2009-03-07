@@ -34,10 +34,11 @@ public class Ambusher extends Ghost {
 				
 	}
 	//Moves Ambusher towards PacMan in the appropriate path
+	//Given temporarily the same personality as chaser but faster.
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(pinky.getPosition(), p, pinky)))){
-			
-		}
+		blinky.setPosition(blinky.AStarSearch(p));
+		blinky.setPosition(blinky.AStarSearch(p));
+		
 	}
 	//Returns the respective corner that this ghost goes to
 	public Coordinate ambusherCorner(){

@@ -27,6 +27,7 @@ public class Fickle extends Ghost{
 	private final Ghost inky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
 	private static bool onPath;
+	private static int direction;
 	
 	/*
 	 * Default Constructor
@@ -44,7 +45,88 @@ public class Fickle extends Ghost{
 			}
 		else{
 			if(onPath){
-				//will write in a few minutes
+				switch (direction){
+				case 0:
+					if((map.[x-1][y+1].getIdentity()==1)||(map.[x-1][y+1].getIdentity()==5)){
+						onPath = false;
+						inky.movetoPacMan(p);
+				    }
+					else{
+						Coordinate endpoint = new Coordinate(x-1, y+1, map.[x-1][y+1].getIdentity());
+				    	inky.setPostion(endpoint);
+					}
+					break;
+				case 1:
+					if((map.[x][y+1].getIdentity()==1)||(map.[x][y+1].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+				    }
+				    else{
+				    	Coordinate endpoint = new Coordinate(x, y+1, map.[x][y+1].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				case 2:
+					if((map.[x+1][y+1].getIdentity()==1)||(map.[x+1][y+1].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+					}
+				    else{
+				    	Coordinate endpoint = new Coordinate(x+1, y+1, map.[x+1][y+1].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				case 3:
+					if((map.[x+1][y].getIdentity()==1)||(map.[x+1][y].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+					}
+				    else{
+				    	Coordinate endpoint = new Coordinate(x+1, y, map.[x+1][y].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				case 4:
+					if((map.[x+1][y-1].getIdentity()==1)||(map.[x+1][y-1].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+					}
+				    else{
+				    	Coordinate endpoint = new Coordinate(x+1, y-1, map.[x+1][y-1].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				case 5:
+					if((map.[x][y-1].getIdentity()==1)||(map.[x][y-1].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+					}
+				    else{
+				    	Coordinate endpoint = new Coordinate(x, y-1, map.[x][y-1].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				case 6:
+					if((map.[x-1][y-1].getIdentity()==1)||(map.[x-1][y-1].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+					}
+				    else{
+				    	Coordinate endpoint = new Coordinate(x-1, y-1, map.[x-1][y-1].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+				    break;
+				case 7:
+					if((map.[x-1][y].getIdentity()==1)||(map.[x-1][y].getIdentity()==5)){
+						onPath=false;
+						inky.movetoPacMan(p);
+				    }
+				    else{
+				    	Coordinate endpoint = new Coordinate(x-1, y, map.[x-1][y].getIdentity());
+				    	inky.setPostion(endpoint);
+				    }
+					break;
+				}
 			}
 			else{
 				bool a = true;
@@ -61,7 +143,8 @@ public class Fickle extends Ghost{
 					    else{
 					    	Coordinate endpoint = new Coordinate(x-1, y+1, map.[x-1][y+1].getIdentity())
 					    	inky.setPostion(endpoint);
-					    	onPath=true:
+					    	onPath=true;
+					    	direction = 0;
 					    	a=false;
 					    }
 					    break;
@@ -72,6 +155,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x, y+1, map.[x][y+1].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =1;
 						    	a=false;
 						    }
 						    break;
@@ -82,6 +166,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x+1, y+1, map.[x+1][y+1].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =2;
 						    	a=false;
 						    }
 						    break;
@@ -92,6 +177,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x+1, y, map.[x+1][y].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =3;
 						    	a=false;
 						    }
 						    break;
@@ -102,6 +188,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x+1, y-1, map.[x+1][y-1].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =4;
 						    	a=false;
 						    }
 						    break;
@@ -112,6 +199,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x, y-1, map.[x][y-1].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =5;
 						    	a=false;
 						    }
 						    break;
@@ -122,6 +210,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x-1, y-1, map.[x-1][y-1].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =6;
 						    	a=false;
 						    }
 						    break;
@@ -132,6 +221,7 @@ public class Fickle extends Ghost{
 						    	Coordinate endpoint = new Coordinate(x-1, y, map.[x-1][y].getIdentity());
 						    	inky.setPostion(endpoint);
 						    	onPath=true;
+						    	direction =7;
 						    	a=false;
 						    }
 						    break;

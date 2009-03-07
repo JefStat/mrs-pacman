@@ -38,9 +38,7 @@ public class Chaser extends Ghost{
 	}
 	//Moves Chaser towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(blinky.getPosition(), p, blinky)))){
-			
-		}
+		blinky.setPosition(blinky.AStarSearch(p));
 	}
 	//returns the corner that Chaser runs to.
 	public Coordinate chaserCorner(){
