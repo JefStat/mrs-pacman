@@ -26,7 +26,7 @@ public class Fickle extends Ghost{
 	private final Coordinate[][] map;
 	private final Ghost inky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
-	private static bool onPath;
+	private static boolean onPath;
 	private static int direction;
 	
 	/*
@@ -40,6 +40,9 @@ public class Fickle extends Ghost{
 	}
 	//Moves Fickle towards PacMan as the defined personality indicates
 	public void movetoPacMan(Coordinate p){
+	
+		int x1 = inky.getPostion().x;
+		int y1 = inky.getPostion().y;
 		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky)))){
 			inky.setPosition(inky.AStarSearch(p));
 			}
@@ -134,8 +137,6 @@ public class Fickle extends Ghost{
 					Random r = new Random();
 					int options = r.nextInt();
 					options = options % 8;
-					int x1 = inky.getPostion().x;
-					int y1 = inky.getPostion().y;
 					switch (options) {
 					  case 0: 
 					    if((map.[x-1][y+1].getIdentity()==1)||(map.[x-1][y+1].getIdentity()==5)){

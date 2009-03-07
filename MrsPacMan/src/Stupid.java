@@ -40,8 +40,8 @@ public class Stupid extends Ghost {
 			Random r = new Random();
 			int options = r.nextInt();
 			options = options % 8;
-			int x1 = inky.getPostion().x;
-			int y1 = inky.getPostion().y;
+			int x1 = clyde.getPostion().x;
+			int y1 = clyde.getPostion().y;
 			switch (options) {
 			  case 0: 
 			    if((map.[x-1][y+1].getIdentity()==1)||(map.[x-1][y+1].getIdentity()==5)){
