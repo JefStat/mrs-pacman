@@ -65,7 +65,7 @@ public class GhostPath extends PacManGame{
     }
   
     //Determines the shortest path to the goal
-    public Node AStarSearch(Character p) {
+    public Vector <Node> AStarSearch(Character p) {
     
         PriorityQueue openQueue = new PriorityQueue();
         
@@ -115,7 +115,7 @@ public class GhostPath extends PacManGame{
                         }
                         openQueue.add(newNode1);
                         open.put(nnPosition, newNode1);
-                        return newNode1;
+                        return solve(newNode1);
                         
                     } // now done with node
                 }
