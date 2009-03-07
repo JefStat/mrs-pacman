@@ -7,6 +7,16 @@
  * Author: Nicole Waldrum and Jef Statham
  * Milestone 2: WRITTEN/MODIFIED by: Nahim Nasser
  * Updated: Function bodies added
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Created default size MAX so that these values could be used in the character classes to send ghosts
+ * to their respective corners.  Also, modified the Map() constructor so that it worked properly as it
+ * was commented out.  When attempting to create ambusher is was realized that this ghost starts outisde
+ * the prison unlike the rest of the ghosts.
+ * 
  */
 import java.util.Scanner;
 import java.io.*;
@@ -14,22 +24,15 @@ import java.lang.Integer;
 
 public class Map {
 	
-	//private final int DEFAULTSIZE = 30;
-	private int size;
+	static int MAX = 30;
+	private static int size;
 	Coordinate[][] level;
 	private int NUMBEROFPACDOTS = 0;
-	// need to be initialized and getters made.
+	// need to be initialised and getters made.
 	private Coordinate prison;
 	private Coordinate pacManStart;
+	private Coordinate ambusherStart;
 	
-	/*
-	 * Default constructor making the map the Defaultsize x Defaultsize
-	 * Will create a default map, with a border of walls
-	 */
-	//public Map(){
-	//	Map(DEFAULTSIZE);
-	//}
-
 	/*
 	 * constructor to make a map s x s size
 	 */
@@ -46,11 +49,19 @@ public class Map {
 	}
 	//---------------TEST-----------------------
 	
+	/*
+	 * Default constructor making the map the Defaultsize x Defaultsize
+	 * Will create a default map, with a border of walls
+	 */
+	public Map(){
+		this(MAX);
+	}
+	
 	public Map(int s){
 		level = new Coordinate[s][s];
 		this.size = s;
 		
-		//Initialization of all coordinates to empty space
+		//Initialisation of all coordinates to empty space
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      level[i][j] = new Coordinate(i,j,0);}}
@@ -83,7 +94,7 @@ public class Map {
 	/*
 	 * Returns the width/length of the map
 	 */
-	public int getSize(){return size;}
+	public static int getSize(){return size;}
 	
 	/*
 	 * Returns the number of pacdots within the map
@@ -102,6 +113,17 @@ public class Map {
 	 */
 	public Coordinate getPrison() {
 		return prison;
+	}
+	//This method sets the prisoner for Ambusher as this ghost starts outside the prison 
+	//at the front of the prison
+	public void setAmbusherStart(Coordinate ambusherStart){
+		this.ambusherStart = ambusherStart;
+	}
+	//This method returns the prisoner for Ambusher as this ghost starts outside the prison 
+	//at the front of the prison
+	public Coordinate getAmbusherStart(){
+		return ambusherStart;
+		
 	}
 
 	/**
@@ -177,22 +199,22 @@ public class Map {
 		 * Exports the map to filename.txt in the root directory.
 		 */ 
 	 public void ExportMap(String filename) throws Exception{
-                  java.io.File output = new java.io.File(filename);
-						java.io.PrintWriter outfile = new java.io.PrintWriter(output);
-						int track = 0;
-						outfile.println(size);
-						for(int i = 0; i < size; i++){
-							   for(int j = 0; j < size; j++){
-								   outfile.print(level[j][i].getIdentity() + " ");
-								   track++;
-								   //after row has been printed, track will skip a line and then reset
-								   if (track == size) {
-									   outfile.println("");
-									   track = 0;
-								   }
-							     }
-							   }
-						outfile.close();
+	      java.io.File output = new java.io.File(filename);
+				java.io.PrintWriter outfile = new java.io.PrintWriter(output);
+				int track = 0;
+				outfile.println(size);
+				for(int i = 0; i < size; i++){
+					   for(int j = 0; j < size; j++){
+						   outfile.print(level[j][i].getIdentity() + " ");
+						   track++;
+						   //after row has been printed, track will skip a line and then reset
+						   if (track == size) {
+							   outfile.println("");
+							   track = 0;
+						   }
+					     }
+					   }
+				outfile.close();
 
 	 }
 }

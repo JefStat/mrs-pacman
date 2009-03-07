@@ -52,7 +52,7 @@ public class PacManGame extends Observable{
 	 */
 	
 	public PacManGame(){
-	//	Characters.add(new PacMan());
+	Characters.add(new PacMan());
 	//	Characters.add(new Ghost());
 	//	Characters.add(new Ghost());
 	//	Characters.add(new Ghost());

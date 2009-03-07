@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
  * Author: Nicole Waldrum
  */
 
-public class Ghost extends Character {
+public abstract class Ghost extends Character {
 	private final int CHASER = 0;
 	private final int AMBUSHER = 1;
 	private final int FICKLE = 2;
@@ -35,13 +35,13 @@ public class Ghost extends Character {
 	private boolean incarcerated;
 	private boolean scared;
 	private boolean scatter;
-	private Coordinate previousPosition;
+	private Coordinate position;
 	private final Coordinate STARTINGPOINT = map.getPrison();
 	
 	//constructor that creates an instance of ghost and ensures that everything is set to false
 	public Ghost(){
 		name = GHOST;
-		Coordinate startPosition = STARTINGPOINT;
+		position = STARTINGPOINT;
 		incarcerated = false;
 		scared = false;
 	}
@@ -55,7 +55,15 @@ public class Ghost extends Character {
 			}
 		}
 		else if(this.isAlive()== true && P.getPosition() != this.getPosition()){
-			
+			if(this.scared == true){
+				ambusherCorner();
+				fickleCorner();
+				stupidCorner();
+				chaserCorner();
+			}
+			else if(this.scared == false){
+				GhostPath.AStarSearch(P);
+			}
 		}
 	}
 	//moves the ghost to prison after they are eaten
@@ -65,16 +73,25 @@ public class Ghost extends Character {
 			this.setAlive(true);
 			this.incarcerated = false;
 			this.scared = false;
+			this.scatter = false;
 		}
 	}
 	//if the ghost is scared they run away from PacMan
-	public void runAway(PacMan p){
+	public void runAway(Coordinate p){
 		this.scared = true;
 		if(this.isAlive() == true){
-			this.setPosition(this.previousPosition);
+			
 		}
 	}
 	public void actionPerformed(ActionEvent arg0){
 		
+	}
+	public Coordinate getPosition(){
+		return position;
+		
+	}
+	
+	public void setPosition(Coordinate p){
+		position = p;
 	}
 }

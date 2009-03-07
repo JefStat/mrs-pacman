@@ -19,7 +19,7 @@ public class Coordinate extends Point{
 	public final static int WALL = 1;
 	public final static int PACDOT = 2;
 	public final static int POWERPELLET = 3;
-	public final static int CHEERIES = 4;
+	public final static int FRUIT = 4;
 	public final static int PRISON = 5;
 	
 	private int identity;
@@ -32,7 +32,7 @@ public class Coordinate extends Point{
 		this.identity = identity;
 	}
 	/*
-	 * returns the identiy of point p on the map
+	 * returns the identity of point p on the map
 	 */
 	public int getIdentity(){
 		return identity;

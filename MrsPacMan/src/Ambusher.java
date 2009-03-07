@@ -13,17 +13,28 @@ import java.awt.Point;
 public class Ambusher extends Ghost {
 	
 	private final String NAME = "Pinky";
-	private final Coordinate CORNER = new Point(0,Max);
+	private final Coordinate[][] map;
+	private final Coordinate[][] STARTINGPOINT = map.getAmbusherStart();
+	private final Ghost pinky;
+	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map[0][Map.MAX].getIdentity());
 	
 	/*
 	 * Default Constructor
 	 */
 	public Ambusher(){
+		String name = NAME;
+		Ghost pinky = new Ghost();
+		pinky.runAway(CORNER);
 				
 	}
 	
-	public void movetoPacMan(PacMan p){
-		
+	public void movetoPacMan(Coordinate p){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+			
+		}
+	}
+	public Coordinate ambusherCorner(){
+		return CORNER;
 	}
 	
 }

@@ -1,4 +1,3 @@
-import java.awt.Point;
 /*
 * PacMan is the user and starts at the bottom center of the screen.
 * PacMan is equal distance away from two power pellets but always 
@@ -21,6 +20,7 @@ public class PacMan extends Character {
 	private final int DEFAULTLIVES = 3;
 	private Coordinate STARTINGPOINT = map.getPacManStart();
 	private final int PACMAN = 4;
+	private Coordinate position;
 
 	private int livesLeft;
 	
@@ -38,7 +38,14 @@ public class PacMan extends Character {
 	public PacMan(Coordinate p){
 		
 	}
+	public Coordinate getPosition(){
+		return position;
+		
+	}
 	
+	public void setPosition(Coordinate p){
+		position = p;
+	}
 	public void actionPerformed(ActionEvent arg0){
 		
 	}

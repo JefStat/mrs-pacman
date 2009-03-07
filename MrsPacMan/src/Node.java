@@ -10,11 +10,11 @@
 public class Node {
 	//The position
 	Coordinate position;
-	//The heuristic estimate from the goal to n
+	//heuristic function, the estimate of what it will take to get to the goal
     double h;
-    //The cheapest way to get to n from start
+    //sum of all the costs it took to get here
     double g;
-    //the score assigned to node n
+    //sum of h + g
     double f;
     //the previous node from the current node
     Node parent;

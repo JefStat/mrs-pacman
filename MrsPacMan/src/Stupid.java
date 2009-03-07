@@ -13,17 +13,27 @@ import java.awt.Point;
 public class Stupid extends Ghost {
 	
 	private final String NAME = "CLYDE";
-	private final Coordinate CORNER = new Point(0,0);
+	private final Coordinate[][] map;
+	private final Ghost clyde;
+	private final Coordinate CORNER = new Coordinate(0,0, map[0][0].getIdentity());
 	
 	/*
 	 * Default Constructor
 	 */
 	public Stupid(){
+		String name = NAME;
+		Ghost clyde = new Ghost();
+		clyde.runAway(CORNER);
 				
 	}
 	
-	public void movetoPacMan(PacMan p){
-		
+	public void movetoPacMan(Coordinate p){
+		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky))){
+			
+		}
+	}
+	public Coordinate stupidCorner(){
+		return CORNER;
 	}
 	
 }
