@@ -37,96 +37,87 @@ public class Stupid extends Ghost {
 	}
 	//Moves Stupid towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){
-		boolean a = true;
+		bool a = true;
 		while(a){
 			Random r = new Random();
 			int options = r.nextInt();
 			options = options % 8;
-			int x= clyde.getPosition().x;
-			int y = clyde.getPosition().y;
+			int x1 = clyde.getPostion().x;
+			int y1 = clyde.getPostion().y;
 			switch (options) {
 			  case 0: 
-			    if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
+			    if((map.[x-1][y+1].getIdentity()==1)||(map.[x-1][y+1].getIdentity()==5)){
 			    }
 			    else{
-			    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
-			    	clyde.setPosition(endpoint);
-			    	onPath=true;
+			    	Coordinate endpoint = new Coordinate(x-1, y+1, map.[x-1][y+1].getIdentity())
+			    	clyde.setPostion(endpoint);
 			    	a=false;
 			    }
 			    break;
 			  case 1: 
-				    if((map[x][y+1].getIdentity()==1)||(map[x][y+1].getIdentity()==5)){
+				    if((map.[x][y+1].getIdentity()==1)||(map.[x][y+1].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x, y+1, map.[x][y+1].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 2: 
-				    if((map[x+1][y+1].getIdentity()==1)||(map[x+1][y+1].getIdentity()==5)){
+				    if((map.[x+1][y+1].getIdentity()==1)||(map.[x+1][y+1].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x+1, y+1, map.[x+1][y+1].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 3: 
-				    if((map[x+1][y].getIdentity()==1)||(map[x+1][y].getIdentity()==5)){
+				    if((map.[x+1][y].getIdentity()==1)||(map.[x+1][y].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x+1, y, map.[x+1][y].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 4: 
-				    if((map[x+1][y-1].getIdentity()==1)||(map[x+1][y-1].getIdentity()==5)){
+				    if((map.[x+1][y-1].getIdentity()==1)||(map.[x+1][y-1].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x+1, y-1, map.[x+1][y-1].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 5: 
-				    if((map[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
+				    if((map.[x][y-1].getIdentity()==1)||(map.[x][y-1].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x, y-1, map.[x][y-1].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 6: 
-				    if((map[x-1][y-1].getIdentity()==1)||(map[x-1][y-1].getIdentity()==5)){
+				    if((map.[x-1][y-1].getIdentity()==1)||(map.[x-1][y-1].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x-1, y-1, map.[x-1][y-1].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 7: 
-				    if((map[x-1][y].getIdentity()==1)||(map[x-1][y].getIdentity()==5)){
+				    if((map.[x-1][y].getIdentity()==1)||(map.[x-1][y].getIdentity()==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-				    	clyde.setPosition(endpoint);
-				    	onPath=true;
+				    	Coordinate endpoint = new Coordinate(x-1, y, map.[x-1][y].getIdentity());
+				    	clyde.setPostion(endpoint);
 				    	a=false;
 				    }
 				    break;
 			}
-		}
 	}
 		
 	//Returns the corner that Stupid goes to
