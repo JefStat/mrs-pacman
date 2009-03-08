@@ -1,5 +1,5 @@
 import java.awt.Point;
-import java.awt.Point;
+import java.util.Observable;
 /*
  * This Chaser class is the red ghost, whose behaviour is a shadow.
  * This character starts outside of the ghost prison at the start
@@ -19,7 +19,7 @@ import java.awt.Point;
  * 
  * Implemented all the methods for Chaser.
  */
-import java.util.Observable;
+
 
 public class Chaser extends Ghost{
 	private final int CHASER = 0;
