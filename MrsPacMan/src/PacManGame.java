@@ -30,6 +30,14 @@ import javax.swing.JOptionPane;
  * PacMangame runs the rules set for pacman currently accepting user input and notifying
  * the other elements of the game that the user has taken an action. The class also starts
  * the game based on limited user options and has the main method for running the program. 
+ * 
+ * Milestone 3
+ * Date: March 7th, 2009
+ * Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Changed the map to create a default map of MAX size and also changed the printMap to take
+ * a MapGUI.  Basically we aligned the data in PacManGame created by Jef with the Map Class 
+ * that Nahim created.
  */
 
 
@@ -63,7 +71,7 @@ public class PacManGame extends Observable{
 		this.addObserver(new Ghost());
 		
 		
-		setMap(new Map(30)); 	//using magic number while waiting for implementation
+		Map setMap = new Map(); 	//Creates a default map of MAX
 		setScore(0);		//magic number make a final STARTING SCORE
 		playersTurn = true;
 		startGame();
@@ -150,7 +158,8 @@ public class PacManGame extends Observable{
 		
 		case NEWGAME: {			// display map wait for user input
 			do {
-			map.printMap();
+			MapGUI f = new MapGUI("Map GUI");//creates a MapGUI
+			map.printMap(f); // prints the MapGUI
 			int move = JOptionPane.showOptionDialog(null, "Select direction", "Movement Box", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, movementOptions, movementOptions[0]);
 			this.notifyObservers(move);
 			}
