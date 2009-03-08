@@ -6,6 +6,10 @@
  * Version: Node Class 1.2
  * Date: March 2, 2009
  * Author: Nicole Waldrum
+ * 
+ * Milestone 3
+ * Date: March 7, 2009
+ * Author: Jen Kasun and Nicole Waldrum
  */
 public class Node {
 	//The position
