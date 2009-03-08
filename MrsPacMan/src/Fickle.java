@@ -1,7 +1,7 @@
 import java.awt.Point;
 import java.math.*;
 import java.util.Observable;
-import java.util.random
+import java.util.Random;
 /*
  * This Fickle class is the blue ghost, whose behaviour is bashful.
  * Released third out of the ghost pen after Chaser and Ambusher are off.
@@ -24,7 +24,7 @@ public class Fickle extends Ghost{
 	private final int FICKLE = 2;
 	private final String NAME = "Inky";
 	private final Coordinate[][] map;
-	private final Ghost inky;
+	private final  Ghost inky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
 	private static boolean onPath;
 	private static int direction;
@@ -100,7 +100,7 @@ public class Fickle extends Ghost{
 				    }
 					break;
 				case 5:
-					if((map.[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
+					if((map[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
 						onPath=false;
 						inky.movetoPacMan(p);
 					}
@@ -132,7 +132,7 @@ public class Fickle extends Ghost{
 				}
 			}
 			else{
-				bool a = true;
+				boolean a = true;
 				while(a){
 					Random r = new Random();
 					int options = r.nextInt();
@@ -142,7 +142,7 @@ public class Fickle extends Ghost{
 					    if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
 					    }
 					    else{
-					    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity())
+					    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
 					    	inky.setPosition(endpoint);
 					    	onPath=true;
 					    	direction = 0;
@@ -172,7 +172,7 @@ public class Fickle extends Ghost{
 						    }
 						    break;
 					  case 3: 
-						    if((map[x+1][y].getIdentity()==1)||(map[x+1][y]getIdentity()==5)){
+						    if((map[x+1][y].getIdentity()==1)||(map[x+1][y].getIdentity()==5)){
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
@@ -226,11 +226,10 @@ public class Fickle extends Ghost{
 						    	a=false;
 						    }
 						    break;
-
+					}
+				}
 			}
-			
 		}
-		
 	}
 	//Returns the corner that Fickle runs to
 	public Coordinate fickleCorner(){

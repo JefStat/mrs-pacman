@@ -1,4 +1,5 @@
 import java.awt.event.ActionEvent;
+import java.util.Observable;
 
 /* 
  *  This ghost class establishes the basic behaviour which each ghost will
@@ -31,7 +32,7 @@ import java.awt.event.ActionEvent;
 * Implemented all the methods for Ghost.
 */
 
-public abstract class Ghost extends Character {
+public class Ghost extends Character {
 	private static final String GHOST = "Ghost";
 	private boolean incarcerated;
 	private boolean scared;
@@ -115,5 +116,10 @@ public abstract class Ghost extends Character {
 	// checks if the ghosts scatter
 	public boolean isScatter() {
 		return scatter;
+	}
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }
