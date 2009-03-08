@@ -20,7 +20,7 @@ import java.util.Random;
 public class Stupid extends Ghost {
 	private final int STUPID = 3;
 	private final String NAME = "CLYDE";
-	private final Coordinate[][] map;
+	private Coordinate[][] map;
 	private final Ghost clyde;
 	private final Coordinate CORNER = new Coordinate(0,0, map[0][0].getIdentity());
 	
@@ -31,7 +31,6 @@ public class Stupid extends Ghost {
 		String name = NAME;
 		clyde = new Ghost();
 		clyde.runAway(CORNER);
-				
 	}
 	//Moves Stupid towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){

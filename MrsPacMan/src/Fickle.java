@@ -1,5 +1,3 @@
-import java.awt.Point;
-import java.math.*;
 import java.util.Observable;
 import java.util.Random;
 /*
@@ -23,7 +21,7 @@ import java.util.Random;
 public class Fickle extends Ghost{
 	private final int FICKLE = 2;
 	private final String NAME = "Inky";
-	private final Coordinate[][] map;
+	private Coordinate[][] map;
 	private final  Ghost inky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
 	private static boolean onPath;

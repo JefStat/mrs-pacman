@@ -24,7 +24,7 @@ import java.util.Observable;
 public class Chaser extends Ghost{
 	private final int CHASER = 0;
 	private final String NAME = "BLINKY";
-	private final Coordinate[][] map;
+	private Coordinate[][] map;
 	private final Ghost blinky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX, Map.MAX, map[Map.MAX][Map.MAX].getIdentity());
 	private final GhostPath path;

@@ -19,7 +19,7 @@ import java.util.Observable;
 public class Ambusher extends Ghost {
 	private final int AMBUSHER = 1;
 	private final String NAME = "Pinky";
-	private final Coordinate[][] map2;
+	private Coordinate[][] map2;
 	private final Coordinate STARTINGPOINT = map.getAmbusherStart();
 	private final Ghost pinky;
 	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map2[0][Map.MAX].getIdentity());
