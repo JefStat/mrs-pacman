@@ -41,8 +41,8 @@ public class Fickle extends Ghost{
 	//Moves Fickle towards PacMan as the defined personality indicates
 	public void movetoPacMan(Coordinate p){
 	
-		int x = inky.getPostion().x;
-		int y = inky.getPostion().y;
+		int x = inky.getPosition().x;
+		int y = inky.getPosition().y;
 		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p, inky)))){
 			inky.setPosition(inky.AStarSearch(p));
 			}
@@ -56,7 +56,7 @@ public class Fickle extends Ghost{
 				    }
 					else{
 						Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 					}
 					break;
 				case 1:
@@ -66,7 +66,7 @@ public class Fickle extends Ghost{
 				    }
 				    else{
 				    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				case 2:
@@ -76,7 +76,7 @@ public class Fickle extends Ghost{
 					}
 				    else{
 				    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				case 3:
@@ -86,7 +86,7 @@ public class Fickle extends Ghost{
 					}
 				    else{
 				    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				case 4:
@@ -96,7 +96,7 @@ public class Fickle extends Ghost{
 					}
 				    else{
 				    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				case 5:
@@ -106,7 +106,7 @@ public class Fickle extends Ghost{
 					}
 				    else{
 				    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				case 6:
@@ -116,7 +116,7 @@ public class Fickle extends Ghost{
 					}
 				    else{
 				    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 				    break;
 				case 7:
@@ -126,7 +126,7 @@ public class Fickle extends Ghost{
 				    }
 				    else{
 				    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-				    	inky.setPostion(endpoint);
+				    	inky.setPosition(endpoint);
 				    }
 					break;
 				}
@@ -143,7 +143,7 @@ public class Fickle extends Ghost{
 					    }
 					    else{
 					    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity())
-					    	inky.setPostion(endpoint);
+					    	inky.setPosition(endpoint);
 					    	onPath=true;
 					    	direction = 0;
 					    	a=false;
@@ -154,7 +154,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =1;
 						    	a=false;
@@ -165,7 +165,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =2;
 						    	a=false;
@@ -176,7 +176,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =3;
 						    	a=false;
@@ -187,7 +187,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =4;
 						    	a=false;
@@ -198,7 +198,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =5;
 						    	a=false;
@@ -209,7 +209,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =6;
 						    	a=false;
@@ -220,7 +220,7 @@ public class Fickle extends Ghost{
 						    }
 						    else{
 						    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-						    	inky.setPostion(endpoint);
+						    	inky.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =7;
 						    	a=false;
