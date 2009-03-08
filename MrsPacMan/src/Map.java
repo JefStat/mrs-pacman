@@ -116,7 +116,7 @@ public class Map {
 	}
 	//This method sets the prisoner for Ambusher as this ghost starts outside the prison 
 	//at the front of the prison
-	public void setAmbusherStart(Coordinate ambusherStart){
+	private void setAmbusherStart(Coordinate ambusherStart){
 		this.ambusherStart = ambusherStart;
 	}
 	//This method returns the prisoner for Ambusher as this ghost starts outside the prison 

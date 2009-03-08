@@ -23,7 +23,7 @@ public class Stupid extends Ghost {
 	private final String NAME = "CLYDE";
 	private final Coordinate[][] map;
 	private final Ghost clyde;
-	private final Coordinate CORNER = new Coordinate(0,0, map[0][0].getIdentity());
+	private final Coordinate CORNER = new Coordinate(0,0, (map[0][0].getIdentity()));
 	private static boolean onPath;
 	
 	/*
@@ -31,8 +31,9 @@ public class Stupid extends Ghost {
 	 */
 	public Stupid(){
 		String name = NAME;
-		Ghost clyde = new Ghost();
+		clyde = new Ghost();
 		clyde.runAway(CORNER);
+		onPath = false;
 				
 	}
 	//Moves Stupid towards PacMan as per the defined personality

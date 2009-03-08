@@ -51,15 +51,15 @@ public abstract class Ghost extends Character {
 		scared = false;		
 	}
 	//checks PacMan's location then moves towards PacMan
-	public void movetoPacMan(PacMan P){
-		if (this.isAlive() == true && P.getPosition() == this.getPosition()){
+	public void movetoPacMan(Coordinate P){
+		if (this.isAlive() == true && P == this.getPosition()){
 			if (this.scared == true){
 				this.setAlive(false);
 				this.setIncarcerated(true);
 				this.movetoPrison(STARTINGPOINT);
 			}
 		}
-		else if(this.isAlive()== true && P.getPosition() != this.getPosition()){
+		else if(this.isAlive()== true && P != this.getPosition()){
 			if(this.scared == true){
 				position = GhostAmbusher.ambusherCorner();
 				position = GhostFickle.fickleCorner();

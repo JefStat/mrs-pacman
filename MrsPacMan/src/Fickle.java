@@ -34,7 +34,7 @@ public class Fickle extends Ghost{
 	 */
 	public Fickle(){
 		String name = NAME;
-		Ghost inky = new Ghost();
+		inky = new Ghost();
 		inky.runAway(CORNER);
 		onPath = false;
 	}
@@ -50,7 +50,7 @@ public class Fickle extends Ghost{
 			if(onPath){
 				switch (direction){
 				case 0:
-					if((map[x-1][y+1]getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
+					if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
 						onPath = false;
 						inky.movetoPacMan(p);
 				    }

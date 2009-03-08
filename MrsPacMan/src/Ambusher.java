@@ -29,14 +29,14 @@ public class Ambusher extends Ghost {
 	 */
 	public Ambusher(){
 		String name = NAME;
-		Ghost pinky = new Ghost();
+		pinky = new Ghost();
 		pinky.runAway(CORNER);
 				
 	}
 	//Moves Ambusher towards PacMan in the appropriate path
 	//Given temporarily the same personality as chaser but faster.
 	public void movetoPacMan(Coordinate p){
-		pinky.setPosition( pinky.AStarSearch(p));
+		pinky.setPosition(pinky.AStarSearch(p));
 		pinky.setPosition(pinky.AStarSearch(p));
 		
 	}
