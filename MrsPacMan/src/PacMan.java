@@ -10,6 +10,13 @@
 * Title: PacMan Class version 1.1
  * Date: February 16, 2009
 * Author: Nicole Waldrum and Jef Statham
+* 
+* Milestone 3
+* Date: March 7th, 2009
+* Author: Jen Kasun and Nicole Waldrum
+* 
+* Implemented all the methods in PacMan
+* 
 */
 import java.awt.event.ActionEvent;
 import java.util.Observable;
@@ -21,7 +28,6 @@ public class PacMan extends Character {
 	private Coordinate STARTINGPOINT = map.getPacManStart();
 	private final int PACMAN = 4;
 	private static Coordinate position;
-
 	private int livesLeft;
 	
 	/*
@@ -37,7 +43,9 @@ public class PacMan extends Character {
 	 * Constructor to pick the starting point p of PacMan
 	 */
 	public PacMan(Coordinate p){
-		
+		position = p;
+		name = PACMANNAME;
+		livesLeft = DEFAULTLIVES;
 	}
 	public static Coordinate getPosition(){
 		return position;
