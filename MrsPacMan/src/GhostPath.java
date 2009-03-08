@@ -12,7 +12,7 @@ public class GhostPath extends PacManGame{
     //The start and goal coordinates that are necessary to determine the location
     Coordinate startPosition, goalPosition;
     //Creates the default constructor to find the shortest path
-    public void AStar() {
+    public GhostPath() {
         map2 = map.getMap();
         startPosition = PacMan.getPosition();
         goalPosition = Ghost.getPosition();
@@ -22,19 +22,15 @@ public class GhostPath extends PacManGame{
     }
     
   //Determines the cost of the path that will be taken
-    public static double pathDistanceEstimate(Coordinate start, Coordinate goal, Character p) {
-        if(p == null ) { // default agent
+    public static double pathDistanceEstimate(Coordinate start, Coordinate goal) {
             int dx = Math.abs(goal.x - start.x);
             int dy = Math.abs(goal.y - start.y);
         
             return typicalPath * (dx + dy);
-        } else {
-            return 1;
-        }
     }
 
 //Checks the cost that it would to take the shortest path
-    private double traverseDistance(Node node, Node newNode, Character p) {
+    private double traverseDistance(Node node, Node newNode, Coordinate p) {
         if(p == null ) { // default agent
             Coordinate position1 = node.position, position2 = newNode.position;
             int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
@@ -65,12 +61,12 @@ public class GhostPath extends PacManGame{
     }
   
     //Determines the shortest path to the goal
-    public Vector <Node> AStarSearch(Character p) {
+    public Node AStarSearch(Coordinate p) {
     
         PriorityQueue openQueue = new PriorityQueue();
         
         // initialise a start node
-        Node startNode = new Node(startPosition, 0, pathDistanceEstimate(startPosition, goalPosition, p), null);
+        Node startNode = new Node(startPosition, 0, pathDistanceEstimate(startPosition, goalPosition), null);
                 
         openQueue.add(startNode);
         open.put(startNode.position, startNode);
@@ -82,12 +78,13 @@ public class GhostPath extends PacManGame{
             open.remove(newNode.position);
          // if at a goal, we're done
             if(newNode.position.equals(goalPosition)) {
-                return solve(newNode);
+            	solve(newNode);
+            	return (Node)newNode;
             } else {
                 Vector <Node> neighbours = getNeighbours(newNode);
                 for(int i = 0; i < neighbours.size(); i++) {
                     Node newNode1 = (Node)neighbours.elementAt(i);
-                    double newDistanceEstimate = pathDistanceEstimate(newNode1.position, goalPosition, p);
+                    double newDistanceEstimate = pathDistanceEstimate(newNode1.position, goalPosition);
                     double newDistance = newNode.h + traverseDistance(newNode, newNode1, p);
                     double newTotal = newDistance + newDistanceEstimate;
                                        
@@ -115,11 +112,13 @@ public class GhostPath extends PacManGame{
                         }
                         openQueue.add(newNode1);
                         open.put(nnPosition, newNode1);
-                        return solve(newNode1);
+                        solve(newNode1);
+                        return (Node)newNode1;
                         
                     } // now done with node
                 }
                 closed.put(newNode.position, newNode);
+      
             }
         }
         return null; // failure            

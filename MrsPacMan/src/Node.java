@@ -35,5 +35,9 @@ public class Node {
             return false;
         }
     }
+    
+    public Coordinate getPosition(){
+    	return position;
+    }
 
 }

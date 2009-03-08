@@ -19,11 +19,11 @@ import java.util.Observable;
 public class Ambusher extends Ghost {
 	private final int AMBUSHER = 1;
 	private final String NAME = "Pinky";
-	private final Coordinate[][] map;
-	private final Coordinate[][] STARTINGPOINT = map[0][Map.MAX].getAmbusherStart();
+	private final Coordinate[][] map2;
+	private final Coordinate STARTINGPOINT = map.getAmbusherStart();
 	private final Ghost pinky;
-	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map[0][Map.MAX].getIdentity());
-	
+	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map2[0][Map.MAX].getIdentity());
+	private final GhostPath path;
 	/*
 	 * Default Constructor
 	 */
@@ -31,13 +31,13 @@ public class Ambusher extends Ghost {
 		String name = NAME;
 		pinky = new Ghost();
 		pinky.runAway(CORNER);
-				
+		path = new GhostPath();		
 	}
 	//Moves Ambusher towards PacMan in the appropriate path
 	//Given temporarily the same personality as chaser but faster.
 	public void movetoPacMan(Coordinate p){
-		pinky.setPosition(pinky.AStarSearch(p));
-		pinky.setPosition(pinky.AStarSearch(p));
+		pinky.setPosition(path.AStarSearch(p).getPosition());
+		pinky.setPosition(path.AStarSearch(p).getPosition());
 		
 	}
 	//Returns the respective corner that this ghost goes to

@@ -27,18 +27,19 @@ public class Chaser extends Ghost{
 	private final Coordinate[][] map;
 	private final Ghost blinky;
 	private final Coordinate CORNER = new Coordinate(Map.MAX, Map.MAX, map[Map.MAX][Map.MAX].getIdentity());
-	
+	private final GhostPath path;
 	/*
 	 * Default Constructor
 	 */
 	public Chaser(){
 		String name = NAME;
 		blinky = new Ghost();
-		blinky.runAway(CORNER);	
+		blinky.runAway(CORNER);
+		path = new GhostPath();
 	}
 	//Moves Chaser towards PacMan as per the defined personality
 	public void movetoPacMan(Coordinate p){
-		blinky.setPosition(blinky.AStarSearch(p));
+		blinky.setPosition(path.AStarSearch(p).getPosition());
 	}
 	//returns the corner that Chaser runs to.
 	public Coordinate chaserCorner(){
