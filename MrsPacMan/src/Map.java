@@ -24,7 +24,7 @@ import java.lang.Integer;
 
 public class Map {
 	
-	static int MAX = 30;
+	static int DEFAULTSIZE = 30;
 	private static int size;
 	Coordinate[][] level;
 	private int NUMBEROFPACDOTS = 0;
@@ -54,7 +54,7 @@ public class Map {
 	 * Will create a default map, with a border of walls
 	 */
 	public Map(){
-		this(MAX);
+		this(DEFAULTSIZE);
 	}
 	
 	public Map(int s){
@@ -116,7 +116,7 @@ public class Map {
 	}
 	//This method sets the prisoner for Ambusher as this ghost starts outside the prison 
 	//at the front of the prison
-	private void setAmbusherStart(Coordinate ambusherStart){
+	public void setAmbusherStart(Coordinate ambusherStart){
 		this.ambusherStart = ambusherStart;
 	}
 	//This method returns the prisoner for Ambusher as this ghost starts outside the prison 
