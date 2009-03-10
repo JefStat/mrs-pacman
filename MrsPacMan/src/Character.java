@@ -1,16 +1,16 @@
-/*
+/**
 * This character class establishes the abstract outline of the characters of the PacMan game.
 * These characters include PacMan and the four ghosts.  Each subclass overrides the character 
 * class.
 * 
 * Title: Character Class version 1.1
-* Date: February 16, 2009
-* Author: Nicole Waldrum and Jef Statham
+* @Date: February 16, 2009
+* @Author: Nicole Waldrum and Jef Statham
 * 
 * 
 * Milestone2 
-* Date: March 1, 2009
-* Updated by: Nicole Waldrum
+* @Date: March 1, 2009
+* @Updated by: Nicole Waldrum
 * Made character an abstract class as it doesn't actually implement anything and will just be 
 * overridden by the Ghost and PacMan classes
 */

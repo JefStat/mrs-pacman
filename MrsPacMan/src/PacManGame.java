@@ -6,7 +6,7 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/*
+/**
  * Group Awesomeness Legendary PacManGame 
  *  
  * This is a turn-based PacMan Game that will work like the original PacMan
@@ -19,21 +19,23 @@ import javax.swing.JOptionPane;
  * feel the need to make themselves known in passive-aggressive ways.
  * 
  * Title: PacManGame Class version 1.1
- * Date: February 16, 2009
- * Author: Nicole Waldrum and Jef Statham
+ * @Date: February 16, 2009
+ * @Author: Nicole Waldrum and Jef Statham
  */
 
 
-/*
+/**
  * Class PacManGame
  * 
  * PacMangame runs the rules set for pacman currently accepting user input and notifying
  * the other elements of the game that the user has taken an action. The class also starts
  * the game based on limited user options and has the main method for running the program. 
  * 
+ * @Author: Jef Statham
+ * 
  * Milestone 3
- * Date: March 7th, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7th, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Changed the map to create a default map of MAX size and also changed the printMap to take
  * a MapGUI.  Basically we aligned the data in PacManGame created by Jef with the Map Class 

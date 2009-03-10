@@ -1,12 +1,12 @@
 import java.util.Vector;
-/*
+/**
  * This class creates a list of priority queues in order to ascertain the quickest route
  *
  * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari told us not to reinvent the wheel.
  * 
  * Version: Priority Queue Class 1.1
- * Date: March 2, 2009
- * Author: Nicole Waldrum
+ * @Date: March 2, 2009
+ * @Author: Nicole Waldrum
  */
 
 public class PriorityQueue {

@@ -1,15 +1,15 @@
-/*
+/**
  * This Node class creates a node in relation to the current position and goal position
  * 
  * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari told us not to reinvent the wheel.
  * 
  * Version: Node Class 1.2
- * Date: March 2, 2009
- * Author: Nicole Waldrum
+ * @Date: March 2, 2009
+ * @Author: Nicole Waldrum
  * 
  * Milestone 3
- * Date: March 7, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  */
 public class Node {
 	//The position

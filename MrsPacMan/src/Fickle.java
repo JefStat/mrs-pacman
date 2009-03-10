@@ -1,18 +1,18 @@
 import java.util.Observable;
 import java.util.Random;
-/*
+/**
  * This Fickle class is the blue ghost, whose behaviour is bashful.
  * Released third out of the ghost pen after Chaser and Ambusher are off.
  * Fickle will move about the board randomly but may follow if close to PacMan.
  * The respective corner is the bottom right of the screen.
  * 
  * Title: Fickle Class version 1.1
- * Date: February 16, 2009
- * Author: Nicole Waldrum and Jef Statham
+ * @Date: February 16, 2009
+ * @Author: Nicole Waldrum and Jef Statham
  * 
  * Milestone 3
- * Date: March 7th, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7th, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Fickle.
  */

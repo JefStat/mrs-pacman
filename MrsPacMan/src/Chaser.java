@@ -1,6 +1,6 @@
 import java.awt.Point;
 import java.util.Observable;
-/*
+/**
  * This Chaser class is the red ghost, whose behaviour is a shadow.
  * This character starts outside of the ghost prison at the start
  * of the game. 
@@ -10,12 +10,12 @@ import java.util.Observable;
  * The respective corner is the top right of the screen.
  * 
  * Title: Chaser Class version 1.1
- * Date: February 16, 2009
- * Author: Nicole Waldrum and Jef Statham
+ * @Date: February 16, 2009
+ * @Author: Nicole Waldrum and Jef Statham
  * 
  * Milestone 3
- * Date: March 7th, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7th, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Chaser.
  */

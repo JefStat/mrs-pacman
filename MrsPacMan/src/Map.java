@@ -1,16 +1,16 @@
-/*
+/**
  * This class controls the size of the map and also feed into coordinate to 
  * know what is occurring in the map at any given time.
  * 
  * Title: Map Class version 1.1
- * Date: February 16, 2009
- * Author: Nicole Waldrum and Jef Statham
- * Milestone 2: WRITTEN/MODIFIED by: Nahim Nasser
- * Updated: Function bodies added
+ * @Date: February 16, 2009
+ * @Author: Nicole Waldrum and Jef Statham
+ * @Milestone 2: WRITTEN/MODIFIED by: Nahim Nasser
+ * @Updated: Function bodies added
  * 
  * Milestone 3
- * Date: March 7th, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7th, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Created default size MAX so that these values could be used in the character classes to send ghosts
  * to their respective corners.  Also, modified the Map() constructor so that it worked properly as it

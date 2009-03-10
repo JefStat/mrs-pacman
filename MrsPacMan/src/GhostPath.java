@@ -1,18 +1,18 @@
 import java.util.Vector;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
-/*
+/**
  * This class finds the quickest route between coordinates
  *
  * Please note that this code was taken from http://www.ipaladin.net/astar/ as Professor Esfandiari told us not to reinvent the wheel.
  * 
  * Version: Priority Queue Class 1.1
- * Date: March 2, 2009
- * Author: Nicole Waldrum
+ * @Date: March 2, 2009
+ * @Author: Nicole Waldrum
  * 
  * Milestone 3
- * Date: March 7, 2009
- * Author:Jen Kasun and Nicole Waldrum
+ * @Date: March 7, 2009
+ * @Author:Jen Kasun and Nicole Waldrum
  */
 public class GhostPath extends PacManGame{
 	static int typicalPath; // default one

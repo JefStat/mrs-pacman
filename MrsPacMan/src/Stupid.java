@@ -1,18 +1,18 @@
 import java.util.Observable;
 import java.util.Random;
-/*
+/**
  * This Stupid class is the orange ghost, whose behaviour is pokey.
  * This ghost is released from the ghost prison last.
  * Stupid has random movements hence the characters name.
  * The respective corner is the bottom left of the screen.
  * 
  * Title: Stupid Class version 1.1
- * Date: February 16, 2009
- * Author: Nicole Waldrum and Jef Statham
+ * @Date: February 16, 2009
+ * @Author: Nicole Waldrum and Jef Statham
  * 
  * Milestone 3
- * Date: March 7th, 2009
- * Author: Jen Kasun and Nicole Waldrum
+ * @Date: March 7th, 2009
+ * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Stupid.
  */

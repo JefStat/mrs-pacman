@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 
-/* 
+/** 
  *  This ghost class establishes the basic behaviour which each ghost will
 * inherit based on what they're  personalities are.  Each ghost has its own individual
 * personality which we will attempt to incorporate in order to make the game more dynamic.
@@ -15,19 +15,19 @@ import java.util.Observable;
 * player should beware of the corner when there.
 * 
 * Title: Character Class version 1.1
-* Date: February 16, 2009
-* Author: Nicole Waldrum and Jef Statham
+* @Date: February 16, 2009
+* @Author: Nicole Waldrum and Jef Statham
 * 
 * This Ghost class overrides the Character Class to implement the typical characteristics of all 4 ghosts.
 * Each individual ghost will override the MoveToPacMan Class when their individual personalities are implemented.
 * 
 * Version: Ghost Class 2.3
-* Date: March 2, 2009
-* Author: Nicole Waldrum
+* @Date: March 2, 2009
+* @Author: Nicole Waldrum
 * 
 * Milestone 3
-* Date: March 7th, 2009
-* Author: Jen Kasun and Nicole Waldrum
+* @Date: March 7th, 2009
+* @Author: Jen Kasun and Nicole Waldrum
 * 
 * Implemented all the methods for Ghost.
 */

@@ -1,4 +1,4 @@
-/*
+/**
 * PacMan is the user and starts at the bottom center of the screen.
 * PacMan is equal distance away from two power pellets but always 
 * starts out facing the left side of the screen and starts to move 
@@ -8,12 +8,12 @@
 * is touched.  Lives can be gained with each 10,000 points.
 * 
 * Title: PacMan Class version 1.1
- * Date: February 16, 2009
-* Author: Nicole Waldrum and Jef Statham
+* @Date: February 16, 2009
+* @Author: Nicole Waldrum and Jef Statham
 * 
 * Milestone 3
-* Date: March 7th, 2009
-* Author: Jen Kasun and Nicole Waldrum
+* @Date: March 7th, 2009
+* @Author: Jen Kasun and Nicole Waldrum
 * 
 * Implemented all the methods in PacMan
 * 
