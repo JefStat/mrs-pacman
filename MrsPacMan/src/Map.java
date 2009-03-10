@@ -24,7 +24,7 @@ import java.lang.Integer;
 
 public class Map {
 	
-	static int DEFAULTSIZE = 30;
+	static int MAX = 30;
 	private static int size;
 	Coordinate[][] level;
 	private int NUMBEROFPACDOTS = 0;
@@ -54,7 +54,7 @@ public class Map {
 	 * Will create a default map, with a border of walls
 	 */
 	public Map(){
-		this(DEFAULTSIZE);
+		this(MAX);
 	}
 	
 	public Map(int s){
