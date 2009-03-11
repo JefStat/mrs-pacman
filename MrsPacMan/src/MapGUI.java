@@ -7,10 +7,13 @@
  */
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class MapGUI extends JFrame {
+public class MapGUI extends JFrame implements ActionListener {
 	private Map MapLevel;
 	private JTextArea TF;
 	public MapGUI(String label) {
@@ -22,6 +25,7 @@ public class MapGUI extends JFrame {
 		JMenu importMenu = new JMenu( "Import" );
 	    MB.add( importMenu );
 	    JMenuItem importMap = new JMenuItem("Map");
+	    importMap.addActionListener(this);
 	    importMenu.add(importMap);
 	    
 	    JMenu saveMenu = new JMenu( "Export" );
@@ -47,6 +51,20 @@ public class MapGUI extends JFrame {
 		
 	public void setMap(Map x){
 		this.MapLevel = x;
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		JFrame popup = new JFrame("Import Map");
+		JButton ok = new JButton("OK");
+		//ok.addActionListener(this);
+		JTextField input = new JTextField();
+		input.setText("Enter File Name.Txt Here");
+		input.setVisible(true);
+		popup.setLayout(new FlowLayout());
+		popup.add(input);
+		popup.add(ok);
+		popup.setVisible(true);
+		popup.pack();
 	}
 }
 
