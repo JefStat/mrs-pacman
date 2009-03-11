@@ -27,8 +27,8 @@ public class GhostPath extends PacManGame{
     //Creates the default constructor to find the shortest path
     public GhostPath() {
         map2 = map.getMap();
-        startPosition = PacMan.getPosition();
-        goalPosition = Ghost.getPosition();
+        startPosition = PacMan().getPosition();
+        goalPosition = Ghost().getPosition();
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);
         typicalPath = getTypicalPath(new Coordinate(0,0, map2[0][0].getIdentity()), new Coordinate((map2.length - 1), (map2[0].length - 1), (map2[map2.length - 1][ map2[0].length - 1].getIdentity())));

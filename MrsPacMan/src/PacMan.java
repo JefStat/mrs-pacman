@@ -28,7 +28,7 @@ public class PacMan extends Character {
 	private final int DEFAULTLIVES = 3;
 	private Coordinate STARTINGPOINT = map.getPacManStart();
 	private final int PACMAN = 4;
-	private static Coordinate position;
+	private Coordinate position;
 	private int livesLeft;
 	
 	/**
@@ -44,7 +44,7 @@ public class PacMan extends Character {
 	 * Used for ghosts to find pacman.
 	 * @return Coordinate of pacman
 	 */
-	public static Coordinate getPosition(){
+	public Coordinate getPosition(){
 		return position;
 	}
 	
@@ -53,7 +53,7 @@ public class PacMan extends Character {
 	 * should also check lives before doing so.
 	 * @param p
 	 */
-	public static void setPosition(Coordinate p){
+	public void setPosition(Coordinate p){
 		position = p;
 	}
 	

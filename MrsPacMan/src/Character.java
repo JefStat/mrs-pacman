@@ -19,7 +19,7 @@ import java.util.Observer;
 
 public abstract class Character extends PacManGame implements Observer {
 	//the point is the position of the character at any given moment
-	private static Coordinate position;
+	private Coordinate position;
 	//the name of each character
 	protected String name;
 	//provides the information of whether the character is dead or alive
@@ -29,11 +29,11 @@ public abstract class Character extends PacManGame implements Observer {
 	//what the character is currently doing
 	
 	//sets the position of the character
-	public static void setPosition(Coordinate p) {
+	public void setPosition(Coordinate p) {
 		position = p;
 	}
 	//gets the position of the character
-	public static Coordinate getPosition() {
+	public Coordinate getPosition() {
 		return position;
 	}
 	//gets the name of the character
