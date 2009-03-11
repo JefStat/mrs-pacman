@@ -34,10 +34,11 @@ import java.util.Observable;
 
 public class Ghost extends Character {
 	private static final String GHOST = "Ghost";
+	private GhostPath path = new GhostPath();
 	private boolean incarcerated;
 	private boolean scared;
 	private boolean scatter;
-	private static Coordinate position;
+	private Coordinate position;
 	private final Coordinate STARTINGPOINT = map.getPrison();
 	private Ambusher GhostAmbusher;
 	private Chaser GhostChaser;
@@ -68,7 +69,7 @@ public class Ghost extends Character {
 				position = GhostChaser.chaserCorner();
 			}
 			else if(this.scared == false){
-				GhostPath.AStarSearch(P);
+				path.AStarSearch(P);
 			}
 		}
 	}
@@ -93,12 +94,12 @@ public class Ghost extends Character {
 		
 	}
 	//This returns the current position of Ghost
-	public static Coordinate getPosition(){
+	public Coordinate getPosition(){
 		return position;
 		
 	}
 	//This sets the current position of a Ghost
-	public static void setPosition(Coordinate p){
+	public void setPosition(Coordinate p){
 		position = p;
 	}
 	//sets whether or not the ghost is incarcerated
