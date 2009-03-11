@@ -42,7 +42,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		TF.setVisible(true);
 		TF.setEditable(false);
 		setContentPane(Table);
-		
+		this.setSize(800,600);
 		}
 	public void changeText(String input){
 		TF.setText(input);
@@ -54,6 +54,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		arg0.getSource();
 		JFrame popup = new JFrame("Import Map");
 		JButton ok = new JButton("OK");
 		//ok.addActionListener(this);
