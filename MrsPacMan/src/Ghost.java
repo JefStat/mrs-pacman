@@ -68,7 +68,7 @@ public class Ghost extends Character {
 				position = GhostChaser.chaserCorner();
 			}
 			else if(this.scared == false){
-				//GhostPath.AStarSearch(P);
+				GhostPath.AStarSearch(P);
 			}
 		}
 	}

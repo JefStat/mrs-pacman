@@ -21,12 +21,16 @@
 import java.util.Scanner;
 import java.io.*;
 import java.lang.Integer;
-
+/**
+ * 	Questions for map, how do we get an identity, also update this comment.
+ * @author 
+ *
+ */
 public class Map {
 	
 	static int MAX = 30;
 	private static int size;
-	Coordinate[][] level;
+	Coordinate[][] level;//why is this not private?
 	private int NUMBEROFPACDOTS = 0;
 	// need to be initialised and getters made.
 	private Coordinate prison;
@@ -217,7 +221,7 @@ public class Map {
 				outfile.close();
 
 	 }
-
+	 //what does this do for map? why can the public resize it? -jef
 	public static void setSize(int size) {
 		Map.size = size;
 	}
