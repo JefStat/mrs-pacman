@@ -1,5 +1,11 @@
 import junit.framework.TestCase;
-
+/**
+ * This test case ensures that a proper Ghost is created and controlled.
+ * 
+ * Milestone 3
+ * Date: March 10, 2009
+ * Author: Nicole Waldrum
+ */
 
 public class GhostTest extends TestCase {
 

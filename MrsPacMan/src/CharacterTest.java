@@ -1,4 +1,12 @@
 import junit.framework.TestCase;
+/**
+ * This test class ensures that each character is properly created to the specifications that are necessary and required.
+ * 
+ * Milestone 2
+ * @Date: March 2, 2009
+ * @author: Jen Kasun
+ *
+ */
 
 
 public class CharacterTest extends TestCase {
