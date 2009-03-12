@@ -21,11 +21,7 @@
 import java.util.Scanner;
 import java.io.*;
 import java.lang.Integer;
-/**
- * 	Questions for map, how do we get an identity, also update this comment.
- * @author 
- *
- */
+
 public class Map {
 	/**
 	 * sets a constant default maximum for map
@@ -38,12 +34,11 @@ public class Map {
 	/**
 	 * keeps track of the current level of the map
 	 */
-	private Coordinate[][] level;//why is this not private?
+	private Coordinate[][] level;
 	/**
 	 * keeps track of the remaining pacdots
 	 */
 	private int NUMBEROFPACDOTS = 0;
-	//need to be initialised and getters made.
 	/**
 	 * contains the prison coordinate
 	 */
@@ -129,7 +124,7 @@ public class Map {
 	/**
 	 * Returns the width/length of the map
 	 */
-	public static int getSize(){return size;}
+	public int getSize(){return size;}
 	
 	/**
 	 * Returns the number of pacdots within the map
@@ -262,5 +257,31 @@ public class Map {
 	 //what does this do for map? why can the public resize it? -jef
 	public static void setSize(int size) {
 		Map.size = size;
+	}
+	/**
+	 * Get an identity from map location int x and y returns -1 if out of bounds
+	 * @param x
+	 * @param y
+	 * @return -1 if x or y are out of bounds otherwise identity at location x y
+	 */
+	public int getIdentity(int x, int y){
+		if ((x>=this.getSize())||(y>=this.getSize())||((x<0)||(y<0))) return -1;
+		
+		return level[x][y].getIdentity();	
+	}
+	/**
+	 * Allows you to check the identity of your coordinate object if it is the same as the
+	 * point on the map. 
+	 * @param p
+	 * @return -1 if p is out of bounds otherwise identity at location p
+	 */
+	public int getIdentity(Coordinate p){
+		if ((p.getX()>=this.getSize())||(p.getY()>=this.getSize())||((p.getX()<0)||(p.getY()<0))) return -1;
+		
+		return level[(int)p.getX()][(int)p.getY()].getIdentity();
+	}
+	
+	public void setNUMBEROFPACDOTS(int numberofpacdots) {
+		NUMBEROFPACDOTS = numberofpacdots;
 	}
 }
