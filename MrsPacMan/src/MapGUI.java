@@ -15,11 +15,12 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class MapGUI extends JFrame implements ActionListener {
 	private Map MapLevel;
-	private JTextArea TF;
+	
 	public MapGUI(String label) {
 		super(label);
 		new WindowHandler(this); //create the listener
 		
+		this.setLayout(new GridLayout(Map.MAX,Map.MAX));
 		JMenuBar MB = new JMenuBar();
 		setJMenuBar(MB);
 		JMenu importMenu = new JMenu( "Import" );
@@ -32,26 +33,13 @@ public class MapGUI extends JFrame implements ActionListener {
 	    JMenuItem exportMap = new JMenuItem("Export/Save Map");
 	    saveMenu.add(exportMap);
 	    MB.add( saveMenu );
-
-		JTable Table = new JTable(MapLevel.MAX,MapLevel.MAX); //JTABLE IMPLEMENTED -- 
-		Table.setForeground(Color.BLACK);
-		Table.setBackground(Color.BLACK);
-		//Table.getCellEditor(0, 0);
-		TF = new JTextArea();         
-		TF.setBackground(Color.white);
-		TF.setVisible(true);
-		TF.setEditable(false);
-		setContentPane(Table);
-		this.setSize(800,600);
 		}
-	public void changeText(String input){
-		TF.setText(input);
-	}
 		public MapGUI() { this(""); }
 		
 	public void setMap(Map x){
 		this.MapLevel = x;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		arg0.getSource();
@@ -66,6 +54,24 @@ public class MapGUI extends JFrame implements ActionListener {
 		popup.add(ok);
 		popup.setVisible(true);
 		popup.pack();
+	}
+	public void updateGUI(){
+		Coordinate level[][] = MapLevel.getMap();
+		for(int i = 0; i < MapLevel.getSize(); i++){
+			   for(int j = 0; j < MapLevel.getSize(); j++){
+				if (level[j][i].getIdentity() == Coordinate.WALL) {
+				      this.add(new JLabel(new ImageIcon("wall.jpg")));}
+				if (level[j][i].getIdentity() == Coordinate.EMPTY) {
+				      this.add(new JLabel(new ImageIcon("cherry.jpg")));}
+				if (level[j][i].getIdentity() == Coordinate.FRUIT) {
+				    this.add(new JLabel(new ImageIcon("cherry.jpg")));}
+				if (level[j][i].getIdentity() == Coordinate.PRISON) {
+				      this.add(new JLabel(new ImageIcon("prison.jpg")));}
+				if (level[j][i].getIdentity() == Coordinate.PACDOT) {
+				      this.add(new JLabel(new ImageIcon("pacdot.jpg")));}
+			      }
+			   }
+		this.pack();
 	}
 }
 
