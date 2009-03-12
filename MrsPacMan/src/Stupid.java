@@ -18,13 +18,28 @@ import java.util.Random;
  */
 
 public class Stupid extends Ghost {
+	/**
+	 * creates the character constant for stupid
+	 */
 	private final int STUPID = 3;
+	/**
+	 * creates the name for stupid
+	 */
 	private final String NAME = "CLYDE";
+	/**
+	 * keeps track of stupid on the map
+	 */
 	private Coordinate[][] map;
+	/**
+	 * creates a new instances of stupid
+	 */
 	private final Ghost clyde;
+	/**
+	 * sets the corner that stupid retreats to when in scatter or scared mode
+	 */
 	private final Coordinate CORNER = new Coordinate(0,0, map[0][0].getIdentity());
 	
-	/*
+	/**
 	 * Default Constructor
 	 */
 	public Stupid(){
@@ -32,7 +47,9 @@ public class Stupid extends Ghost {
 		clyde = new Ghost();
 		clyde.runAway(CORNER);
 	}
-	//Moves Stupid towards PacMan as per the defined personality
+	/**
+	 * Moves Stupid towards PacMan as per the defined personality
+	 */
 	public void movetoPacMan(Coordinate p){
 		boolean a = true;
 		while(a){
@@ -118,7 +135,10 @@ public class Stupid extends Ghost {
 		}
 	}
 		
-	//Returns the corner that Stupid goes to
+	/**
+	 * Returns the corner that Stupid goes to
+	 * @return stupid corner
+	 */
 	public Coordinate stupidCorner(){
 		return CORNER;
 	}

@@ -14,32 +14,53 @@ import java.awt.Point;
 
 @SuppressWarnings("serial")
 public class Coordinate extends Point{
-	
+	/**
+	 * this constant is empty space, after pacman has eaten what was there
+	 */
 	public final static int EMPTY = 0;
+	/**
+	 * this constant is a wall
+	 */
 	public final static int WALL = 1;
+	/**
+	 * this constant is the dot that pacman eats
+	 */
 	public final static int PACDOT = 2;
+	/**
+	 * this constant is the dot that when eaten makes ghost scared and scatter
+	 */
 	public final static int POWERPELLET = 3;
+	/**
+	 * this constant is fruit, when eaten it will give bonous points to pacman
+	 */
 	public final static int FRUIT = 4;
+	/**
+	 * this constant is the prison, so pacman cannot enter there but ghosts can
+	 */
 	public final static int PRISON = 5;
-	
+	/**
+	 * this variable checks again each constant
+	 */
 	private int identity;
 	
-	/*
+	/**
 	 * Default constructor sets an identiy to a map point p
 	 */
 	public Coordinate(int x, int y, int identity){
 		super(x,y);
 		this.identity = identity;
 	}
-	/*
+	/**
 	 * returns the identity of point p on the map
 	 */
 	public int getIdentity(){
 		return identity;
 	}
-	
+	/**
+	 * returns the identity that is found at point x so that the character knows what they have landed on
+	 * @param x
+	 */
 	public void setIdentity(int x){
 		this.identity = x;
-	}
-	
+	}	
 }

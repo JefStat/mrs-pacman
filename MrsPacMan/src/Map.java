@@ -27,17 +27,37 @@ import java.lang.Integer;
  *
  */
 public class Map {
-	
+	/**
+	 * sets a constant default maximum for map
+	 */
 	static int MAX = 30;
+	/**
+	 * keeps track of the size of map
+	 */
 	private static int size;
-	Coordinate[][] level;//why is this not private?
+	/**
+	 * keeps track of the current level of the map
+	 */
+	private Coordinate[][] level;//why is this not private?
+	/**
+	 * keeps track of the remaining pacdots
+	 */
 	private int NUMBEROFPACDOTS = 0;
-	// need to be initialised and getters made.
+	//need to be initialised and getters made.
+	/**
+	 * contains the prison coordinate
+	 */
 	private Coordinate prison;
+	/**
+	 * contains the coordinate where pacman starts
+	 */
 	private Coordinate pacManStart;
+	/**
+	 * contains the location where ambusher starts
+	 */
 	private Coordinate ambusherStart;
 	
-	/*
+	/**
 	 * constructor to make a map s x s size
 	 */
 	@SuppressWarnings("deprecation")
@@ -53,24 +73,31 @@ public class Map {
 	}
 	//---------------TEST-----------------------
 	
-	/*
+	/**
 	 * Default constructor making the map the Defaultsize x Defaultsize
 	 * Will create a default map, with a border of walls
 	 */
 	public Map(){
 		this(MAX);
 	}
-	
+	/**
+	 * creates a map of the size that the player wants
+	 * @param s
+	 */
 	public Map(int s){
 		level = new Coordinate[s][s];
 		Map.setSize(s);
 		
-		//Initialisation of all coordinates to empty space
+		/**
+		 * Initialisation of all coordinates to empty space
+		 */
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      level[i][j] = new Coordinate(i,j,0);}}
 
-		//Loop to create a border
+		/**
+		 * Loop to create a border
+		 */
 		for (int i = 0; i<s; i++){
 			level[s-1][i].setIdentity(Coordinate.WALL); //Right wall created
 			level[0][i].setIdentity(Coordinate.WALL); //Left wall created
@@ -78,7 +105,9 @@ public class Map {
 			level[i][s-1].setIdentity(Coordinate.WALL); //Top wall created
 		}
 		
-		//Fill all non walls with a pacdot, and counts all pacdots inserted
+		/**
+		 * Fill all non walls with a pacdot, and counts all pacdots inserted
+		 */
 		for(int i = 0; i < s; i++){
 			   for(int j = 0; j < s; j++){
 			      if (level[i][j].getIdentity() != Coordinate.WALL) {
@@ -86,7 +115,9 @@ public class Map {
 			    	  NUMBEROFPACDOTS++;}
 			      }
 			   }
-		//temporary default starting point and prison
+		/**
+		 * temporary default starting point and prison
+		 */
 		level[15][15].setIdentity(Coordinate.PRISON);
 		setPrison(level[15][15]);
 		NUMBEROFPACDOTS--;
@@ -95,17 +126,18 @@ public class Map {
 		NUMBEROFPACDOTS--;
 	}
 	
-	/*
+	/**
 	 * Returns the width/length of the map
 	 */
 	public static int getSize(){return size;}
 	
-	/*
+	/**
 	 * Returns the number of pacdots within the map
 	 */
 	public int getPacdots(){return NUMBEROFPACDOTS;}
 	
 	/**
+	 * sets the prison location for ghost
 	 * @param prison the prison to set
 	 */
 	private void setPrison(Coordinate prison) {
@@ -113,18 +145,23 @@ public class Map {
 	}
 
 	/**
+	 * returns the prison location for ghost
 	 * @return the prison
 	 */
 	public Coordinate getPrison() {
 		return prison;
 	}
-	//This method sets the prisoner for Ambusher as this ghost starts outside the prison 
-	//at the front of the prison
+	/**
+	 * This method sets the prisoner for Ambusher as this ghost starts outside the prison at the front of the prison
+	 * @param ambusherStart
+	 */
 	public void setAmbusherStart(Coordinate ambusherStart){
 		this.ambusherStart = ambusherStart;
 	}
-	//This method returns the prisoner for Ambusher as this ghost starts outside the prison 
-	//at the front of the prison
+	/**
+	 * This method returns the prisoner for Ambusher as this ghost starts outside the prison 
+	 * at the front of the prison
+	 */
 	public Coordinate getAmbusherStart(){
 		return ambusherStart;
 		
@@ -144,14 +181,14 @@ public class Map {
 		return pacManStart;
 	}
 	
-	/*
+	/**
 	 * returns map temporary for a* algorithm
 	 */
 	public Coordinate[][] getMap(){
 		return level;
 	}
 	
-	/*
+	/**
 	 * Prints the map in a specified GUI
 	 */
 	public void printMap(MapGUI f){
@@ -171,7 +208,8 @@ public class Map {
 		f.changeText(strLevel);
 	}
 	
-	/*
+	/**
+	 * This will import a map
 	 * Incomplete implementation of import map
 	 */
 	 public void ImportMap(String filename) throws Exception{
@@ -199,7 +237,7 @@ public class Map {
          input.close();
       }
 	 
-		/*
+		/**
 		 * Exports the map to filename.txt in the root directory.
 		 */ 
 	 public void ExportMap(String filename) throws Exception{

@@ -19,15 +19,39 @@ import java.util.Random;
 
 
 public class Fickle extends Ghost{
+	/**
+	 * identifies fickle by constant for character
+	 */
 	private final int FICKLE = 2;
+	/**
+	 * this is the official name of fickle
+	 */
 	private final String NAME = "Inky";
+	/**
+	 * this gets the map so that coordinates may be located
+	 */
 	private Coordinate[][] map;
+	/**
+	 * this is to eventually create a new instance of fickle in PacManGame
+	 */
 	private final  Ghost inky;
+	/**
+	 * this identifies the location of fickles corner when in scared or scatter mode
+	 */
 	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
+	/**
+	 * this checks if fickle is on a path towards pacman
+	 */
 	private static boolean onPath;
+	/**
+	 * this checks the direction that fickle is moving in
+	 */
 	private static int direction;
+	/**
+	 * this is the path that fickle is on and checks the A* Algorithm for the fastest route to pacman
+	 */
 	private final GhostPath path;
-	/*
+	/**
 	 * Default Constructor
 	 */
 	public Fickle(){
@@ -37,7 +61,9 @@ public class Fickle extends Ghost{
 		onPath = false;
 		path = new GhostPath();
 	}
-	//Moves Fickle towards PacMan as the defined personality indicates
+	/**
+	 * Moves Fickle towards PacMan as the defined personality indicates
+	 */
 	public void movetoPacMan(Coordinate p){
 	
 		int x = inky.getPosition().x;
@@ -230,7 +256,10 @@ public class Fickle extends Ghost{
 			}
 		}
 	}
-	//Returns the corner that Fickle runs to
+	/**
+	 * Returns the corner that Fickle runs to
+	 * @return fickle corner
+	 */
 	public Coordinate fickleCorner(){
 		return CORNER;
 	}

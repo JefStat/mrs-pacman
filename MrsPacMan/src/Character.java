@@ -10,50 +10,67 @@
 * 
 * Milestone2 
 * @Date: March 1, 2009
-* @Updated by: Nicole Waldrum
+* @updated by: Nicole Waldrum
 * Made character an abstract class as it doesn't actually implement anything and will just be 
 * overridden by the Ghost and PacMan classes
+* 
+* Milestone 3
+* @Date: March 11, 2009
+* @updated: Nicole Waldrum
+* 
+* Deleted the variable personality and to get/return becuase it was not necessary.
 */
 import java.util.Observer;
 
 
 public abstract class Character extends PacManGame implements Observer {
-	//the point is the position of the character at any given moment
+	/**
+	 * the point is the position of the character at any given moment
+	 */
 	private Coordinate position;
-	//the name of each character
+	/**
+	 * the name of each character
+	 */
 	protected String name;
-	//provides the information of whether the character is dead or alive
+	/**
+	 * provides the information of whether the character is dead or alive
+	 */
 	private boolean alive;
-	//provides the personality for each ghost
-	protected int personality;
+
 	//what the character is currently doing
 	
-	//sets the position of the character
+	/**
+	 * sets the position of the character
+	 */
 	public void setPosition(Coordinate p) {
 		position = p;
 	}
-	//returnss the position of the character
+	/**
+	 * returns the position of the character
+	 * @return position
+	 */
 	public Coordinate getPosition() {
 		return position;
 	}
-	//gets the name of the character
+	/**
+	 * gets the name of the character
+	 * @return character name
+	 */
 	public String getName() {
 		return name;
 	}
-	//set the alive status of the character
+	/**
+	 * set the alive status of the character
+	 * @param alive
+	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
-	//checks the boolean state of alive
+	/**
+	 * checks the boolean state of alive
+	 * @return whether ghost is alive
+	 */
 	public boolean isAlive() {
 		return alive;
-	}
-	// sets the personality of the character
-	public void setPersonality(int personality) {
-		this.personality = personality;
-	}
-	// gets the personality of the character
-	public int getPersonality() {
-		return personality;
 	}
 }

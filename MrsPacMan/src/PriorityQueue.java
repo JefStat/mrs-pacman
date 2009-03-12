@@ -10,15 +10,23 @@ import java.util.Vector;
  */
 
 public class PriorityQueue {
-	//Creates an array of queues as type Node
+	/**
+	 * Creates an array of queues as type Node
+	 */
 	Vector <Node> queue = new Vector<Node>();
-    //removes a queue from the list
+    /**
+     * removes a queue from the list
+     * @return
+     */
     public Node pop() {
         Node node = (Node)queue.elementAt(0);
         queue.removeElement(node);
         return node;
     }
-    //adds a queue to the list
+    /**
+     * adds a queue to the list
+     * @param newNode
+     */
     public void add(Node newNode) {
         if(queue.size() == 0) {
             queue.addElement(newNode);
@@ -36,15 +44,25 @@ public class PriorityQueue {
             }
         }
     }
-    //Checks if the node is already contained in the queue
+    /**
+     * Checks if the node is already contained in the queue
+     * @param node
+     * @return if the node is contained in the priority queue
+     */
     public boolean contains(Node node) {
         return queue.contains(node);
     }
-    //Removes the Node from the queue
+    /**
+     * Removes the Node from the queue
+     * @param node
+     */
     public void remove(Node node) {
         queue.removeElement(node);
     }
-    //Checks the size of the priority queue list
+    /**
+     * Checks the size of the priority queue list
+     * @return priority queue size
+     */
     public int size() {
         return queue.size();
     }

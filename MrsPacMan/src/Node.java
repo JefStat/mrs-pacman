@@ -12,18 +12,34 @@
  * @Author: Jen Kasun and Nicole Waldrum
  */
 public class Node {
-	//The position
+	/**
+	 * The position
+	 */
 	Coordinate position;
-	//heuristic function, the estimate of what it will take to get to the goal
+	/**
+	 * heuristic function, the estimate of what it will take to get to the goal
+	 */
     double h;
-    //sum of all the costs it took to get here
+    /**
+     * sum of all the costs it took to get here
+     */
     double g;
-    //sum of h + g
+    /**
+     * sum of h + g
+     */
     double f;
-    //the previous node from the current node
+    /**
+     * the previous node from the current node
+     */
     Node parent;
     
-    //creates a constructor node
+    /**
+     * creates a constructor node
+     * @param P
+     * @param h
+     * @param g
+     * @param parent
+     */
     public Node(Coordinate P, double h, double g, Node parent){
     	this.position = P;
         this.h = h;
@@ -31,7 +47,9 @@ public class Node {
         this.f = this.h + this.g;
         this.parent = parent;
     }
-    //checks if the positions are equal
+    /**
+     * checks if the positions are equal
+     */
     public boolean equals(Object o) {
         if(o instanceof Node) {
             return position.equals(((Node) o).position);
@@ -39,7 +57,10 @@ public class Node {
             return false;
         }
     }
-    
+    /**
+     * returns the position the node
+     * @return position
+     */
     public Coordinate getPosition(){
     	return position;
     }

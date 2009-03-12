@@ -17,12 +17,33 @@ import java.util.Observable;
  * Implemented all the methods for Ambusher.
  */
 public class Ambusher extends Ghost {
+	/**
+	 * Character constant for Ambusher
+	 */
 	private final int AMBUSHER = 1;
+	/**
+	 * creates the name for ambusher
+	 */
 	private final String NAME = "Pinky";
+	/**
+	 * map parameter size for ghost to know its location
+	 */
 	private Coordinate[][] map2;
+	/**
+	 * the starting point for Ambusher
+	 */
 	private final Coordinate STARTINGPOINT = map.getAmbusherStart();
+	/**
+	 * creates a ghost instance of ambusher 
+	 */
 	private final Ghost pinky;
+	/**
+	 * sets the corner location for ambusher
+	 */
 	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map2[0][Map.MAX].getIdentity());
+	/**
+	 * The pather that ambusher will follow in order to get to PacMan
+	 */
 	private final GhostPath path;
 	/**
 	 * Default Constructor, creates the Ambusher ghost 
@@ -33,14 +54,19 @@ public class Ambusher extends Ghost {
 		pinky.runAway(CORNER);
 		path = new GhostPath();		
 	}
-	//Moves Ambusher towards PacMan in the appropriate path
-	//Given temporarily the same personality as chaser but faster.
+	/**
+	 * Moves Ambusher towards PacMan in the appropriate path 
+	 * Given temporarily the same personality as chaser but faster.
+	 */
 	public void movetoPacMan(Coordinate p){
 		pinky.setPosition(path.AStarSearch(p).getPosition());
 		pinky.setPosition(path.AStarSearch(p).getPosition());
 		
 	}
-	//Returns the respective corner that Ambusher runs to when scared or in scatter mode
+	/**
+	 * Returns the respective corner that Ambusher runs to when scared or in scatter mode
+	 * @return Corner
+	 */
 	public Coordinate ambusherCorner(){
 		return CORNER;
 	}

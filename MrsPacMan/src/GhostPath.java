@@ -15,16 +15,27 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
  * @Author:Jen Kasun and Nicole Waldrum
  */
 public class GhostPath extends PacManGame{
-	static int typicalPath; // default one
+	/** 
+	 * default one
+	 */
+	static int typicalPath; 
 	Hashtable open;
     Hashtable closed;
-    //creates the map
+    /**
+     * creates the map
+     */
     Coordinate[][] map2;
-    //the identity of the item avoiding
+    /**
+     * the identity of the item avoiding
+     */
     int[] identity;
-    //The start and goal coordinates that are necessary to determine the location
+    /**
+     * The start and goal coordinates that are necessary to determine the location
+     */
     Coordinate startPosition, goalPosition;
-    //Creates the default constructor to find the shortest path
+    /**
+     * Creates the default constructor to find the shortest path
+     */
     public GhostPath() {
         map2 = map.getMap();
         startPosition = PacMan().getPosition();
@@ -34,7 +45,12 @@ public class GhostPath extends PacManGame{
         typicalPath = getTypicalPath(new Coordinate(0,0, map2[0][0].getIdentity()), new Coordinate((map2.length - 1), (map2[0].length - 1), (map2[map2.length - 1][ map2[0].length - 1].getIdentity())));
     }
     
-  //Determines the cost of the path that will be taken
+    /**
+     * Determines the cost of the path that will be taken
+     * @param start
+     * @param goal
+     * @return path to be taken
+     */
     public static double pathDistanceEstimate(Coordinate start, Coordinate goal) {
             int dx = Math.abs(goal.x - start.x);
             int dy = Math.abs(goal.y - start.y);
@@ -42,7 +58,13 @@ public class GhostPath extends PacManGame{
             return typicalPath * (dx + dy);
     }
 
-//Checks the cost that it would to take the shortest path
+    /**
+     * Checks the cost that it would to take the shortest path
+     * @param node
+     * @param newNode
+     * @param p
+     * @return distance to traverse
+     */
     private double traverseDistance(Node node, Node newNode, Coordinate p) {
         if(p == null ) { // default agent
             Coordinate position1 = node.position, position2 = newNode.position;
@@ -53,7 +75,12 @@ public class GhostPath extends PacManGame{
         }
     }
 
-//Finds the typical path that could be taken
+    /**
+     * Finds the typical path that could be taken
+     * @param startPosition
+     * @param goalPosition
+     * @return path to be taken
+     */
     private int getTypicalPath(Coordinate startPosition, Coordinate goalPosition){
         int left = Math.min(startPosition.x, goalPosition.x);
         int top = Math.min(startPosition.y, goalPosition.y);
@@ -73,23 +100,33 @@ public class GhostPath extends PacManGame{
         return count;
     }
   
-    //Determines the shortest path to the goal
+    /**
+     * Determines the shortest path to the goal
+     * @param p
+     * @return shortest path to goal
+     */
     public Node AStarSearch(Coordinate p) {
     
         PriorityQueue openQueue = new PriorityQueue();
         
-        // initialise a start node
+        /**
+         *  initialise a start node
+         */
         Node startNode = new Node(startPosition, 0, pathDistanceEstimate(startPosition, goalPosition), null);
                 
         openQueue.add(startNode);
         open.put(startNode.position, startNode);
         
-        // process the list until success or failure
+        /**
+         *  process the list until success or failure
+         */
         while(openQueue.size() > 0) {
         
             Node newNode = (Node) openQueue.pop();
             open.remove(newNode.position);
-         // if at a goal, we're done
+         /**
+          *  if at a goal, we're done
+          */
             if(newNode.position.equals(goalPosition)) {
             	solve(newNode);
             	return (Node)newNode;
@@ -128,16 +165,26 @@ public class GhostPath extends PacManGame{
                         solve(newNode1);
                         return (Node)newNode1;
                         
-                    } // now done with node
+                    } 
+                    /**
+                     *  now done with node
+                     */
                 }
                 closed.put(newNode.position, newNode);
       
             }
         }
-        return null; // failure            
+        return null; 
+        /**
+         *  failure            
+         */
       }
     
-	//Checks the items next to Ghost to determine what the shortest path is
+	/**
+	 * Checks the items next to Ghost to determine what the shortest path is
+	 * @param node
+	 * @return neighbours path of ghost
+	 */
 	private Vector <Node> getNeighbours(Node node) {
 		Coordinate nodePosition = node.position;
 		Vector <Node> neighbours = new Vector<Node>();
@@ -152,7 +199,13 @@ public class GhostPath extends PacManGame{
     
 		return neighbours;
 	}
-	//Creates a list of the shortest paths based on the numbers calculated from PacMan
+	/**
+	 * Creates a list of the shortest paths based on the numbers calculated from PacMan
+	 * @param addTo
+	 * @param position
+	 * @param x
+	 * @param y
+	 */
 	private void addConditional(Vector <Node> addTo, Coordinate position, int x, int y) {
         int newX = position.x + x, newY = position.y + y;
         if(newX < 0 || newX >= map2.length) {
@@ -170,7 +223,11 @@ public class GhostPath extends PacManGame{
         addTo.addElement(newNode);
     }
 
-    //adds the elements to the node from PacMan to Ghost to make the shortest path
+    /**
+     * adds the elements to the node from PacMan to Ghost to make the shortest path
+     * @param node
+     * @return shortest path with all elements taken into account
+     */
     private Vector <Node> solve(Node node) {
         Vector <Node> solution = new Vector<Node>();        
         solution.addElement(node);

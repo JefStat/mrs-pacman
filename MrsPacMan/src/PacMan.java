@@ -23,12 +23,29 @@
 import java.util.Observable;
 
 public class PacMan extends Character {
-
+	/**
+	 * creates the name of pacman
+	 */
 	private static final String PACMANNAME = "PacMan";
+	/**
+	 * sets the default lives
+	 */
 	private final int DEFAULTLIVES = 3;
+	/**
+	 * sets the starting point of pacman
+	 */
 	private Coordinate STARTINGPOINT = map.getPacManStart();
+	/**
+	 * sets the character constant for pacman
+	 */
 	private final int PACMAN = 4;
+	/**
+	 * keeps track of pacman's position
+	 */
 	private Coordinate position;
+	/**
+	 * keeps track of pacman's lives left
+	 */
 	private int livesLeft;
 	
 	/**

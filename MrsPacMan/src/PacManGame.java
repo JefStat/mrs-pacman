@@ -55,7 +55,7 @@ public class PacManGame extends Observable{
 	protected Map map;
 	
 	
-	/*
+	/**
 	 * Default constructor for a standard pac man game, 
 	 * with the default pac-man map and set of standard ghosts.
 	 * 
@@ -68,18 +68,24 @@ public class PacManGame extends Observable{
 	//	Characters.add(new Ghost());
 	//	Characters.add(new Ghost());
 		
-		//template for changing this class and program to the observer pattern
+		/**
+		 * template for changing this class and program to the observer pattern
+		 */
 		this.addObserver(new PacMan());
 		this.addObserver(new Ghost());
-		
-		
-		Map setMap = new Map(); 	//Creates a default map of MAX
-		setScore(0);		//magic number make a final STARTING SCORE
+		/**
+		 * Creates a default map of MAX
+		 */
+		Map setMap = new Map(); 	
+		/**
+		 * magic number make a final STARTING SCORE
+		 */
+		setScore(0);		
 		playersTurn = true;
 		startGame();
 	}
 	
-	/*
+	/**
 	 * Constructor for loading a custom map with
 	 * standard ghost set.
 	 */
@@ -87,6 +93,7 @@ public class PacManGame extends Observable{
 		
 	}
 	/**
+	 * This returns the current map that pacman is using
 	 * @return the map
 	 */
 	public Map getMap() {
@@ -94,6 +101,7 @@ public class PacManGame extends Observable{
 	}
 
 	/**
+	 * this sets what the current value of the score for pacman is
 	 * @param score the score to set
 	 */
 	private void setScore(long score) {
@@ -101,14 +109,16 @@ public class PacManGame extends Observable{
 	}
 
 	/**
+	 * This returns what the current value of the score for pacman is
 	 * @return the score
 	 */
 	private long getScore() {
 		return score;
 	}
 
-	/*
+	/**
 	 * Checks to see if game is ready for more input from user
+	 * @return whether or not the player has taken their turn
 	 */
 	private boolean isPlayersTurn() {
 	
@@ -116,19 +126,19 @@ public class PacManGame extends Observable{
 	}
 		
 	
-	/*
+	/**
 	 * Checking the map if coordinate p is a valid move
 	 * 
-	 * return true if valid false otherwise
+	 * @return return true if valid false otherwise
 	 */
 	public boolean CheckMovement(Coordinate p){
 		return false;	
 	}
 
-	/*
+	/**
 	 * Opens the Starting dialog for the game with choices to close
 	 * 
-	 * return true if valid selection is made false otherwise
+	 * @return return true if valid selection is made false otherwise
 	 */
 	private boolean startGame(){
 		String[] startGameOptions = {	// consider adding and instructions option
@@ -140,7 +150,9 @@ public class PacManGame extends Observable{
 		final int LOADMAP = 1;
 		final int CLOSE = 2;
 		
-		//Opens a window with Title 
+		/**
+		 * Opens a window with Title 
+		 */
 		int choice = JOptionPane.showOptionDialog(null, STARTMESSAGE, GAMETITLE, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, startGameOptions, startGameOptions[2]);
 		
 		String[] movementOptions = {
