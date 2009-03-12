@@ -61,10 +61,8 @@ public class Map {
 	public static void main(String[] args) {
 		Map x = new Map(30);
 		MapGUI f = new MapGUI("Map GUI");
-		f.setSize(800,600);
-		f.changeText("TEST" +"\n" +"next");
-		f.show();
-		x.printMap(f);
+		f.setMap(x);
+		f.updateGUI();
 	}
 	//---------------TEST-----------------------
 	
@@ -200,7 +198,6 @@ public class Map {
 				   }
 			     }
 			   }
-		f.changeText(strLevel);
 	}
 	
 	/**
