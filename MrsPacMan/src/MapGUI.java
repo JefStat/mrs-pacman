@@ -33,6 +33,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	    JMenuItem exportMap = new JMenuItem("Export/Save Map");
 	    saveMenu.add(exportMap);
 	    MB.add( saveMenu );
+	    setVisible(true);
 		}
 		public MapGUI() { this(""); }
 		
