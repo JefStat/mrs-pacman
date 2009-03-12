@@ -18,7 +18,10 @@
 * @Date: March 11, 2009
 * @updated: Nicole Waldrum
 * 
-* Deleted the variable personality and to get/return becuase it was not necessary.
+* Deleted the variable personality and to get/return because it was not necessary.
+* 
+* Jef's notes: changed setPosition to abstract and return type to boolean.
+* 
 */
 import java.util.Observer;
 
@@ -40,7 +43,7 @@ public abstract class Character extends PacManGame implements Observer {
 	/**
 	 * sets the position of the character depends on the character and the game state
 	 */
-	public abstract void setPosition(Coordinate p);
+	public abstract boolean setPosition(Coordinate p);
 	/**
 	 * returns the position of the character
 	 * @return position
