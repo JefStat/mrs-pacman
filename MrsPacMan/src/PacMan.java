@@ -1,10 +1,10 @@
 /**
-* PacMan is the user and starts at the bottom center of the screen.
+* PacMan is the user and starts at the bottom centre of the screen.
 * PacMan is equal distance away from two power pellets but always 
 * starts out facing the left side of the screen and starts to move 
 * in that direction unless the user changes the direction.
 * 
-* He starts out with three lives but loses a life everytime a ghost
+* He starts out with three lives but loses a life every time a ghost
 * is touched.  Lives can be gained with each 10,000 points.
 * 
 * Title: PacMan Class version 1.1
@@ -17,7 +17,9 @@
 * 
 * Update partial done removed PacMan(Coordinate p) only the map should
 * contain the starting point for pacman. Added comments to update for 
-* how it should possibly be developped.
+* how it should possibly be developed.
+* 
+* Jef's notes: removed starting point, character constant,
 * 
 */
 import java.util.Observable;
@@ -32,14 +34,6 @@ public class PacMan extends Character {
 	 */
 	private final int DEFAULTLIVES = 3;
 	/**
-	 * sets the starting point of pacman
-	 */
-	//private Coordinate STARTINGPOINT = ;
-	/**
-	 * sets the character constant for pacman
-	 */
-	//private final int PACMAN = 4;
-	/**
 	 * keeps track of pacman's position
 	 */
 	private Coordinate position;
@@ -47,7 +41,6 @@ public class PacMan extends Character {
 	 * keeps track of pacman's lives left
 	 */
 	private int livesLeft;
-	
 	/**
 	 * Creates a new PacMan object
 	 */
@@ -66,20 +59,34 @@ public class PacMan extends Character {
 	}
 	
 	/**
-	 * used to teleport pacman back to start when dead why is this public?
-	 * should also check lives before doing so.
+	 * Sets pacman's position to start if it was dead and re-animates pacman.
+	 * Otherwise will change pacman's position if checkmovement returns true. 
 	 * @param p
+	 * @return true if movement was changed
 	 */
-	public void setPosition(Coordinate p){
-		position = p;
+	public boolean setPosition(Coordinate p){
+		if (this.isAlive()){
+			checkMovement(p);
+			position = p;
+			
+			return true;
+		} else if (!(this.isAlive())){
+			if (this.livesLeft > 0) {
+				this.setAlive(true);
+				position = map.getPacManStart();
+				return true;
+			} 
+			return false;
+			
+		}
+		return false;
 	}
 	
 	/**
-	 * not yet implemented 
-	 * 
-	 * Need to get identity at coordinate p and check it
-	 * possibly check to see if movement is more then one point.. ie avoid
-	 * teleporting pacman
+	 * check to see if movement is more then one point.. ie avoid
+	 * teleporting pacman this is useless you can set the position 
+	 * through point because it's a mutable object. 
+	 * {@link Point.Translate()}
 	 * 
 	 * @param p
 	 * @return true if pacman can move to selected coordinate
@@ -92,13 +99,9 @@ public class PacMan extends Character {
 	 * 	@Override
 	 */
 	public void update(Observable arg0, Object arg1) {
-		if (arg1 instanceof Coordinate) {
-			if (checkMovement((Coordinate)arg1)) {
-				position = (Coordinate)arg1;
-				//check for pacdot now? what if move to ghost should pacman observe himself?
-				//also set identity should this be an action event? or should map observe all characters
-				//other idea is to have a refreshgui() to reload the changed identity.
-			}
-		}
+		int identity =	map.getIdentity(this.getPosition());
+		if (identity == Coordinate.PACDOT){
+			map.setIdentity(this.getPosition());
+		} if map
 	}
 }

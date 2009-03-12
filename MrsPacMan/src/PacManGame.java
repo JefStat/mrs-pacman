@@ -63,7 +63,7 @@ public class PacManGame extends Observable {
 	 */
 	public PacManGame(Map m) {
 		myPacGirl = new PacMan();
-		// this.addObserver(myPacGirl); this may not be needed
+		this.addObserver(myPacGirl); 
 		this.addObserver(new Ambusher());
 		this.addObserver(new Fickle());
 		this.addObserver(new Stupid());
