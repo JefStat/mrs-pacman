@@ -32,7 +32,7 @@ public abstract class Character extends PacManGame implements Observer {
 	public void setPosition(Coordinate p) {
 		position = p;
 	}
-	//gets the position of the character
+	//returnss the position of the character
 	public Coordinate getPosition() {
 		return position;
 	}

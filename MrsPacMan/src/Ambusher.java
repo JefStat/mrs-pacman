@@ -25,7 +25,7 @@ public class Ambusher extends Ghost {
 	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map2[0][Map.MAX].getIdentity());
 	private final GhostPath path;
 	/**
-	 * Default Constructor
+	 * Default Constructor, creates the Ambusher ghost 
 	 */
 	public Ambusher(){
 		String name = NAME;
@@ -40,7 +40,7 @@ public class Ambusher extends Ghost {
 		pinky.setPosition(path.AStarSearch(p).getPosition());
 		
 	}
-	//Returns the respective corner that this ghost goes to
+	//Returns the respective corner that Ambusher runs to when scared or in scatter mode
 	public Coordinate ambusherCorner(){
 		return CORNER;
 	}
