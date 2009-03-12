@@ -62,34 +62,29 @@ public class PacManGame extends Observable{
 	 */
 	
 	public PacManGame(){
-	Characters.add(new PacMan());
-	//	Characters.add(new Ghost());
-	//	Characters.add(new Ghost());
-	//	Characters.add(new Ghost());
-	//	Characters.add(new Ghost());
-		
-		/**
-		 * template for changing this class and program to the observer pattern
-		 */
-		this.addObserver(new PacMan());
-		this.addObserver(new Ghost());
-		/**
-		 * Creates a default map of MAX
-		 */
-		Map setMap = new Map(); 	
-		/**
-		 * magic number make a final STARTING SCORE
-		 */
-		setScore(0);		
-		playersTurn = true;
-		startGame();
+		this(new Map());
 	}
 	
 	/**
 	 * Constructor for loading a custom map with
 	 * standard ghost set.
 	 */
-	public PacManGame(Map M){
+	public PacManGame(Map m){
+		this.addObserver(new PacMan());
+		this.addObserver(new Ambusher());
+		this.addObserver(new Fickle());
+		this.addObserver(new Stupid());
+		this.addObserver(new Chaser());
+		/**
+		 * Creates a default map of MAX
+		 */
+		Map map = m; 	
+		/**
+		 * magic number make a final STARTING SCORE
+		 */
+		setScore(0);		
+		playersTurn = true;
+		startGame();
 		
 	}
 	/**

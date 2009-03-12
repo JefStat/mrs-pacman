@@ -36,15 +36,11 @@ public abstract class Character extends PacManGame implements Observer {
 	 * provides the information of whether the character is dead or alive
 	 */
 	private boolean alive;
-
-	//what the character is currently doing
 	
 	/**
-	 * sets the position of the character
+	 * sets the position of the character depends on the character and the game state
 	 */
-	public void setPosition(Coordinate p) {
-		position = p;
-	}
+	public abstract void setPosition(Coordinate p);
 	/**
 	 * returns the position of the character
 	 * @return position

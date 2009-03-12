@@ -34,11 +34,11 @@ public class PacMan extends Character {
 	/**
 	 * sets the starting point of pacman
 	 */
-	private Coordinate STARTINGPOINT = map.getPacManStart();
+	//private Coordinate STARTINGPOINT = ;
 	/**
 	 * sets the character constant for pacman
 	 */
-	private final int PACMAN = 4;
+	//private final int PACMAN = 4;
 	/**
 	 * keeps track of pacman's position
 	 */
@@ -54,7 +54,7 @@ public class PacMan extends Character {
 	public PacMan(){
 		name = PACMANNAME;
 		livesLeft = DEFAULTLIVES;
-		position = STARTINGPOINT;
+		position = map.getPacManStart();
 	}
 	
 	/**
