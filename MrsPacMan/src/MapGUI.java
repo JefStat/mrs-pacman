@@ -20,7 +20,6 @@ public class MapGUI extends JFrame implements ActionListener {
 		super(label);
 		new WindowHandler(this); //create the listener
 		
-		this.setLayout(new GridLayout(Map.MAX,Map.MAX));
 		JMenuBar MB = new JMenuBar();
 		setJMenuBar(MB);
 		JMenu importMenu = new JMenu( "Import" );
@@ -56,23 +55,25 @@ public class MapGUI extends JFrame implements ActionListener {
 		popup.setVisible(true);
 		popup.pack();
 	}
-	public void updateGUI(){
-		Coordinate level[][] = MapLevel.getMap();
+	public void buildGUI(){
+		this.setLayout(new GridLayout(MapLevel.getSize(),MapLevel.getSize()));
 		for(int i = 0; i < MapLevel.getSize(); i++){
 			   for(int j = 0; j < MapLevel.getSize(); j++){
-				if (level[j][i].getIdentity() == Coordinate.WALL) {
+				if (MapLevel.getIdentity(j, i) == Coordinate.WALL) {
 				      this.add(new JLabel(new ImageIcon("wall.jpg")));}
-				if (level[j][i].getIdentity() == Coordinate.EMPTY) {
+				if (MapLevel.getIdentity(j, i) == Coordinate.EMPTY) {
 				      this.add(new JLabel(new ImageIcon("cherry.jpg")));}
-				if (level[j][i].getIdentity() == Coordinate.FRUIT) {
+				if (MapLevel.getIdentity(j, i) == Coordinate.FRUIT) {
 				    this.add(new JLabel(new ImageIcon("cherry.jpg")));}
-				if (level[j][i].getIdentity() == Coordinate.PRISON) {
+				if (MapLevel.getIdentity(j, i) == Coordinate.PRISON) {
 				      this.add(new JLabel(new ImageIcon("prison.jpg")));}
-				if (level[j][i].getIdentity() == Coordinate.PACDOT) {
+				if (MapLevel.getIdentity(j, i) == Coordinate.PACDOT) {
 				      this.add(new JLabel(new ImageIcon("pacdot.jpg")));}
 			      }
 			   }
 		this.pack();
+	}
+	public void updateGUI(){
 	}
 }
 
