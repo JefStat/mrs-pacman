@@ -68,18 +68,18 @@ public class Map {
 	public Map(int s){
 		level = new Coordinate[s][s];
 		this.setSize(s);
-		
+		int i,j;
 		/**
 		 * Initialisation of all coordinates to empty space
 		 */
-		for(int i = 0; i < s; i++){
-			   for(int j = 0; j < s; j++){
+		for(i = 0; i < s; i++){
+			   for( j = 0; j < s; j++){
 			      level[i][j] = new Coordinate(i,j,0);}}
 
 		/**
 		 * Loop to create a border
 		 */
-		for (int i = 0; i<s; i++){
+		for ( i = 0; i<s; i++){
 			level[s-1][i].setIdentity(Coordinate.WALL); //Right wall created
 			level[0][i].setIdentity(Coordinate.WALL); //Left wall created
 			level[i][0].setIdentity(Coordinate.WALL);// Bottom wall created
@@ -89,8 +89,8 @@ public class Map {
 		/**
 		 * Fill all non walls with a pacdot, and counts all pacdots inserted
 		 */
-		for(int i = 0; i < s; i++){
-			   for(int j = 0; j < s; j++){
+		for( i = 0; i < s; i++){
+			   for( j = 0; j < s; j++){
 			      if (level[i][j].getIdentity() != Coordinate.WALL) {
 			    	  level[i][j].setIdentity(Coordinate.PACDOT);
 			    	  NUMBEROFPACDOTS++;}
@@ -102,6 +102,11 @@ public class Map {
 		level[15][15].setIdentity(Coordinate.PRISON);
 		setPrison(level[15][15]);
 		NUMBEROFPACDOTS--;
+		//create a starting point for ambusher
+		level[15][16].setIdentity(Coordinate.EMPTY);
+		NUMBEROFPACDOTS--;
+		this.setAmbusherStart(level[15][16]);
+		//create pacmans starting point
 		level[10][10].setIdentity(Coordinate.EMPTY);
 		setPacManStart(level[10][10]);
 		NUMBEROFPACDOTS--;

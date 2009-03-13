@@ -44,7 +44,8 @@ public class PacMan extends Character {
 	/**
 	 * Creates a new PacMan object
 	 */
-	public PacMan(){
+	public PacMan(Map m){
+		super(m);
 		name = PACMANNAME;
 		livesLeft = DEFAULTLIVES;
 		position = map.getPacManStart();

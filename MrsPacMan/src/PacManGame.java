@@ -46,7 +46,7 @@ public class PacManGame extends Observable {
 	private static final String GAMETITLE = "Mrs Pac Man";
 	
 	protected Map map;
-	private PacManSimple myPacGirl;
+	public PacMan myPacGirl;
 
 	/**
 	 * Default constructor for a standard pac man game, with the default pac-man
@@ -67,21 +67,13 @@ public class PacManGame extends Observable {
 		 */
 		map = m;
 		
-		/*
-		 * comment out here to get run the game
-		 */
-		
-		//myPacGirl = new PacManSimple();
-		/*this.addObserver(myPacGirl); 
-		this.addObserver(new Ambusher());
-		this.addObserver(new Fickle());
-		this.addObserver(new Stupid());
-		this.addObserver(new Chaser());
-		
-		/*
-		 * end commenting out items.
-		 */
-		
+		myPacGirl = new PacMan(m);
+		this.addObserver(myPacGirl); 
+		/*this.addObserver(new Ambusher(m));
+		this.addObserver(new Fickle(m));
+		this.addObserver(new Stupid(m));
+		this.addObserver(new Chaser(m));
+		*/
 		startGame();
 
 	}
@@ -93,6 +85,10 @@ public class PacManGame extends Observable {
 	 */
 	public Coordinate[][] getMap() {
 		return map.getMap();
+	}
+	
+	public Map getMap(int i){
+		return map;
 	}
 
 	/**
@@ -133,7 +129,7 @@ public class PacManGame extends Observable {
 
 		case NEWGAME: { // display map wait for user input
 			do {
-				MapGUI f = new MapGUI("Map GUI");// creates a MapGUI
+				MapGUI f = new MapGUI(GAMETITLE);// creates a MapGUI
 				f.setMap(map); // prints the MapGUI
 				f.buildGUI();
 			
@@ -146,27 +142,34 @@ public class PacManGame extends Observable {
 				switch (move) {
 				case UP: {
 					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() + 1, Coordinate.EMPTY)));
+					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case LEFT: {
 					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() - 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
+					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case DOWN: {
 					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() - 1, Coordinate.EMPTY)));
+					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case RIGHT:
 					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() + 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
+					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
 					break;
 				}
 			} while ((myPacGirl.isAlive()) && (map.getPacdots() >= 0));
 			return true;
 		}
+		/*
+		 * This case may be obsolete and removed otherwise will be implemented
+		 */
 		case LOADMAP:{
 			//new PacManGame(Map.importMap(fileLocation));
 		}
@@ -186,6 +189,6 @@ public class PacManGame extends Observable {
 	}
 	
 	public static void main(String[] args) {
-		new PacManGame(new Map(30));
+		new PacManGame();
 	}
 }

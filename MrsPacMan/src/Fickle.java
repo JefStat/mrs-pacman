@@ -42,7 +42,8 @@ public class Fickle extends Ghost{
 	/**
 	 * Default Constructor
 	 */
-	public Fickle(){
+	public Fickle(Map m){
+		super(m);
 		String name = NAME;
 		this.runAway(CORNER);
 		onPath = false;

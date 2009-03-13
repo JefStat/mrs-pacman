@@ -33,7 +33,8 @@ public class Ambusher extends Ghost {
 	/**
 	 * Default Constructor, creates the Ambusher ghost
 	 */
-	public Ambusher() {
+	public Ambusher(Map m) {
+		super(m);
 		STARTINGPOINT = map.getAmbusherStart();
 		this.setPosition(STARTINGPOINT);
 		setIncarcerated(false);

@@ -32,7 +32,7 @@ public class PacManSimple extends PacManGame implements Observer{
 	 */
 	public PacManSimple(){
 		livesLeft = DEFAULTLIVES;
-		position = map.getPacManStart();
+		position = getMap(1).getPacManStart();
 	}
 	
 	/**

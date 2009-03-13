@@ -33,6 +33,12 @@ import java.util.Observable;
 */
 
 public abstract class Ghost extends Character {
+	
+	
+	public Ghost(Map m) {
+		super(m);
+		
+	}
 	/**
 	 * this is the path that ghost may be on
 	 */

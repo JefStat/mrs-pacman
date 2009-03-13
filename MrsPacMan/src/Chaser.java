@@ -37,7 +37,8 @@ public class Chaser extends Ghost {
 	/**
 	 * Default Constructor
 	 */
-	public Chaser() {
+	public Chaser(Map m) {
+		super(m);
 		this.setPosition(STARTINGPOINT);
 		setIncarcerated(false);
 		setScared(false);

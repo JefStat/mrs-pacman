@@ -26,7 +26,7 @@
 import java.util.Observer;
 
 
-public abstract class Character extends PacManGame implements Observer {
+public abstract class Character implements Observer {
 	/**
 	 * the point is the position of the character at any given moment
 	 */
@@ -39,7 +39,10 @@ public abstract class Character extends PacManGame implements Observer {
 	 * provides the information of whether the character is dead or alive
 	 */
 	private boolean alive;
-	
+	/**
+	 * The map where all the characters exist
+	 */
+	protected Map map;	
 	/**
 	 * sets the position of the character depends on the character and the game state
 	 */
@@ -71,5 +74,8 @@ public abstract class Character extends PacManGame implements Observer {
 	 */
 	public boolean isAlive() {
 		return alive;
+	}
+	public Character(Map m){
+		this.map = m;
 	}
 }

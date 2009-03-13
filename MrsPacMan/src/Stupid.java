@@ -30,7 +30,8 @@ public class Stupid extends Ghost {
 	/**
 	 * Default Constructor
 	 */
-	public Stupid(){
+	public Stupid(Map m){
+		super(m);
 		String name = NAME;
 		this.runAway(CORNER);
 		this.setPosition(STARTINGPOINT);
