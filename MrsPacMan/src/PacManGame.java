@@ -46,7 +46,7 @@ public class PacManGame extends Observable {
 	private static final String GAMETITLE = "Mrs Pac Man";
 	
 	protected Map map;
-	private PacMan myPacGirl;
+	private PacManSimple myPacGirl;
 
 	/**
 	 * Default constructor for a standard pac man game, with the default pac-man
@@ -65,18 +65,23 @@ public class PacManGame extends Observable {
 		/**
 		 * Creates a default map of MAX
 		 */
-		Map map = m;
+		map = m;
 		
-		myPacGirl = new PacMan();
-		this.addObserver(myPacGirl); 
+		/*
+		 * comment out here to get run the game
+		 */
+		
+		//myPacGirl = new PacManSimple();
+		/*this.addObserver(myPacGirl); 
 		this.addObserver(new Ambusher());
 		this.addObserver(new Fickle());
 		this.addObserver(new Stupid());
 		this.addObserver(new Chaser());
-
-		/**
-		 * magic number make a final STARTING SCORE
+		
+		/*
+		 * end commenting out items.
 		 */
+		
 		startGame();
 
 	}
@@ -91,7 +96,7 @@ public class PacManGame extends Observable {
 	}
 
 	/**
-	 * Opens the Starting dialog for the game with choices to close
+	 * Opens the Starting dialog for the game with choices to close or start a new game.
 	 * 
 	 * @return return true if valid selection is made false otherwise
 	 */
@@ -129,7 +134,9 @@ public class PacManGame extends Observable {
 		case NEWGAME: { // display map wait for user input
 			do {
 				MapGUI f = new MapGUI("Map GUI");// creates a MapGUI
-				map.printMap(f); // prints the MapGUI
+				f.setMap(map); // prints the MapGUI
+				f.buildGUI();
+			
 				int move = JOptionPane.showOptionDialog(null,
 						"Select direction", "Movement Box",
 						JOptionPane.DEFAULT_OPTION,
@@ -179,6 +186,6 @@ public class PacManGame extends Observable {
 	}
 	
 	public static void main(String[] args) {
-		new PacManGame();
+		new PacManGame(new Map(30));
 	}
 }

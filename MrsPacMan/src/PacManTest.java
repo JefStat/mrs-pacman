@@ -34,5 +34,9 @@ public class PacManTest extends TestCase {
 	public void testUpdate() {
 		fail("Not yet implemented");
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 
 }

@@ -17,6 +17,8 @@
  * was commented out.  When attempting to create ambusher is was realized that this ghost starts outisde
  * the prison unlike the rest of the ghosts.
  * 
+ * Jef's notes: removed the static from setSize add getter and setter for identity, in various ways.
+ * 
  */
 import java.util.Scanner;
 import java.io.*;
@@ -26,11 +28,11 @@ public class Map {
 	/**
 	 * sets a constant default maximum for map
 	 */
-	static int MAX = 30;
+	public final static int MAX = 30;
 	/**
 	 * keeps track of the size of map
 	 */
-	private static int size;
+	private int size;
 	/**
 	 * keeps track of the current level of the map
 	 */
@@ -53,20 +55,6 @@ public class Map {
 	private Coordinate ambusherStart;
 	
 	/**
-	 * constructor to make a map s x s size
-	 */
-	@SuppressWarnings("deprecation")
-	
-	//---------------TEST-----------------------
-	public static void main(String[] args) {
-		Map x = new Map(30);
-		MapGUI f = new MapGUI("Map GUI");
-		f.setMap(x);
-		f.buildGUI();
-	}
-	//---------------TEST-----------------------
-	
-	/**
 	 * Default constructor making the map the Defaultsize x Defaultsize
 	 * Will create a default map, with a border of walls
 	 */
@@ -79,7 +67,7 @@ public class Map {
 	 */
 	public Map(int s){
 		level = new Coordinate[s][s];
-		Map.setSize(s);
+		this.setSize(s);
 		
 		/**
 		 * Initialisation of all coordinates to empty space
@@ -114,8 +102,8 @@ public class Map {
 		level[15][15].setIdentity(Coordinate.PRISON);
 		setPrison(level[15][15]);
 		NUMBEROFPACDOTS--;
-		level[1][1].setIdentity(Coordinate.EMPTY);
-		setPacManStart(level[1][1]);
+		level[10][10].setIdentity(Coordinate.EMPTY);
+		setPacManStart(level[10][10]);
 		NUMBEROFPACDOTS--;
 	}
 	
@@ -211,7 +199,7 @@ public class Map {
       //create  a scanner for input
          Scanner input = new java.util.Scanner(file);
          Integer integer = Integer.parseInt(input.next());
-        Map.setSize(integer.intValue());
+        this.setSize(integer.intValue());
       //a while loop that makes the table
         this.NUMBEROFPACDOTS = 0;      
          while(input.hasNext()){
@@ -252,8 +240,8 @@ public class Map {
 
 	 }
 	 //what does this do for map? why can the public resize it? -jef
-	public static void setSize(int size) {
-		Map.size = size;
+	public void setSize(int size) {
+		this.size = size;
 	}
 	/**
 	 * Get an identity from map location int x and y returns -1 if out of bounds
