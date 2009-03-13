@@ -53,6 +53,21 @@ public class Map {
 	 * contains the location where ambusher starts
 	 */
 	private Coordinate ambusherStart;
+	/*//---------------TEST-----------------------
+	public static void main(String[] args) {
+		Map x = new Map(30);
+		MapGUI f = new MapGUI("Map GUI");
+		f.setMap(x);
+		f.buildGUI();
+		try {
+			x.ExportMap("testmap.txt");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		f.updateGUI();
+	}
+	//---------------TEST*/
 	
 	/**
 	 * Default constructor making the map the Defaultsize x Defaultsize
