@@ -24,7 +24,7 @@ public class Ambusher extends Ghost {
 	/**
 	 * sets the corner location for ambusher
 	 */
-	private final Coordinate CORNER = new Coordinate(0, map.getSize() - 1, 0);
+	private final Coordinate Corner;
 	/**
 	 * The path that ambusher will follow in order to get to PacMan
 	 */
@@ -40,8 +40,9 @@ public class Ambusher extends Ghost {
 		setIncarcerated(false);
 		setScared(false);
 		String name = NAME;
-		this.runAway(CORNER);
-		path = new GhostPath(this);
+		Corner = new Coordinate(0, map.getSize() - 1, 0);
+		this.runAway(Corner);
+		path = new GhostPath(this, map);
 
 	}
 
@@ -62,7 +63,7 @@ public class Ambusher extends Ghost {
 	 * @return Corner
 	 */
 	public Coordinate ambusherCorner() {
-		return CORNER;
+		return Corner;
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class Ambusher extends Ghost {
 		}
 		if (this.isAlive() == true && (Coordinate) arg != this.getPosition()) {
 			if (this.isScared() == true) {
-				this.setPosition(CORNER);
+				this.setPosition(Corner);
 			} else if (this.isScared() == false) {
 				path.AStarSearch((Coordinate) arg);
 			}

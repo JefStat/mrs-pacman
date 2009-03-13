@@ -25,7 +25,7 @@ public class Stupid extends Ghost {
 	/**
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */
-	private final Coordinate CORNER = new Coordinate(0,0,0);
+	private Coordinate Corner;
 	
 	/**
 	 * Default Constructor
@@ -33,7 +33,8 @@ public class Stupid extends Ghost {
 	public Stupid(Map m){
 		super(m);
 		String name = NAME;
-		this.runAway(CORNER);
+		Corner = new Coordinate(0,0,0);
+		this.runAway(Corner);
 		this.setPosition(STARTINGPOINT);
 		setIncarcerated(false);
 		setScared(false);
@@ -131,7 +132,7 @@ public class Stupid extends Ghost {
 	 * @return stupid corner
 	 */
 	public Coordinate stupidCorner(){
-		return CORNER;
+		return Corner;
 	}
 
 	@Override

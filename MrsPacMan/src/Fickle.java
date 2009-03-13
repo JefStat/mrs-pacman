@@ -26,7 +26,7 @@ public class Fickle extends Ghost{
 	/**
 	 * this identifies the location of fickles corner when in scared or scatter mode
 	 */
-	private final Coordinate CORNER = new Coordinate(map.getSize()-1,0,0);
+	private Coordinate Corner;
 	/**
 	 * this checks if fickle is on a path towards pacman
 	 */
@@ -45,9 +45,10 @@ public class Fickle extends Ghost{
 	public Fickle(Map m){
 		super(m);
 		String name = NAME;
-		this.runAway(CORNER);
+		Corner = new Coordinate(map.getSize()-1,0,0);
+		this.runAway(Corner);
 		onPath = false;
-		path = new GhostPath(this);
+		path = new GhostPath(this, map);
 		this.setPosition(STARTINGPOINT);
 		setIncarcerated(false);
 		setScared(false);	
@@ -252,7 +253,7 @@ public class Fickle extends Ghost{
 	 * @return fickle corner
 	 */
 	public Coordinate fickleCorner(){
-		return CORNER;
+		return Corner;
 	}
 
 	@Override

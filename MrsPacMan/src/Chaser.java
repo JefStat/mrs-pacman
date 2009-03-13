@@ -28,7 +28,7 @@ public class Chaser extends Ghost {
 	/**
 	 * keeps track of the corner for blinky
 	 */
-	private final Coordinate CORNER = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);
+	private Coordinate Corner;
 	/**
 	 * keeps track of the path that blinky is on
 	 */
@@ -43,8 +43,9 @@ public class Chaser extends Ghost {
 		setIncarcerated(false);
 		setScared(false);
 		String name = NAME;
-		this.runAway(CORNER);
-		path = new GhostPath(this);
+		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);
+		this.runAway(Corner);
+		path = new GhostPath(this, map);
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class Chaser extends Ghost {
 	 * @return chasher corner
 	 */
 	public Coordinate chaserCorner() {
-		return CORNER;
+		return Corner;
 	}
 
 	@Override

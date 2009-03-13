@@ -14,7 +14,7 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
  * @Date: March 7, 2009
  * @Author:Jen Kasun and Nicole Waldrum
  */
-public class GhostPath extends PacManGame{
+public class GhostPath{
 	/** 
 	 * default one
 	 */
@@ -36,9 +36,9 @@ public class GhostPath extends PacManGame{
     /**
      * Creates the default constructor to find the shortest path
      */
-    public GhostPath(Ghost g) {
-        map2 = map.getMap();
-        startPosition = this.whereInTheMapIsPacman();
+    public GhostPath(Ghost g,Map m) {
+        map2 = m.getMap();
+        startPosition = m.getPacManStart(); // this may not be valid.. do you want were pac man is at the point of call or where he is in the game state?
         goalPosition = g.getPosition();
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);

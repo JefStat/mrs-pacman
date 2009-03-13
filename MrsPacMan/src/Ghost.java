@@ -34,19 +34,18 @@ import java.util.Observable;
 
 public abstract class Ghost extends Character {
 	
-	
 	public Ghost(Map m) {
 		super(m);
-		
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * this is the path that ghost may be on
 	 */
-	private GhostPath path;
+	static GhostPath path;
 	/**
 	 * keeps track of each ghosts incarceration
 	 */
-	private boolean incarcerated;
+	static boolean incarcerated;
 	/**
 	 * keeps track if the ghost is scared
 	 */
