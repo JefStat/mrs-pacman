@@ -136,22 +136,22 @@ public class PacManGame extends Observable {
 
 				switch (move) {
 				case UP: {
-					myPacGirl.getPosition().translate(0, 1);
+					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() + 1, Coordinate.EMPTY)));
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case LEFT: {
-					myPacGirl.getPosition().translate(-1, 0);
+					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() - 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case DOWN: {
-					myPacGirl.getPosition().translate(0, -1);
+					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() - 1, Coordinate.EMPTY)));
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
 				case RIGHT:
-					myPacGirl.getPosition().translate(1, 0);
+					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() + 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
 					notifyObservers(myPacGirl.getPosition());
 					break;
 				}

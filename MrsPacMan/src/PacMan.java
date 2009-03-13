@@ -65,10 +65,8 @@ public class PacMan extends Character {
 	 * @return true if movement was changed
 	 */
 	public boolean setPosition(Coordinate p){
-		if (this.isAlive()){
-			checkMovement(p);
+		if ((this.isAlive())&&(checkMovement(p))){
 			position = p;
-			
 			return true;
 		} else if (!(this.isAlive())){
 			if (this.livesLeft > 0) {
@@ -92,7 +90,14 @@ public class PacMan extends Character {
 	 * @return true if pacman can move to selected coordinate
 	 */
 	public boolean checkMovement(Coordinate p) {
-		return false;
+		double x = p.getX() - position.getX(); 
+		double y = p.getY() - position.getY();
+		if ((map.getIdentity(p) == Coordinate.WALL)||(map.getIdentity(p) == Coordinate.PRISON)){
+			return false;
+		} if ((1 > Math.abs(x))||(1 > Math.abs(y))){
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * Update will move pacMan or remove lives if he is caught
@@ -102,6 +107,6 @@ public class PacMan extends Character {
 		int identity =	map.getIdentity(this.getPosition());
 		if (identity == Coordinate.PACDOT){
 			map.setIdentity(this.getPosition());
-		} if map
+		}
 	}
 }
