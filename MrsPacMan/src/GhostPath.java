@@ -38,7 +38,7 @@ public class GhostPath{
      */
     public GhostPath(Ghost g,Map m) {
         map2 = m.getMap();
-        startPosition = m.getPacManStart(); // this may not be valid.. do you want were pac man is at the point of call or where he is in the game state?
+        startPosition = m.getPacMan();
         goalPosition = g.getPosition();
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);

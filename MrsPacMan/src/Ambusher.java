@@ -35,7 +35,7 @@ public class Ambusher extends Ghost {
 	 */
 	public Ambusher(Map m) {
 		super(m);
-		STARTINGPOINT = map.getAmbusherStart();
+		STARTINGPOINT = map.getAmbusher();
 		this.setPosition(STARTINGPOINT);
 		setIncarcerated(false);
 		setScared(false);

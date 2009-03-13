@@ -48,26 +48,14 @@ public class Map {
 	/**
 	 * contains the coordinate where pacman starts
 	 */
-	private Coordinate pacManStart;
+	private Coordinate pacMan;
 	/**
 	 * contains the location where ambusher starts
 	 */
-	private Coordinate ambusherStart;
-	/*//---------------TEST-----------------------
-	public static void main(String[] args) {
-		Map x = new Map(30);
-		MapGUI f = new MapGUI("Map GUI");
-		f.setMap(x);
-		f.buildGUI();
-		try {
-			x.ExportMap("testmap.txt");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		f.updateGUI();
-	}
-	//---------------TEST*/
+	private Coordinate ambusher;
+	private Coordinate stupid;
+	private Coordinate fickle;
+	private Coordinate chaser;
 	
 	/**
 	 * Default constructor making the map the Defaultsize x Defaultsize
@@ -120,10 +108,10 @@ public class Map {
 		//create a starting point for ambusher
 		level[15][16].setIdentity(Coordinate.EMPTY);
 		NUMBEROFPACDOTS--;
-		this.setAmbusherStart(level[15][16]);
+		this.setAmbusher(level[15][16]);
 		//create pacmans starting point
 		level[10][10].setIdentity(Coordinate.EMPTY);
-		setPacManStart(level[10][10]);
+		setPacMan(level[10][10]);
 		NUMBEROFPACDOTS--;
 	}
 	
@@ -154,36 +142,55 @@ public class Map {
 	}
 	/**
 	 * This method sets the prisoner for Ambusher as this ghost starts outside the prison at the front of the prison
-	 * @param ambusherStart
+	 * @param ambusher
 	 */
-	public void setAmbusherStart(Coordinate ambusherStart){
-		this.ambusherStart = ambusherStart;
+	public void setAmbusher(Coordinate ambusher){
+		this.ambusher = ambusher;
 	}
 	/**
 	 * This method returns the prisoner for Ambusher as this ghost starts outside the prison 
 	 * at the front of the prison
 	 */
-	public Coordinate getAmbusherStart(){
-		return ambusherStart;
+	public Coordinate getAmbusher(){
+		return ambusher;
 		
 	}
 
 	/**
 	 * @param pacManStart the pacManStart to set
 	 */
-	private void setPacManStart(Coordinate pacManStart) {
-		this.pacManStart = pacManStart;
+	public void setPacMan(Coordinate pacMan) {
+		this.pacMan = pacMan;
 	}
 
 	/**
-	 * @return the pacManStart
+	 * @return the pacMan
 	 */
-	public Coordinate getPacManStart() {
-		return pacManStart;
+	public Coordinate getPacMan() {
+		return pacMan;
 	}
 	
+	public Coordinate getStupid() {
+		return stupid;
+	}
+	public void setStupid(Coordinate stupid) {
+		this.stupid = stupid;
+	}
+	public Coordinate getFickle() {
+		return fickle;
+	}
+	public void setFickle(Coordinate fickle) {
+		this.fickle = fickle;
+	}
+	public Coordinate getChaser() {
+		return chaser;
+	}
+	public void setChaser(Coordinate chaser) {
+		this.chaser = chaser;
+	}
 	/**
-	 * returns map temporary for a* algorithm
+	 * returns map temporary for a* algorithm 
+	 *possibly deprecated?
 	 */
 	public Coordinate[][] getMap(){
 		return level;
@@ -228,7 +235,7 @@ public class Map {
 						   integer = Integer.parseInt(input.next());
 						   if (integer.intValue() == Coordinate.PACDOT){NUMBEROFPACDOTS++;}
 						   if (integer.intValue() == Coordinate.PRISON){this.prison = level[j][i];}
-						   if (integer.intValue() == Coordinate.EMPTY){this.pacManStart = level[j][i];}
+						   if (integer.intValue() == Coordinate.EMPTY){this.pacMan = level[j][i];}
 						   level[j][i].setIdentity(integer.intValue());
 						   track++;
 					     }

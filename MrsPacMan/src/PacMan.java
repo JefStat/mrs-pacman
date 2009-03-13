@@ -44,7 +44,7 @@ public class PacMan extends Character {
 		super(m);
 		name = PACMANNAME;
 		livesLeft = DEFAULTLIVES;
-		position = map.getPacManStart();
+		position = map.getPacMan();
 	}
 	
 	/**
@@ -56,11 +56,12 @@ public class PacMan extends Character {
 	public boolean setPosition(Coordinate p){
 		if ((this.isAlive())&&(checkMovement(p))){
 			position = p;
+			map.setPacMan(p);
 			return true;
 		} else if (!(this.isAlive())){
 			if (this.livesLeft > 0) {
 				this.setAlive(true);
-				position = map.getPacManStart();
+				position = map.getPacMan();
 				return true;
 			} 
 			return false;

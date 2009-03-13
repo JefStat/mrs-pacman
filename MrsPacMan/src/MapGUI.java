@@ -80,7 +80,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		this.add(Internal);
 		this.pack();
 	}
-	public void updateGUI(){
+	public void updateGUI(PacManGame p){
 		try {
 			Internal.setClosed(true);
 		} catch (PropertyVetoException e) {
@@ -88,6 +88,7 @@ public class MapGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		Internal.removeAll();
+		MapLevel = p.getMap(1);
 		buildGUI();
 	}
 }
