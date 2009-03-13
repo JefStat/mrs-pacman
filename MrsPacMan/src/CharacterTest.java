@@ -45,15 +45,4 @@ public class CharacterTest extends TestCase {
 		assertFalse(character2.isAlive());
 	}
 
-
-	public void testSetPersonality() {
-		PacMan character1 = new PacMan();
-		character1.setPersonality(1);
-		assertEquals(character1.getPersonality(),1);
-		
-		Ghost character2 = new Ghost();
-		character2.setPersonality(2);
-		assertEquals(character2.getPersonality(),2);
-	}
-
 }

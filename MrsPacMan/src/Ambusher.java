@@ -52,7 +52,7 @@ public class Ambusher extends Ghost {
 		String name = NAME;
 		pinky = new Ghost();
 		pinky.runAway(CORNER);
-		path = new GhostPath();		
+		path = new GhostPath(this);		
 	}
 	/**
 	 * Moves Ambusher towards PacMan in the appropriate path 

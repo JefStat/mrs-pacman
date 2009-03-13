@@ -288,6 +288,7 @@ public class Map {
 	public boolean setIdentity(Coordinate p){
 		if ((getIdentity(p) > -1)&&(getIdentity(p)== Coordinate.PACDOT )){
 			level[(int)p.getX()][(int)p.getY()].setIdentity(Coordinate.EMPTY);
+			NUMBEROFPACDOTS--;
 			return true;
 		}
 		return false;	
@@ -295,8 +296,5 @@ public class Map {
 	// to lazy to implement will do if needed
 	public boolean setIdentity(int x, int y){
 		return false;
-	}
-	public void setNUMBEROFPACDOTS(int numberofpacdots) {
-		NUMBEROFPACDOTS = numberofpacdots;
 	}
 }

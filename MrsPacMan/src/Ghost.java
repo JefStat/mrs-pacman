@@ -40,7 +40,7 @@ public class Ghost extends Character {
 	/**
 	 * this is the path that ghost may be on
 	 */
-	private GhostPath path = new GhostPath();
+	private GhostPath path = new GhostPath(this);
 	/**
 	 * keeps track of each ghosts incarceration
 	 */
@@ -151,8 +151,9 @@ public class Ghost extends Character {
 	/**
 	 * This sets the current position of a Ghost
 	 */
-	public void setPosition(Coordinate p){
+	public boolean setPosition(Coordinate p){
 		position = p;
+		return true;
 	}
 	/**
 	 * sets whether or not the ghost is incarcerated

@@ -172,6 +172,10 @@ public class PacManGame extends Observable {
 		return false;
 	}
 
+	public Coordinate whereInTheMapIsPacman(){
+		return myPacGirl.getPosition();
+	}
+	
 	public static void main(String[] args) {
 		new PacManGame();
 	}

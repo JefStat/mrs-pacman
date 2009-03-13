@@ -59,7 +59,7 @@ public class Fickle extends Ghost{
 		inky = new Ghost();
 		inky.runAway(CORNER);
 		onPath = false;
-		path = new GhostPath();
+		path = new GhostPath(this);
 	}
 	/**
 	 * Moves Fickle towards PacMan as the defined personality indicates
@@ -68,7 +68,7 @@ public class Fickle extends Ghost{
 	
 		int x = inky.getPosition().x;
 		int y = inky.getPosition().y;
-		if(Map.getSize()/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p)))){
+		if(map.length/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p)))){
 			inky.setPosition(path.AStarSearch(p).getPosition());
 			}
 		else{

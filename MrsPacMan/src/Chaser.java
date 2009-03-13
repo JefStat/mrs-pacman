@@ -53,7 +53,7 @@ public class Chaser extends Ghost{
 		String name = NAME;
 		blinky = new Ghost();
 		blinky.runAway(CORNER);
-		path = new GhostPath();
+		path = new GhostPath(this);
 	}
 	/**
 	 * Moves Chaser towards PacMan as per the defined personality
