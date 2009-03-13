@@ -62,7 +62,7 @@ public class Map {
 		Map x = new Map(30);
 		MapGUI f = new MapGUI("Map GUI");
 		f.setMap(x);
-		f.updateGUI();
+		f.buildGUI();
 	}
 	//---------------TEST-----------------------
 	
