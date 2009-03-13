@@ -9,12 +9,14 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MapGUI extends JFrame implements ActionListener {
 	private Map MapLevel;
+	private JInternalFrame Internal;
 	
 	public MapGUI(String label) {
 		super(label);
@@ -56,24 +58,37 @@ public class MapGUI extends JFrame implements ActionListener {
 		popup.pack();
 	}
 	public void buildGUI(){
-		this.setLayout(new GridLayout(MapLevel.getSize(),MapLevel.getSize()));
+		Internal = new JInternalFrame("Map");
+		Internal.setVisible(true);
+		Internal.setLayout(new GridLayout(MapLevel.getSize(),MapLevel.getSize()));
 		for(int i = 0; i < MapLevel.getSize(); i++){
 			   for(int j = 0; j < MapLevel.getSize(); j++){
 				if (MapLevel.getIdentity(j, i) == Coordinate.WALL) {
-				      this.add(new JLabel(new ImageIcon("wall.jpg")));}
+				      Internal.add(new JLabel(new ImageIcon("wall.jpg")));}
 				if (MapLevel.getIdentity(j, i) == Coordinate.EMPTY) {
-				      this.add(new JLabel(new ImageIcon("cherry.jpg")));}
+				      Internal.add(new JLabel(new ImageIcon("cherry.jpg")));}
 				if (MapLevel.getIdentity(j, i) == Coordinate.FRUIT) {
-				    this.add(new JLabel(new ImageIcon("cherry.jpg")));}
+				    Internal.add(new JLabel(new ImageIcon("cherry.jpg")));}
 				if (MapLevel.getIdentity(j, i) == Coordinate.PRISON) {
-				      this.add(new JLabel(new ImageIcon("prison.jpg")));}
+				      Internal.add(new JLabel(new ImageIcon("prison.jpg")));}
 				if (MapLevel.getIdentity(j, i) == Coordinate.PACDOT) {
-				      this.add(new JLabel(new ImageIcon("pacdot.jpg")));}
+				      Internal.add(new JLabel(new ImageIcon("pacdot.jpg")));}
 			      }
 			   }
+		Internal.setBackground(Color.BLACK);
+		Internal.setResizable(false);
+		this.add(Internal);
 		this.pack();
 	}
 	public void updateGUI(){
+		try {
+			Internal.setClosed(true);
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Internal.removeAll();
+		buildGUI();
 	}
 }
 
