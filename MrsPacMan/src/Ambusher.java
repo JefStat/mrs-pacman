@@ -18,29 +18,13 @@ import java.util.Observable;
  */
 public class Ambusher extends Ghost {
 	/**
-	 * Character constant for Ambusher
-	 */
-	private final int AMBUSHER = 1;
-	/**
 	 * creates the name for ambusher
 	 */
 	private final String NAME = "Pinky";
 	/**
-	 * map parameter size for ghost to know its location
-	 */
-	private Coordinate[][] map2;
-	/**
-	 * the starting point for Ambusher
-	 */
-	private final Coordinate STARTINGPOINT = map.getAmbusherStart();
-	/**
-	 * creates a ghost instance of ambusher 
-	 */
-	private final Ghost pinky;
-	/**
 	 * sets the corner location for ambusher
 	 */
-	private final Coordinate CORNER = new Coordinate(0, Map.MAX, map2[0][Map.MAX].getIdentity());
+	private final Coordinate CORNER = new Coordinate(0, map.getSize()-1, 0);
 	/**
 	 * The pather that ambusher will follow in order to get to PacMan
 	 */
@@ -49,18 +33,22 @@ public class Ambusher extends Ghost {
 	 * Default Constructor, creates the Ambusher ghost 
 	 */
 	public Ambusher(){
+		STARTINGPOINT = map.getAmbusherStart();
+		this.setPosition(STARTINGPOINT);
+		setIncarcerated(false);
+		setScared(false);
 		String name = NAME;
-		pinky = new Ghost();
-		pinky.runAway(CORNER);
-		path = new GhostPath(this);		
+		this.runAway(CORNER);
+		path = new GhostPath(this);	
+		
 	}
 	/**
 	 * Moves Ambusher towards PacMan in the appropriate path 
 	 * Given temporarily the same personality as chaser but faster.
 	 */
 	public void movetoPacMan(Coordinate p){
-		pinky.setPosition(path.AStarSearch(p).getPosition());
-		pinky.setPosition(path.AStarSearch(p).getPosition());
+		this.setPosition(path.AStarSearch(p).getPosition());
+		this.setPosition(path.AStarSearch(p).getPosition());
 		
 	}
 	/**
@@ -72,8 +60,21 @@ public class Ambusher extends Ghost {
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		if ((this.isAlive() == true) && ((Coordinate)arg == this.getPosition())){
+			if (this.isScared() == true){
+				this.setAlive(false);
+				this.setIncarcerated(true);
+				this.movetoPrison(STARTINGPOINT);
+			}
+		} 
+		if(this.isAlive()== true && (Coordinate)arg!= this.getPosition()){
+			if(this.isScared() == true){
+				this.setPosition(CORNER);
+			}
+			else if(this.isScared() == false){
+				path.AStarSearch((Coordinate)arg);
+			}
+		}
 	}
-	
 }
+		

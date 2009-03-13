@@ -51,14 +51,6 @@ public class PacMan extends Character {
 	}
 	
 	/**
-	 * Used for ghosts to find pacman.
-	 * @return Coordinate of pacman
-	 */
-	public Coordinate getPosition(){
-		return position;
-	}
-	
-	/**
 	 * Sets pacman's position to start if it was dead and re-animates pacman.
 	 * Otherwise will change pacman's position if checkmovement returns true. 
 	 * @param p

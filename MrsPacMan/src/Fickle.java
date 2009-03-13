@@ -20,25 +20,13 @@ import java.util.Random;
 
 public class Fickle extends Ghost{
 	/**
-	 * identifies fickle by constant for character
-	 */
-	private final int FICKLE = 2;
-	/**
 	 * this is the official name of fickle
 	 */
 	private final String NAME = "Inky";
 	/**
-	 * this gets the map so that coordinates may be located
-	 */
-	private Coordinate[][] map;
-	/**
-	 * this is to eventually create a new instance of fickle in PacManGame
-	 */
-	private final  Ghost inky;
-	/**
 	 * this identifies the location of fickles corner when in scared or scatter mode
 	 */
-	private final Coordinate CORNER = new Coordinate(Map.MAX,0, map[Map.MAX][0].getIdentity());
+	private final Coordinate CORNER = new Coordinate(map.getSize()-1,0,0);
 	/**
 	 * this checks if fickle is on a path towards pacman
 	 */
@@ -56,102 +44,104 @@ public class Fickle extends Ghost{
 	 */
 	public Fickle(){
 		String name = NAME;
-		inky = new Ghost();
-		inky.runAway(CORNER);
+		this.runAway(CORNER);
 		onPath = false;
 		path = new GhostPath(this);
+		this.setPosition(STARTINGPOINT);
+		setIncarcerated(false);
+		setScared(false);	
 	}
 	/**
 	 * Moves Fickle towards PacMan as the defined personality indicates
 	 */
 	public void movetoPacMan(Coordinate p){
 	
-		int x = inky.getPosition().x;
-		int y = inky.getPosition().y;
-		if(map.length/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(inky.getPosition(), p)))){
-			inky.setPosition(path.AStarSearch(p).getPosition());
+		int x = (int)this.getPosition().getX();
+		int y = (int)this.getPosition().getY();
+		if((map.getSize()-1)/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(this.getPosition(), p)))){
+			this.setPosition(path.AStarSearch(p).getPosition());
 			}
 		else{
 			if(onPath){
 				switch (direction){
 				case 0:
-					if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
+					if((map.getIdentity(x-1, y+1)==1)||(map.getIdentity(x-1, y+1)==5)){
 						onPath = false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 				    }
 					else{
-						Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
-				    	inky.setPosition(endpoint);
+						Coordinate endpoint = new Coordinate(x-1, y+1, map.getIdentity(x-1, y+1));
+				    	this.setPosition(endpoint);
 					}
 					break;
 				case 1:
-					if((map[x][y+1].getIdentity()==1)||(map[x][y+1].getIdentity()==5)){
+					if((map.getIdentity(x, y+1)==1)||(map.getIdentity(x, y+1)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x, y+1, map.getIdentity(x, y+1));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				case 2:
-					if((map[x+1][y+1].getIdentity()==1)||(map[x+1][y+1].getIdentity()==5)){
+					if((map.getIdentity(x+1 ,y+1)==1)||(map.getIdentity(x+1 ,y+1)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 					}
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y+1, map.getIdentity(x+1 ,y+1));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				case 3:
-					if((map[x+1][y].getIdentity()==1)||(map[x+1][y].getIdentity()==5)){
+					if((map.getIdentity(x+1 ,y)==1)||(map.getIdentity(x+1 ,y)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 					}
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y, map.getIdentity(x+1 ,y));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				case 4:
-					if((map[x+1][y-1].getIdentity()==1)||(map[x+1][y-1].getIdentity()==5)){
+					if((map.getIdentity(x+1 ,y-1)==1)||(map.getIdentity(x+1 ,y-1)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 					}
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y-1, map.getIdentity(x+1 ,y-1));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				case 5:
-					if((map[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
+					if((map.getIdentity(x ,y-1)==1)||(map.getIdentity(x ,y-1)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 					}
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x, y-1, map.getIdentity(x ,y-1));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				case 6:
-					if((map[x-1][y-1].getIdentity()==1)||(map[x-1][y-1].getIdentity()==5)){
+					if((map.getIdentity(x-1,y-1)==1)||(map.getIdentity(x-1,y-1)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 					}
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x-1, y-1, map.getIdentity(x-1,y-1));
+				    	this.setPosition(endpoint);
 				    }
 				    break;
 				case 7:
-					if((map[x-1][y].getIdentity()==1)||(map[x-1][y].getIdentity()==5)){
+					if((map.getIdentity(x-1,y)==1)||(map.getIdentity(x-1,y)==5)){
 						onPath=false;
-						inky.movetoPacMan(p);
+						this.movetoPacMan(p);
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-				    	inky.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x-1, y, map.getIdentity(x-1,y));
+				    	this.setPosition(endpoint);
 				    }
 					break;
 				}
@@ -164,88 +154,88 @@ public class Fickle extends Ghost{
 					options = options % 8;
 					switch (options) {
 					  case 0: 
-					    if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
+					    if((map.getIdentity(x-1,y+1)==1)||(map.getIdentity(x-1,y+1)==5)){
 					    }
 					    else{
-					    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
-					    	inky.setPosition(endpoint);
+					    	Coordinate endpoint = new Coordinate(x-1, y+1, map.getIdentity(x-1,y+1));
+					    	this.setPosition(endpoint);
 					    	onPath=true;
 					    	direction = 0;
 					    	a=false;
 					    }
 					    break;
 					  case 1: 
-						    if((map[x][y+1].getIdentity()==1)||(map[x][y+1].getIdentity()==5)){
+						    if((map.getIdentity(x,y+1)==1)||(map.getIdentity(x,y+1)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x, y+1, map.getIdentity(x,y+1));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =1;
 						    	a=false;
 						    }
 						    break;
 					  case 2: 
-						    if((map[x+1][y+1].getIdentity()==1)||(map[x+1][y+1].getIdentity()==5)){
+						    if((map.getIdentity(x+1,y+1)==1)||(map.getIdentity(x+1,y+1)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x+1, y+1, map.getIdentity(x+1,y+1));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =2;
 						    	a=false;
 						    }
 						    break;
 					  case 3: 
-						    if((map[x+1][y].getIdentity()==1)||(map[x+1][y].getIdentity()==5)){
+						    if((map.getIdentity(x+1,y)==1)||(map.getIdentity(x+1,y)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x+1, y, map.getIdentity(x+1,y));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =3;
 						    	a=false;
 						    }
 						    break;
 					  case 4: 
-						    if((map[x+1][y-1].getIdentity()==1)||(map[x+1][y-1].getIdentity()==5)){
+						    if((map.getIdentity(x+1,y-1)==1)||(map.getIdentity(x+1,y-1)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x+1, y-1, map.getIdentity(x+1,y-1));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =4;
 						    	a=false;
 						    }
 						    break;
 					  case 5: 
-						    if((map[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
+						    if((map.getIdentity(x,y-1)==1)||(map.getIdentity(x,y-1)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x, y-1, map.getIdentity(x,y-1));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =5;
 						    	a=false;
 						    }
 						    break;
 					  case 6: 
-						    if((map[x-1][y-1].getIdentity()==1)||(map[x-1][y-1].getIdentity()==5)){
+						    if((map.getIdentity(x-1,y-1)==1)||(map.getIdentity(x-1,y-1)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x-1, y-1, map.getIdentity(x-1,y-1));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =6;
 						    	a=false;
 						    }
 						    break;
 					  case 7: 
-						    if((map[x-1][y].getIdentity()==1)||(map[x-1][y].getIdentity()==5)){
+						    if((map.getIdentity(x-1,y)==1)||(map.getIdentity(x-1,y)==5)){
 						    }
 						    else{
-						    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-						    	inky.setPosition(endpoint);
+						    	Coordinate endpoint = new Coordinate(x-1, y, map.getIdentity(x-1,y));
+						    	this.setPosition(endpoint);
 						    	onPath=true;
 						    	direction =7;
 						    	a=false;

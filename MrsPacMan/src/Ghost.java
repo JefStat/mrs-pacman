@@ -32,15 +32,11 @@ import java.util.Observable;
 * Implemented all the methods for Ghost.
 */
 
-public class Ghost extends Character {
-	/**
-	 * identifies the ghost as a ghost character
-	 */
-	private static final String GHOST = "Ghost";
+public abstract class Ghost extends Character {
 	/**
 	 * this is the path that ghost may be on
 	 */
-	private GhostPath path = new GhostPath(this);
+	private GhostPath path;
 	/**
 	 * keeps track of each ghosts incarceration
 	 */
@@ -60,7 +56,7 @@ public class Ghost extends Character {
 	/**
 	 * keeps all the ghost in the prison at the beginning, except for ambusher
 	 */
-	private final Coordinate STARTINGPOINT = map.getPrison();
+	protected Coordinate STARTINGPOINT = map.getPrison();
 	/**
 	 * creates an ambusher variable to put at starting point
 	 */
@@ -77,36 +73,26 @@ public class Ghost extends Character {
 	 * creates a fickle variable to put at the starting point
 	 */
 	private Fickle GhostFickle;
-	
-	/**
-	 * constructor that creates an instance of ghost and ensures that everything is set to false
-	 */
-	public Ghost(){
-		name = GHOST;
-		position = STARTINGPOINT;
-		setIncarcerated(false);
-		scared = false;		
-	}
 	/**
 	 * checks PacMan's location then moves towards PacMan
 	 * @param P
 	 */
 	public void movetoPacMan(Coordinate P){
 		if (this.isAlive() == true && P == this.getPosition()){
-			if (this.scared == true){
+			if (this.isScared() == true){
 				this.setAlive(false);
 				this.setIncarcerated(true);
 				this.movetoPrison(STARTINGPOINT);
 			}
 		}
 		else if(this.isAlive()== true && P != this.getPosition()){
-			if(this.scared == true){
+			if(this.isScared() == true){
 				position = GhostAmbusher.ambusherCorner();
 				position = GhostFickle.fickleCorner();
 				position = GhostStupid.stupidCorner();
 				position = GhostChaser.chaserCorner();
 			}
-			else if(this.scared == false){
+			else if(this.isScared() == false){
 				path.AStarSearch(P);
 			}
 		}
@@ -120,7 +106,7 @@ public class Ghost extends Character {
 			this.setPosition(STARTINGPOINT);
 			this.setAlive(true);
 			this.setIncarcerated(false);
-			this.scared = false;
+			this.setScared(false);
 			this.setScatter(false);
 		}
 	}
@@ -129,7 +115,7 @@ public class Ghost extends Character {
 	 * @param p
 	 */
 	public void runAway(Coordinate p){
-		this.scared = true;
+		this.setScared(true);
 		if(this.isAlive() == true){
 			
 		}
@@ -182,6 +168,12 @@ public class Ghost extends Character {
 	 */
 	public boolean isScatter() {
 		return scatter;
+	}
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	public boolean isScared() {
+		return scared;
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {

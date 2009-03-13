@@ -62,16 +62,18 @@ public class PacManGame extends Observable {
 	 * Constructor for loading a custom map with standard ghost set.
 	 */
 	public PacManGame(Map m) {
+		/**
+		 * Creates a default map of MAX
+		 */
+		Map map = m;
+		
 		myPacGirl = new PacMan();
 		this.addObserver(myPacGirl); 
 		this.addObserver(new Ambusher());
 		this.addObserver(new Fickle());
 		this.addObserver(new Stupid());
 		this.addObserver(new Chaser());
-		/**
-		 * Creates a default map of MAX
-		 */
-		Map map = m;
+
 		/**
 		 * magic number make a final STARTING SCORE
 		 */
@@ -84,8 +86,8 @@ public class PacManGame extends Observable {
 	 * 
 	 * @return the map
 	 */
-	public Map getMap() {
-		return map;
+	public Coordinate[][] getMap() {
+		return map.getMap();
 	}
 
 	/**

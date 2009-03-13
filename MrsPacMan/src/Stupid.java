@@ -19,33 +19,23 @@ import java.util.Random;
 
 public class Stupid extends Ghost {
 	/**
-	 * creates the character constant for stupid
-	 */
-	private final int STUPID = 3;
-	/**
 	 * creates the name for stupid
 	 */
 	private final String NAME = "CLYDE";
 	/**
-	 * keeps track of stupid on the map
-	 */
-	private Coordinate[][] map;
-	/**
-	 * creates a new instances of stupid
-	 */
-	private final Ghost clyde;
-	/**
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */
-	private final Coordinate CORNER = new Coordinate(0,0, map[0][0].getIdentity());
+	private final Coordinate CORNER = new Coordinate(0,0,0);
 	
 	/**
 	 * Default Constructor
 	 */
 	public Stupid(){
 		String name = NAME;
-		clyde = new Ghost();
-		clyde.runAway(CORNER);
+		this.runAway(CORNER);
+		this.setPosition(STARTINGPOINT);
+		setIncarcerated(false);
+		setScared(false);
 	}
 	/**
 	 * Moves Stupid towards PacMan as per the defined personality
@@ -56,78 +46,78 @@ public class Stupid extends Ghost {
 			Random r = new Random();
 			int options = r.nextInt();
 			options = options % 8;
-			int x = clyde.getPosition().x;
-			int y = clyde.getPosition().y;
+			int x = (int)this.getPosition().getX();
+			int y = (int)this.getPosition().getY();
 			switch (options) {
 			  case 0: 
-			    if((map[x-1][y+1].getIdentity()==1)||(map[x-1][y+1].getIdentity()==5)){
+			    if((map.getIdentity(x-1, y+1)==1)||(map.getIdentity(x-1, y+1)==5)){
 			    }
 			    else{
-			    	Coordinate endpoint = new Coordinate(x-1, y+1, map[x-1][y+1].getIdentity());
-			    	clyde.setPosition(endpoint);
+			    	Coordinate endpoint = new Coordinate(x-1, y+1, map.getIdentity(x-1, y+1));
+			    	this.setPosition(endpoint);
 			    	a=false;
 			    }
 			    break;
 			  case 1: 
-				    if((map[x][y+1].getIdentity()==1)||(map[x][y+1].getIdentity()==5)){
+				    if((map.getIdentity(x, y+1)==1)||(map.getIdentity(x, y+1)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y+1, map[x][y+1].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x, y+1, map.getIdentity(x, y+1));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 2: 
-				    if((map[x+1][y+1].getIdentity()==1)||(map[x+1][y+1].getIdentity()==5)){
+				    if((map.getIdentity(x+1, y+1)==1)||(map.getIdentity(x+1, y+1)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y+1, map[x+1][y+1].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y+1, map.getIdentity(x+1, y+1));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 3: 
-				    if((map[x+1][y].getIdentity()==1)||(map[x+1][y].getIdentity()==5)){
+				    if((map.getIdentity(x+1, y)==1)||(map.getIdentity(x+1, y)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y, map[x+1][y].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y, map.getIdentity(x+1, y));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 4: 
-				    if((map[x+1][y-1].getIdentity()==1)||(map[x+1][y-1].getIdentity()==5)){
+				    if((map.getIdentity(x+1, y-1)==1)||(map.getIdentity(x+1, y-1)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y-1, map[x+1][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x+1, y-1, map.getIdentity(x+1, y-1));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 5: 
-				    if((map[x][y-1].getIdentity()==1)||(map[x][y-1].getIdentity()==5)){
+				    if((map.getIdentity(x, y-1)==1)||(map.getIdentity(x, y-1)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y-1, map[x][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x, y-1, map.getIdentity(x, y-1));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 6: 
-				    if((map[x-1][y-1].getIdentity()==1)||(map[x-1][y-1].getIdentity()==5)){
+				    if((map.getIdentity(x-1, y-1)==1)||(map.getIdentity(x-1, y-1)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y-1, map[x-1][y-1].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x-1, y-1, map.getIdentity(x-1, y-1));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
 			  case 7: 
-				    if((map[x-1][y].getIdentity()==1)||(map[x-1][y].getIdentity()==5)){
+				    if((map.getIdentity(x-1, y)==1)||(map.getIdentity(x-1, y)==5)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y, map[x-1][y].getIdentity());
-				    	clyde.setPosition(endpoint);
+				    	Coordinate endpoint = new Coordinate(x-1, y, map.getIdentity(x-1, y));
+				    	this.setPosition(endpoint);
 				    	a=false;
 				    }
 				    break;
