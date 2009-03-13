@@ -111,11 +111,12 @@ public class PacManGame extends Observable {
 				JOptionPane.QUESTION_MESSAGE, null, startGameOptions,
 				startGameOptions[2]);
 
-		String[] movementOptions = { "Up\n", "Left", "Down", "Right" };
+		String[] movementOptions = { "Up\n", "Left", "Down", "Right","Exit" };
 		final int UP = 0;
 		final int LEFT = 1;
 		final int DOWN = 2;
 		final int RIGHT = 3;
+		final int EXIT = 4;
 
 		if ((choice == -1)) { // possibly need an assert or throwing and
 								// exception or make the window unable to be
@@ -128,11 +129,10 @@ public class PacManGame extends Observable {
 		switch (choice) { // possibly smelly, suggestions welcome
 
 		case NEWGAME: { // display map wait for user input
+			MapGUI f = new MapGUI(GAMETITLE);// creates a MapGUI
+			f.setMap(map); // prints the MapGUI
+			f.buildGUI();
 			do {
-				MapGUI f = new MapGUI(GAMETITLE);// creates a MapGUI
-				f.setMap(map); // prints the MapGUI
-				f.buildGUI();
-			
 				int move = JOptionPane.showOptionDialog(null,
 						"Select direction", "Movement Box",
 						JOptionPane.DEFAULT_OPTION,
@@ -141,9 +141,10 @@ public class PacManGame extends Observable {
 
 				switch (move) {
 				case UP: {
-					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() + 1, Coordinate.EMPTY)));
+					myPacGirl.setPosition(new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() + 1, Coordinate.EMPTY));
 					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
+					f.updateGUI();
 				}
 					break;
 				case LEFT: {
@@ -158,15 +159,20 @@ public class PacManGame extends Observable {
 					notifyObservers(myPacGirl.getPosition());
 				}
 					break;
-				case RIGHT:
+				case RIGHT:{
 					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() + 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
 					this.setChanged();
 					notifyObservers(myPacGirl.getPosition());
 					break;
 				}
-			} while ((myPacGirl.isAlive()) && (map.getPacdots() >= 0));
+				case EXIT:{
+					return true;
+				}
+					
+			}
+				} while ((myPacGirl.isAlive()) && (map.getPacdots() >= 0));
 			return true;
-		}
+			}
 		/*
 		 * This case may be obsolete and removed otherwise will be implemented
 		 */

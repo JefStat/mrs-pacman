@@ -34,10 +34,6 @@ public class PacMan extends Character {
 	 */
 	private final int DEFAULTLIVES = 3;
 	/**
-	 * keeps track of pacman's position
-	 */
-	private Coordinate position;
-	/**
 	 * keeps track of pacman's lives left
 	 */
 	private int livesLeft;
@@ -101,5 +97,10 @@ public class PacMan extends Character {
 		if (identity == Coordinate.PACDOT){
 			map.setIdentity(this.getPosition());
 		}
+	}
+
+	@Override
+	public Coordinate getPosition() {
+		return position;
 	}
 }

@@ -30,7 +30,7 @@ public abstract class Character implements Observer {
 	/**
 	 * the point is the position of the character at any given moment
 	 */
-	private Coordinate position;
+	protected Coordinate position;
 	/**
 	 * the name of each character
 	 */
@@ -51,9 +51,7 @@ public abstract class Character implements Observer {
 	 * returns the position of the character
 	 * @return position
 	 */
-	public Coordinate getPosition() {
-		return position;
-	}
+	public abstract Coordinate getPosition();
 	/**
 	 * gets the name of the character
 	 * @return character name
