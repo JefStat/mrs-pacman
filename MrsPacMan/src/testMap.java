@@ -2,9 +2,7 @@ import junit.framework.TestCase;
 
 /**
  * TEST CLASS FOR THE MAP CLASS
- */
-
-/**
+ *
  * @author Nahim
  * Version 1.0
  * Monday March 2nd, 2009
@@ -12,6 +10,7 @@ import junit.framework.TestCase;
 public class testMap extends TestCase {
 
 	/**
+	 * sets the map
 	 * @param name
 	 */
 	public testMap(String name) {

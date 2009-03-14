@@ -14,7 +14,7 @@
  * 
  * Created default size MAX so that these values could be used in the character classes to send ghosts
  * to their respective corners.  Also, modified the Map() constructor so that it worked properly as it
- * was commented out.  When attempting to create ambusher is was realized that this ghost starts outisde
+ * was commented out.  When attempting to create chaser is was realized that this ghost starts outisde
  * the prison unlike the rest of the ghosts.
  * 
  * Jef's notes: removed the static from setSize add getter and setter for identity, in various ways.
@@ -50,7 +50,7 @@ public class Map {
 	 */
 	private Coordinate pacMan;
 	/**
-	 * contains the location where ambusher starts
+	 * contains the location where chaser starts
 	 */
 	private Coordinate ambusher;
 	private Coordinate stupid;
@@ -66,7 +66,7 @@ public class Map {
 	}
 	/**
 	 * creates a map of the size that the player wants
-	 * @param s
+	 * @param s is the size of the map
 	 */
 	public Map(int s){
 		level = new Coordinate[s][s];
@@ -105,10 +105,10 @@ public class Map {
 		level[15][15].setIdentity(Coordinate.PRISON);
 		setPrison(level[15][15]);
 		NUMBEROFPACDOTS--;
-		//create a starting point for ambusher
+		//create a starting point for chaser
 		level[15][16].setIdentity(Coordinate.EMPTY);
 		NUMBEROFPACDOTS--;
-		this.setAmbusher(level[15][16]);
+		this.setChaser(level[15][16]);
 		//create pacmans starting point
 		level[10][10].setIdentity(Coordinate.EMPTY);
 		setPacMan(level[10][10]);
@@ -117,11 +117,13 @@ public class Map {
 	
 	/**
 	 * Returns the width/length of the map
+	 * @return map size
 	 */
 	public int getSize(){return size;}
 	
 	/**
 	 * Returns the number of pacdots within the map
+	 * @return pellets left before level completes
 	 */
 	public int getPacdots(){return NUMBEROFPACDOTS;}
 	
@@ -141,22 +143,25 @@ public class Map {
 		return prison;
 	}
 	/**
-	 * This method sets the prisoner for Ambusher as this ghost starts outside the prison at the front of the prison
-	 * @param ambusher
+	 * This method sets the prisoner for Chaser as this ghost starts outside the prison at the front of the prison
+	 * @param chaser location in front of prison
 	 */
-	public void setAmbusher(Coordinate ambusher){
-		this.ambusher = ambusher;
+	public void setChaser(Coordinate chaser){
+		this.chaser = chaser;
 	}
 	/**
-	 * This method returns the prisoner for Ambusher as this ghost starts outside the prison 
+	 * This method returns the prisoner for Chaser as this ghost starts outside the prison 
 	 * at the front of the prison
+	 * @return start location
 	 */
-	public Coordinate getAmbusher(){
-		return ambusher;
+	public Coordinate getChaser(){
+		return chaser;
 		
 	}
 
 	/**
+	 * method sets where pacman starts on the map at the beginning of the game and
+	 * after PacMan dies and a new round begins
 	 * @param pacManStart the pacManStart to set
 	 */
 	public void setPacMan(Coordinate pacMan) {
@@ -164,29 +169,54 @@ public class Map {
 	}
 
 	/**
-	 * @return the pacMan
+	 * returns the location of pacmans start at the beginning of the game and 
+	 * starting new rounds after PacMan dies
+	 * @return PacMan location for starting game/level
 	 */
 	public Coordinate getPacMan() {
 		return pacMan;
 	}
-	
+	/**
+	 * returns the start location for stupid
+	 * @return stupid location
+	 */
 	public Coordinate getStupid() {
 		return stupid;
 	}
+	/**
+	 * sets stupid's location for the start of the game
+	 * @param stupid start location
+	 */
 	public void setStupid(Coordinate stupid) {
 		this.stupid = stupid;
 	}
+	/**
+	 * returns the start location for fickle
+	 * @return fickle location
+	 */
 	public Coordinate getFickle() {
 		return fickle;
 	}
+	/**
+	 * sets fickle's location for the start of the game
+	 * @param fickle start location
+	 */
 	public void setFickle(Coordinate fickle) {
 		this.fickle = fickle;
 	}
-	public Coordinate getChaser() {
-		return chaser;
+	/**
+	 * returns the start location for ambusher
+	 * @return ambusher location
+	 */
+	public Coordinate getAmbusher() {
+		return ambusher;
 	}
-	public void setChaser(Coordinate chaser) {
-		this.chaser = chaser;
+	/**
+	 * sets ambusher's location for the start of the game
+	 * @param ambusher start location
+	 */
+	public void setAmbusher(Coordinate ambusher) {
+		this.ambusher = ambusher;
 	}
 	/**
 	 * returns map temporary for a* algorithm 
@@ -198,6 +228,7 @@ public class Map {
 	
 	/**
 	 * Prints the map in a specified GUI
+	 * @param f is the frame for the map gui
 	 */
 	public void printMap(MapGUI f){
 		String strLevel = "\n";
@@ -246,6 +277,8 @@ public class Map {
 	 
 		/**
 		 * Exports the map to filename.txt in the root directory.
+		 * @param filename is where the file exports to
+		 * @throws exception
 		 */ 
 	 public void ExportMap(String filename) throws Exception{
 	      java.io.File output = new java.io.File(filename);
@@ -267,13 +300,17 @@ public class Map {
 
 	 }
 	 //what does this do for map? why can the public resize it? -jef
+	 /**
+	  * sets the map size
+	  * @param size is the size of the map to be set
+	  */
 	public void setSize(int size) {
 		this.size = size;
 	}
 	/**
 	 * Get an identity from map location int x and y returns -1 if out of bounds
-	 * @param x
-	 * @param y
+	 * @param x is the x point of the coordinate
+	 * @param y is the y point of the coordinate
 	 * @return -1 if x or y are out of bounds otherwise identity at location x y
 	 */
 	public int getIdentity(int x, int y){
@@ -284,7 +321,7 @@ public class Map {
 	/**
 	 * Allows you to check the identity of your coordinate object if it is the same as the
 	 * point on the map. 
-	 * @param p
+	 * @param p is the currenly coordinate
 	 * @return -1 if p is out of bounds otherwise identity at location p
 	 */
 	public int getIdentity(Coordinate p){
@@ -296,7 +333,7 @@ public class Map {
 	/**
 	 * Will set identity to empty if is a pacdot
 	 * 
-	 * @param p
+	 * @param p is the coordinate location
 	 * @return true if position is changed
 	 */
 	
@@ -309,6 +346,12 @@ public class Map {
 		return false;	
 	}
 	// to lazy to implement will do if needed
+	/**
+	 * sets the identity at a specific coordinate, if PacMan eats powerpellet, fruit or PacDots, identity would change to empty space
+	 * @param x is the x point coordinate
+	 * @param y is the y point coordinate
+	 * @return true if the coordinate needs to be set and false if it does not
+	 */
 	public boolean setIdentity(int x, int y){
 		return false;
 	}

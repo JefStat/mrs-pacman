@@ -10,6 +10,8 @@
  * Milestone 3
  * @Date: March 7, 2009
  * @Author: Jen Kasun and Nicole Waldrum
+ * 
+ * Refined the processes and better documented the code used in this class
  */
 public class Node {
 	/**
@@ -35,9 +37,9 @@ public class Node {
     
     /**
      * creates a constructor node
-     * @param P
-     * @param h
-     * @param g
+     * @param P is pacman's coordinate
+     * @param h is the estimate distance to pacman's location
+     * @param g estimates the cost to get to the position (i.e. is there a wall in the way)
      * @param parent
      */
     public Node(Coordinate P, double h, double g, Node parent){
@@ -49,6 +51,7 @@ public class Node {
     }
     /**
      * checks if the positions are equal
+     * @param o is the location of pacman
      */
     public boolean equals(Object o) {
         if(o instanceof Node) {
@@ -59,7 +62,7 @@ public class Node {
     }
     /**
      * returns the position the node
-     * @return position
+     * @return position of the node
      */
     public Coordinate getPosition(){
     	return position;

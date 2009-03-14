@@ -33,10 +33,12 @@ import java.util.Observable;
 */
 
 public abstract class Ghost extends Character {
-	
+	/**
+	 * imports the current map in use
+	 * @param m is the current map
+	 */
 	public Ghost(Map m) {
 		super(m);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * this is the path that ghost may be on
@@ -80,44 +82,44 @@ public abstract class Ghost extends Character {
 	private Fickle GhostFickle;
 	/**
 	 * checks PacMan's location then moves towards PacMan
-	 * @param P
+	 * @param P is pacman's current location
 	 */
 	public void movetoPacMan(Coordinate P){
-		if (this.isAlive() == true && P == this.getPosition()){
-			if (this.isScared() == true){
-				this.setAlive(false);
-				this.setIncarcerated(true);
-				this.movetoPrison(STARTINGPOINT);
+		if (this.isAlive() == true && P == this.getPosition()){ //if the ghost is alive and where pacman is
+			if (this.isScared() == true){//if the ghost is scared
+				this.setAlive(false); //ghost dies
+				this.setIncarcerated(true);//ghost goes to prison
+				this.movetoPrison(STARTINGPOINT); //ghost moves to prison
 			}
 		}
-		else if(this.isAlive()== true && P != this.getPosition()){
-			if(this.isScared() == true){
-				position = GhostAmbusher.ambusherCorner();
-				position = GhostFickle.fickleCorner();
-				position = GhostStupid.stupidCorner();
-				position = GhostChaser.chaserCorner();
+		else if(this.isAlive()== true && P != this.getPosition()){//if ghost is a alive and not near pacman
+			if(this.isScared() == true){ // if ghost is scared
+				position = GhostAmbusher.ambusherCorner(); //ambusher towards the set corner
+				position = GhostFickle.fickleCorner(); //fickle towards the set corner
+				position = GhostStupid.stupidCorner();//stupid towards the set corner
+				position = GhostChaser.chaserCorner();//chaser towards the set corner
 			}
-			else if(this.isScared() == false){
-				path.AStarSearch(P);
+			else if(this.isScared() == false){ //if ghost not scared
+				path.AStarSearch(P);//find pacman
 			}
 		}
 	}
 	/**
 	 * moves the ghost to prison after they are eaten
-	 * @param p
+	 * @param p is the location of the prison
 	 */
 	public void movetoPrison(Coordinate p){
-		if (this.isAlive()== false){
-			this.setPosition(STARTINGPOINT);
-			this.setAlive(true);
-			this.setIncarcerated(false);
-			this.setScared(false);
-			this.setScatter(false);
+		if (this.isAlive()== false){//ghost has died
+			this.setPosition(STARTINGPOINT);//returns the ghost to the starting point prison
+			this.setAlive(true); //returns them to life
+			this.setIncarcerated(false); //ghost is no longer incarcerated
+			this.setScared(false); //ghost is no longer scared
+			this.setScatter(false); // ghost no longer scatters
 		}
 	}
 	/**
 	 * if the ghost is scared they run away from PacMan
-	 * @param p
+	 * @param p is the location of the ghost corner
 	 */
 	public void runAway(Coordinate p){
 		this.setScared(true);
@@ -134,6 +136,7 @@ public abstract class Ghost extends Character {
 	}
 	/**
 	 * This returns the current position of Ghost
+	 * @return current position of the ghost
 	 */
 	public Coordinate getPosition(){
 		return position;
@@ -141,6 +144,7 @@ public abstract class Ghost extends Character {
 	}
 	/**
 	 * This sets the current position of a Ghost
+	 * @param set the current location of the ghost
 	 */
 	public boolean setPosition(Coordinate p){
 		position = p;
@@ -148,35 +152,43 @@ public abstract class Ghost extends Character {
 	}
 	/**
 	 * sets whether or not the ghost is incarcerated
-	 * @param incarcerated
+	 * @param incarcerated for if the ghost is in jail
 	 */
 	public void setIncarcerated(boolean incarcerated) {
 		this.incarcerated = incarcerated;
 	}
 	/**
 	 * check if the ghost is incarcerated
-	 * @return incarcerated
+	 * @return incarcerated ghost is jailed or not
 	 */
 	public boolean isIncarcerated() {
 		return incarcerated;
 	}
 	/**
 	 * sets whether or not the ghosts scatter
-	 * @param scatter
+	 * @param scatter should occur when ghosts scared
 	 */
 	public void setScatter(boolean scatter) {
 		this.scatter = scatter;
 	}
 	/**
 	 *  checks if the ghosts scatter
-	 * @return
+	 * @return scatter if ghost should run to corner
 	 */
 	public boolean isScatter() {
 		return scatter;
 	}
+	/**
+	 * sets whether or not the ghost is scared (pacman ate a powerpellet)
+	 * @param scared set when pacMan eats a powerpellet
+	 */
 	public void setScared(boolean scared) {
 		this.scared = scared;
 	}
+	/**
+	 * returns the status of the ghost after pacman eats a powerpellet
+	 * @return true when powerpellet is eaten and false after a certain number of turns or ghost is eaten by pacman
+	 */
 	public boolean isScared() {
 		return scared;
 	}

@@ -8,7 +8,7 @@ import junit.framework.TestCase;
  */
 
 public class GhostTest extends TestCase {
-
+	//creates a new ghost testing variable
 	private Ghost testGhost;
 
 	protected void setUp() throws Exception {
@@ -19,9 +19,13 @@ public class GhostTest extends TestCase {
 		super.tearDown();
 	}
 	
-	//this tests the constructor of ghost
+	/*
+	 * this tests the constructor of ghost
+	 */
 	public void testGhost() {
+		//creates a new ghost
 		testGhost = new  Ghost();
+		//checks that the ghost was actually created
 		assertTrue("This tests to ensure that a new Ghost was created.", testGhost == null);
 	}
 

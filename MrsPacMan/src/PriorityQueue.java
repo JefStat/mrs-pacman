@@ -16,7 +16,7 @@ public class PriorityQueue {
 	Vector <Node> queue = new Vector<Node>();
     /**
      * removes a queue from the list
-     * @return
+     * @return top node on the priority queue
      */
     public Node pop() {
         Node node = (Node)queue.elementAt(0);
@@ -25,7 +25,7 @@ public class PriorityQueue {
     }
     /**
      * adds a queue to the list
-     * @param newNode
+     * @param newNode adds the nexy node to the list
      */
     public void add(Node newNode) {
         if(queue.size() == 0) {
@@ -46,7 +46,7 @@ public class PriorityQueue {
     }
     /**
      * Checks if the node is already contained in the queue
-     * @param node
+     * @param node being checked if its alrwady on the list
      * @return if the node is contained in the priority queue
      */
     public boolean contains(Node node) {
@@ -54,7 +54,7 @@ public class PriorityQueue {
     }
     /**
      * Removes the Node from the queue
-     * @param node
+     * @param node to be removed
      */
     public void remove(Node node) {
         queue.removeElement(node);

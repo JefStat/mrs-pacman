@@ -43,18 +43,19 @@ public class Fickle extends Ghost{
 	 * Default Constructor
 	 */
 	public Fickle(Map m){
-		super(m);
-		String name = NAME;
-		Corner = new Coordinate(map.getSize()-1,0,0);
-		this.runAway(Corner);
-		onPath = false;
-		path = new GhostPath(this, map);
-		this.setPosition(STARTINGPOINT);
-		setIncarcerated(false);
-		setScared(false);	
+		super(m); //gets the current map
+		String name = NAME; //sets the name
+		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
+		this.runAway(Corner); //moves the the corner
+		onPath = false; //is not on pacman's oath
+		path = new GhostPath(this, map);//creates a new ghostpath
+		this.setPosition(STARTINGPOINT); //sets position to starting point
+		setIncarcerated(false); //is not incarcerated
+		setScared(false);	//is not scared
 	}
 	/**
 	 * Moves Fickle towards PacMan as the defined personality indicates
+	 * @param p is the position of pacman currently
 	 */
 	public void movetoPacMan(Coordinate p){
 	

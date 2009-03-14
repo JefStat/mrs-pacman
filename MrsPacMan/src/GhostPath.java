@@ -47,8 +47,8 @@ public class GhostPath{
     
     /**
      * Determines the cost of the path that will be taken
-     * @param start
-     * @param goal
+     * @param start is the pacman location
+     * @param goal is the ghosts location
      * @return path to be taken
      */
     public static double pathDistanceEstimate(Coordinate start, Coordinate goal) {
@@ -60,9 +60,9 @@ public class GhostPath{
 
     /**
      * Checks the cost that it would to take the shortest path
-     * @param node
+     * @param node first square of the shortest path
      * @param newNode
-     * @param p
+     * @param p is the current location of pacman
      * @return distance to traverse
      */
     private double traverseDistance(Node node, Node newNode, Coordinate p) {
@@ -77,8 +77,8 @@ public class GhostPath{
 
     /**
      * Finds the typical path that could be taken
-     * @param startPosition
-     * @param goalPosition
+     * @param startPosition is pacmans location
+     * @param goalPosition is the ghosts location
      * @return path to be taken
      */
     private int getTypicalPath(Coordinate startPosition, Coordinate goalPosition){
@@ -102,7 +102,7 @@ public class GhostPath{
   
     /**
      * Determines the shortest path to the goal
-     * @param p
+     * @param p pacman's location
      * @return shortest path to goal
      */
     public Node AStarSearch(Coordinate p) {
@@ -182,7 +182,7 @@ public class GhostPath{
     
 	/**
 	 * Checks the items next to Ghost to determine what the shortest path is
-	 * @param node
+	 * @param node the ghosts shortest path square
 	 * @return neighbours path of ghost
 	 */
 	private Vector <Node> getNeighbours(Node node) {
@@ -201,10 +201,10 @@ public class GhostPath{
 	}
 	/**
 	 * Creates a list of the shortest paths based on the numbers calculated from PacMan
-	 * @param addTo
+	 * @param addTo, puts item on node
 	 * @param position
-	 * @param x
-	 * @param y
+	 * @param x location of path
+	 * @param y location of path
 	 */
 	private void addConditional(Vector <Node> addTo, Coordinate position, int x, int y) {
         int newX = position.x + x, newY = position.y + y;
@@ -225,7 +225,7 @@ public class GhostPath{
 
     /**
      * adds the elements to the node from PacMan to Ghost to make the shortest path
-     * @param node
+     * @param node the first square taken on the shortest path
      * @return shortest path with all elements taken into account
      */
     private Vector <Node> solve(Node node) {

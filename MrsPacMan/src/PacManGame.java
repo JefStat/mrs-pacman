@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
  * Group Awesomeness Legendary PacManGame 
  *  
  * This is a turn-based PacMan Game that will work like the original PacMan
- * Game created in Japan with modifications made according to the professors 
+ * Game created in Japan with modifications made according to the professor's 
  * specifications.  
  * 
  * The team creating this game consists for 4 students: Jen Kasun, Nahim Nasser,
@@ -28,16 +28,16 @@ import javax.swing.JOptionPane;
  * 
  * @Author: Jef Statham
  * 
- *          Milestone 3
+ * Milestone 3
  * @Date: March 7th, 2009
  * @Author: Jen Kasun and Nicole Waldrum and Jef
  * 
- *          Changed the map to create a default map of MAX size and also changed
- *          the printMap to take a MapGUI. Basically we aligned the data in
- *          PacManGame created by Jef with the Map Class that Nahim created.
+ * Changed the map to create a default map of MAX size and also changed
+ * the printMap to take a MapGUI. Basically we aligned the data in
+ * PacManGame created by Jef with the Map Class that Nahim created.
  *          
- *          Jef's notes: removed score keeping and array of characters, the corresponding
- *          getters and setters. Added a class variable for PacMan. finished the JOptionPanes for movement.
+ * Jef's notes: removed score keeping and array of characters, the corresponding
+ * getters and setters. Added a class variable for PacMan. finished the JOptionPanes for movement.
  */
 
 public class PacManGame extends Observable {
@@ -60,6 +60,7 @@ public class PacManGame extends Observable {
 
 	/**
 	 * Constructor for loading a custom map with standard ghost set.
+	 * @param m is the current map that is created by PacManGame() constructor
 	 */
 	public PacManGame(Map m) {
 		/**
@@ -81,12 +82,16 @@ public class PacManGame extends Observable {
 	/**
 	 * This returns the current map that pacman is using
 	 * 
-	 * @return the map
+	 * @return map that is currently in use by the game
 	 */
 	public Coordinate[][] getMap() {
 		return map.getMap();
 	}
-	
+	/**
+	 * gets the map that is currently in use with a set size
+	 * @param i is the size of the map
+	 * @return map, the size of the map
+	 */
 	public Map getMap(int i){
 		return map;
 	}
@@ -176,7 +181,7 @@ public class PacManGame extends Observable {
 				} while ((myPacGirl.isAlive()) && (map.getPacdots() >= 0));
 			return true;
 			}
-		/*
+		/**
 		 * This case may be obsolete and removed otherwise will be implemented
 		 */
 		case LOADMAP:{
@@ -192,7 +197,10 @@ public class PacManGame extends Observable {
 		}
 		return false;
 	}
-
+	/**
+	 * in case we lose pacman we want to be able is find. 
+	 * @return current position of PacMan
+	 */
 	public Coordinate whereInTheMapIsPacman(){
 		return myPacGirl.getPosition();
 	}

@@ -1,17 +1,20 @@
 import junit.framework.TestCase;
 
-/**
- * 
- */
 
 /**
- * @author jef
+ * Nicole did Jef's test documentation becuase he wrote nothing here.  This tests the PacManGame class
+ * to ensure that it is in proper working order.
+ * 
+ * Milestone 3
+ * @Date March 12, 2009
+ * @author Jef Statham 
  *
  */
 public class PacManGameTest extends TestCase {
 
 	/**
-	 * @param name
+	 * creates a new instanance of PacManGame
+	 * @param name characters name
 	 */
 	public PacManGameTest(String name) {
 		super(name);

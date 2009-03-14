@@ -1,5 +1,5 @@
 /**
-* This character class establishes the abstract outline of the characters of the PacMan game.
+* This character class establishes an abstract outline of the characters of the PacMan game.
 * These characters include PacMan and the four ghosts.  Each subclass overrides the character 
 * class.
 * 
@@ -73,6 +73,10 @@ public abstract class Character implements Observer {
 	public boolean isAlive() {
 		return alive;
 	}
+	/**
+	 * gives the current map in use for the game to each character 
+	 * @param m is the current map in use
+	 */
 	public Character(Map m){
 		this.map = m;
 	}

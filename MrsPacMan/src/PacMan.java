@@ -15,11 +15,11 @@
 * @Date: March 7th, 2009
 * @Author: Jen Kasun and Nicole Waldrum and Jef Statham
 * 
-* Update partial done removed PacMan(Coordinate p) only the map should
+* Update partially done removed PacMan(Coordinate p) only the map should
 * contain the starting point for pacman. Added comments to update for 
 * how it should possibly be developed.
 * 
-* Jef's notes: removed starting point, character constant,
+* Jef's notes: removed starting point, character constant.
 * 
 */
 import java.util.Observable;
@@ -39,18 +39,19 @@ public class PacMan extends Character {
 	private int livesLeft;
 	/**
 	 * Creates a new PacMan object
+	 * @param m is the current map in use
 	 */
 	public PacMan(Map m){
-		super(m);
-		name = PACMANNAME;
-		livesLeft = DEFAULTLIVES;
-		position = map.getPacMan();
+		super(m); //the current map in use
+		name = PACMANNAME; //sets pacman's name
+		livesLeft = DEFAULTLIVES; //sets the default lives
+		position = map.getPacMan(); //gets pacmans starting position
 	}
 	
 	/**
 	 * Sets pacman's position to start if it was dead and re-animates pacman.
 	 * Otherwise will change pacman's position if checkmovement returns true. 
-	 * @param p
+	 * @param p pacman's start position
 	 * @return true if movement was changed
 	 */
 	public boolean setPosition(Coordinate p){
@@ -76,7 +77,7 @@ public class PacMan extends Character {
 	 * through point because it's a mutable object. 
 	 * {@link Point.Translate()}
 	 * 
-	 * @param p
+	 * @param p pacman's location
 	 * @return true if pacman can move to selected coordinate
 	 */
 	public boolean checkMovement(Coordinate p) {
@@ -91,7 +92,8 @@ public class PacMan extends Character {
 	}
 	/**
 	 * Update will move pacMan or remove lives if he is caught
-	 * 	@Override
+	 * @param arg0
+	 * @param arg1
 	 */
 	public void update(Observable arg0, Object arg1) {
 		int identity =	map.getIdentity(this.getPosition());
@@ -100,7 +102,10 @@ public class PacMan extends Character {
 		}
 	}
 
-	@Override
+	/**
+	 * returns the current position of pacman
+	 * @return current position
+	 */
 	public Coordinate getPosition() {
 		return position;
 	}

@@ -1,4 +1,12 @@
 import junit.framework.TestCase;
+/**
+ * This tests the PacMan class to ensure that all its methods are  properly working.
+ * 
+ * Milestone 3
+ * @Date March 13,2009
+ * @author Jef Statham
+ *
+ */
 
 
 public class PacManTest extends TestCase {

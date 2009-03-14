@@ -38,18 +38,20 @@ public class Chaser extends Ghost {
 	 * Default Constructor
 	 */
 	public Chaser(Map m) {
-		super(m);
-		this.setPosition(STARTINGPOINT);
-		setIncarcerated(false);
-		setScared(false);
-		String name = NAME;
-		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);
-		this.runAway(Corner);
-		path = new GhostPath(this, map);
+		super(m); //gets the current map in use
+		STARTINGPOINT = map.getChaser();//gets chasers starting point
+		this.setPosition(STARTINGPOINT); //sets chasers starting point
+		setIncarcerated(false); // is not jailed
+		setScared(false); // is not scared
+		String name = NAME; // sets the chaser name
+		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
+		this.runAway(Corner); // set runaway corner to start
+		path = new GhostPath(this, map); // sets the new ghost path
 	}
 
 	/**
 	 * Moves Chaser towards PacMan as per the defined personality
+	 * @param p takes pacMan position
 	 */
 	public void movetoPacMan(Coordinate p) {
 		this.setPosition(path.AStarSearch(p).getPosition());

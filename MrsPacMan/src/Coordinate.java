@@ -45,6 +45,9 @@ public class Coordinate extends Point{
 	
 	/**
 	 * Default constructor sets an identiy to a map point p
+	 * @param x is the x coordinate of the point
+	 * @param y is the y coordinate of the point
+	 * @param identity gives the identity of the coordinate
 	 */
 	public Coordinate(int x, int y, int identity){
 		super(x,y);
@@ -52,13 +55,14 @@ public class Coordinate extends Point{
 	}
 	/**
 	 * returns the identity of point p on the map
+	 * @return identity is the current item set to a coordinate
 	 */
 	public int getIdentity(){
 		return identity;
 	}
 	/**
 	 * returns the identity that is found at point x so that the character knows what they have landed on
-	 * @param x
+	 * @param x is the item set to a coordinate
 	 */
 	public void setIdentity(int x){
 		this.identity = x;

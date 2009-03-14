@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 /**
- * This test classes ensures that the Ambusher class is properly function by testing each individual method
+ * This test class ensures that the Ambusher class is properly functioning by testing each individual method
  * 
  * @date Date: March 10, 2009
  * @author: Author: Nicole Waldrum
@@ -19,12 +19,17 @@ public class AmbusherTest extends TestCase {
 		super.tearDown();
 	}
 
-	//checks that the constructor method actually created the new Ambusher.
+	/**
+	 * checks that the constructor method actually created the new Ambusher.
+	 */
 	public void testAmbusher() {
+		//this checks that the implementation of a new instanance of ambusher returns null
 		assertTrue("This value should return true as a new ambusher was created.", ghost == null);
 	}
 	
-	//checks that the ghost moved to the actual direction/place it was suppose to
+	/**
+	 * checks that the ghost moved to the actual direction/place it was suppose to
+	 */
 	public void testMovetoPacManCoordinate() {
 		Coordinate point = new Coordinate(2,2,2);
 		ghost.movetoPacMan(point);
@@ -32,7 +37,9 @@ public class AmbusherTest extends TestCase {
 	}
 	
 	
-	//checks that ambushers corner is correct
+	/**
+	 * checks that ambushers corner is correct
+	 */
 	public void testAmbusherCorner() {
 		Coordinate[][] map3 = null;
 		Coordinate corner = new Coordinate(0, Map.MAX, map3[0][Map.MAX].getIdentity());
@@ -40,13 +47,14 @@ public class AmbusherTest extends TestCase {
 		assertTrue("Shoudld move Ambusher ghost to the corner 0, MAX", ghost.getPosition() == corner);
 	}
 	
-	//not yet implemented for observer pattern
+	/**
+	 * not yet implemented for observer pattern
+	 */
 	public void testUpdate() {
 		assertNull("This method should return null becuase its not implemented.", null);
 	}
 	
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Ambusher.class);
-		new Ambusher();
 	}
 }

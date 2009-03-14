@@ -29,18 +29,20 @@ public class Stupid extends Ghost {
 	
 	/**
 	 * Default Constructor
+	 * @param m is the current map that is in use
 	 */
 	public Stupid(Map m){
-		super(m);
-		String name = NAME;
-		Corner = new Coordinate(0,0,0);
-		this.runAway(Corner);
-		this.setPosition(STARTINGPOINT);
-		setIncarcerated(false);
-		setScared(false);
+		super(m); // current map in use
+		String name = NAME; // sets the stupid name
+		Corner = new Coordinate(0,0,m.getIdentity(0,0)); //sets the corner for stupid
+		this.runAway(Corner);// set runAway for corner
+		this.setPosition(STARTINGPOINT);//sets position as starting point
+		setIncarcerated(false);//sets incarcerated to false
+		setScared(false);//sets scared to false
 	}
 	/**
 	 * Moves Stupid towards PacMan as per the defined personality
+	 * @param p is pacman's current location
 	 */
 	public void movetoPacMan(Coordinate p){
 		boolean a = true;

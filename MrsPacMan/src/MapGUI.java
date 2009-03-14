@@ -1,9 +1,9 @@
-/*
+/**
  * This class is the graphical user-interface of the map
  * 
  * Title: MapGUI Class version 0.1
- * Date: March 4th, 2009
- * Author: Nahim Nasser
+ * @Date: March 4th, 2009
+ * @Author: Nahim Nasser
  */
 
 import java.awt.*;

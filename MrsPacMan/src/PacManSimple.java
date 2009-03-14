@@ -1,5 +1,13 @@
 import java.util.Observable;
 import java.util.Observer;
+/**
+ * Runs a simple case of PacMan Game, I think and I believe that Jef created it.  However, there was no 
+ * documentation so i'm passively-aggressively punishing Jef for not fully implementing PacMan :P
+ * 
+ * @Date March 12, 2009
+ * @author Jef Statham 
+ *
+ */
 
 public class PacManSimple extends PacManGame implements Observer{
 	/**
@@ -38,7 +46,7 @@ public class PacManSimple extends PacManGame implements Observer{
 	/**
 	 * Sets pacman's position to start if it was dead and re-animates pacman.
 	 * Otherwise will change pacman's position if checkmovement returns true. 
-	 * @param p
+	 * @param p currently location of pacman
 	 * @return true if movement was changed
 	 */
 	public boolean setPosition(Coordinate p){
@@ -63,7 +71,7 @@ public class PacManSimple extends PacManGame implements Observer{
 	 * through point because it's a mutable object. 
 	 * {@link Point.Translate()}
 	 * 
-	 * @param p
+	 * @param p currently location of pacman
 	 * @return true if pacman can move to selected coordinate
 	 */
 	public boolean checkMovement(Coordinate p) {
