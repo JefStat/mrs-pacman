@@ -37,20 +37,11 @@ public class testMap extends TestCase {
 	public void testMap() {
 		Map regularmap = new Map(30);
 		assertEquals(30,regularmap.getSize());
-		assertEquals(15,regularmap.getPrison().x);
-		assertEquals(15,regularmap.getPrison().y);
-		assertEquals(782,regularmap.getPacdots());
-		assertEquals(new Coordinate(1,1,Coordinate.EMPTY),regularmap.getPacManStart());
+		assertEquals(5,regularmap.getPrison().x);
+		assertEquals(5,regularmap.getPrison().y);
+		assertEquals(781,regularmap.getPacdots());
 	}
 
-	/**
-	 * Test method for {@link Map#printMap()}.
-	 */
-
-	public void testPrintMap() {
-		Map regularmap = new Map(30);
-		regularmap.printMap();
-	}
 	
 	public void testExportMap(){
 		Map regularmap = new Map(30);
@@ -75,16 +66,8 @@ public class testMap extends TestCase {
 			e.printStackTrace();
 		}
 		assertEquals(30, regularmap.getSize());
-		assertEquals(new Coordinate(15,15,Coordinate.PRISON),regularmap.getPrison());
-		assertEquals(new Coordinate(1,1,Coordinate.EMPTY),regularmap.getPacManStart());
 	}
 	
-	/**
-	 * Test method for {@link Map#getMap()}.
-	 */
-	public void testGetMap() {
-		fail("Not yet implemented"); // TODO
-	}
 
 
 }
