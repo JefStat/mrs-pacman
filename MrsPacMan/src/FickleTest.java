@@ -8,8 +8,10 @@ import junit.framework.TestCase;
  */
 
 public class FickleTest extends TestCase {
-	//creates a new instanance of Fickle
-	private Fickle ghost = new Fickle();
+	//creates a new map
+	Map m = new Map();
+	//creates a new instanance of fickle
+	private Fickle ghost = new Fickle(m);
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -23,8 +25,18 @@ public class FickleTest extends TestCase {
 	 * checks that the constructor method actually created the new Fickle.
 	 */
 	public void testFickle() {
-		//checks that a new instanance of ghost was created
-		assertTrue("This value should return true as a new Chaser was created.", ghost == null);
+		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
+		assertTrue("When a new Fickle is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getPrison());
+		//When a new ghost is created incarcerated it false
+		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		//When a new ghost is created isScared() is false
+		assertTrue("When a new ghost is created it isn't scared", ghost.isScared() == false);
+		//when a new ghost is created the name is set
+		assertEquals("Chasers name Inky", ghost.name, "Inky");
+		//sets the ghost coordinate to compare to the ghost's corner
+		Coordinate coordinate1 = new Coordinate(m.getSize()-1,0,0);
+		//when a new ghost is created the corner coordinate is set
+		assertEquals("Returns the ghost's corner coordinate", ghost.fickleCorner(), coordinate1);
 	}
 	
 	/**
@@ -36,7 +48,7 @@ public class FickleTest extends TestCase {
 		//moves ghost towards the new coordinate
 		ghost.movetoPacMan(point);
 		//verifies that ghost moved towards the new coordinate
-		assertTrue("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition() == point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
 	}
 	
 	
@@ -44,14 +56,12 @@ public class FickleTest extends TestCase {
 	 * checks that fickles corner is correct
 	 */
 	public void testFickleCorner() {
-		//creates a new map
-		Coordinate[][] map3 = null;
 		//sets the corner
-		Coordinate corner = new Coordinate(Map.MAX, 0, map3[Map.MAX][0].getIdentity());
+		Coordinate corner = new Coordinate(m.getSize()-1, 0, m.getIdentity(m.getSize()-1, 0));
 		//moves ghost towards the corner
 		ghost.movetoPacMan(ghost.fickleCorner());
 		//the ghost should have moved towards this corner
-		assertTrue("Should move fickle ghost to the corner 0, MAX", ghost.getPosition() == corner);
+		assertEquals("Should move fickle ghost to the corner getSize()-1, 0", ghost.getPosition(), corner);
 	}
 	
 	/**

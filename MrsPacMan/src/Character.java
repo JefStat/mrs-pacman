@@ -27,6 +27,14 @@ import java.util.Observer;
 
 
 public abstract class Character implements Observer {
+	
+	/**
+	 * gives the current map in use for the game to each character 
+	 * @param m is the current map in use
+	 */
+	public Character(Map m){
+		this.map = m;
+	}
 	/**
 	 * the point is the position of the character at any given moment
 	 */
@@ -73,11 +81,5 @@ public abstract class Character implements Observer {
 	public boolean isAlive() {
 		return alive;
 	}
-	/**
-	 * gives the current map in use for the game to each character 
-	 * @param m is the current map in use
-	 */
-	public Character(Map m){
-		this.map = m;
-	}
+
 }

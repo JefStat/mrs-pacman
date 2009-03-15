@@ -45,7 +45,7 @@ public class AmbusherTest extends TestCase {
 	public void testMovetoPacManCoordinate() {
 		Coordinate point = new Coordinate(2,2,2);
 		ghost.movetoPacMan(point);
-		assertTrue("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition() == point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
 	}
 	
 	
@@ -53,10 +53,9 @@ public class AmbusherTest extends TestCase {
 	 * checks that ambushers corner is correct
 	 */
 	public void testAmbusherCorner() {
-		Coordinate[][] map3 = null;
-		Coordinate corner = new Coordinate(0, Map.MAX, map3[0][Map.MAX].getIdentity());
+		Coordinate corner = new Coordinate(0, m.getSize()-1, m.getIdentity(0, m.getSize()-1));
 		ghost.movetoPacMan(ghost.ambusherCorner());
-		assertTrue("Shoudld move Ambusher ghost to the corner 0, MAX", ghost.getPosition() == corner);
+		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", ghost.getPosition(), corner);
 	}
 	
 	/**

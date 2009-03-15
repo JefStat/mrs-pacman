@@ -43,6 +43,9 @@ public class CoordinateTest extends TestCase {
 		coordinate2.setIdentity(1);
 		//checks that the identity changed to 1
 		assertTrue("This coordinate2 identity now equals 1, and should return true", coordinate2.getIdentity()== 1);
+		coordinate2.setIdentity(6);
+		//checks that identity is set to 6
+		assertTrue("This coordinate2 identity is not able to be set to 6 should return -1", coordinate2.getIdentity() == -1);
 	}
 
 }

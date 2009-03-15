@@ -65,7 +65,12 @@ public class Coordinate extends Point{
 	 * @param x is the item set to a coordinate
 	 */
 	public void setIdentity(int x){
-		this.identity = x;
+		if (x < 6){
+			this.identity = x;
+		}
+		else{
+			this.identity = -1;
+		}
 	}
 	/**
 	 * This isEqual method overrides so that the test method properly works.

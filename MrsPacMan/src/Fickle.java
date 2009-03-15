@@ -44,7 +44,7 @@ public class Fickle extends Ghost{
 	 */
 	public Fickle(Map m){
 		super(m); //gets the current map
-		String name = NAME; //sets the name
+		this.name = NAME; //sets the name
 		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
 		this.runAway(Corner); //moves the the corner
 		onPath = false; //is not on pacman's oath

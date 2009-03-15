@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 public class ChaserTest extends TestCase {
 	//creates a new map
 	Map m = new Map();
-	//creates a new instanance of Ambusher
+	//creates a new instanance of Chaser
 	private Chaser ghost = new Chaser(m);
 
 	protected void setUp() throws Exception {
@@ -26,13 +26,13 @@ public class ChaserTest extends TestCase {
 	 */
 	public void testChaser() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
-		assertTrue("When a new Ambusher is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getChaser());
+		assertTrue("When a new Chaser is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getChaser());
 		//When a new ghost is created incarcerated it false
 		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
 		//When a new ghost is created isScared() is false
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
-		assertEquals("Ambushers name Pinky", ghost.name, "Pinky");
+		assertEquals("Chasers name Blinky", ghost.name, "Blinky");
 		//sets the ghost coordinate to compare to the ghost's corner
 		Coordinate coordinate1 = new Coordinate(m.getSize() - 1, m.getSize() - 1, 0);
 		//when a new ghost is created the corner coordinate is set
@@ -48,7 +48,7 @@ public class ChaserTest extends TestCase {
 		//moves the ghost to that point
 		ghost.movetoPacMan(point);
 		//checks that the ghosts position and the point are the same
-		assertTrue("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition() == point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
 	}
 	
 	
@@ -56,22 +56,20 @@ public class ChaserTest extends TestCase {
 	 * checks that chasers corner is correct
 	 */
 	public void testChaserCorner() {
-		//creates a new map
-		Coordinate[][] map3 = null;
 		//sets the corner coordinates for the map
-		Coordinate corner = new Coordinate(Map.MAX, Map.MAX, map3[Map.MAX][Map.MAX].getIdentity());
+		Coordinate corner = new Coordinate(m.getSize()-1, m.getSize()-1, m.getIdentity(m.getSize()-1, m.getSize()-1));
 		//moves the ghost to a new position
 		ghost.movetoPacMan(ghost.chaserCorner());
 		//checks that the ghost has moved to the proper location
-		assertTrue("Shoudld move Chaser ghost to the corner 0, MAX", ghost.getPosition() == corner);
+		assertEquals("Shoudld move Chaser ghost to the corner getSize()-1, getSize-1", ghost.getPosition(), corner);
 	}
 	
 	/**
 	 * not yet implemented for observer pattern
 	 */
-	public void testUpdate()
+	public void testUpdate(){
 		//this method returns null because it is not implemented
-		assertNull("This method should return null becuase its not implemented.", null);
+		assertNull("This method should return null because its not implemented.", null);
 	}
 	
 	public static void main(String[] args) {

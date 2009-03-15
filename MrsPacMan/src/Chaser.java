@@ -24,7 +24,7 @@ public class Chaser extends Ghost {
 	/**
 	 * defines the name of chaser
 	 */
-	private final String NAME = "BLINKY";
+	private final String NAME = "Blinky";
 	/**
 	 * keeps track of the corner for blinky
 	 */
