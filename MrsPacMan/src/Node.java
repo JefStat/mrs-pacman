@@ -17,23 +17,23 @@ public class Node {
 	/**
 	 * The position
 	 */
-	Coordinate position;
+	private Coordinate position;
 	/**
 	 * heuristic function, the estimate of what it will take to get to the goal
 	 */
-    double h;
+    private double h;
     /**
      * sum of all the costs it took to get here
      */
-    double g;
+    private double g;
     /**
      * sum of h + g
      */
-    double f;
+     double f;
     /**
      * the previous node from the current node
      */
-    Node parent;
+     Node parent;
     
     /**
      * creates a constructor node
