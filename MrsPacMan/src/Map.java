@@ -18,6 +18,8 @@
  * the prison unlike the rest of the ghosts.
  * 
  * Jef's notes: removed the static from setSize add getter and setter for identity, in various ways.
+ * added Coordinates for every ghost, pac man. Possible bugs when importing maps is initialising ghosts
+ * pac man and checking there is a prison all the variables. 
  * 
  */
 import java.util.Scanner;
@@ -46,11 +48,11 @@ public class Map {
 	 */
 	private Coordinate prison;
 	/**
-	 * contains the coordinate where pacman starts
+	 * contains the coordinate where pacman is
 	 */
 	private Coordinate pacMan;
 	/**
-	 * contains the location where chaser starts
+	 * contains the location where each ghost is
 	 */
 	private Coordinate ambusher;
 	private Coordinate stupid;
@@ -113,6 +115,11 @@ public class Map {
 		level[10][10].setIdentity(Coordinate.EMPTY);
 		setPacMan(level[10][10]);
 		NUMBEROFPACDOTS--;
+		//create a starting point for ambusher, fickle stupid
+		this.fickle = new Coordinate(15,15,0);
+		this.ambusher = new Coordinate(15,15,0);
+		this.stupid = new Coordinate(15,15,0);
+		
 	}
 	
 	/**
