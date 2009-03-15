@@ -30,7 +30,7 @@ public class Map {
 	/**
 	 * sets a constant default maximum for map
 	 */
-	public final static int MAX = 30;
+	public final static int MAX = 10;
 	/**
 	 * keeps track of the size of map
 	 */
@@ -104,21 +104,21 @@ public class Map {
 		/**
 		 * temporary default starting point and prison
 		 */
-		level[15][15].setIdentity(Coordinate.PRISON);
-		setPrison(level[15][15]);
+		level[5][5].setIdentity(Coordinate.PRISON);
+		setPrison(level[5][5]);
 		NUMBEROFPACDOTS--;
 		//create a starting point for chaser
-		level[15][16].setIdentity(Coordinate.EMPTY);
+		level[5][4].setIdentity(Coordinate.EMPTY);
 		NUMBEROFPACDOTS--;
-		this.setChaser(level[15][16]);
+		this.setChaser(level[5][4]);
 		//create pacmans starting point
-		level[10][10].setIdentity(Coordinate.EMPTY);
-		setPacMan(level[10][10]);
+		level[1][1].setIdentity(Coordinate.EMPTY);
+		setPacMan(level[1][1]);
 		NUMBEROFPACDOTS--;
 		//create a starting point for ambusher, fickle stupid
-		this.fickle = new Coordinate(15,15,0);
-		this.ambusher = new Coordinate(15,15,0);
-		this.stupid = new Coordinate(15,15,0);
+		this.fickle = new Coordinate(5,5,0);
+		this.ambusher = new Coordinate(5,5,0);
+		this.stupid = new Coordinate(5,5,0);
 		
 	}
 	

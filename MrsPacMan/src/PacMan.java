@@ -46,6 +46,7 @@ public class PacMan extends Character {
 		name = PACMANNAME; //sets pacman's name
 		livesLeft = DEFAULTLIVES; //sets the default lives
 		position = map.getPacMan(); //gets pacmans starting position
+		setAlive(true);
 	}
 	
 	/**

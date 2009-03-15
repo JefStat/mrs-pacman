@@ -146,39 +146,55 @@ public class PacManGame extends Observable {
 
 				switch (move) {
 				case UP: {
-					myPacGirl.setPosition(new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() + 1, Coordinate.EMPTY));
+					if (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.WALL){
+						map.getPacMan().translate(0, -1);
+					}
 					this.setChanged();
-					notifyObservers(myPacGirl.getPosition());
+					notifyObservers(map.getPacMan());
 					f.updateGUI(this);
 				}
 					break;
 				case LEFT: {
-					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() - 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
+					if (map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.WALL){
+						map.getPacMan().translate(-1, 0);
+					}
+					
 					this.setChanged();
-					notifyObservers(myPacGirl.getPosition());
+					notifyObservers(map.getPacMan());
 					f.updateGUI(this);
 				}
 					break;
 				case DOWN: {
-					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX(), (int)myPacGirl.getPosition().getY() - 1, Coordinate.EMPTY)));
+					if (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.WALL){
+						map.getPacMan().translate(0, 1);
+					}
+					
 					this.setChanged();
-					notifyObservers(myPacGirl.getPosition());
+					notifyObservers(map.getPacMan());
 					f.updateGUI(this);
 				}
 					break;
 				case RIGHT:{
-					myPacGirl.setPosition((new Coordinate((int)myPacGirl.getPosition().getX() + 1, (int)myPacGirl.getPosition().getY(), Coordinate.EMPTY)));
+					if (map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.WALL){
+						map.getPacMan().translate(1, 0);
+					}
+					
 					this.setChanged();
-					notifyObservers(myPacGirl.getPosition());
+					notifyObservers(map.getPacMan());
 					f.updateGUI(this);
 				}
 					break;
 				case EXIT:{
+					
 					return true;
 				}
-					
 			}
-				} while ((myPacGirl.isAlive()) && (map.getPacdots() >= 0));
+				} while ((myPacGirl.isAlive()) && (map.getPacdots() > 0));
+			if (map.getPacdots() == 0){
+				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);	
+			}else if (!(myPacGirl.isAlive())){
+				JOptionPane.showMessageDialog(null, "You lost!", "FAILED", JOptionPane.INFORMATION_MESSAGE);
+			}
 			return true;
 			}
 		/**
