@@ -65,22 +65,6 @@ public abstract class Ghost extends Character {
 	 */
 	protected Coordinate STARTINGPOINT = map.getPrison();
 	/**
-	 * creates an ambusher variable to put at starting point
-	 */
-	private Ambusher GhostAmbusher;
-	/**
-	 * creates chaser variable to put at the starting point 
-	 */
-	private Chaser GhostChaser;
-	/**
-	 * creates a stupid variable to put at the starting point
-	 */
-	private Stupid GhostStupid;
-	/**
-	 * creates a fickle variable to put at the starting point
-	 */
-	private Fickle GhostFickle;
-	/**
 	 * checks PacMan's location then moves towards PacMan
 	 * @param P is pacman's current location
 	 */
@@ -91,19 +75,10 @@ public abstract class Ghost extends Character {
 				this.setIncarcerated(true);//ghost goes to prison
 				this.movetoPrison(STARTINGPOINT); //ghost moves to prison
 			}
-		}
-		else if(this.isAlive()== true && P != this.getPosition()){//if ghost is a alive and not near pacman
-			if(this.isScared() == true){ // if ghost is scared
-				position = GhostAmbusher.ambusherCorner(); //ambusher towards the set corner
-				position = GhostFickle.fickleCorner(); //fickle towards the set corner
-				position = GhostStupid.stupidCorner();//stupid towards the set corner
-				position = GhostChaser.chaserCorner();//chaser towards the set corner
-			}
-			else if(this.isScared() == false){ //if ghost not scared
+		}else if(this.isScared() == false){ //if ghost not scared
 				path.AStarSearch(P);//find pacman
 			}
 		}
-	}
 	/**
 	 * moves the ghost to prison after they are eaten
 	 * @param p is the location of the prison
@@ -126,13 +101,6 @@ public abstract class Ghost extends Character {
 		if(this.isAlive() == true){
 			
 		}
-	}
-	/**
-	 * not yet implemented
-	 * @param arg0
-	 */
-	public void actionPerformed(ActionEvent arg0){
-		
 	}
 	/**
 	 * This returns the current position of Ghost
@@ -187,14 +155,14 @@ public abstract class Ghost extends Character {
 	}
 	/**
 	 * returns the status of the ghost after pacman eats a powerpellet
-	 * @return true when powerpellet is eaten and false after a certain number of turns or ghost is eaten by pacman
+	 * @return true when Powerpellet is eaten and false after a certain number of turns or ghost is eaten by pacman
 	 */
 	public boolean isScared() {
 		return scared;
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		this.movetoPacMan((Coordinate)arg1);
 		
 	}
 }

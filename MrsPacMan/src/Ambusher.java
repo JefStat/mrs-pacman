@@ -63,7 +63,7 @@ public class Ambusher extends Ghost {
 	 * 
 	 * @return Corner for ambusher
 	 */
-	public Coordinate ambusherCorner() {
+	public static Coordinate ambusherCorner() {
 		return Corner;
 	}
 	/**

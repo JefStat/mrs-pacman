@@ -146,7 +146,7 @@ public class PacManGame extends Observable {
 
 				switch (move) {
 				case UP: {
-					if (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.WALL){
+					if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.WALL)&&(map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.PRISON)){
 						map.getPacMan().translate(0, -1);
 					}
 					this.setChanged();
@@ -155,7 +155,7 @@ public class PacManGame extends Observable {
 				}
 					break;
 				case LEFT: {
-					if (map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.WALL){
+					if ((map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.PRISON)){
 						map.getPacMan().translate(-1, 0);
 					}
 					
@@ -165,7 +165,7 @@ public class PacManGame extends Observable {
 				}
 					break;
 				case DOWN: {
-					if (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.WALL){
+					if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.PRISON)){
 						map.getPacMan().translate(0, 1);
 					}
 					
@@ -175,7 +175,7 @@ public class PacManGame extends Observable {
 				}
 					break;
 				case RIGHT:{
-					if (map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.WALL){
+					if ((map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.PRISON) ){
 						map.getPacMan().translate(1, 0);
 					}
 					
