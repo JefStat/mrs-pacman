@@ -17,7 +17,7 @@ public class Node {
 	/**
 	 * The position
 	 */
-	private Coordinate position;
+	public Coordinate position;
 	/**
 	 * heuristic function, the estimate of what it will take to get to the goal
 	 */
