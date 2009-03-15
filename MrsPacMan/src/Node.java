@@ -21,15 +21,15 @@ public class Node {
 	/**
 	 * heuristic function, the estimate of what it will take to get to the goal
 	 */
-    private double h;
+    public double h;
     /**
      * sum of all the costs it took to get here
      */
-    private double g;
+    public double g;
     /**
      * sum of h + g
      */
-     double f;
+     public double f;
     /**
      * the previous node from the current node
      */
