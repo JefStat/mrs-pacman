@@ -71,9 +71,9 @@ public class PacManGame extends Observable {
 		myPacGirl = new PacMan(m);
 		this.addObserver(myPacGirl); 
 		this.addObserver(new Ambusher(m));
-		this.addObserver(new Fickle(m));
-		this.addObserver(new Stupid(m));
-		this.addObserver(new Chaser(m));
+		//this.addObserver(new Fickle(m));
+		//this.addObserver(new Stupid(m));
+		//this.addObserver(new Chaser(m));
 		
 		startGame();
 
@@ -185,7 +185,7 @@ public class PacManGame extends Observable {
 				}
 					break;
 				case EXIT:{
-					
+					f.dispose();					
 					return true;
 				}
 			}
@@ -195,6 +195,7 @@ public class PacManGame extends Observable {
 			}else if (!(myPacGirl.isAlive())){
 				JOptionPane.showMessageDialog(null, "You lost!", "FAILED", JOptionPane.INFORMATION_MESSAGE);
 			}
+			f.dispose();
 			return true;
 			}
 		/**
@@ -212,13 +213,6 @@ public class PacManGame extends Observable {
 
 		}
 		return false;
-	}
-	/**
-	 * in case we lose pacman we want to be able is find. 
-	 * @return current position of PacMan
-	 */
-	public Coordinate whereInTheMapIsPacman(){
-		return myPacGirl.getPosition();
 	}
 	
 	public static void main(String[] args) {

@@ -53,6 +53,13 @@ public class Fickle extends Ghost{
 		setIncarcerated(false); //is not incarcerated
 		setScared(false);	//is not scared
 	}
+	
+	public boolean setPosition(Coordinate p){
+		int dx = (int) (p.getX() - this.getPosition().getX());
+		int dy = (int) (p.getY() - this.getPosition().getY());
+		this.getPosition().translate(dx, dy);
+		return true;
+	}
 	/**
 	 * Moves Fickle towards PacMan as the defined personality indicates
 	 * @param p is the position of pacman currently

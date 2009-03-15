@@ -36,10 +36,12 @@ public class GhostPath{
     /**
      * Creates the default constructor to find the shortest path
      */
-    public GhostPath(Ghost g,Map m) {
+    public GhostPath(String name,Map m) {
         map2 = m.getMap();
-        startPosition = m.getPacMan();
-        goalPosition = g.getPosition();
+        goalPosition = m.getPacMan();
+        if ("Pinky" == name){
+        	startPosition = m.getAmbusher();
+        }
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);
         typicalPath = getTypicalPath(new Coordinate(0,0, map2[0][0].getIdentity()), new Coordinate((map2.length - 1), (map2[0].length - 1), (map2[map2.length - 1][ map2[0].length - 1].getIdentity())));
@@ -192,11 +194,6 @@ public class GhostPath{
 		addConditional(neighbours, nodePosition, 0, -1);
 		addConditional(neighbours, nodePosition, 0, 1);
 		addConditional(neighbours, nodePosition, 1, 0);
-		addConditional(neighbours, nodePosition, 1, 1);
-		addConditional(neighbours, nodePosition, -1, -1);
-		addConditional(neighbours, nodePosition, -1, 1);
-		addConditional(neighbours, nodePosition, 1, -1);
-    
 		return neighbours;
 	}
 	/**

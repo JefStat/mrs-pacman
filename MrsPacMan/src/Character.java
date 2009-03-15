@@ -36,10 +36,6 @@ public abstract class Character implements Observer {
 		this.map = m;
 	}
 	/**
-	 * the point is the position of the character at any given moment
-	 */
-	protected Coordinate position;
-	/**
 	 * the name of each character
 	 */
 	protected String name;
@@ -51,15 +47,6 @@ public abstract class Character implements Observer {
 	 * The map where all the characters exist
 	 */
 	protected Map map;	
-	/**
-	 * sets the position of the character depends on the character and the game state
-	 */
-	public abstract boolean setPosition(Coordinate p);
-	/**
-	 * returns the position of the character
-	 * @return position
-	 */
-	public abstract Coordinate getPosition();
 	/**
 	 * gets the name of the character
 	 * @return character name

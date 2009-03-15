@@ -28,15 +28,7 @@ public class PacMan extends Character {
 	/**
 	 * creates the name of pacman
 	 */
-	private static final String PACMANNAME = "PacMan";
-	/**
-	 * sets the default lives
-	 */
-	private final int DEFAULTLIVES = 3;
-	/**
-	 * keeps track of pacman's lives left
-	 */
-	private int livesLeft;
+	private static final String PACMANNAME = "PacMan";	
 	/**
 	 * Creates a new PacMan object
 	 * @param m is the current map in use
@@ -44,52 +36,7 @@ public class PacMan extends Character {
 	public PacMan(Map m){
 		super(m); //the current map in use
 		name = PACMANNAME; //sets pacman's name
-		livesLeft = DEFAULTLIVES; //sets the default lives
-		position = map.getPacMan(); //gets pacmans starting position
 		setAlive(true);
-	}
-	
-	/**
-	 * Sets pacman's position to start if it was dead and re-animates pacman.
-	 * Otherwise will change pacman's position if checkmovement returns true. 
-	 * @param p pacman's start position
-	 * @return true if movement was changed
-	 */
-	public boolean setPosition(Coordinate p){
-		if ((this.isAlive())&&(checkMovement(p))){
-			position = p;
-			map.setPacMan(p);
-			return true;
-		} else if (!(this.isAlive())){
-			if (this.livesLeft > 0) {
-				this.setAlive(true);
-				position = map.getPacMan();
-				return true;
-			} 
-			return false;
-			
-		}
-		return false;
-	}
-	
-	/**
-	 * check to see if movement is more then one point.. ie avoid
-	 * teleporting pacman this is useless you can set the position 
-	 * through point because it's a mutable object. 
-	 * {@link Point.Translate()}
-	 * 
-	 * @param p pacman's location
-	 * @return true if pacman can move to selected coordinate
-	 */
-	public boolean checkMovement(Coordinate p) {
-		double x = p.getX() - position.getX(); 
-		double y = p.getY() - position.getY();
-		if ((map.getIdentity(p) == Coordinate.WALL)||(map.getIdentity(p) == Coordinate.PRISON)){
-			return false;
-		} if ((1 > Math.abs(x))||(1 > Math.abs(y))){
-			return false;
-		}
-		return true;
 	}
 	/**
 	 * Update will move pacMan or remove lives if he is caught
@@ -97,17 +44,9 @@ public class PacMan extends Character {
 	 * @param arg1
 	 */
 	public void update(Observable arg0, Object arg1) {
-		int identity =	map.getIdentity(this.getPosition());
+		int identity =	map.getIdentity(map.getPacMan());
 		if (identity == Coordinate.PACDOT){
-			map.setIdentity(this.getPosition());
+			map.setIdentity(map.getPacMan());
 		}
-	}
-
-	/**
-	 * returns the current position of pacman
-	 * @return current position
-	 */
-	public Coordinate getPosition() {
-		return position;
 	}
 }
