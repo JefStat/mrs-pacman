@@ -15,9 +15,14 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MapGUI extends JFrame implements ActionListener {
+	
 	private Map MapLevel;
 	private JInternalFrame Internal;
-	
+	/**
+	 * This constructor creates the entire GUI
+	 * including the menu bar.
+	 * @param label
+	 */
 	public MapGUI(String label) {
 		super(label);
 		new WindowHandler(this); //create the listener
@@ -43,6 +48,10 @@ public class MapGUI extends JFrame implements ActionListener {
 	}
 	
 	@Override
+	/**
+	 * This is the code for the import map/export map button
+	 * UNCOMPLETE IMPLEMENTATION - IN PROGRESS
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		arg0.getSource();
 		JFrame popup = new JFrame("Import Map");
@@ -57,6 +66,10 @@ public class MapGUI extends JFrame implements ActionListener {
 		popup.setVisible(true);
 		popup.pack();
 	}
+	/**
+	 * Builds the internal frame of the map containing all the graphics
+	 * Images are stored as icons on JLabels
+	 */
 	public void buildGUI(){
 		Internal = new JInternalFrame("Map");
 		Internal.setVisible(true);
@@ -80,6 +93,12 @@ public class MapGUI extends JFrame implements ActionListener {
 		this.add(Internal);
 		this.pack();
 	}
+	/**
+	 * Rebuilds the internal frame of the GUI, 
+	 * essentially updating the GUI with new 
+	 * information if map has changed.
+	 * @param p
+	 */
 	public void updateGUI(PacManGame p){
 		try {
 			Internal.setClosed(true);
@@ -88,7 +107,9 @@ public class MapGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		Internal.removeAll();
-		MapLevel = p.getMap(1);
+		MapLevel = p.getMap(1); // I highly recommend that we move the actual passing of pacmangame to MAP, not mapGUI
+		//MAP should contain the current position of pacman and all the objects on the map
+		// an updateMAP function should be implemented in the MAP class.
 		buildGUI();
 	}
 }
