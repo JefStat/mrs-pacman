@@ -8,8 +8,10 @@ import junit.framework.TestCase;
  */
 
 public class ChaserTest extends TestCase {
-	//creates a new instanance of Chaser
-	private Chaser ghost = new Chaser();
+	//creates a new map
+	Map m = new Map();
+	//creates a new instanance of Ambusher
+	private Chaser ghost = new Chaser(m);
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -23,8 +25,18 @@ public class ChaserTest extends TestCase {
 	 * checks that the constructor method actually created the new Chaser.
 	 */
 	public void testChaser() {
-		//checks that a new ghost was actually created
-		assertTrue("This value should return true as a new Chaser was created.", ghost == null);
+		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
+		assertTrue("When a new Ambusher is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getChaser());
+		//When a new ghost is created incarcerated it false
+		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		//When a new ghost is created isScared() is false
+		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
+		//when a new ghost is created the name is set
+		assertEquals("Ambushers name Pinky", ghost.name, "Pinky");
+		//sets the ghost coordinate to compare to the ghost's corner
+		Coordinate coordinate1 = new Coordinate(m.getSize() - 1, m.getSize() - 1, 0);
+		//when a new ghost is created the corner coordinate is set
+		assertEquals("Returns the ghost's corner coordinate", ghost.chaserCorner(), coordinate1);
 	}
 	
 	/**

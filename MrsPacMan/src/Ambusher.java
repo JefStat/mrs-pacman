@@ -39,7 +39,7 @@ public class Ambusher extends Ghost {
 		this.setPosition(STARTINGPOINT); // sets ambushers starting point
 		setIncarcerated(false); // the ghost is not in prison
 		setScared(false); // the ghost is not scared
-		String name = NAME; // sets ambushers name
+		this.name = NAME; // sets ambushers name
 		Corner = new Coordinate(0, map.getSize() - 1, 0);// gets ambushers corner
 		this.runAway(Corner); //moves ambusher to his corner
 		path = new GhostPath(this, map); //sets the new ghost path

@@ -8,8 +8,10 @@ import junit.framework.TestCase;
  */
 
 public class AmbusherTest extends TestCase {
+	//creates a new map
+	Map m = new Map();
 	//creates a new instanance of Ambusher
-	private Ambusher ghost = new Ambusher();
+	private Ambusher ghost = new Ambusher(m);
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -23,10 +25,20 @@ public class AmbusherTest extends TestCase {
 	 * checks that the constructor method actually created the new Ambusher.
 	 */
 	public void testAmbusher() {
-		//this checks that the implementation of a new instanance of ambusher returns null
-		assertTrue("This value should return true as a new ambusher was created.", ghost == null);
+		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
+		assertTrue("When a new Ambusher is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getPrison());
+		//When a new ghost is created incarcerated it false
+		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		//When a new ghost is created isScared() is false
+		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
+		//when a new ghost is created the name is set
+		assertEquals("Ambushers name Pinky", ghost.name, "Pinky");
+		//sets the ghost coordinate to compare to the ghost's corner
+		Coordinate coordinate1 = new Coordinate(0, m.getSize() - 1, 0);
+		//when a new ghost is created the corner coordinate is set
+		assertEquals("Returns the ghost's corner coordinate", ghost.ambusherCorner(), coordinate1);
 	}
-	
+
 	/**
 	 * checks that the ghost moved to the actual direction/place it was suppose to
 	 */

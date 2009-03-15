@@ -66,5 +66,23 @@ public class Coordinate extends Point{
 	 */
 	public void setIdentity(int x){
 		this.identity = x;
-	}	
+	}
+	/**
+	 * This isEqual method overrides so that the test method properly works.
+	 * Checks whether or not two points are equal then checks if the identity is equal
+	 * @param obj is the corrdinate
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coordinate other = (Coordinate) obj;
+		if (identity != other.identity)
+			return false;
+		return true;
+	}
+	
 }

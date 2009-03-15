@@ -43,7 +43,7 @@ public class Chaser extends Ghost {
 		this.setPosition(STARTINGPOINT); //sets chasers starting point
 		setIncarcerated(false); // is not jailed
 		setScared(false); // is not scared
-		String name = NAME; // sets the chaser name
+		this.name = NAME; // sets the chaser name
 		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
 		this.runAway(Corner); // set runaway corner to start
 		path = new GhostPath(this, map); // sets the new ghost path
