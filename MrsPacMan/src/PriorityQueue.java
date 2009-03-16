@@ -52,7 +52,8 @@ public class PriorityQueue {
     public boolean contains(Node node) {
         return queue.contains(node);
     }
-    /**
+
+	/**
      * Removes the Node from the queue
      * @param node to be removed
      */

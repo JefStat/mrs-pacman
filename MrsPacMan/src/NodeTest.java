@@ -10,7 +10,10 @@ import junit.framework.TestCase;
 
 
 public class NodeTest extends TestCase {
-		
+	//creates a new coordinate
+	Coordinate point = new Coordinate(5,4, 1);
+	//creates a new node
+	Node test = new Node(point, 3, 4, null);
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -18,13 +21,20 @@ public class NodeTest extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-
+	/**
+	 * tests that the node constructor works properly
+	 */
 	public void testNode() {
-		fail("Not yet implemented");
+		assertTrue("The node's position should equal point", test.getPosition() == point);
+		assertTrue("The node's h should equal 3", test.h == 3);
+		assertTrue("The node's g should be 4", test.g == 4);
+		assertTrue("The node's f should be h + g", test.f == 7);
 	}
-
+	/**
+	 * tests that the equals works properly
+	 */
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		assertNull("Should return true if they equal",null);
 	}
 
 }

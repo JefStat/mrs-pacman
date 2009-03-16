@@ -28,13 +28,7 @@ import java.util.Observer;
 
 public abstract class Character implements Observer {
 	
-	/**
-	 * gives the current map in use for the game to each character 
-	 * @param m is the current map in use
-	 */
-	public Character(Map m){
-		this.map = m;
-	}
+	
 	/**
 	 * the name of each character
 	 */
@@ -46,7 +40,14 @@ public abstract class Character implements Observer {
 	/**
 	 * The map where all the characters exist
 	 */
-	protected Map map;	
+	protected Map map;
+	/**
+	 * gives the current map in use for the game to each character 
+	 * @param m is the current map in use
+	 */
+	public Character(Map m){
+		this.map = m;
+	}
 	/**
 	 * gets the name of the character
 	 * @return character name
