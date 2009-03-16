@@ -7,13 +7,13 @@ import junit.framework.TestCase;
  * Version 1.0
  * Monday March 2nd, 2009
  */
-public class testMap extends TestCase {
+public class MapTest extends TestCase {
 
 	/**
 	 * sets the map
 	 * @param name
 	 */
-	public testMap(String name) {
+	public MapTest(String name) {
 		super(name);
 	}
 
