@@ -31,6 +31,7 @@ public class Ambusher extends Character implements Ghost {
 	 */
 	public Ambusher(Map m) {
 		super(m); // imports the map
+		this.name = NAME;
 		path = new GhostPath(NAME, map); // sets the new ghost path
 	}
 	/**
@@ -45,6 +46,7 @@ public class Ambusher extends Character implements Ghost {
 	}
 	@Override
 	public void movetoPacMan(Coordinate P) {
+		path = new GhostPath(NAME,map);
 		map.setAmbusher(path.AStarSearch(P).getPosition());
 	}
 	@Override

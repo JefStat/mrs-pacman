@@ -73,7 +73,7 @@ public class PacManGame extends Observable {
 		this.addObserver(new Ambusher(m));
 		this.addObserver(new Fickle(m));
 		this.addObserver(new Stupid(m));
-		this.addObserver(new Chaser(m));
+		//this.addObserver(new Chaser(m));
 		
 		startGame();
 
