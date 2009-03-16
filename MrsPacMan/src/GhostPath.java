@@ -18,7 +18,6 @@ public class GhostPath{
 	/** 
 	 * default one
 	 */
-	static int typicalPath; 
 	Hashtable open;
     Hashtable closed;
     /**
@@ -44,7 +43,6 @@ public class GhostPath{
         }
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);
-        typicalPath = getTypicalPath(new Coordinate(0,0, map2[0][0].getIdentity()), new Coordinate((map2.length - 1), (map2[0].length - 1), (map2[map2.length - 1][ map2[0].length - 1].getIdentity())));
     }
     
     /**
@@ -54,10 +52,10 @@ public class GhostPath{
      * @return path to be taken
      */
     public static double pathDistanceEstimate(Coordinate start, Coordinate goal) {
-            int dx = Math.abs(goal.x - start.x);
-            int dy = Math.abs(goal.y - start.y);
+            int dx = Math.abs((int)goal.getX() - (int)start.getX());
+            int dy = Math.abs((int)goal.getY() - (int)start.getY());
         
-            return typicalPath * (dx + dy);
+            return (dx + dy);
     }
 
     /**
@@ -75,31 +73,6 @@ public class GhostPath{
         } else {
         	return 1;
         }
-    }
-
-    /**
-     * Finds the typical path that could be taken
-     * @param startPosition is pacmans location
-     * @param goalPosition is the ghosts location
-     * @return path to be taken
-     */
-    private int getTypicalPath(Coordinate startPosition, Coordinate goalPosition){
-        int left = Math.min(startPosition.x, goalPosition.x);
-        int top = Math.min(startPosition.y, goalPosition.y);
-        int right = Math.max(startPosition.x, goalPosition.x);
-        int bottom = Math.max(startPosition.y, goalPosition.y);
-        
-        int count = 0;
-        for(int i = left; i <= right; i++) {
-            for(int j = top; j <= bottom; j++) {
-                Coordinate value = map2[i][j];
-               if((value.getIdentity() != Coordinate.EMPTY ||value.getIdentity() != Coordinate.PACDOT|| value.getIdentity() != Coordinate.FRUIT ||value.getIdentity() != Coordinate.POWERPELLET)){
-                    count++;
-                }
-            }
-        }
-        
-        return count;
     }
   
     /**

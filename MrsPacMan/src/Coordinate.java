@@ -44,7 +44,7 @@ public class Coordinate extends Point{
 	private int identity;
 	
 	/**
-	 * Default constructor sets an identiy to a map point p
+	 * Default constructor sets an identity to a map point p
 	 * @param x is the x coordinate of the point
 	 * @param y is the y coordinate of the point
 	 * @param identity gives the identity of the coordinate

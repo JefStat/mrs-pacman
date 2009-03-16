@@ -45,8 +45,13 @@ public class PacMan extends Character {
 	 */
 	public void update(Observable arg0, Object arg1) {
 		int identity =	map.getIdentity(map.getPacMan());
+		//this updates the map to remove the pacdot at pacmans location
 		if (identity == Coordinate.PACDOT){
-			map.setIdentity(map.getPacMan());
+			map.setIdentity(map.getPacMan());	
+		}
+		// the following kills pac man when he lands on a ghost
+		if ((map.getAmbusher().equals(map.getPacMan()))||(map.getChaser().equals(map.getPacMan()))||(map.getFickle().equals(map.getPacMan()))||(map.getStupid().equals(map.getPacMan()))){
+			this.setAlive(false);
 		}
 	}
 }
