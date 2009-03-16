@@ -80,7 +80,7 @@ public class GhostPath{
             int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
             return (dx + dy - 1);
         } else {
-        	return 1;
+        	return 0;
         }
     }
   

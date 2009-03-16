@@ -88,4 +88,5 @@ public class Ambusher extends Character implements Ghost {
 	public Coordinate ambusherCorner() {
 		return Corner;
 	}
+
 }
