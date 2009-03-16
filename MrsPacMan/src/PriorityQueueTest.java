@@ -1,5 +1,3 @@
-import java.util.Vector;
-
 import junit.framework.TestCase;
 /**
  * This test case checks that the PriorityQueue class is appropriately queuing up
@@ -94,7 +92,6 @@ public class PriorityQueueTest extends TestCase {
 		Node newNode = new Node(newCoordinate, 1, 2, null);
 		Node newNode1 = new Node(newCoordinate1, 2, 3, newNode);
 		Node newNode2 = new Node(newCoordinate2, 4, 3, newNode1);
-		Node newNode3 = new Node(newCoordinate2, 4, 3, newNode1);
 		//adds the new nodes to the priority queue
 		queue.add(newNode);
 		queue.add(newNode1);
@@ -115,7 +112,6 @@ public class PriorityQueueTest extends TestCase {
 		Node newNode = new Node(newCoordinate, 1, 2, null);
 		Node newNode1 = new Node(newCoordinate1, 2, 3, newNode);
 		Node newNode2 = new Node(newCoordinate2, 4, 3, newNode1);
-		Node newNode3 = new Node(newCoordinate2, 4, 3, newNode1);
 		//adds the new nodes to the priority queue
 		queue.add(newNode);
 		queue.add(newNode1);
