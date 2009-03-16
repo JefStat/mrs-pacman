@@ -78,7 +78,7 @@ public class GhostPath{
         if(p == null ) { // default agent
             Coordinate position1 = node.position, position2 = newNode.position;
             int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
-            return 01.*(dx + dy - 1);
+            return (dx + dy - 1);
         } else {
         	return 1;
         }

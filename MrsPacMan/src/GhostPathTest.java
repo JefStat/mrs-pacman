@@ -1,7 +1,8 @@
 import junit.framework.TestCase;
 /**
  * checks that ghostpath is properly implemented in order for ghost to take the shortest path
- * to pacman
+ * to pacman.  Due to complete failure this test case was not implemented because it is being rewritten,
+ * hopefully I will get it up tonight.
  * 
  * Milestone 3
  * @Date March 14, 2009
