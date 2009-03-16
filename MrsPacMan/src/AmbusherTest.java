@@ -26,9 +26,7 @@ public class AmbusherTest extends TestCase {
 	 */
 	public void testAmbusher() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
-		assertTrue("When a new Ambusher is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getPrison());
-		//When a new ghost is created incarcerated it false
-		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		assertTrue("When a new Ambusher is created setPosition should equal STARTINGPOINT which is the prison", m.getAmbusher() == m.getPrison());
 		//When a new ghost is created isScared() is false
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
@@ -45,7 +43,7 @@ public class AmbusherTest extends TestCase {
 	public void testMovetoPacManCoordinate() {
 		Coordinate point = new Coordinate(2,2,2);
 		ghost.movetoPacMan(point);
-		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", m.getAmbusher(), point);
 	}
 	
 	
@@ -55,7 +53,7 @@ public class AmbusherTest extends TestCase {
 	public void testAmbusherCorner() {
 		Coordinate corner = new Coordinate(0, m.getSize()-1, m.getIdentity(0, m.getSize()-1));
 		ghost.movetoPacMan(ghost.ambusherCorner());
-		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", ghost.getPosition(), corner);
+		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", m.getAmbusher(), corner);
 	}
 	
 	public static void main(String[] args) {

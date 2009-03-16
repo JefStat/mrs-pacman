@@ -33,7 +33,7 @@ public class Stupid extends Character implements Ghost {
 	 */
 	public Stupid(Map m){
 		super(m); // current map in use
-		String name = NAME; // sets the stupid name
+		this.name = NAME; // sets the stupid name
 		Corner = new Coordinate(0,0,m.getIdentity(0,0)); //sets the corner for stupid
 	}
 	/**

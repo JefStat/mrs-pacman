@@ -12,7 +12,8 @@ public class ChaserTest extends TestCase {
 	Map m = new Map();
 	//creates a new instanance of Chaser
 	private Chaser ghost = new Chaser(m);
-
+	//creates the coordinate where Chaser starts
+	Coordinate test = new Coordinate(5, 4, m.getIdentity(5,4));
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -26,9 +27,7 @@ public class ChaserTest extends TestCase {
 	 */
 	public void testChaser() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
-		assertTrue("When a new Chaser is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getChaser());
-		//When a new ghost is created incarcerated it false
-		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		assertTrue("When a new Chaser is created setPosition should equal STARTINGPOINT which is the prison",  test == m.getChaser());
 		//When a new ghost is created isScared() is false
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
@@ -48,7 +47,7 @@ public class ChaserTest extends TestCase {
 		//moves the ghost to that point
 		ghost.movetoPacMan(point);
 		//checks that the ghosts position and the point are the same
-		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", m.getChaser(), point);
 	}
 	
 	
@@ -61,15 +60,7 @@ public class ChaserTest extends TestCase {
 		//moves the ghost to a new position
 		ghost.movetoPacMan(ghost.chaserCorner());
 		//checks that the ghost has moved to the proper location
-		assertEquals("Shoudld move Chaser ghost to the corner getSize()-1, getSize-1", ghost.getPosition(), corner);
-	}
-	
-	/**
-	 * not yet implemented for observer pattern
-	 */
-	public void testUpdate(){
-		//this method returns null because it is not implemented
-		assertNull("This method should return null because its not implemented.", null);
+		assertEquals("Shoudld move Chaser ghost to the corner getSize()-1, getSize-1", m.getChaser(), corner);
 	}
 	
 	public static void main(String[] args) {

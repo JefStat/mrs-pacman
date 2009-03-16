@@ -26,9 +26,7 @@ public class FickleTest extends TestCase {
 	 */
 	public void testFickle() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
-		assertTrue("When a new Fickle is created setPosition should equal STARTINGPOINT which is the prison", ghost.getPosition() == m.getPrison());
-		//When a new ghost is created incarcerated it false
-		assertTrue("When a new ghost is created it isn't incarcerated.", ghost.isIncarcerated() == false);
+		assertTrue("When a new Fickle is created setPosition should equal STARTINGPOINT which is the prison", m.getFickle() == m.getPrison());
 		//When a new ghost is created isScared() is false
 		assertTrue("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
@@ -48,7 +46,7 @@ public class FickleTest extends TestCase {
 		//moves ghost towards the new coordinate
 		ghost.movetoPacMan(point);
 		//verifies that ghost moved towards the new coordinate
-		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", ghost.getPosition(), point);
+		assertEquals("Should move ghost to x = 2, y = 2 and identity = 2 (pacdot).", m.getFickle(), point);
 	}
 	
 	
@@ -61,14 +59,7 @@ public class FickleTest extends TestCase {
 		//moves ghost towards the corner
 		ghost.movetoPacMan(ghost.fickleCorner());
 		//the ghost should have moved towards this corner
-		assertEquals("Should move fickle ghost to the corner getSize()-1, 0", ghost.getPosition(), corner);
-	}
-	
-	/**
-	 * not yet implemented for observer pattern
-	 */
-	public void testUpdate() {
-		assertNull("This method should return null becuase its not implemented.", null);
+		assertEquals("Should move fickle ghost to the corner getSize()-1, 0", m.getFickle(), corner);
 	}
 	
 	public static void main(String[] args) {
