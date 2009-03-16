@@ -43,6 +43,10 @@ public class Fickle extends Character implements Ghost{
 	 */
 	private GhostPath path;
 	/**
+	 * keeps track of whether or not the ghost is scared
+	 */
+	private boolean scared;
+	/**
 	 * Default Constructor
 	 */
 	public Fickle(Map m){
@@ -51,6 +55,7 @@ public class Fickle extends Character implements Ghost{
 		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
 		onPath = false; //is not on pacman's oath
 		path = new GhostPath(NAME, map);//creates a new ghostpath
+		setScared(false); //sets ghost is not scared
 	}
 	
 	public boolean setPosition(Coordinate p){
@@ -265,5 +270,26 @@ public class Fickle extends Character implements Ghost{
 	public void movetoPrison(Coordinate p) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * sets whether or not the ghost is scared based on PacMan eating a powerpellet
+	 * @param scared
+	 */
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	/**
+	 * returns whether or not the ghost is scared based on PacMan eating a powerpellet
+	 * @return ghost status of scared
+	 */
+	public boolean isScared() {
+		return scared;
+	}
+	/**
+	 * Returns the corner that Fickle runs to
+	 * @return fickle corner
+	 */
+	public Coordinate fickleCorner(){
+		return Corner;
 	}
 }

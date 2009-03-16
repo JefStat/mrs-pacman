@@ -34,6 +34,10 @@ public class Chaser extends Character implements Ghost {
 	 */
 	private GhostPath path;
 	/**
+	 * keeps track of whether or not the ghost is scared
+	 */
+	private boolean scared;
+	/**
 	 * Default Constructor
 	 */
 	public Chaser(Map m) {
@@ -41,6 +45,7 @@ public class Chaser extends Character implements Ghost {
 		this.name = NAME; // sets the chaser name
 		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
 		path = new GhostPath(NAME, map); // sets the new ghost path
+		setScared(false);
 	}
 
 	/**
@@ -48,6 +53,7 @@ public class Chaser extends Character implements Ghost {
 	 * @param p takes pacMan position
 	 */
 	public void movetoPacMan(Coordinate p) {
+		path = new GhostPath(NAME,map);
 		map.setChaser(path.AStarSearch(p).getPosition());
 	}
 	/**
@@ -61,6 +67,7 @@ public class Chaser extends Character implements Ghost {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		path = new GhostPath(NAME,map);
 		movetoPacMan((Coordinate) arg);
 	} 
 
@@ -69,5 +76,19 @@ public class Chaser extends Character implements Ghost {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
+	 * @param scared true or false
+	 */
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	/**
+	 * returns whether or not the ghost is scared
+	 * @return scared status of ghost
+	 */
+	public boolean isScared() {
+		return scared;
+	}
+	
 }

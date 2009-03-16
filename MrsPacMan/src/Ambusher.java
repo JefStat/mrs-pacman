@@ -27,21 +27,32 @@ public class Ambusher extends Character implements Ghost {
 	 */
 	private GhostPath path;
 	/**
+	 * sets the corner location for ambusher
+	 */
+	private final Coordinate Corner;
+	/**
+	 * tracks whether or not the ghost is scared
+	 */
+	private boolean scared;
+	/**
 	 * Default Constructor, creates the Ambusher ghost
 	 */
 	public Ambusher(Map m) {
 		super(m); // imports the map
 		this.name = NAME;
 		path = new GhostPath(NAME, map); // sets the new ghost path
+		setScared(false); //ghost is not scared
+		Corner = new Coordinate(0, map.getSize() - 1, 0);// gets ambushers corner
 	}
 	/**
 	 * updates the Ambusher class for each move
 	 * 
 	 * @param o
 	 * @param arg
-	 *            is pacman's position
+	 *  is pacman's position
 	 */
 	public void update(Observable o, Object arg) {
+		path = new GhostPath(NAME,map);
 		movetoPacMan((Coordinate)arg);
 	}
 	@Override
@@ -54,5 +65,27 @@ public class Ambusher extends Character implements Ghost {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
+	 * @param scared true or false
+	 */
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	/**
+	 * returns whether or not the ghost is scared
+	 * @return scared status of ghost
+	 */
+	public boolean isScared() {
+		return scared;
+	}
+	/**
+	 * Returns the respective corner that Ambusher runs to when scared or in
+	 * scatter mode
+	 * 
+	 * @return Corner for ambusher
+	 */
+	public Coordinate ambusherCorner() {
+		return Corner;
+	}
 }

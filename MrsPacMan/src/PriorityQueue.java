@@ -34,7 +34,7 @@ public class PriorityQueue {
             int i;
             for(i = 0; i < queue.size(); i++) {
                 Node holder = (Node)queue.elementAt(i);
-                if(holder.f >= newNode.f) {
+                if(holder.sum >= newNode.sum) {
                     queue.insertElementAt(newNode, i);
                     break;
                 }

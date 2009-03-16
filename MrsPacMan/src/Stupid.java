@@ -26,7 +26,10 @@ public class Stupid extends Character implements Ghost {
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */
 	private Coordinate Corner;
-	
+	/**
+	 * sets whether or not the ghost is scared
+	 */
+	private boolean scared;
 	/**
 	 * Default Constructor
 	 * @param m is the current map that is in use
@@ -35,6 +38,7 @@ public class Stupid extends Character implements Ghost {
 		super(m); // current map in use
 		this.name = NAME; // sets the stupid name
 		Corner = new Coordinate(0,0,m.getIdentity(0,0)); //sets the corner for stupid
+		setScared(false);
 	}
 	/**
 	 * Moves Stupid towards PacMan as per the defined personality
@@ -102,6 +106,20 @@ public class Stupid extends Character implements Ghost {
 	public void movetoPrison(Coordinate p) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
+	 * @param scared true or false
+	 */
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	/**
+	 * returns whether or not the ghost is scared
+	 * @return scared status of ghost
+	 */
+	public boolean isScared() {
+		return scared;
 	}
 	
 }

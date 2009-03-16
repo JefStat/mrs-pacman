@@ -26,9 +26,9 @@ public class NodeTest extends TestCase {
 	 */
 	public void testNode() {
 		assertTrue("The node's position should equal point", test.getPosition() == point);
-		assertTrue("The node's h should equal 3", test.h == 3);
-		assertTrue("The node's g should be 4", test.g == 4);
-		assertTrue("The node's f should be h + g", test.f == 7);
+		assertTrue("The node's h should equal 3", test.goalEstimate == 3);
+		assertTrue("The node's g should be 4", test.costPath == 4);
+		assertTrue("The node's f should be h + g", test.sum== 7);
 	}
 	/**
 	 * tests that the equals works properly
