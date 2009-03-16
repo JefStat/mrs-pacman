@@ -58,13 +58,6 @@ public class AmbusherTest extends TestCase {
 		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", ghost.getPosition(), corner);
 	}
 	
-	/**
-	 * not yet implemented for observer pattern
-	 */
-	public void testUpdate() {
-		assertNull("This method should return null becuase its not implemented.", null);
-	}
-	
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Ambusher.class);
 	}
