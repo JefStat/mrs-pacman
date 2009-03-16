@@ -119,23 +119,23 @@ public class GhostPath{
                 for(int i = 0; i < neighbours.size(); i++) {
                     Node newNode1 = (Node)neighbours.elementAt(i);
                     double newDistanceEstimate = pathDistanceEstimate(newNode1.position, goalPosition);
-                    double newDistance = newNode.h + traverseDistance(newNode, newNode1, p);
+                    double newDistance = newNode.goalEstimate + traverseDistance(newNode, newNode1, p);
                     double newTotal = newDistance + newDistanceEstimate;
                                        
                     Coordinate nnPosition = newNode1.position;
                     Node holderO, holderC;
                     holderO = (Node)open.get(nnPosition);
                     holderC = (Node)closed.get(nnPosition);
-                    if(holderO != null && holderO.f <= newTotal) {
+                    if(holderO != null && holderO.sum <= newTotal) {
                         continue;
-                    } else if(holderC != null && holderC.f <= newTotal) {
+                    } else if(holderC != null && holderC.sum <= newTotal) {
                         continue;
                     } else {
                         // store the new or improved info
                         newNode1.parent = newNode;
-                        newNode1.h = newDistance;
-                        newNode1.g = newDistanceEstimate;
-                        newNode1.f = newNode1.h + newNode1.g;
+                        newNode1.goalEstimate = newDistance;
+                        newNode1.costPath = newDistanceEstimate;
+                        newNode1.sum = newNode1.goalEstimate + newNode1.costPath;
                         if(closed.get(nnPosition) != null) {
                             closed.remove(nnPosition);
                         }
