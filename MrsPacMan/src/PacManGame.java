@@ -42,7 +42,7 @@ import javax.swing.JOptionPane;
 
 public class PacManGame extends Observable {
 
-	private static final String STARTMESSAGE = "Howdy Doody!\nWhat would you like to do?";
+	private static final String STARTMESSAGE = "Jef broke my ghosts!\nCan I hurt him?";
 	private static final String GAMETITLE = "Mrs Pac Man";
 	
 	protected Map map;
