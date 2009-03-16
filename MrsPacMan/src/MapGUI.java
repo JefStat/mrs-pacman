@@ -87,16 +87,16 @@ public class MapGUI extends JFrame implements ActionListener {
 					Internal.add(new JLabel(new ImageIcon("pacman.jpg")));
 				}else if ((MapLevel.getChaser().getX() == j)
 						&& (MapLevel.getChaser().getY() == i)) {
-					Internal.add(new JLabel(new ImageIcon("green.jpg")));
+					Internal.add(new JLabel(new ImageIcon("Blinky.gif")));
 				}else if ((MapLevel.getFickle().getX() == j)
 						&& (MapLevel.getFickle().getY() == i)) {
-					Internal.add(new JLabel(new ImageIcon("orange.jpg")));
+					Internal.add(new JLabel(new ImageIcon("Inky.gif")));
 				}else if ((MapLevel.getAmbusher().getX() == j)
 						&& (MapLevel.getAmbusher().getY() == i)) {
-					Internal.add(new JLabel(new ImageIcon("orange.jpg")));
+					Internal.add(new JLabel(new ImageIcon("Pinky.gif")));
 				}else if ((MapLevel.getStupid().getX() == j)
 						&& (MapLevel.getStupid().getY() == i)) {
-					Internal.add(new JLabel(new ImageIcon("orange.jpg")));
+					Internal.add(new JLabel(new ImageIcon("Clyde.gif")));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.WALL) {
 					Internal.add(new JLabel(new ImageIcon("wall.jpg")));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.EMPTY) {

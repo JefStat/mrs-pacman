@@ -41,16 +41,11 @@ public class Ambusher extends Character implements Ghost {
 	 *            is pacman's position
 	 */
 	public void update(Observable o, Object arg) {
-		
-		path = new GhostPath(NAME, map);
-		Coordinate temp = path.AStarSearch((Coordinate) arg).getPosition();
-		map.setAmbusher(temp);
-		System.out.println(temp);
+		movetoPacMan((Coordinate)arg);
 	}
 	@Override
 	public void movetoPacMan(Coordinate P) {
-		// TODO Auto-generated method stub
-
+		map.setAmbusher(path.AStarSearch(P).getPosition());
 	}
 	@Override
 	public void movetoPrison(Coordinate p) {

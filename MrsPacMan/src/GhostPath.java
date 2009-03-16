@@ -41,6 +41,15 @@ public class GhostPath{
         if ("Pinky" == name){
         	startPosition = m.getAmbusher();
         }
+        if ("Inky" == name){
+        	startPosition = m.getFickle();	
+        }
+        if ("Blinky" == name){
+        	startPosition = m.getChaser();
+        }
+        if ("Clyde" == name){
+        	startPosition = m.getStupid();
+        }
         open = new Hashtable(map2.length * map2[0].length);
         closed = new Hashtable(map2.length * map2[0].length);
     }

@@ -20,7 +20,7 @@ import java.util.Observable;
  *          Implemented all the methods for Chaser.
  */
 
-public class Chaser extends Ghost {
+public class Chaser extends Character implements Ghost {
 	/**
 	 * defines the name of chaser
 	 */
@@ -32,21 +32,15 @@ public class Chaser extends Ghost {
 	/**
 	 * keeps track of the path that blinky is on
 	 */
-	private final GhostPath path;
-
+	private GhostPath path;
 	/**
 	 * Default Constructor
 	 */
 	public Chaser(Map m) {
 		super(m); //gets the current map in use
-		STARTINGPOINT = map.getChaser();//gets chasers starting point
-		this.setPosition(STARTINGPOINT); //sets chasers starting point
-		setIncarcerated(false); // is not jailed
-		setScared(false); // is not scared
 		this.name = NAME; // sets the chaser name
 		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
-		this.runAway(Corner); // set runaway corner to start
-		path = new GhostPath(this, map); // sets the new ghost path
+		path = new GhostPath(NAME, map); // sets the new ghost path
 	}
 
 	/**
@@ -54,13 +48,12 @@ public class Chaser extends Ghost {
 	 * @param p takes pacMan position
 	 */
 	public void movetoPacMan(Coordinate p) {
-		this.setPosition(path.AStarSearch(p).getPosition());
+		map.setChaser(path.AStarSearch(p).getPosition());
 	}
-
 	/**
 	 * returns the corner that Chaser runs to.
 	 * 
-	 * @return chasher corner
+	 * @return chaser corner
 	 */
 	public Coordinate chaserCorner() {
 		return Corner;
@@ -68,8 +61,13 @@ public class Chaser extends Ghost {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		movetoPacMan((Coordinate) arg);
+	} 
 
+	@Override
+	public void movetoPrison(Coordinate p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

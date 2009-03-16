@@ -15,10 +15,13 @@ import java.util.Random;
  * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Fickle.
+ * 
+ * 
+ * Fickle works just because it can.
  */
 
 
-public class Fickle extends Ghost{
+public class Fickle extends Character implements Ghost{
 	/**
 	 * this is the official name of fickle
 	 */
@@ -38,7 +41,7 @@ public class Fickle extends Ghost{
 	/**
 	 * this is the path that fickle is on and checks the A* Algorithm for the fastest route to pacman
 	 */
-	private final GhostPath path;
+	private GhostPath path;
 	/**
 	 * Default Constructor
 	 */
@@ -46,18 +49,14 @@ public class Fickle extends Ghost{
 		super(m); //gets the current map
 		this.name = NAME; //sets the name
 		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
-		this.runAway(Corner); //moves the the corner
 		onPath = false; //is not on pacman's oath
-		path = new GhostPath(this, map);//creates a new ghostpath
-		this.setPosition(STARTINGPOINT); //sets position to starting point
-		setIncarcerated(false); //is not incarcerated
-		setScared(false);	//is not scared
+		path = new GhostPath(NAME, map);//creates a new ghostpath
 	}
 	
 	public boolean setPosition(Coordinate p){
-		int dx = (int) (p.getX() - this.getPosition().getX());
-		int dy = (int) (p.getY() - this.getPosition().getY());
-		this.getPosition().translate(dx, dy);
+		int dx = (int) (p.getX() - map.getFickle().getX());
+		int dy = (int) (p.getY() - map.getFickle().getY());
+		map.getFickle().translate(dx, dy);
 		return true;
 	}
 	/**
@@ -66,9 +65,9 @@ public class Fickle extends Ghost{
 	 */
 	public void movetoPacMan(Coordinate p){
 	
-		int x = (int)this.getPosition().getX();
-		int y = (int)this.getPosition().getY();
-		if((map.getSize()-1)/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(this.getPosition(), p)))){
+		int x = (int)map.getFickle().getX();
+		int y = (int)map.getFickle().getY();
+		if((map.getSize()-1)/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(map.getFickle(), p)))){
 			this.setPosition(path.AStarSearch(p).getPosition());
 			}
 		else{
@@ -256,16 +255,14 @@ public class Fickle extends Ghost{
 			}
 		}
 	}
-	/**
-	 * Returns the corner that Fickle runs to
-	 * @return fickle corner
-	 */
-	public Coordinate fickleCorner(){
-		return Corner;
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.movetoPacMan(map.getPacMan());
+		
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void movetoPrison(Coordinate p) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,7 +17,7 @@ import java.util.Random;
  * Implemented all the methods for Stupid.
  */
 
-public class Stupid extends Ghost {
+public class Stupid extends Character implements Ghost {
 	/**
 	 * creates the name for stupid
 	 */
@@ -35,10 +35,6 @@ public class Stupid extends Ghost {
 		super(m); // current map in use
 		String name = NAME; // sets the stupid name
 		Corner = new Coordinate(0,0,m.getIdentity(0,0)); //sets the corner for stupid
-		this.runAway(Corner);// set runAway for corner
-		this.setPosition(STARTINGPOINT);//sets position as starting point
-		setIncarcerated(false);//sets incarcerated to false
-		setScared(false);//sets scared to false
 	}
 	/**
 	 * Moves Stupid towards PacMan as per the defined personality
@@ -49,79 +45,39 @@ public class Stupid extends Ghost {
 		while(a){
 			Random r = new Random();
 			int options = r.nextInt();
-			options = options % 8;
-			int x = (int)this.getPosition().getX();
-			int y = (int)this.getPosition().getY();
+			options = options % 4;
+			int x = (int)map.getStupid().getX();
+			int y = (int)map.getStupid().getY();
 			switch (options) {
 			  case 0: 
-			    if((map.getIdentity(x-1, y+1)==1)||(map.getIdentity(x-1, y+1)==5)){
-			    }
-			    else{
-			    	Coordinate endpoint = new Coordinate(x-1, y+1, map.getIdentity(x-1, y+1));
-			    	this.setPosition(endpoint);
-			    	a=false;
-			    }
-			    break;
-			  case 1: 
-				    if((map.getIdentity(x, y+1)==1)||(map.getIdentity(x, y+1)==5)){
+				    if((map.getIdentity(x, y+1)==Coordinate.WALL)||(map.getIdentity(x, y+1)==Coordinate.PRISON)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x, y+1, map.getIdentity(x, y+1));
-				    	this.setPosition(endpoint);
+				    	map.getStupid().translate(0,1);
+				    	a=false;
+				    }
+				    break;
+			  case 1: 
+				    if((map.getIdentity(x+1, y)==Coordinate.WALL)||(map.getIdentity(x+1, y)==Coordinate.PRISON)){
+				    }
+				    else{
+				    	map.getStupid().translate(1, 0);
 				    	a=false;
 				    }
 				    break;
 			  case 2: 
-				    if((map.getIdentity(x+1, y+1)==1)||(map.getIdentity(x+1, y+1)==5)){
+				    if((map.getIdentity(x, y-1)==Coordinate.WALL)||(map.getIdentity(x, y-1)==Coordinate.PRISON)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y+1, map.getIdentity(x+1, y+1));
-				    	this.setPosition(endpoint);
+				    	map.getStupid().translate(0, -1);
 				    	a=false;
 				    }
 				    break;
 			  case 3: 
-				    if((map.getIdentity(x+1, y)==1)||(map.getIdentity(x+1, y)==5)){
+				    if((map.getIdentity(x-1, y)==Coordinate.WALL)||(map.getIdentity(x-1, y)==Coordinate.PRISON)){
 				    }
 				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y, map.getIdentity(x+1, y));
-				    	this.setPosition(endpoint);
-				    	a=false;
-				    }
-				    break;
-			  case 4: 
-				    if((map.getIdentity(x+1, y-1)==1)||(map.getIdentity(x+1, y-1)==5)){
-				    }
-				    else{
-				    	Coordinate endpoint = new Coordinate(x+1, y-1, map.getIdentity(x+1, y-1));
-				    	this.setPosition(endpoint);
-				    	a=false;
-				    }
-				    break;
-			  case 5: 
-				    if((map.getIdentity(x, y-1)==1)||(map.getIdentity(x, y-1)==5)){
-				    }
-				    else{
-				    	Coordinate endpoint = new Coordinate(x, y-1, map.getIdentity(x, y-1));
-				    	this.setPosition(endpoint);
-				    	a=false;
-				    }
-				    break;
-			  case 6: 
-				    if((map.getIdentity(x-1, y-1)==1)||(map.getIdentity(x-1, y-1)==5)){
-				    }
-				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y-1, map.getIdentity(x-1, y-1));
-				    	this.setPosition(endpoint);
-				    	a=false;
-				    }
-				    break;
-			  case 7: 
-				    if((map.getIdentity(x-1, y)==1)||(map.getIdentity(x-1, y)==5)){
-				    }
-				    else{
-				    	Coordinate endpoint = new Coordinate(x-1, y, map.getIdentity(x-1, y));
-				    	this.setPosition(endpoint);
+				    	map.getStupid().translate(-1, 0);
 				    	a=false;
 				    }
 				    break;
@@ -139,6 +95,11 @@ public class Stupid extends Ghost {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		this.movetoPacMan(null);
+		
+	}
+	@Override
+	public void movetoPrison(Coordinate p) {
 		// TODO Auto-generated method stub
 		
 	}
