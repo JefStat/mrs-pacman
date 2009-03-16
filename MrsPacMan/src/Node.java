@@ -21,15 +21,15 @@ public class Node {
 	/**
 	 * heuristic function, the estimate of what it will take to get to the goal
 	 */
-    public double h;
+    public double goalEstimate;
     /**
      * sum of all the costs it took to get here
      */
-    public double g;
+    public double costPath;
     /**
-     * sum of h + g
+     * sum of goalEstimate + costPath
      */
-     public double f;
+     public double sum;
     /**
      * the previous node from the current node
      */
@@ -38,15 +38,15 @@ public class Node {
     /**
      * creates a constructor node
      * @param P is pacman's coordinate
-     * @param h is the estimate distance to pacman's location
-     * @param g estimates the cost to get to the position (i.e. is there a wall in the way)
+     * @param goalEstimate is the estimate distance to pacman's location
+     * @param costPath estimates the cost to get to the position (i.e. is there a wall in the way)
      * @param parent
      */
-    public Node(Coordinate P, double h, double g, Node parent){
+    public Node(Coordinate P, double goalEstimate, double costPath, Node parent){
     	this.position = P;
-        this.h = h;
-        this.g = g;
-        this.f = this.h + this.g;
+        this.goalEstimate = goalEstimate;
+        this.costPath = costPath;
+        this.sum = this.goalEstimate + this.costPath;
         this.parent = parent;
     }
     /**
