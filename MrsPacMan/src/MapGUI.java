@@ -41,6 +41,8 @@ public class MapGUI extends JFrame implements ActionListener {
 		saveMenu.add(exportMap);
 		MB.add(saveMenu);
 		setVisible(true);
+		setLayout(new BorderLayout());
+		this.add(new JLabel(new ImageIcon("logo.jpg")),BorderLayout.NORTH);
 	}
 
 	public MapGUI() {
