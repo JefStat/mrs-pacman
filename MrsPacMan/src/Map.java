@@ -30,7 +30,7 @@ public class Map {
 	/**
 	 * sets a constant default maximum for map
 	 */
-	public final static int MAX = 10;
+	public final static int MAX = 20;
 	/**
 	 * keeps track of the size of map
 	 */

@@ -1,5 +1,7 @@
 import java.util.Observable;
 
+import javax.swing.text.Position;
+
 /**
  * This Chaser class is the red ghost, whose behaviour is a shadow. This
  * character starts outside of the ghost prison at the start of the game. The
@@ -53,8 +55,9 @@ public class Chaser extends Character implements Ghost {
 	 * @param p takes pacMan position
 	 */
 	public void movetoPacMan(Coordinate p) {
-		path = new GhostPath(NAME,map);
-		map.setChaser(path.AStarSearch(p).getPosition());
+		//path = new GhostPath(NAME,map);
+		Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), map.getPacMan() );
+		map.setChaser( whereImGoing );
 	}
 	/**
 	 * returns the corner that Chaser runs to.

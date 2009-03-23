@@ -78,16 +78,7 @@ public class Coordinate extends Point{
 	 * @param obj is the corrdinate
 	 */
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Coordinate other = (Coordinate) obj;
-		if (identity != other.identity)
-			return false;
-		return true;
+		return ( this.getX() == ((Coordinate)obj).getX() && this.getY() == ((Coordinate)obj).getY());
 	}
 	
 }

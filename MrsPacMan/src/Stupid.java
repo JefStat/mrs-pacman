@@ -45,6 +45,11 @@ public class Stupid extends Character implements Ghost {
 	 * @param p is pacman's current location
 	 */
 	public void movetoPacMan(Coordinate p){
+		if (scared) {
+			
+			
+		}
+		
 		boolean a = true;
 		while(a){
 			Random r = new Random();

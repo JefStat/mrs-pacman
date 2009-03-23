@@ -18,40 +18,36 @@ public class GhostPath{
 	/** 
 	 * default one
 	 */
-	Hashtable open;
-    Hashtable closed;
-    /**
+	/**
      * creates the map
      */
-    Coordinate[][] map2;
+    //Coordinate[][] map2;
     /**
      * the identity of the item avoiding
      */
-    int[] identity;
+    //int[] identity;
     /**
      * The start and goal coordinates that are necessary to determine the location
      */
-    Coordinate startPosition, goalPosition;
+    //Coordinate startPosition, goalPosition;
     /**
      * Creates the default constructor to find the shortest path
      */
     public GhostPath(String name,Map m) {
-        map2 = m.getMap();
-        goalPosition = m.getPacMan();
-        if ("Pinky" == name){
-        	startPosition = m.getAmbusher();
-        }
-        if ("Inky" == name){
-        	startPosition = m.getFickle();	
-        }
-        if ("Blinky" == name){
-        	startPosition = m.getChaser();
-        }
-        if ("Clyde" == name){
-        	startPosition = m.getStupid();
-        }
-        open = new Hashtable(map2.length * map2[0].length);
-        closed = new Hashtable(map2.length * map2[0].length);
+        //map2 = m.getMap();
+        //goalPosition = m.getPacMan();
+        //if ("Pinky" == name){
+        //	startPosition = m.getAmbusher();
+        //}
+        //if ("Inky" == name){
+        //	startPosition = m.getFickle();	
+        //}
+        //if ("Blinky" == name){
+        //	startPosition = m.getChaser();
+        //}
+        //if ("Clyde" == name){
+        //	startPosition = m.getStupid();
+        //}
     }
     
     /**
@@ -64,7 +60,7 @@ public class GhostPath{
             int dx = Math.abs((int)goal.getX() - (int)start.getX());
             int dy = Math.abs((int)goal.getY() - (int)start.getY());
         
-            return (dx + dy);
+            return Math.sqrt( (dx*dx) + (dy*dy));
     }
 
     /**
@@ -74,7 +70,7 @@ public class GhostPath{
      * @param p is the current location of pacman
      * @return distance to traverse
      */
-    private double traverseDistance(Node node, Node newNode, Coordinate p) {
+    /*private double traverseDistance(Node node, Node newNode, Coordinate p) {
         if(p == null ) { // default agent
             Coordinate position1 = node.position, position2 = newNode.position;
             int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
@@ -82,100 +78,61 @@ public class GhostPath{
         } else {
         	return 0;
         }
-    }
+    }*/
   
     /**
      * Determines the shortest path to the goal
      * @param p pacman's location
      * @return shortest path to goal
      */
-    public Node AStarSearch(Coordinate p) {
+    public static Coordinate AStarSearch(Map map, Coordinate start, Coordinate goal) {
     
-        PriorityQueue openQueue = new PriorityQueue();
-        
-        /**
-         *  initialise a start node
-         */
-        Node startNode = new Node(startPosition, 0, pathDistanceEstimate(startPosition, goalPosition), null);
-                
-        openQueue.add(startNode);
-        open.put(startNode.position, startNode);
-        
-        /**
-         *  process the list until success or failure
-         */
-        while(openQueue.size() > 0) {
-        
-            Node newNode = (Node) openQueue.pop();
-            open.remove(newNode.position);
-         /**
-          *  if at a goal, we're done
-          */
-            if(newNode.position.equals(goalPosition)) {
-            	solve(newNode);
-            	return (Node)newNode;
-            } else {
-                Vector <Node> neighbours = getNeighbours(newNode);
-                for(int i = 0; i < neighbours.size(); i++) {
-                    Node newNode1 = (Node)neighbours.elementAt(i);
-                    double newDistanceEstimate = pathDistanceEstimate(newNode1.position, goalPosition);
-                    double newDistance = newNode.goalEstimate + traverseDistance(newNode, newNode1, p);
-                    double newTotal = newDistance + newDistanceEstimate;
-                                       
-                    Coordinate nnPosition = newNode1.position;
-                    Node holderO, holderC;
-                    holderO = (Node)open.get(nnPosition);
-                    holderC = (Node)closed.get(nnPosition);
-                    if(holderO != null && holderO.sum <= newTotal) {
-                        continue;
-                    } else if(holderC != null && holderC.sum <= newTotal) {
-                        continue;
-                    } else {
-                        // store the new or improved info
-                        newNode1.parent = newNode;
-                        newNode1.goalEstimate = newDistance;
-                        newNode1.costPath = newDistanceEstimate;
-                        newNode1.sum = newNode1.goalEstimate + newNode1.costPath;
-                        if(closed.get(nnPosition) != null) {
-                            closed.remove(nnPosition);
-                        }
-                        Node check = (Node)open.get(nnPosition);
-                        if(check != null) {
-                            openQueue.remove(check);
-                            open.remove(nnPosition);
-                        }
-                        openQueue.add(newNode1);
-                        open.put(nnPosition, newNode1);
-                        solve(newNode1);
-                        return (Node)newNode1;
-                        
-                    } 
-                    /**
-                     *  now done with node
-                     */
-                }
-                closed.put(newNode.position, newNode);
-      
-            }
-        }
-        return null; 
-        /**
-         *  failure            
-         */
-      }
+    	PriorityQueue pq = new PriorityQueue();
+    	Hashtable closed = new Hashtable();
+    	//build prioqueue of nodes, insert me
+    	pq.add(new Node(start, pathDistanceEstimate(start, goal), 0, null) );
+    	
+    	//while the queue is not empty
+    	
+    	while( pq.size() > 0 ) {
+    	
+    		//get best in queue
+    	
+    		Node best = pq.pop();
+    		//if this is goal, find solve(thisnode), return that coord
+    		if (best.position.equals(goal) ) {
+    			return solve(best).position;
+    		}
+    		//else
+    	
+    		//add all valid neighbours to queue
+    		Vector<Node> neighbours = getNeighbours(best, map, goal);
+    		for( int i =0; i < neighbours.size(); ++i) {
+    			if (!closed.contains( neighbours.elementAt(i)) ) {
+    				pq.add(neighbours.elementAt(i));
+    			}
+    		}
+    	
+    		//add this node to invalid
+    		closed.put(best, best);
+    		
+    	//start over
+    	}
+
+    	return null;    
+    }
     
 	/**
 	 * Checks the items next to Ghost to determine what the shortest path is
 	 * @param node the ghosts shortest path square
 	 * @return neighbours path of ghost
 	 */
-	private Vector <Node> getNeighbours(Node node) {
-		Coordinate nodePosition = node.position;
+	private static Vector <Node> getNeighbours(Node node, Map map, Coordinate goal) {
 		Vector <Node> neighbours = new Vector<Node>();
-		addConditional(neighbours, nodePosition, -1, 0);
-		addConditional(neighbours, nodePosition, 0, -1);
-		addConditional(neighbours, nodePosition, 0, 1);
-		addConditional(neighbours, nodePosition, 1, 0);
+		addConditional(map, goal, neighbours, node, -1, 0);
+		addConditional(map, goal, neighbours, node, 0, -1);
+		addConditional(map, goal, neighbours, node, 0, 1);
+		addConditional(map, goal, neighbours, node, 1, 0);
 		return neighbours;
 	}
 	/**
@@ -185,20 +142,21 @@ public class GhostPath{
 	 * @param x location of path
 	 * @param y location of path
 	 */
-	private void addConditional(Vector <Node> addTo, Coordinate position, int x, int y) {
-        int newX = position.x + x, newY = position.y + y;
-        if(newX < 0 || newX >= map2.length) {
+	private static void addConditional(Map map, Coordinate goal,  Vector <Node> addTo, Node parent, int x, int y) {
+        int newX = parent.position.x + x, newY = parent.position.y + y;
+        if(newX < 0 || newX >= map.getSize()) {
             return;
         }
-        if(newY < 0 || newY >= map2[0].length) {
+        if(newY < 0 || newY >= map.getSize()) {
             return;
         }
-
-        if(map2[newX][newY].getIdentity() == Coordinate.WALL) {
+        if(map.getIdentity(newX,newY) == Coordinate.WALL) {
             return;
         }
         
-        Node newNode = new Node(new Coordinate(newX, newY,map2[newX][newY].getIdentity()), 0, 0, null);
+        Coordinate newNodeCoord = new Coordinate(newX, newY, map.getIdentity(newX, newY)) ;
+        double newGoalEst = pathDistanceEstimate(newNodeCoord, goal);
+        Node newNode = new Node(newNodeCoord, newGoalEst, parent.costPath + 1, parent);
         addTo.addElement(newNode);
     }
 
@@ -207,15 +165,19 @@ public class GhostPath{
      * @param node the first square taken on the shortest path
      * @return shortest path with all elements taken into account
      */
-    private Vector <Node> solve(Node node) {
-        Vector <Node> solution = new Vector<Node>();        
-        solution.addElement(node);
-        while(node.parent != null) {
-            solution.insertElementAt(node.parent, 0);
-            node = node.parent;
+    private static Node solve(Node node) {
+        //Vector <Node> solution = new Vector<Node>();        
+        //solution.addElement(node);
+    	Node retVal = node;
+    	
+    	if( retVal.parent == null ) {
+    		return retVal;
+    	}
+    	
+        while(retVal.parent.parent != null) {
+            retVal = retVal.parent;
         }
-        
-        return solution;
+        return retVal;
     }
     
 }

@@ -41,7 +41,7 @@ public class Fickle extends Character implements Ghost{
 	/**
 	 * this is the path that fickle is on and checks the A* Algorithm for the fastest route to pacman
 	 */
-	private GhostPath path;
+	//private GhostPath path;
 	/**
 	 * keeps track of whether or not the ghost is scared
 	 */
@@ -54,7 +54,7 @@ public class Fickle extends Character implements Ghost{
 		this.name = NAME; //sets the name
 		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
 		onPath = false; //is not on pacman's oath
-		path = new GhostPath(NAME, map);//creates a new ghostpath
+		//path = new GhostPath(NAME, map);//creates a new ghostpath
 		setScared(false); //sets ghost is not scared
 	}
 	
@@ -73,7 +73,8 @@ public class Fickle extends Character implements Ghost{
 		int x = (int)map.getFickle().getX();
 		int y = (int)map.getFickle().getY();
 		if((map.getSize()-1)/4<=(Math.sqrt(GhostPath.pathDistanceEstimate(map.getFickle(), p)))){
-			this.setPosition(path.AStarSearch(p).getPosition());
+			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getFickle(), map.getPacMan());
+			this.setPosition(whereImGoing);
 			}
 		else{
 			if(onPath){
