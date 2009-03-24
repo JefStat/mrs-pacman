@@ -1,40 +1,48 @@
 <?xml version="1.0"?>
 <project>
-	<property name="src" location="src"/>
-	<property name="build" location="bin"/>
+
+	<property name="src" location="src/pacmangame"/>
+	<property name="build" location="bin/pacmangame"/>
+	<property name="srcTest" location="src/pacmanTest"/>
+	<property name="buildTest" location="bin/pacmanTest"/>
 	<property name="HandIn" location="../HandIn"/>
+	
 	<target name="makedirs" description="must run to make directory for jarIt,zipIt">
 		<delete dir="${HandIn}"/>
 		<mkdir dir="${HandIn}"/>
 	</target>
+	
 	<target name="compile">
 		<javac srcdir="${src}" destdir="${build}" fork="true" debug="on"/>
+		<!--<javac srcdir="${srcTest}" destdir="${buildTest}" fork="true" debug="on"/>-->
 	</target>
-	<target name="testIt"></target>
+	
+	<target name="testIt" depends="compile">
+		<!--<target name="testIt" depends="compile">
+			<junit printsummary="on" haltonfailure="on">
+				<batchtest>
+					<fileset dir="${buildTest}"/>	
+				</batchtest>
+			</junit>-->
+	</target>
+	
+	
 	<target name="jarIT" description="Builds the .jar excludes Test.class but includes the images">
 		<jar destfile="${HandIn}/MrsPacMan.jar" 
-			basedir="${build}" 
-			excludes="**Test.class">
+			basedir="bin"
+			excludes="**Test">
 			<manifest>
 				<attribute name="Built-By" value="Group Awesomeness"/>
 				<attribute name="Class-path" value="MrsPacMan.jar"/>
-				<attribute name="Main-class" value="PacManGame"/>
+				<attribute name="Main-Class" value="pacmangame.PacManGame"/>
 			</manifest>
-			<fileset dir="" includes="Blinky.gif,
-								cherry.jpg,
-								Clyde.gif,
-								empty.jpg,
-								Inky.gif,	
-								logo.jpg,
-								pacdot.jpg,
-								pacman.jpg,
-								Pinky.gif,
-								prison.jpg,
-								Wall.jpg"
-			/>
 		</jar>
 	</target>
-    <target name="zipIt" description="Zips only the src directory containing the .java files.">
-        <zip destfile="${HandIn}/MrsPacMan.zip" basedir="${src}"/>
+    
+	<target name="zipIt" description="Zips only the src directory containing the .java files.">
+        <zip destfile="${HandIn}/MrsPacMan.zip" basedir="${src}">
+        	<fileset dir="${srcTest}"/>
+        </zip>
     </target>
+
 </project>
