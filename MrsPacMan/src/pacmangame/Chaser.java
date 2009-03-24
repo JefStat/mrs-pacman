@@ -72,7 +72,7 @@ public class Chaser extends Character implements Ghost {
 	@Override
 	public void update(Observable o, Object arg) {
 		path = new GhostPath(NAME,map);
-		movetoPacMan((Coordinate) arg);
+		movetoPacMan(((NotifierObject)arg).getC());
 	} 
 
 	@Override

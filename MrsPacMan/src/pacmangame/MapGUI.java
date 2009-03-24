@@ -2,9 +2,11 @@ package pacmangame;
 /**
  * This class is the graphical user-interface of the map
  * 
- * Title: MapGUI Class version 0.1
- * @Date: March 4th, 2009
- * @Author: Nahim Nasser
+ * Title: MapGUI Class version 0.5
+ * @Date: March 30th, 2009
+ * @Author: Nahim Nasser, Jeff Statham
+ * 
+ * Added private class Map Observer to facilitate the linking of the observers and key event listeners. removed redunant inline comments. Changed the images to be applied as URLs was necessary for the .jar build in the build.xml to run independently
  */
 
 import java.awt.*;
@@ -12,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 
@@ -41,7 +45,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * 
 	 * @param label
 	 */
-	public MapGUI(String label) {
+	public MapGUI(String label, PacManGame pmg) {
 		super(label);
 		new WindowHandler(this); // create the listener
 
@@ -64,10 +68,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		this.add(new JLabel(new ImageIcon(LOGOJPG)), BorderLayout.NORTH);
 		input = new JTextField("NULL");
-	}
-
-	public MapGUI() {
-		this("");
+		new MapObserver(this, pmg);
 	}
 
 	public void setMap(Map x) {
@@ -175,15 +176,6 @@ public class MapGUI extends JFrame implements ActionListener {
 				}
 			}
 		}
-		// next few lines attempt to remove any existing label where a character
-		// is standing and insert .
-		/*
-		 * Internal.remove(MapLevel.getSize()(int)MapLevel.getPacMan().getX());
-		 * // not sure if this should be y axis instead Internal.add(new
-		 * JLabel(new ImageIcon("pacman.jpg")));
-		 * 
-		 * Idea failed array out of bounds error.
-		 */
 
 		Internal.validate(); // reloads all the labels.
 		Internal.setBackground(Color.BLACK);
@@ -198,7 +190,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * 
 	 * @param p
 	 */
-	public void updateGUI(PacManGame p) {
+	public void updateGUI(Map m) {
 		try {
 			Internal.setClosed(true);
 		} catch (PropertyVetoException e) {
@@ -206,12 +198,34 @@ public class MapGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		Internal.removeAll();
-		MapLevel = p.getMap(1); // I highly recommend that we move the actual
-		// passing of pacmangame to MAP, not mapGUI
-		// MAP should contain the current position of pacman and all the objects
-		// on the map
-		// an updateMAP function should be implemented in the MAP class.
+		MapLevel = m; 
 		buildGUI();
 		System.out.println(MapLevel.getPacdots());
+	}
+	private class MapObserver implements Observer {
+		
+		private MapGUI f;
+		
+		public MapObserver(MapGUI f, PacManGame pmg){
+			this.f = f;
+			pmg.addObserver(this);
+			this.f.setMap(pmg.getMap());
+			this.f.buildGUI();
+			f.addKeyListener(pmg);
+			f.Internal.addKeyListener(pmg);
+			f.input.addKeyListener(pmg);
+		}
+		
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			if (arg1 instanceof NotifierObject ){
+				if (((NotifierObject) arg1).getI() == 1)
+				{
+					f.dispose();
+				}else {
+				f.updateGUI(((NotifierObject) arg1).getM());
+				}
+			}
+		}
 	}
 }

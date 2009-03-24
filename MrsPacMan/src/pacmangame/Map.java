@@ -226,14 +226,7 @@ public class Map {
 	public void setAmbusher(Coordinate ambusher) {
 		this.ambusher = ambusher;
 	}
-	/**
-	 * returns map temporary for a* algorithm 
-	 *possibly deprecated?
-	 */
-	public Coordinate[][] getMap(){
-		return level;
-	}
-	
+
 	/**
 	 * Prints the map in a specified GUI
 	 * @param f is the frame for the map gui

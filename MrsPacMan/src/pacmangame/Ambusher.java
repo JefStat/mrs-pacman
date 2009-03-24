@@ -48,7 +48,7 @@ public class Ambusher extends Character implements Ghost {
 	 *  is pacman's position
 	 */
 	public void update(Observable o, Object arg) {
-		movetoPacMan((Coordinate)arg);
+		movetoPacMan(((NotifierObject)arg).getC());
 	}
 	/**
 	 * moves the ghost towards PacMan's position

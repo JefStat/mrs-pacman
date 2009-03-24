@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
+<!--
+This is a makefile for the java project PacManGame.
+
+Author Jef Statham
+Date 30th March, 2009
+
+Created targets to create a zipfile and jar file and compile the java contained in PacManGame
+ -->
 <project>
 
 	<property name="src" location="src/pacmangame"/>

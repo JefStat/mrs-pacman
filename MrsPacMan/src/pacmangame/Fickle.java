@@ -264,7 +264,7 @@ public class Fickle extends Character implements Ghost{
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		this.movetoPacMan(map.getPacMan());
+		this.movetoPacMan(((NotifierObject)arg1).getC());
 		
 	}
 

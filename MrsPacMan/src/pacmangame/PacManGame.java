@@ -1,5 +1,7 @@
 package pacmangame;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
@@ -42,10 +44,31 @@ import javax.swing.JOptionPane;
  * getters and setters. Added a class variable for PacMan. finished the JOptionPanes for movement.
  */
 
-public class PacManGame extends Observable {
+/**
+ * Class PacManGame
+ * 
+ * PacMangame runs the rules set for pacman currently accepting user input and
+ * notifying the other elements of the game that the user has taken an action.
+ * The class also starts the game based on limited user options and has the main
+ * method for running the program.
+ * 
+ * @Author: Jef Statham
+ * 
+ * Milestone 4
+ * @Date: March 30th, 2009
+ * 
+ * implemented a keyListner. up down left right and q keys watched. this is to allow the buttons on the frame to be pressed. Also removed the frame from pac man game. Each ghost was updated to use the new Notifier object that is pass during an update.
+ */
 
-	private static final String STARTMESSAGE = "Welcome to PacMan!\n Make your choice.";
-	private static final String GAMETITLE = "Mrs Pac Man";
+public class PacManGame extends Observable implements KeyListener{
+
+	private final String STARTMESSAGE = "Welcome to PacMan!\n Make your choice.";
+	private final String GAMETITLE = "Mrs Pac Man";
+	public static final int UP = 0;
+	public static final int LEFT = 1;
+	public static final int DOWN = 2;
+	public static final int RIGHT = 3;
+	public static final int EXIT = 4;
 	
 	protected Map map;
 	public PacMan myPacGirl;
@@ -80,21 +103,13 @@ public class PacManGame extends Observable {
 		startGame();
 
 	}
-
-	/**
-	 * This returns the current map that pacman is using
-	 * 
-	 * @return map that is currently in use by the game
-	 */
-	public Coordinate[][] getMap() {
-		return map.getMap();
-	}
+	
 	/**
 	 * gets the map that is currently in use with a set size
 	 * @param i is the size of the map
 	 * @return map, the size of the map
 	 */
-	public Map getMap(int i){
+	public Map getMap(){
 		return map;
 	}
 
@@ -118,13 +133,6 @@ public class PacManGame extends Observable {
 				JOptionPane.QUESTION_MESSAGE, null, startGameOptions,
 				startGameOptions[2]);
 
-		String[] movementOptions = { "Up\n", "Left", "Down", "Right","Exit" };
-		final int UP = 0;
-		final int LEFT = 1;
-		final int DOWN = 2;
-		final int RIGHT = 3;
-		final int EXIT = 4;
-
 		if ((choice == -1)) { // possibly need an assert or throwing and
 								// exception or make the window unable to be
 								// closed with red x aka unable to throw a -1
@@ -136,68 +144,7 @@ public class PacManGame extends Observable {
 		switch (choice) { // possibly smelly, suggestions welcome
 
 		case NEWGAME: { // display map wait for user input
-			MapGUI f = new MapGUI(GAMETITLE);// creates a MapGUI
-			f.setMap(map); // prints the MapGUI
-			f.buildGUI();
-			do {
-				int move = JOptionPane.showOptionDialog(null,
-						"Select direction", "Movement Box",
-						JOptionPane.DEFAULT_OPTION,
-						JOptionPane.INFORMATION_MESSAGE, null, movementOptions,
-						movementOptions[0]);
-
-				switch (move) {
-				case UP: {
-					if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.WALL)&&(map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.PRISON)){
-						map.getPacMan().translate(0, -1);
-					}
-					this.setChanged();
-					notifyObservers(map.getPacMan());
-					f.updateGUI(this);
-				}
-					break;
-				case LEFT: {
-					if ((map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.PRISON)){
-						map.getPacMan().translate(-1, 0);
-					}
-					
-					this.setChanged();
-					notifyObservers(map.getPacMan());
-					f.updateGUI(this);
-				}
-					break;
-				case DOWN: {
-					if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.PRISON)){
-						map.getPacMan().translate(0, 1);
-					}
-					
-					this.setChanged();
-					notifyObservers(map.getPacMan());
-					f.updateGUI(this);
-				}
-					break;
-				case RIGHT:{
-					if ((map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.PRISON) ){
-						map.getPacMan().translate(1, 0);
-					}
-					
-					this.setChanged();
-					notifyObservers(map.getPacMan());
-					f.updateGUI(this);
-				}
-					break;
-				case EXIT:{
-					f.dispose();					
-					return true;
-				}
-			}
-				} while ((myPacGirl.isAlive()) && (map.getPacdots() > 0));
-			if (map.getPacdots() == 0){
-				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);	
-			}else if (!(myPacGirl.isAlive())){
-				JOptionPane.showMessageDialog(null, "You lost!", "FAILED", JOptionPane.INFORMATION_MESSAGE);
-			}
-			f.dispose();
+			new MapGUI(GAMETITLE,this);// creates a MapGUI
 			return true;
 			}
 		/**
@@ -219,5 +166,68 @@ public class PacManGame extends Observable {
 	
 	public static void main(String[] args) {
 		new PacManGame();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+			int keycode = arg0.getKeyCode();
+			if (map.getPacdots() == 0){
+				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 1));
+			}else if (!(myPacGirl.isAlive())){
+				JOptionPane.showMessageDialog(null, "You lost!", "FAILED", JOptionPane.INFORMATION_MESSAGE);
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 1));
+			}
+			switch(keycode){
+			case KeyEvent.VK_UP:
+				if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.WALL)&&(map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() - 1) != Coordinate.PRISON)){
+					map.getPacMan().translate(0, -1);
+				}
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 0));
+				break;
+			case KeyEvent.VK_DOWN:
+				if ((map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX(), (int)map.getPacMan().getY() + 1) != Coordinate.PRISON)){
+					map.getPacMan().translate(0, 1);
+				}
+				
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 0));
+				break;
+			case KeyEvent.VK_LEFT:
+				if ((map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() - 1, (int)map.getPacMan().getY()) != Coordinate.PRISON)){
+					map.getPacMan().translate(-1, 0);
+				}
+				
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 0));
+				break;
+			case KeyEvent.VK_RIGHT:
+				if ((map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.WALL) && (map.getIdentity((int)map.getPacMan().getX() + 1, (int)map.getPacMan().getY()) != Coordinate.PRISON) ){
+					map.getPacMan().translate(1, 0);
+				}
+				
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 0));
+				break;
+			case KeyEvent.VK_Q:
+				this.setChanged();
+				notifyObservers(new NotifierObject(map.getPacMan(), map, 1));
+				break;
+		}
 	}
 }
