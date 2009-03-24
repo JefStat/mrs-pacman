@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project>
+	<property name="src" location="src"/>
+	<property name="build" location="bin"/>
+	<target name="compile">
+		<javac srcdir="${src}" destdir="${build}" fork="true" debug="on"/>
+	</target>
+	<target name="testIt"></target>
+	<target name="jarIT">
+		<jar destfile="MrsPacMan.jar" basedir="${build}" excludes="MrsPacMan.jar">
+			<manifest>
+				<attribute name="Built-By" value="Group Awesomeness"/>
+				<attribute name="Main-class" value="PacManGame"/>
+			</manifest>
+		</jar>
+	</target>
+</project>
