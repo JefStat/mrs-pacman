@@ -61,6 +61,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	@Override
 	/*
 	 * This is the code for the import map/export map button/menu
+	 * REPETITIVE CODE NEEDS TO BE REFACTORED
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		//IMPORT MENU BUTTON CODE
@@ -70,7 +71,7 @@ public class MapGUI extends JFrame implements ActionListener {
 			ok.setActionCommand("importok");
 			ok.addActionListener(this);
 			input = new JTextField();
-			input.setText("Enter File Name.Txt Here");
+			input.setText("enter filename.txt here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
@@ -86,7 +87,7 @@ public class MapGUI extends JFrame implements ActionListener {
 			ok.setActionCommand("exportok");
 			ok.addActionListener(this);
 			input = new JTextField();
-			input.setText("Enter File Name.Txt Here");
+			input.setText("enter filename.txt here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
@@ -97,23 +98,24 @@ public class MapGUI extends JFrame implements ActionListener {
 		}
 		//LISTENER WHEN OK IS PRESSED ON EXPORT POPUP
 		if ("exportok".equals(arg0.getActionCommand())) {
-			System.out.println("EXPORT OK PRESSED");
 			try {
 				MapLevel.ExportMap(input.getText());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("EXPORT OF " + input.getText() + " COMPLETED");
 		}
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
 			System.out.println("IMPORT OK PRESSED");
 			try {
-				MapLevel.ImportMap(input.getText());
+				MapLevel.ImportMap(input.getText()); //FLAW IN IMPORTMAP IN THE MAPCLASS NOTED. MUST BE EXPLORED 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("IMPORT OF " + input.getText() + " COMPLETED");
 		}
 		
 	}
