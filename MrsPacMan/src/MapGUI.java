@@ -62,11 +62,13 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * IMPLEMENTATION - IN PROGRESS
 	 */
 	public void actionPerformed(ActionEvent arg0) {
+		JTextField input = new JTextField("NULL");
 		if ("import".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Import Map");
 			JButton ok = new JButton("OK");
-			// ok.addActionListener(this);
-			JTextField input = new JTextField();
+			ok.setActionCommand("importok");
+			ok.addActionListener(this);
+			input = new JTextField();
 			input.setText("Enter File Name.Txt Here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
@@ -78,8 +80,9 @@ public class MapGUI extends JFrame implements ActionListener {
 		if ("export".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Export Map");
 			JButton ok = new JButton("OK");
-			// ok.addActionListener(this);
-			JTextField input = new JTextField();
+			ok.setActionCommand("exportok");
+			ok.addActionListener(this);
+			input = new JTextField();
 			input.setText("Enter File Name.Txt Here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
@@ -87,6 +90,24 @@ public class MapGUI extends JFrame implements ActionListener {
 			popup.add(ok);
 			popup.setVisible(true);
 			popup.pack();
+		}
+		//LISTENER WHEN OK IS PRESSED ON EXPORT POPUP
+		if ("exportok".equals(arg0.getActionCommand())) {
+			try {
+				MapLevel.ExportMap(input.getText());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
+		if ("importok".equals(arg0.getActionCommand())) {
+			try {
+				MapLevel.ImportMap(input.getText());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
