@@ -33,16 +33,19 @@ public class MapGUI extends JFrame implements ActionListener {
 		JMenu importMenu = new JMenu("Import");
 		MB.add(importMenu);
 		JMenuItem importMap = new JMenuItem("Map");
+		importMap.setActionCommand("import");
 		importMap.addActionListener(this);
 		importMenu.add(importMap);
 
 		JMenu saveMenu = new JMenu("Export");
 		JMenuItem exportMap = new JMenuItem("Export/Save Map");
+		exportMap.setActionCommand("export");
+		exportMap.addActionListener(this);
 		saveMenu.add(exportMap);
 		MB.add(saveMenu);
 		setVisible(true);
 		setLayout(new BorderLayout());
-		this.add(new JLabel(new ImageIcon("logo.jpg")),BorderLayout.NORTH);
+		this.add(new JLabel(new ImageIcon("logo.jpg")), BorderLayout.NORTH);
 	}
 
 	public MapGUI() {
@@ -59,18 +62,32 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * IMPLEMENTATION - IN PROGRESS
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		arg0.getSource();
-		JFrame popup = new JFrame("Import Map");
-		JButton ok = new JButton("OK");
-		// ok.addActionListener(this);
-		JTextField input = new JTextField();
-		input.setText("Enter File Name.Txt Here");
-		input.setVisible(true);
-		popup.setLayout(new FlowLayout());
-		popup.add(input);
-		popup.add(ok);
-		popup.setVisible(true);
-		popup.pack();
+		if ("import".equals(arg0.getActionCommand())) { // new
+			JFrame popup = new JFrame("Import Map");
+			JButton ok = new JButton("OK");
+			// ok.addActionListener(this);
+			JTextField input = new JTextField();
+			input.setText("Enter File Name.Txt Here");
+			input.setVisible(true);
+			popup.setLayout(new FlowLayout());
+			popup.add(input);
+			popup.add(ok);
+			popup.setVisible(true);
+			popup.pack();
+		}
+		if ("export".equals(arg0.getActionCommand())) { // new
+			JFrame popup = new JFrame("Export Map");
+			JButton ok = new JButton("OK");
+			// ok.addActionListener(this);
+			JTextField input = new JTextField();
+			input.setText("Enter File Name.Txt Here");
+			input.setVisible(true);
+			popup.setLayout(new FlowLayout());
+			popup.add(input);
+			popup.add(ok);
+			popup.setVisible(true);
+			popup.pack();
+		}
 	}
 
 	/**
@@ -87,16 +104,16 @@ public class MapGUI extends JFrame implements ActionListener {
 				if ((MapLevel.getPacMan().getX() == j)
 						&& (MapLevel.getPacMan().getY() == i)) {
 					Internal.add(new JLabel(new ImageIcon("pacman.jpg")));
-				}else if ((MapLevel.getChaser().getX() == j)
+				} else if ((MapLevel.getChaser().getX() == j)
 						&& (MapLevel.getChaser().getY() == i)) {
 					Internal.add(new JLabel(new ImageIcon("Blinky.gif")));
-				}else if ((MapLevel.getFickle().getX() == j)
+				} else if ((MapLevel.getFickle().getX() == j)
 						&& (MapLevel.getFickle().getY() == i)) {
 					Internal.add(new JLabel(new ImageIcon("Inky.gif")));
-				}else if ((MapLevel.getAmbusher().getX() == j)
+				} else if ((MapLevel.getAmbusher().getX() == j)
 						&& (MapLevel.getAmbusher().getY() == i)) {
 					Internal.add(new JLabel(new ImageIcon("Pinky.gif")));
-				}else if ((MapLevel.getStupid().getX() == j)
+				} else if ((MapLevel.getStupid().getX() == j)
 						&& (MapLevel.getStupid().getY() == i)) {
 					Internal.add(new JLabel(new ImageIcon("Clyde.gif")));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.WALL) {
@@ -117,7 +134,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		/*
 		 * Internal.remove(MapLevel.getSize()(int)MapLevel.getPacMan().getX());
 		 * // not sure if this should be y axis instead Internal.add(new
-		 * JLabel(new ImageIcon("pacman.jpg"))); 
+		 * JLabel(new ImageIcon("pacman.jpg")));
 		 * 
 		 * Idea failed array out of bounds error.
 		 */
@@ -144,7 +161,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		}
 		Internal.removeAll();
 		MapLevel = p.getMap(1); // I highly recommend that we move the actual
-								// passing of pacmangame to MAP, not mapGUI
+		// passing of pacmangame to MAP, not mapGUI
 		// MAP should contain the current position of pacman and all the objects
 		// on the map
 		// an updateMAP function should be implemented in the MAP class.
