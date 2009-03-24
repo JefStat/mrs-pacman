@@ -18,6 +18,7 @@ public class MapGUI extends JFrame implements ActionListener {
 
 	private Map MapLevel;
 	private JInternalFrame Internal;
+	private JTextField input;
 
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
@@ -46,6 +47,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		setVisible(true);
 		setLayout(new BorderLayout());
 		this.add(new JLabel(new ImageIcon("logo.jpg")), BorderLayout.NORTH);
+		input = new JTextField("NULL");
 	}
 
 	public MapGUI() {
@@ -58,11 +60,10 @@ public class MapGUI extends JFrame implements ActionListener {
 
 	@Override
 	/*
-	 * This is the code for the import map/export map button UNCOMPLETE
-	 * IMPLEMENTATION - IN PROGRESS
+	 * This is the code for the import map/export map button/menu
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		JTextField input = new JTextField("NULL");
+		//IMPORT MENU BUTTON CODE
 		if ("import".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Import Map");
 			JButton ok = new JButton("OK");
@@ -78,6 +79,7 @@ public class MapGUI extends JFrame implements ActionListener {
 			popup.setVisible(true);
 			popup.pack();
 		}
+		//EXPORT MENU BUTTON CODE
 		if ("export".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Export Map");
 			JButton ok = new JButton("OK");
@@ -97,7 +99,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		if ("exportok".equals(arg0.getActionCommand())) {
 			System.out.println("EXPORT OK PRESSED");
 			try {
-				MapLevel.ExportMap(input.getText());  //PROPERTY CHANGED LISTENERS MUST BE IMPLEMENTED
+				MapLevel.ExportMap(input.getText());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -113,6 +115,7 @@ public class MapGUI extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 
 	/**
