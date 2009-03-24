@@ -74,6 +74,7 @@ public class MapGUI extends JFrame implements ActionListener {
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
 			popup.add(ok);
+			popup.setResizable(false);
 			popup.setVisible(true);
 			popup.pack();
 		}
@@ -88,13 +89,15 @@ public class MapGUI extends JFrame implements ActionListener {
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
 			popup.add(ok);
+			popup.setResizable(false);
 			popup.setVisible(true);
 			popup.pack();
 		}
 		//LISTENER WHEN OK IS PRESSED ON EXPORT POPUP
 		if ("exportok".equals(arg0.getActionCommand())) {
+			System.out.println("EXPORT OK PRESSED");
 			try {
-				MapLevel.ExportMap(input.getText());
+				MapLevel.ExportMap(input.getText());  //PROPERTY CHANGED LISTENERS MUST BE IMPLEMENTED
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -102,6 +105,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		}
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
+			System.out.println("IMPORT OK PRESSED");
 			try {
 				MapLevel.ImportMap(input.getText());
 			} catch (Exception e) {
