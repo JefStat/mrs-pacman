@@ -69,10 +69,12 @@ public class MapTest extends TestCase {
 		}
 		assertEquals(30, regularmap.getSize());
 	}
-	
-	public void testtoXML(){
+	/**
+	 * test the toXML from map. with the import and export functionality
+	 */
+	public void testXML(){
 		
-		String MapXML =
+		String MapXML =	
 				"<Map size=10>\n" +
 				"\t1111111111\n" +
 				"\t1022222221\n" +
@@ -84,9 +86,30 @@ public class MapTest extends TestCase {
 				"\t1222222221\n" +
 				"\t1222222221\n" +
 				"\t1111111111\n" +
+				"\t<Character>\n" +
+				"\t\t<Name>PacMan</Name>\n" +
+				"\t\t<Coordinate>pacmangame.Coordinate[x=1,y=1]</Coordinate>\n" +
+				"\t</Character>\n" +
+				"\t<Character>\n" +
+				"\t\t<Name>Pinky</Name>\n" +
+				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>\n" +
+				"\t</Character>\n" +
+				"\t<Character>\n" +
+				"\t\t<Name>Blinky</Name>\n" +
+				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=4]</Coordinate>\n" +
+				"\t</Character>\n" +
+				"\t<Character>\n" +
+				"\t\t<Name>Inky</Name>\n" +
+				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>\n" +
+				"\t</Character>\n" +
+				"\t<Character>\n" +
+				"\t\t<Name>CLYDE</Name>\n" +
+				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>\n" +
+				"\t</Character>\n" +
 				"</Map>\n";
 		Map aMap = new Map(10);
 		assertEquals("MapXML should be the same string as \n" + MapXML, MapXML, aMap.toXML());
+		aMap.exportXML("test");
 	}
 
 }

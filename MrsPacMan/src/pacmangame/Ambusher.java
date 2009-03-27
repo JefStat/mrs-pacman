@@ -92,8 +92,8 @@ public class Ambusher extends Character implements Ghost {
 	public String toXML(){
 		String c = 
 			"<Character>\n" +
-			"\t<Name>"+this.name+"</name>\n" +
-			"\t<Coordinate>"+map.getAmbusher().toString()+"<Coordinate>\n" +
+			"\t<Name>"+this.name+"</Name>\n" +
+			"\t<Coordinate>"+map.getAmbusher().toString()+"</Coordinate>\n" +
 			"</Character>\n";
 		return c;
 	}

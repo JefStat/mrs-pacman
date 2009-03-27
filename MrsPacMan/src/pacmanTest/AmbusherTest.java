@@ -16,7 +16,7 @@ import junit.framework.TestCase;
 public class AmbusherTest extends TestCase {
 	//creates a new map
 	Map m = new Map();
-	//creates a new instanance of Ambusher
+	//creates a new instance of Ambusher
 	private Ambusher ghost = new Ambusher(m);
 
 	protected void setUp() throws Exception {

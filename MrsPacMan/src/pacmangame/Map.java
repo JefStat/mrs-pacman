@@ -23,9 +23,17 @@ package pacmangame;
  * pac man and checking there is a prison all the variables. 
  * 
  */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
-import java.io.*;
-import java.lang.Integer;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
 
 public class Map {
 	/**
@@ -300,7 +308,24 @@ public class Map {
 				outfile.close();
 
 	 }
+	 /**
+	  * XML file export creates a file with the toXML string
+	  */
+	 public void exportXML(String filename){
+		FileOutputStream output;
+		PrintStream p;
+		try {
+			output = new FileOutputStream(filename + ".xml");
+			p = new PrintStream(output);
+			p.print(this.toXML());
+			output.close();
+			p.close();
 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	 }
 	 /**
 	  * sets the map size
 	  * @param size is the size of the map to be set
@@ -345,6 +370,10 @@ public class Map {
 		}
 		return false;	
 	}
+	/**
+	 * Convert the map object to an xml document
+	 * @return the XML string ready to be output to a file
+	 */
 	public String toXML(){
 		String map = "<Map size="+this.getSize()+">\n";
 		for (int i=0; i<this.getSize(); i++){
@@ -354,7 +383,41 @@ public class Map {
 			}
 			map+="\n";
 		}
+		String[] pacman =  new PacMan(this).toXML().split("\\n");
+		for (int i=0; i<pacman.length;i++){
+			map += "\t" + pacman[i] + "\n";
+		}
+		String[] ambusher =  new Ambusher(this).toXML().split("\\n");
+		for (int i=0; i<ambusher.length;i++){
+			map += "\t" + ambusher[i] + "\n";
+		}
+		String[] chaser =  new Chaser(this).toXML().split("\\n");
+		for (int i=0; i<chaser.length;i++){
+			map += "\t" + chaser[i] + "\n";
+		}
+		String[] fickle =  new Fickle(this).toXML().split("\\n");
+		for (int i=0; i<fickle.length;i++){
+			map += "\t" + fickle[i] + "\n";
+		}
+		String[] stupid =  new Stupid(this).toXML().split("\\n");
+		for (int i=0; i<stupid.length;i++){
+			map += "\t" + stupid[i] + "\n";
+		}
 		map+="</Map>\n";
 		return map;
+	}
+	/**
+	 * Imports the xml file created from the toXML with exportXML 
+	 * @param file
+	 */
+	public void importXML(File file){
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser saxParser = factory.newSAXParser();
+			saxParser.parse(file, new PacManDefaultHandler());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

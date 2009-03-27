@@ -95,8 +95,8 @@ public class Chaser extends Character implements Ghost {
 	public String toXML(){
 		String c = 
 			"<Character>\n" +
-			"\t<Name>"+this.name+"</name>\n" +
-			"\t<Coordinate>"+map.getChaser().toString()+"<Coordinate>\n" +
+			"\t<Name>"+this.name+"</Name>\n" +
+			"\t<Coordinate>"+map.getChaser().toString()+"</Coordinate>\n" +
 			"</Character>\n";
 		return c;
 	}

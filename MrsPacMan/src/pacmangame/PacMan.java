@@ -61,8 +61,8 @@ public class PacMan extends Character {
 	public String toXML(){
 		String c = 
 			"<Character>\n" +
-			"\t<Name>"+name+"</name>\n" +
-			"\t<Coordinate>"+map.getPacMan().toString()+"<Coordinate>\n" +
+			"\t<Name>"+name+"</Name>\n" +
+			"\t<Coordinate>"+map.getPacMan().toString()+"</Coordinate>\n" +
 			"</Character>\n";
 		return c;
 	}
