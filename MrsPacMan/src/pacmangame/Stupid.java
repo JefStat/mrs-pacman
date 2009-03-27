@@ -127,5 +127,16 @@ public class Stupid extends Character implements Ghost {
 	public boolean isScared() {
 		return scared;
 	}
+	/**
+	 * toXML convert any character into it's XML object
+	 */
+	public String toXML(){
+		String c = 
+			"<Character>\n" +
+			"\t<Name>"+this.name+"</name>\n" +
+			"\t<Coordinate>"+map.getStupid().toString()+"<Coordinate>\n" +
+			"</Character>\n";
+		return c;
+	}
 	
 }

@@ -66,6 +66,20 @@ public class ChaserTest extends TestCase {
 		//checks that the ghost has moved to the proper location
 		assertEquals("Shoudld move Chaser ghost to the corner getSize()-1, getSize-1", m.getChaser(), corner);
 	}
+	/**
+	 * test the to XML string
+	 */
+	public void testtoXML(){
+		Map map = new Map();
+		Chaser chaser = new Chaser(map);
+		String XMLstring = 
+			"<Character>\n" +
+			"\t<name>Blinky</name>\n" +
+			"\t<Coordinate>"+map.getChaser().toString()+"</Coordinate>\n" +
+			"<Character>\n";
+		assertEquals("Should equal the XML string " + XMLstring, XMLstring , chaser.toXML());
+		
+	}
 	
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Chaser.class);

@@ -65,7 +65,20 @@ public class FickleTest extends TestCase {
 		//the ghost should have moved towards this corner
 		assertEquals("Should move fickle ghost to the corner getSize()-1, 0", m.getFickle(), corner);
 	}
-	
+	/**
+	 * test the toXML string
+	 */
+	public void testtoXML(){
+		Map map = new Map();
+		Fickle fickle = new Fickle(map);
+		String XMLstring = 
+			"<Character>\n" +
+			"\t<name>Inky</name>\n" +
+			"\t<Coordinate>"+map.getFickle().toString()+"</Coordinate>\n" +
+			"<Character>\n";
+		assertEquals("Should equal the XML string " + XMLstring, XMLstring , fickle.toXML());
+		
+	}
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Fickle.class);
 	}

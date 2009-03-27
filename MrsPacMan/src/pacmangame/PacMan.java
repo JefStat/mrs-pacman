@@ -55,4 +55,15 @@ public class PacMan extends Character {
 			this.setAlive(false);
 		}
 	}
+	/**
+	 * toXML convert any character into it's XML object
+	 */
+	public String toXML(){
+		String c = 
+			"<Character>\n" +
+			"\t<Name>"+name+"</name>\n" +
+			"\t<Coordinate>"+map.getPacMan().toString()+"<Coordinate>\n" +
+			"</Character>\n";
+		return c;
+	}
 }

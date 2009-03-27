@@ -54,6 +54,20 @@ public class StupidTest extends TestCase {
 		assertTrue("Shoudld move Stupid ghost to the corner MAX, 0", m.getStupid() == corner);
 	}
 	
+	/**
+	 * test the toXML string
+	 */
+	public void testtoXML(){
+		Map map = new Map();
+		Stupid stupid = new Stupid(map);
+		String XMLstring = 
+			"<Character>\n" +
+			"\t<name>Clyde</name>\n" +
+			"\t<Coordinate>"+map.getStupid().toString()+"</Coordinate>\n" +
+			"<Character>\n";
+		assertEquals("Should equal the XML string " + XMLstring, XMLstring , stupid.toXML());
+		
+	}
 	
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Stupid.class);

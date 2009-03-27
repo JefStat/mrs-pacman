@@ -300,12 +300,12 @@ public class Map {
 				outfile.close();
 
 	 }
-	 //what does this do for map? why can the public resize it? -jef
+
 	 /**
 	  * sets the map size
 	  * @param size is the size of the map to be set
 	  */
-	public void setSize(int size) {
+	private void setSize(int size) {
 		this.size = size;
 	}
 	/**
@@ -337,7 +337,6 @@ public class Map {
 	 * @param p is the coordinate location
 	 * @return true if position is changed
 	 */
-	
 	public boolean setIdentity(Coordinate p){
 		if ((getIdentity(p) > -1)&&(getIdentity(p)== Coordinate.PACDOT )){
 			level[(int)p.getX()][(int)p.getY()].setIdentity(Coordinate.EMPTY);
@@ -346,14 +345,16 @@ public class Map {
 		}
 		return false;	
 	}
-	// to lazy to implement will do if needed
-	/**
-	 * sets the identity at a specific coordinate, if PacMan eats powerpellet, fruit or PacDots, identity would change to empty space
-	 * @param x is the x point coordinate
-	 * @param y is the y point coordinate
-	 * @return true if the coordinate needs to be set and false if it does not
-	 */
-	public boolean setIdentity(int x, int y){
-		return false;
+	public String toXML(){
+		String map = "<Map size="+this.getSize()+">\n";
+		for (int i=0; i<this.getSize(); i++){
+			map+="\t";
+			for (int j=0; j<this.getSize(); j++){
+				map += this.getIdentity(i, j);
+			}
+			map+="\n";
+		}
+		map+="</Map>\n";
+		return map;
 	}
 }

@@ -1,8 +1,6 @@
 package pacmangame;
 import java.util.Observable;
 
-import javax.swing.text.Position;
-
 /**
  * This Chaser class is the red ghost, whose behaviour is a shadow. This
  * character starts outside of the ghost prison at the start of the game. The
@@ -33,10 +31,6 @@ public class Chaser extends Character implements Ghost {
 	 */
 	private Coordinate Corner;
 	/**
-	 * keeps track of the path that blinky is on
-	 */
-	private GhostPath path;
-	/**
 	 * keeps track of whether or not the ghost is scared
 	 */
 	private boolean scared;
@@ -47,7 +41,7 @@ public class Chaser extends Character implements Ghost {
 		super(m); //gets the current map in use
 		this.name = NAME; // sets the chaser name
 		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
-		path = new GhostPath(NAME, map); // sets the new ghost path
+		new GhostPath(NAME, map);
 		setScared(false);
 	}
 
@@ -71,7 +65,7 @@ public class Chaser extends Character implements Ghost {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		path = new GhostPath(NAME,map);
+		new GhostPath(NAME,map);
 		movetoPacMan(((NotifierObject)arg).getC());
 	} 
 
@@ -93,6 +87,18 @@ public class Chaser extends Character implements Ghost {
 	 */
 	public boolean isScared() {
 		return scared;
+	}
+	
+	/**
+	 * toXML convert any character into it's XML object
+	 */
+	public String toXML(){
+		String c = 
+			"<Character>\n" +
+			"\t<Name>"+this.name+"</name>\n" +
+			"\t<Coordinate>"+map.getChaser().toString()+"<Coordinate>\n" +
+			"</Character>\n";
+		return c;
 	}
 	
 }

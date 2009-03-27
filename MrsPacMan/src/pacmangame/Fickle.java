@@ -294,4 +294,15 @@ public class Fickle extends Character implements Ghost{
 	public Coordinate fickleCorner(){
 		return Corner;
 	}
+	/**
+	 * toXML convert any character into it's XML object
+	 */
+	public String toXML(){
+		String c = 
+			"<Character>\n" +
+			"\t<Name>"+this.name+"</name>\n" +
+			"\t<Coordinate>"+map.getFickle().toString()+"<Coordinate>\n" +
+			"</Character>\n";
+		return c;
+	}
 }

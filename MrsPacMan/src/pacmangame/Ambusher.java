@@ -86,5 +86,16 @@ public class Ambusher extends Character implements Ghost {
 		Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getAmbusher(), Corner);
 		map.setAmbusher(whereImGoing);
 	}
+	/**
+	 * toXML convert any character into it's XML object
+	 */
+	public String toXML(){
+		String c = 
+			"<Character>\n" +
+			"\t<Name>"+this.name+"</name>\n" +
+			"\t<Coordinate>"+map.getAmbusher().toString()+"<Coordinate>\n" +
+			"</Character>\n";
+		return c;
+	}
 
 }

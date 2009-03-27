@@ -34,4 +34,18 @@ public class PacManTest extends TestCase {
 		assertTrue("Should return true since PacMan is dead", pac.isAlive() == false);
 	}
 
+	/**
+	 * test the toXML string
+	 */
+	public void testtoXML(){
+		Map map = new Map();
+		PacMan pacman = new PacMan(map);
+		String XMLstring = 
+			"<Character>\n" +
+			"\t<name>PacMan</name>\n" +
+			"\t<Coordinate>"+map.getPacMan().toString()+"</Coordinate>\n" +
+			"<Character>\n";
+		assertEquals("Should equal the XML string " + XMLstring, XMLstring , pacman.toXML());
+		
+	}
 }

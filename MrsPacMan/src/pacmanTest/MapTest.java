@@ -70,6 +70,23 @@ public class MapTest extends TestCase {
 		assertEquals(30, regularmap.getSize());
 	}
 	
-
+	public void testtoXML(){
+		
+		String MapXML =
+				"<Map size=10>\n" +
+				"\t1111111111\n" +
+				"\t1022222221\n" +
+				"\t1222222221\n" +
+				"\t1222222221\n" +
+				"\t1222222221\n" +
+				"\t1222052221\n" +
+				"\t1222222221\n" +
+				"\t1222222221\n" +
+				"\t1222222221\n" +
+				"\t1111111111\n" +
+				"</Map>\n";
+		Map aMap = new Map(10);
+		assertEquals("MapXML should be the same string as \n" + MapXML, MapXML, aMap.toXML());
+	}
 
 }

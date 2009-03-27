@@ -62,6 +62,21 @@ public class AmbusherTest extends TestCase {
 		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", m.getAmbusher(), corner);
 	}
 	
+	/**
+	 *  test the to XML string
+	 */
+	public void testtoXML(){
+		Map map = new Map();
+		Ambusher ambusher = new Ambusher(map);
+		String XMLstring = 
+			"<Character>\n" +
+			"\t<name>Pinky</name>\n" +
+			"\t<Coordinate>"+map.getAmbusher().toString()+"</Coordinate>\n" +
+			"<Character>\n";
+		assertEquals("Should equal the XML string " + XMLstring, XMLstring , ambusher.toXML());
+		
+	}
+	
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(Ambusher.class);
 	}

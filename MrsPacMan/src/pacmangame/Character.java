@@ -29,7 +29,6 @@ import java.util.Observer;
 
 public abstract class Character implements Observer {
 	
-	
 	/**
 	 * the name of each character
 	 */
