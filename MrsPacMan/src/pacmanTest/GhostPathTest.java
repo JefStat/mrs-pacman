@@ -21,7 +21,7 @@ public class GhostPathTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testAStar() {
+	public void testGhostPath() {
 		fail("Not yet implemented");
 	}
 

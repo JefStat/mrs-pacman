@@ -270,7 +270,6 @@ public class Fickle extends Character implements Ghost{
 
 	@Override
 	public void movetoPrison(Coordinate p) {
-		// TODO Auto-generated method stub
 		
 	}
 	/**

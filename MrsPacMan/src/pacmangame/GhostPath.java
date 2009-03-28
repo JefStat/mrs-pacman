@@ -16,39 +16,11 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
  * @Author:Jen Kasun and Nicole Waldrum
  */
 public class GhostPath{
-	/** 
-	 * default one
-	 */
-	/**
-     * creates the map
-     */
-    //Coordinate[][] map2;
-    /**
-     * the identity of the item avoiding
-     */
-    //int[] identity;
-    /**
-     * The start and goal coordinates that are necessary to determine the location
-     */
-    //Coordinate startPosition, goalPosition;
+
     /**
      * Creates the default constructor to find the shortest path
      */
     public GhostPath(String name,Map m) {
-        //map2 = m.getMap();
-        //goalPosition = m.getPacMan();
-        //if ("Pinky" == name){
-        //	startPosition = m.getAmbusher();
-        //}
-        //if ("Inky" == name){
-        //	startPosition = m.getFickle();	
-        //}
-        //if ("Blinky" == name){
-        //	startPosition = m.getChaser();
-        //}
-        //if ("Clyde" == name){
-        //	startPosition = m.getStupid();
-        //}
     }
     
     /**
@@ -63,23 +35,6 @@ public class GhostPath{
         
             return Math.sqrt( (dx*dx) + (dy*dy));
     }
-
-    /**
-     * Checks the cost that it would to take the shortest path
-     * @param node first square of the shortest path
-     * @param newNode
-     * @param p is the current location of pacman
-     * @return distance to traverse
-     */
-    /*private double traverseDistance(Node node, Node newNode, Coordinate p) {
-        if(p == null ) { // default agent
-            Coordinate position1 = node.position, position2 = newNode.position;
-            int dx = Math.abs(position1.x - position2.x), dy = Math.abs(position1.y - position2.y);
-            return (dx + dy - 1);
-        } else {
-        	return 0;
-        }
-    }*/
   
     /**
      * Determines the shortest path to the goal
@@ -167,8 +122,6 @@ public class GhostPath{
      * @return shortest path with all elements taken into account
      */
     private static Node solve(Node node) {
-        //Vector <Node> solution = new Vector<Node>();        
-        //solution.addElement(node);
     	Node retVal = node;
     	
     	if( retVal.parent == null ) {
