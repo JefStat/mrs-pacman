@@ -76,16 +76,18 @@ public class MapTest extends TestCase {
 		
 		String MapXML =	
 				"<Map size=10>\n" +
-				"\t1111111111\n" +
-				"\t1022222221\n" +
-				"\t1222222221\n" +
-				"\t1222222221\n" +
-				"\t1222222221\n" +
-				"\t1222052221\n" +
-				"\t1222222221\n" +
-				"\t1222222221\n" +
-				"\t1222222221\n" +
-				"\t1111111111\n" +
+				"\t<Identities>" +
+				"\t\t1111111111\n" +
+				"\t\t1022222221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1222052221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1222222221\n" +
+				"\t\t1111111111\n" +
+				"\t</Identities>" +
 				"\t<Character>\n" +
 				"\t\t<Name>PacMan</Name>\n" +
 				"\t\t<Coordinate>pacmangame.Coordinate[x=1,y=1]</Coordinate>\n" +

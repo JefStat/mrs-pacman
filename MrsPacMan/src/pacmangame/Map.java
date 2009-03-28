@@ -375,14 +375,19 @@ public class Map {
 	 * @return the XML string ready to be output to a file
 	 */
 	public String toXML(){
-		String map = "<Map size="+this.getSize()+">\n";
+		String map = "<Map size="+this.getSize()+">\n" +
+				"\t<Identities>";
 		for (int i=0; i<this.getSize(); i++){
-			map+="\t";
+			map+="\t\t";
 			for (int j=0; j<this.getSize(); j++){
 				map += this.getIdentity(i, j);
 			}
 			map+="\n";
 		}
+		map += "\t</Identities>";
+		
+		//converts the toXML of each character into a string split at the new line to insert the extra tab
+		//for more complete formatting in the XML save file.
 		String[] pacman =  new PacMan(this).toXML().split("\\n");
 		for (int i=0; i<pacman.length;i++){
 			map += "\t" + pacman[i] + "\n";
@@ -407,17 +412,62 @@ public class Map {
 		return map;
 	}
 	/**
-	 * Imports the xml file created from the toXML with exportXML 
+	 * Imports the xml file created from the toXML with exportXML needs to run in the gui.
 	 * @param file
 	 */
 	public void importXML(File file){
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			SAXParser saxParser = factory.newSAXParser();
-			saxParser.parse(file, new PacManDefaultHandler());
+			PacManDefaultHandler parser = new PacManDefaultHandler();
+			saxParser.parse(file, parser);
+			parser.getMap();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	/**
+	 *  Set the map level to a Coordinate matrix will run a level validate on the matrix first 
+	 *  in next revision.
+	 *  
+	 * @param level2 a square matrix that is a valid level
+	 */
+	public void setLevel(Coordinate[][] level2) {
+		// TODO Auto-generated method stub
+		level = level2;
+	}
+	/**
+	 * Validates that a given matrix of Coordinate is a valid level following the following rules.
+	 * 
+	 * 1. the map is surrounded by 4 walls.
+	 * 2. no pacdot is unreachable. ie inclosed in walls.
+	 * 3. it has a prison.
+	 * 5. the level is square.
+	 * 
+	 * The method may fix the matrix to include any of the missing points or it may return false
+	 * if one of the rules fails.
+	 * 
+	 * @return true if level meets the rules false otherwise.
+	 */
+	private boolean validateLevel(Coordinate[][] level2){
+		return false;
+	}
+	/**
+	 * Validates that a given matrix of Coordinate is a valid level following the following rules.
+	 * 
+	 * 1. the map is surrounded by 4 walls.
+	 * 2. no pacdot is unreachable. ie inclosed in walls.
+	 * 3. it has a prison.
+	 * 4. the level is square.
+	 * 5.  all ghosts and pacman have a starting position.
+	 * 
+	 * The method may fix the matrix to include any of the missing points or it may return false
+	 * if one of the rules fails.
+	 * 
+	 * @return true if level meets the rules false otherwise.
+	 */
+	private boolean validateMap(Map m){
+		return false;
 	}
 }
