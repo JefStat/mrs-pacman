@@ -3,6 +3,8 @@ package pacmangame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -120,18 +122,17 @@ public class PacManGame extends Observable implements KeyListener{
 	 */
 	private boolean startGame() {
 		String[] startGameOptions = { // instructions options
-		"New Game", "Load Map", "Close" };
+		"New Game", "Close" };
 		final int NEWGAME = 0;
-		final int LOADMAP = 1;
-		final int CLOSE = 2;
-
+		final int CLOSE = 1;
+		ImageIcon Splash = new ImageIcon("splash.jpg"); //IMPLEMENT A SPLASH ICON ON THE OPTION PANE--- SHOULD BE DONE
 		/**
 		 * Opens a window with Title
 		 */
 		int choice = JOptionPane.showOptionDialog(null, STARTMESSAGE,
 				GAMETITLE, JOptionPane.DEFAULT_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, startGameOptions,
-				startGameOptions[2]);
+				startGameOptions[1]);
 
 		if ((choice == -1)) { // possibly need an assert or throwing and
 								// exception or make the window unable to be
@@ -150,13 +151,6 @@ public class PacManGame extends Observable implements KeyListener{
 		/**
 		 * This case may be obsolete and removed otherwise will be implemented
 		 */
-		case LOADMAP:{
-			//new PacManGame(Map.importMap(fileLocation));
-		}
-			
-			return true; // load a map functionality still to be determined.
-							// Load from a text document or open a text editor
-							// ect.
 		case CLOSE:
 			return true; // Do nothing
 
