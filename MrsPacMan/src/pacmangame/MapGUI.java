@@ -104,7 +104,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		//IMPORT MENU BUTTON CODE
 		if ("Create".equals(arg0.getActionCommand())) { // new
-			openEditor();
+			openEditor(MapLevel.getSize());
 		}
 		if ("Rules".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Rules");
@@ -241,9 +241,9 @@ public class MapGUI extends JFrame implements ActionListener {
 	/**
 	 * Editor Function, User controls element placement via a JTABLE implementation
 	 */
-	public void openEditor(){
+	public void openEditor(int size){
 		JFrame Editor = new JFrame("Editor");
-		JTable Table = new JTable();
+		JTable Table = new JTable(size,size);
 		Editor.setLayout(new BorderLayout());
 		Editor.add(Table, BorderLayout.CENTER);
 		Editor.pack();
