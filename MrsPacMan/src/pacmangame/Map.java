@@ -124,6 +124,9 @@ public class Map {
 		level[1][1].setIdentity(Coordinate.EMPTY);
 		setPacMan(level[1][1]);
 		NUMBEROFPACDOTS--;
+		//DEFAULT PLACE FOR POWERPELLET
+		level[2][2].setIdentity(Coordinate.POWERPELLET);
+		NUMBEROFPACDOTS--;
 		//create a starting point for ambusher, fickle stupid
 		this.fickle = new Coordinate(5,5,0);
 		this.ambusher = new Coordinate(5,5,0);
@@ -174,7 +177,6 @@ public class Map {
 		return chaser;
 		
 	}
-
 	/**
 	 * method sets where pacman starts on the map at the beginning of the game and
 	 * after PacMan dies and a new round begins

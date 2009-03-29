@@ -35,6 +35,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	private final URL PINKYGIF = this.getClass().getResource("Pinky.gif");
 	private final URL PRISONJPG = this.getClass().getResource("prison.jpg");
 	private final URL WALLJPG = this.getClass().getResource("wall.jpg");
+	private final URL POWERPELLETJPG = this.getClass().getResource("powerpellet.jpg");
 	private final URL SPLASHJPG = this.getClass().getResource("splash.jpg");
 	private final URL RULESJPG = this.getClass().getResource("rules.jpg");
 	
@@ -205,6 +206,8 @@ public class MapGUI extends JFrame implements ActionListener {
 					Internal.add(new JLabel(new ImageIcon(EMPTYJPG)));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.FRUIT) {
 					Internal.add(new JLabel(new ImageIcon(CHERRYJPG)));
+				} else if (MapLevel.getIdentity(j, i) == Coordinate.POWERPELLET) {
+					Internal.add(new JLabel(new ImageIcon(POWERPELLETJPG)));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.PRISON) {
 					Internal.add(new JLabel(new ImageIcon(PRISONJPG)));
 				} else if (MapLevel.getIdentity(j, i) == Coordinate.PACDOT) {
