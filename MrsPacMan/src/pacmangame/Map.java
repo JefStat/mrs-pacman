@@ -61,9 +61,15 @@ public class Map {
 	 */
 	private Coordinate pacMan;
 	/**
-	 * contains the location where each ghost is
+	 * contains the coordinate where powerpellet is
+	 */
+	private Coordinate powerpellet;
+	/**
 	 */
 	private Coordinate ambusher;
+	public Coordinate getPowerpellet() {
+		return powerpellet;
+	}
 	private Coordinate stupid;
 	private Coordinate fickle;
 	private Coordinate chaser;
@@ -84,7 +90,7 @@ public class Map {
 		this.setSize(s);
 		int i,j;
 		/**
-		 * Initialisation of all coordinates to empty space
+		 * Initialization of all coordinates to empty space
 		 */
 		for(i = 0; i < s; i++){
 			   for( j = 0; j < s; j++){
