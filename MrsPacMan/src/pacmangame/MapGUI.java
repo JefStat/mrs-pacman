@@ -35,6 +35,8 @@ public class MapGUI extends JFrame implements ActionListener {
 	private final URL PINKYGIF = this.getClass().getResource("Pinky.gif");
 	private final URL PRISONJPG = this.getClass().getResource("prison.jpg");
 	private final URL WALLJPG = this.getClass().getResource("wall.jpg");
+	private final URL SPLASHJPG = this.getClass().getResource("splash.jpg");
+	private final URL RULESJPG = this.getClass().getResource("rules.jpg");
 	
 	private Map MapLevel;
 	private JInternalFrame Internal;
@@ -64,6 +66,20 @@ public class MapGUI extends JFrame implements ActionListener {
 		exportMap.addActionListener(this);
 		saveMenu.add(exportMap);
 		MB.add(saveMenu);
+		
+		JMenu helpMenu = new JMenu("Help");
+		JMenuItem Rules = new JMenuItem("Rules");
+		Rules.setActionCommand("Rules");
+		Rules.addActionListener(this);
+		JMenuItem Credits = new JMenuItem("Credits");
+		Credits.setActionCommand("Credits");
+		Credits.addActionListener(this);
+		helpMenu.add(Rules);
+		helpMenu.add(Credits);
+		MB.add(helpMenu);
+		
+		
+		
 		setVisible(true);
 		setLayout(new BorderLayout());
 		this.add(new JLabel(new ImageIcon(LOGOJPG)), BorderLayout.NORTH);
@@ -82,6 +98,20 @@ public class MapGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		//IMPORT MENU BUTTON CODE
+		if ("Rules".equals(arg0.getActionCommand())) { // new
+			JFrame popup = new JFrame("Rules");
+			popup.setLayout(new BorderLayout());
+			popup.add(new JLabel(new ImageIcon(RULESJPG)), BorderLayout.CENTER);
+			popup.pack();
+			popup.setVisible(true);
+		}
+		if ("Credits".equals(arg0.getActionCommand())) { // new
+			JFrame popup = new JFrame("Credits");
+			popup.setLayout(new BorderLayout());
+			popup.add(new JLabel(new ImageIcon(SPLASHJPG)),BorderLayout.CENTER);
+			popup.pack();
+			popup.setVisible(true);
+		}
 		if ("import".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Import Map");
 			JButton ok = new JButton("OK");
