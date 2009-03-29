@@ -78,7 +78,12 @@ public class MapGUI extends JFrame implements ActionListener {
 		helpMenu.add(Credits);
 		MB.add(helpMenu);
 		
-		
+		JMenu editorMenu = new JMenu("Editor");
+		JMenuItem createMap = new JMenuItem("Create New Map");
+		createMap.setActionCommand("Create");
+		createMap.addActionListener(this);
+		editorMenu.add(createMap);
+		MB.add(editorMenu);
 		
 		setVisible(true);
 		setLayout(new BorderLayout());
@@ -98,6 +103,9 @@ public class MapGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		//IMPORT MENU BUTTON CODE
+		if ("Create".equals(arg0.getActionCommand())) { // new
+			openEditor();
+		}
 		if ("Rules".equals(arg0.getActionCommand())) { // new
 			JFrame popup = new JFrame("Rules");
 			popup.setLayout(new BorderLayout());
@@ -151,7 +159,6 @@ public class MapGUI extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("EXPORT OF " + input.getText() + " COMPLETED");
 		}
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
@@ -162,7 +169,6 @@ public class MapGUI extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("IMPORT OF " + input.getText() + " COMPLETED");
 		}
 		
 	}
@@ -232,6 +238,18 @@ public class MapGUI extends JFrame implements ActionListener {
 		buildGUI();
 		System.out.println(MapLevel.getPacdots());
 	}
+	/**
+	 * Editor Function, User controls element placement via a JTABLE implementation
+	 */
+	public void openEditor(){
+		JFrame Editor = new JFrame("Editor");
+		JTable Table = new JTable();
+		Editor.setLayout(new BorderLayout());
+		Editor.add(Table, BorderLayout.CENTER);
+		Editor.pack();
+		Editor.setVisible(true);
+	}
+	
 	private class MapObserver implements Observer {
 		
 		private MapGUI f;
