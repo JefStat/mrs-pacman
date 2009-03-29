@@ -33,10 +33,6 @@ public class StupidTest extends TestCase {
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Chasers name Blinky", ghost.getName(), "Blinky");
-		//sets the ghost coordinate to compare to the ghost's corner
-		Coordinate coordinate1 = new Coordinate(m.getSize() - 1, 0, 0);
-		//when a new ghost is created the corner coordinate is set
-		assertEquals("Returns the ghost's corner coordinate", ghost.stupidCorner() == coordinate1);
 	}
 	
 	//checks that the ghost moved to the actual direction/place it was suppose to
@@ -45,18 +41,6 @@ public class StupidTest extends TestCase {
 		ghost.movetoPacMan(point);
 		assertNotSame("Should move ghost so not same as previous point.", m.getStupid() == point);
 	}
-	
-	
-	/**
-	 * checks that stupid moves towards his corner properly
-	 */
-	/*
-	public void testStupidCorner() {
-		Coordinate corner = new Coordinate(m.getSize()-1, 0, m.getIdentity(m.getSize()-1, 0));
-		ghost.movetoPacMan(ghost.stupidCorner());
-		assertTrue("Shoudld move Stupid ghost to the corner MAX, 0", m.getStupid() == corner);
-	}*/
-	
 	/**
 	 * test the toXML string
 	 */

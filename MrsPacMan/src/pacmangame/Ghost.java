@@ -38,9 +38,4 @@ public interface Ghost {
 	 * @param P is pacman's current location
 	 */
 	public void movetoPacMan(Coordinate P);
-	/**
-	 * moves the ghost to prison after they are eaten
-	 * @param p is the location of the prison
-	 */
-	public void movetoPrison(Coordinate p);
 }

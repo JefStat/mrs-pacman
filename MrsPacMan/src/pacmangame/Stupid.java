@@ -16,6 +16,14 @@ import java.util.Random;
  * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Stupid.
+ * 
+ * Milestone 4
+ * @Date March 29, 2009
+ * @author Nicole Waldrum
+ * 
+ * Removed Corner and Prison as Ghost will move towards their corner during the update if they are scared so that
+ * method was unnecessary.  Also, since PacMan dies when he runs into a ghost and this is done elsewhere, the ghosts 
+ * dying when they are scared will just be re-initialized.
  */
 
 public class Stupid extends Character implements Ghost {
@@ -26,7 +34,7 @@ public class Stupid extends Character implements Ghost {
 	/**
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */
-	private Coordinate Corner;
+	private Coordinate Corner = new Coordinate(0,0,map.getIdentity(0,0));
 	/**
 	 * sets whether or not the ghost is scared
 	 */
@@ -38,7 +46,6 @@ public class Stupid extends Character implements Ghost {
 	public Stupid(Map m){
 		super(m); // current map in use
 		this.name = NAME; // sets the stupid name
-		Corner = new Coordinate(0,0,m.getIdentity(0,0)); //sets the corner for stupid
 		setScared(false);
 	}
 	/**
@@ -94,23 +101,16 @@ public class Stupid extends Character implements Ghost {
 			}
 		}
 	}
-		
 	/**
-	 * Returns the corner that Stupid goes to
-	 * @return stupid corner
+	 * Updates Stupid after PacMan has made a move so that the Stupid ghost may determine its move
 	 */
-	public Coordinate stupidCorner(){
-		return Corner;
-	}
-
 	@Override
 	public void update(Observable o, Object arg) {
+		if (scared){
+			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getStupid(), Corner);
+			map.setStupid(whereImGoing);
+		}
 		this.movetoPacMan(null);
-		
-	}
-	@Override
-	public void movetoPrison(Coordinate p) {
-		// TODO Auto-generated method stub
 		
 	}
 	/**

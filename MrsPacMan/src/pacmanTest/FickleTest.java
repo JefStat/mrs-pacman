@@ -35,10 +35,6 @@ public class FickleTest extends TestCase {
 		assertTrue("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Chasers name Inky", ghost.getName(), "Inky");
-		//sets the ghost coordinate to compare to the ghost's corner
-		Coordinate coordinate1 = new Coordinate(m.getSize()-1,0,0);
-		//when a new ghost is created the corner coordinate is set
-		assertEquals("Returns the ghost's corner coordinate", ghost.fickleCorner(), coordinate1);
 	}
 	
 	/**
@@ -52,18 +48,6 @@ public class FickleTest extends TestCase {
 		//verifies that ghost moved towards the new coordinate
 		assertNotSame("Should move ghost closer to PacMan so the ghost won't be in the same spot.", m.getFickle(), point);
 	}
-	
-	/**
-	 * checks that fickles corner is correct
-	 */
-	/*public void testFickleCorner() {
-		//sets the corner
-		Coordinate corner = new Coordinate(m.getSize()-1, 0, m.getIdentity(m.getSize()-1, 0));
-		//moves ghost towards the corner
-		ghost.
-		//the ghost should have moved towards this corner
-		assertEquals("Should move fickle ghost to the corner getSize()-1, 0", m.getFickle(), corner);
-	}*/
 	/**
 	 * test the toXML string
 	 */

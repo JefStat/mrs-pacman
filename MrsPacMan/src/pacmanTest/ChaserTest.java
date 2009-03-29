@@ -16,8 +16,7 @@ public class ChaserTest extends TestCase {
 	Map m = new Map();
 	//creates a new instanance of Chaser
 	private Chaser ghost = new Chaser(m);
-	//creates the coordinate where Chaser starts
-	Coordinate test = new Coordinate(5, 4, m.getIdentity(5,4));
+
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -36,10 +35,6 @@ public class ChaserTest extends TestCase {
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Chasers name Blinky", ghost.getName(), "Blinky");
-		//sets the ghost coordinate to compare to the ghost's corner
-		Coordinate coordinate1 = new Coordinate(m.getSize() - 1, m.getSize() - 1, 0);
-		//when a new ghost is created the corner coordinate is set
-		assertEquals("Returns the ghost has move from original point towards corner and thus not null", ghost.chaserCorner(), coordinate1);
 	}
 	
 	/**
@@ -53,20 +48,7 @@ public class ChaserTest extends TestCase {
 		//checks that the ghosts position and the point are the same
 		assertNotSame("Should move ghost so won't be in original position.", m.getChaser(), point);
 	}
-	
-	
-	/**
-	 * checks that chasers corner is correct
-	 */
-	/*
-	public void testChaserCorner() {
-		//sets the corner coordinates for the map
-		Coordinate corner = new Coordinate(m.getSize()-1, m.getSize()-1, m.getIdentity(m.getSize()-1, m.getSize()-1));
-		//moves the ghost to a new position
-		ghost.movetoPacMan(ghost.chaserCorner());
-		//checks that the ghost has moved to the proper location
-		assertEquals("Shoudld move Chaser ghost to the corner getSize()-1, getSize-1", m.getChaser(), corner);
-	}*/
+
 	/**
 	 * test the to XML string
 	 */

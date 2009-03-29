@@ -14,11 +14,19 @@ import java.util.Observable;
  * @Date: February 16, 2009
  * @Author: Nicole Waldrum and Jef Statham
  * 
- *          Milestone 3
+ * Milestone 3
  * @Date: March 7th, 2009
  * @Author: Jen Kasun and Nicole Waldrum
  * 
- *          Implemented all the methods for Chaser.
+ * Implemented all the methods for Chaser.
+ * 
+ * Milestone 4
+ * @Date: March 29th, 2009
+ * @Author: Nicole Waldrum
+ * 
+ * Removed the Corner method as Chaser moving to the corner will be determined
+ * during the update method and whether scared is true or not.  Prison method was 
+ * removed as when the ghost dies it will just be reinitialized.
  */
 
 public class Chaser extends Character implements Ghost {
@@ -29,7 +37,7 @@ public class Chaser extends Character implements Ghost {
 	/**
 	 * keeps track of the corner for blinky
 	 */
-	private Coordinate Corner;
+	private Coordinate Corner  = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);
 	/**
 	 * keeps track of whether or not the ghost is scared
 	 */
@@ -40,7 +48,6 @@ public class Chaser extends Character implements Ghost {
 	public Chaser(Map m) {
 		super(m); //gets the current map in use
 		this.name = NAME; // sets the chaser name
-		Corner = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);//sets chasers corner location
 		new GhostPath(NAME, map);
 		setScared(false);
 	}
@@ -50,30 +57,22 @@ public class Chaser extends Character implements Ghost {
 	 * @param p takes pacMan position
 	 */
 	public void movetoPacMan(Coordinate p) {
-		//path = new GhostPath(NAME,map);
 		Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), map.getPacMan() );
 		map.setChaser( whereImGoing );
 	}
 	/**
-	 * returns the corner that Chaser runs to.
-	 * 
-	 * @return chaser corner
+	 * Chaser determines the move based on PacMan's most recent movement and whether or not
+	 * scared is true.
 	 */
-	public Coordinate chaserCorner() {
-		return Corner;
-	}
-
 	@Override
 	public void update(Observable o, Object arg) {
+		if (scared){
+			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), Corner);
+			map.setChaser(whereImGoing);
+		}
 		new GhostPath(NAME,map);
 		movetoPacMan(((NotifierObject)arg).getC());
 	} 
-
-	@Override
-	public void movetoPrison(Coordinate p) {
-		// TODO Auto-generated method stub
-		
-	}
 	/**
 	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
 	 * @param scared true or false

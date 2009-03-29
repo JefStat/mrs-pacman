@@ -16,9 +16,15 @@ import java.util.Random;
  * @Author: Jen Kasun and Nicole Waldrum
  * 
  * Implemented all the methods for Fickle.
- * 
- * 
  * Fickle works just because it can.
+ * 
+ * Milestone 4
+ * @Date March 29th, 2009
+ * @Author Nicole Waldrum
+ * 
+ * Removed the Corner method since it was not necessary.  Fickle moving to the corner will be 
+ * based on whether or not scared it true.  This movement will be determined in update.  Prison 
+ * method was removed as the ghosts will just be reintialized.
  */
 
 
@@ -30,7 +36,7 @@ public class Fickle extends Character implements Ghost{
 	/**
 	 * this identifies the location of fickles corner when in scared or scatter mode
 	 */
-	private Coordinate Corner;
+	private Coordinate Corner = new Coordinate(map.getSize()-1,0,0);
 	/**
 	 * this checks if fickle is on a path towards pacman
 	 */
@@ -53,9 +59,7 @@ public class Fickle extends Character implements Ghost{
 	public Fickle(Map m){
 		super(m); //gets the current map
 		this.name = NAME; //sets the name
-		Corner = new Coordinate(map.getSize()-1,0,0);//sets the corner
-		onPath = false; //is not on pacman's oath
-		//path = new GhostPath(NAME, map);//creates a new ghostpath
+		onPath = false; //is not on pacman's path
 		setScared(false); //sets ghost is not scared
 	}
 	
@@ -262,14 +266,17 @@ public class Fickle extends Character implements Ghost{
 			}
 		}
 	}
+	/**
+	 * Ensures that Fickle makes a move according to PacMan's most recent movements and whether
+	 * or not Fickle is scared.
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		if (scared){
+			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getFickle(), Corner);
+			map.setFickle(whereImGoing);
+		}
 		this.movetoPacMan(((NotifierObject)arg1).getC());
-		
-	}
-
-	@Override
-	public void movetoPrison(Coordinate p) {
 		
 	}
 	/**
@@ -287,14 +294,8 @@ public class Fickle extends Character implements Ghost{
 		return scared;
 	}
 	/**
-	 * Returns the corner that Fickle runs to
-	 * @return fickle corner
-	 */
-	public Coordinate fickleCorner(){
-		return Corner;
-	}
-	/**
 	 * toXML convert any character into it's XML object
+	 * @return 
 	 */
 	public String toXML(){
 		String c = 

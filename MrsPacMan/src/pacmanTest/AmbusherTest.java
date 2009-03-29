@@ -37,10 +37,6 @@ public class AmbusherTest extends TestCase {
 		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Ambushers name Pinky", ghost.getName(), "Pinky");
-		//sets the ghost coordinate to compare to the ghost's corner
-		Coordinate coordinate1 = new Coordinate(0, m.getSize() - 1, 0);
-		//when a new ghost is created the corner coordinate is set
-		assertEquals("Returns the ghost's corner coordinate", ghost.ambusherCorner() == coordinate1);
 	}
 
 	/**
@@ -51,18 +47,6 @@ public class AmbusherTest extends TestCase {
 		ghost.movetoPacMan(point);
 		assertNotSame("Should move ghost so it won't be in the same place it was.", m.getAmbusher(), point);
 	}
-	
-	
-	/**
-	 * checks that ambushers corner is correct
-	 */
-	/*
-	public void testAmbusherCorner() {
-		Coordinate corner = new Coordinate(0, m.getSize()-1, m.getIdentity(0, m.getSize()-1));
-		ghost.movetoPacMan(ghost.ambusherCorner());
-		assertEquals("Shoudld move Ambusher ghost to the corner 0, getSize()-1", m.getAmbusher(), corner);
-	}*/
-	
 	/**
 	 *  test the to XML string
 	 */
