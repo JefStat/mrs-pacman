@@ -14,11 +14,21 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
  * Milestone 3
  * @Date: March 7, 2009
  * @Author:Jen Kasun and Nicole Waldrum
+ * 
+ * Implemented GhostPath so that it worked with the code of the PacMan Game
+ * 
+ * Milestone 4
+ * @Date: March 29th, 2009
+ * @Author: Nicole Waldrum
+ * 
+ * After discovering that the GhostPath didn't work and many hours of contemplation
+ * GhostPath was rewritten (And works).  The ghosts now find pacman (or any destination)
+ * that is put in as the goal position.
  */
 public class GhostPath{
 
     /**
-     * Creates the default constructor to find the shortest path
+     * gets the ghosts name and the map
      */
     public GhostPath(String name,Map m) {
     }
@@ -38,7 +48,9 @@ public class GhostPath{
   
     /**
      * Determines the shortest path to the goal
-     * @param p pacman's location
+     * @param map is the current map in use
+     * @param is the ghost's location
+     * @param goal pacman's location
      * @return shortest path to goal
      */
     public static Coordinate AStarSearch(Map map, Coordinate start, Coordinate goal) {
@@ -81,6 +93,8 @@ public class GhostPath{
 	/**
 	 * Checks the items next to Ghost to determine what the shortest path is
 	 * @param node the ghosts shortest path square
+	 * @param map is the map that is currently in used
+	 * @param goal is the position of PacMan
 	 * @return neighbours path of ghost
 	 */
 	private static Vector <Node> getNeighbours(Node node, Map map, Coordinate goal) {
@@ -93,6 +107,8 @@ public class GhostPath{
 	}
 	/**
 	 * Creates a list of the shortest paths based on the numbers calculated from PacMan
+	 * @param map is the current map in use
+	 * @param goal is PacMan's current position
 	 * @param addTo, puts item on node
 	 * @param position
 	 * @param x location of path
