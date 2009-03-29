@@ -38,6 +38,7 @@ public class MapGUI extends JFrame implements ActionListener {
 	private final URL POWERPELLETJPG = this.getClass().getResource("powerpellet.jpg");
 	private final URL SPLASHJPG = this.getClass().getResource("splash.jpg");
 	private final URL RULESJPG = this.getClass().getResource("rules.jpg");
+	private final URL EDITORJPG = this.getClass().getResource("editor.jpg");
 	
 	private Map MapLevel;
 	private JInternalFrame Internal;
@@ -249,8 +250,18 @@ public class MapGUI extends JFrame implements ActionListener {
 		JTable Table = new JTable(size,size);
 		Editor.setLayout(new BorderLayout());
 		Editor.add(Table, BorderLayout.CENTER);
+		JLabel Instructions = new JLabel(new ImageIcon(EDITORJPG));
+		Editor.add(Instructions, BorderLayout.SOUTH);
 		Editor.pack();
 		Editor.setVisible(true);
+		Table.setBackground(Color.BLACK);
+		Table.setForeground(Color.WHITE);
+		for(int i = 0; i < size; i++){
+			   for(int j = 0; j < size; j++){
+				  Table.setValueAt(MapLevel.getIdentity(i, j), i, j);
+			     }
+			   }
+		Editor.setSize(500, 675);
 	}
 	
 	private class MapObserver implements Observer {
