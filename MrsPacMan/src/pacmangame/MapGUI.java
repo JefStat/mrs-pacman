@@ -81,7 +81,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		MB.add(helpMenu);
 		
 		JMenu editorMenu = new JMenu("Editor");
-		JMenuItem createMap = new JMenuItem("Create New Map");
+		JMenuItem createMap = new JMenuItem("Open Map Editor");
 		createMap.setActionCommand("Create");
 		createMap.addActionListener(this);
 		editorMenu.add(createMap);
