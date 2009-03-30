@@ -465,6 +465,10 @@ public class Map {
 			NUMBEROFPACDOTS--;
 			return true;
 		}
+		else if ((getIdentity(p) > -1) && (getIdentity(p) == Coordinate.POWERPELLET)) {
+			level[(int) p.getX()][(int) p.getY()].setIdentity(Coordinate.EMPTY);
+			return true;
+		}
 		return false;
 	}
 
