@@ -198,10 +198,13 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			SAXParser saxParser = factory.newSAXParser();
 			PacManDefaultHandler parser = new PacManDefaultHandler();
 			saxParser.parse(file, parser);
-			//TODO Validate the map before using it.
+			if (parser.getMap().validateMap(parser.getMap())){
 			this.dispose();
 			new PacManGame(parser.getMap());
-			OpStatus.setText("Import Operation Complete");
+			OpStatus.setText("Import Operation Complete");}
+			else {
+				OpStatus.setText("IMPORTED MAP NOT VALID, UNABLE TO COMPLETE");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
