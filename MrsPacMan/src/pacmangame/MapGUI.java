@@ -13,12 +13,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 @SuppressWarnings("serial")
 public class MapGUI extends JFrame implements ActionListener, TableModelListener {
@@ -130,7 +133,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			ok.setActionCommand("importok");
 			ok.addActionListener(this);
 			input = new JTextField();
-			input.setText("enter filename.txt here");
+			input.setText("enter filename here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
@@ -146,7 +149,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			ok.setActionCommand("exportok");
 			ok.addActionListener(this);
 			input = new JTextField();
-			input.setText("enter filename.txt here");
+			input.setText("enter filename here");
 			input.setVisible(true);
 			popup.setLayout(new FlowLayout());
 			popup.add(input);
@@ -158,7 +161,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		//LISTENER WHEN OK IS PRESSED ON EXPORT POPUP
 		if ("exportok".equals(arg0.getActionCommand())) {
 			try {
-				MapLevel.ExportMap(input.getText());
+				MapLevel.exportXML(input.getText());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,15 +169,32 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		}
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
-			System.out.println("IMPORT OK PRESSED");
 			try {
-				MapLevel.ImportMap(input.getText()); //FLAW IN IMPORTMAP IN THE MAPCLASS NOTED. MUST BE EXPLORED 
+				importXML(input.getText()); //FLAW IN IMPORTMAP IN THE MAPCLASS NOTED. MUST BE EXPLORED 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
+	}
+	/**
+	 * Imports the xml file created from the toXML with exportXML needs to run in the gui.
+	 * @param file
+	 */
+	public void importXML(String filename){
+		File file = new java.io.File(filename+ ".xml");
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser saxParser = factory.newSAXParser();
+			PacManDefaultHandler parser = new PacManDefaultHandler();
+			saxParser.parse(file, parser);
+			MapLevel = parser.getMap();
+			updateGUI(MapLevel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void tableChanged(TableModelEvent arg0) {
 		RefreshOverload++;

@@ -433,22 +433,6 @@ public class Map {
 		return map;
 	}
 	/**
-	 * Imports the xml file created from the toXML with exportXML needs to run in the gui.
-	 * @param file
-	 */
-	public void importXML(File file){
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		try {
-			SAXParser saxParser = factory.newSAXParser();
-			PacManDefaultHandler parser = new PacManDefaultHandler();
-			saxParser.parse(file, parser);
-			parser.getMap();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	/**
 	 *  Set the map level to a Coordinate matrix will run a level validate on the matrix first 
 	 *  in next revision.
 	 *  
