@@ -91,6 +91,7 @@ public class PacMan extends Character {
 		//this updates the map to remove the powerpellet at pacmans location and sets scared
 		else if (identity == Coordinate.POWERPELLET){
 			map.setIdentity(map.getPacMan());
+			map.setScared(true);
 			score += POWER;
 			freeLife();
 		}
