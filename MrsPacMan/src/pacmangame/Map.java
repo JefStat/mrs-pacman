@@ -502,6 +502,7 @@ public class Map {
 	 * @return true if level meets the rules false otherwise.
 	 */
 	private boolean validateMap(Map m){
-		return false;
+		if (m.validateLevel(m.level, m.size) == true) return true;
+		else return false;
 	}
 }
