@@ -45,12 +45,12 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private final URL EDITORJPG = this.getClass().getResource("editor.jpg");
 	
 	private Map MapLevel;
-	private JInternalFrame Internal;
-	private JTextField input;
-	private JTable Table;
-	private int RefreshOverload;
-	private boolean skip = false;
-	private JLabel Lives;
+	private JInternalFrame Internal;//Internal frame that contains all the images
+	private JTextField input;//Input field for import/export pop-up box
+	private JTable Table; //Table field for map editor
+	private int RefreshOverload; //Optimization variable for map editor (so we don't over-render)
+	private boolean skip = false; //Optimization variable for map editor, to avoid re-rendering the entire map again
+	private JLabel Lives;//JLabel Lives displays the number of lives left, in the GUI.
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
 	 * 
@@ -194,6 +194,10 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Code for when a cell is changed in the map editor
+	 * Directly updates the Internal JFrame containing all the images
+	 */
 	public void tableChanged(TableModelEvent arg0) {
 		RefreshOverload++;
 		if (RefreshOverload >= MapLevel.getSize()*MapLevel.getSize() && skip == false){
@@ -211,6 +215,11 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		skip = false;
 		}
 	}
+	/**
+	 * Changes the number of lives displayed
+	 * in JLabel Lives
+	 * @param lives
+	 */
 	public void changeLives(int lives){
 		Lives.setText("Number Of Lives Left:" + lives);
 	}
