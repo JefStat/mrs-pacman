@@ -36,9 +36,9 @@ public class Stupid extends Character implements Ghost {
 	 */
 	private Coordinate Corner = new Coordinate(0,0,map.getIdentity(0,0));
 	/**
-	 * sets whether or not the ghost is scared
+	 * keeps track of the number of turns
 	 */
-	private boolean scared;
+	private int turns = 0;
 	/**
 	 * Default Constructor
 	 * @param m is the current map that is in use
@@ -46,14 +46,14 @@ public class Stupid extends Character implements Ghost {
 	public Stupid(Map m){
 		super(m); // current map in use
 		this.name = NAME; // sets the stupid name
-		setScared(false);
+		m.setScared(false);
 	}
 	/**
 	 * Moves Stupid towards PacMan as per the defined personality
 	 * @param p is pacman's current location
 	 */
 	public void movetoPacMan(Coordinate p){
-		if (scared) {
+		if (map.isScared()) {
 			
 			
 		}
@@ -106,26 +106,20 @@ public class Stupid extends Character implements Ghost {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		if (scared){
+		if (turns == 2){
+			turns = 0;
+		}
+		else if (map.getStupid() == map.getPrison()){
+			turns++;
+		}
+		if (map.isScared() && map.getStupid() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getStupid(), Corner);
 			map.setStupid(whereImGoing);
 		}
-		this.movetoPacMan(null);
+		else if (map.isScared()== false){
+			this.movetoPacMan(null);
+		}
 		
-	}
-	/**
-	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
-	 * @param scared true or false
-	 */
-	public void setScared(boolean scared) {
-		this.scared = scared;
-	}
-	/**
-	 * returns whether or not the ghost is scared
-	 * @return scared status of ghost
-	 */
-	public boolean isScared() {
-		return scared;
 	}
 	/**
 	 * toXML convert any character into it's XML object

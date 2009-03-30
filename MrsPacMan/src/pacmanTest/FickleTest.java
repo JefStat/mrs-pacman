@@ -31,8 +31,6 @@ public class FickleTest extends TestCase {
 	public void testFickle() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
 		assertNotNull("When a new Fickle is created it should no longer be null", m.getFickle() == null);
-		//When a new ghost is created isScared() is false
-		assertTrue("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Chasers name Inky", ghost.getName(), "Inky");
 	}

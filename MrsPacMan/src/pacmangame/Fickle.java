@@ -46,13 +46,9 @@ public class Fickle extends Character implements Ghost{
 	 */
 	private static int direction;
 	/**
-	 * this is the path that fickle is on and checks the A* Algorithm for the fastest route to pacman
+	 * keeps track of the number of turns
 	 */
-	//private GhostPath path;
-	/**
-	 * keeps track of whether or not the ghost is scared
-	 */
-	private boolean scared;
+	private int turns = 0;
 	/**
 	 * Default Constructor
 	 */
@@ -60,7 +56,7 @@ public class Fickle extends Character implements Ghost{
 		super(m); //gets the current map
 		this.name = NAME; //sets the name
 		onPath = false; //is not on pacman's path
-		setScared(false); //sets ghost is not scared
+		m.setScared(false);
 	}
 	
 	public boolean setPosition(Coordinate p){
@@ -272,26 +268,20 @@ public class Fickle extends Character implements Ghost{
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		if (scared){
+		if (turns == 2){
+			turns = 0;
+		}
+		else if (map.getFickle() == map.getPrison()){
+			turns++;
+		}
+		if (map.isScared() && map.getFickle() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getFickle(), Corner);
 			map.setFickle(whereImGoing);
 		}
-		this.movetoPacMan(((NotifierObject)arg1).getC());
+		else if (map.isScared() == false){
+			this.movetoPacMan(((NotifierObject)arg1).getC());
+	}
 		
-	}
-	/**
-	 * sets whether or not the ghost is scared based on PacMan eating a powerpellet
-	 * @param scared
-	 */
-	public void setScared(boolean scared) {
-		this.scared = scared;
-	}
-	/**
-	 * returns whether or not the ghost is scared based on PacMan eating a powerpellet
-	 * @return ghost status of scared
-	 */
-	public boolean isScared() {
-		return scared;
 	}
 	/**
 	 * toXML convert any character into it's XML object

@@ -33,18 +33,18 @@ public class Ambusher extends Character implements Ghost {
 	/**
 	 * sets the corner location for ambusher
 	 */
-	private Coordinate Corner = new Coordinate(0, map.getSize() - 1, 0);
+	private Coordinate Corner = new Coordinate(0, map.getSize() - 2, map.getIdentity(0, map.getSize()-2));
 	/**
-	 * tracks whether or not the ghost is scared
+	 * counts the number of turns
 	 */
-	private boolean scared;
+	private int turns = 0;
 	/**
 	 * Default Constructor, creates the Ambusher ghost
 	 */
 	public Ambusher(Map m) {
 		super(m); // imports the map
 		this.name = NAME;
-		setScared(false); //ghost is not scared
+		m.setScared(false);
 	}
 	/**
 	 * updates the Ambusher class for each move based on PacMan's movement and whether or not
@@ -54,11 +54,19 @@ public class Ambusher extends Character implements Ghost {
 	 *  is pacman's position
 	 */
 	public void update(Observable o, Object arg) {
-		if (scared){
+		if (turns ==2){
+			turns = 0;
+		}
+		else if (map.getAmbusher() == map.getPrison()){
+			turns++;
+		}
+		if (map.isScared() && map.getAmbusher() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getAmbusher(), Corner);
 			map.setAmbusher(whereImGoing);
 		}
-		movetoPacMan(((NotifierObject)arg).getC());
+		else if (map.isScared() == false){
+			movetoPacMan(((NotifierObject)arg).getC());
+		}
 	}
 	/**
 	 * moves the ghost towards PacMan's position
@@ -66,20 +74,6 @@ public class Ambusher extends Character implements Ghost {
 	public void movetoPacMan(Coordinate P) {
 		Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getAmbusher(), map.getPacMan());
 		map.setAmbusher(whereImGoing);
-	}
-	/**
-	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
-	 * @param scared true or false
-	 */
-	public void setScared(boolean scared) {
-		this.scared = scared;
-	}
-	/**
-	 * returns whether or not the ghost is scared
-	 * @return scared status of ghost
-	 */
-	public boolean isScared() {
-		return scared;
 	}
 	/**
 	 * toXML convert any character into it's XML object

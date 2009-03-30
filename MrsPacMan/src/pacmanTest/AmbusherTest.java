@@ -33,8 +33,6 @@ public class AmbusherTest extends TestCase {
 	public void testAmbusher() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
 		assertNotNull("When a new Ambusher is created it should no longer be null", m.getAmbusher() == null);
-		//When a new ghost is created isScared() is false
-		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Ambushers name Pinky", ghost.getName(), "Pinky");
 	}

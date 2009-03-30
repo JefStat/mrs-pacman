@@ -29,8 +29,6 @@ public class StupidTest extends TestCase {
 	public void testStupid() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
 		assertNotNull("When a new Chaser is created it is not null", m.getChaser() == null);
-		//When a new ghost is created isScared() is false
-		assertFalse("When a new ghost is created it isn't scared", ghost.isScared() == false);
 		//when a new ghost is created the name is set
 		assertEquals("Chasers name Blinky", ghost.getName(), "Blinky");
 	}
