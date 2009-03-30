@@ -62,17 +62,12 @@ public class Map {
 	 */
 	private Coordinate pacMan;
 	/**
-	 * contains the coordinate where powerpellet is
+	 * if a ghost is scared is
 	 */
-	private Coordinate powerpellet;
+	private boolean scared;
 	/**
 	 */
 	private Coordinate ambusher;
-
-	public Coordinate getPowerpellet() {
-		return powerpellet;
-	}
-
 	private Coordinate stupid;
 	private Coordinate fickle;
 	private Coordinate chaser;
@@ -601,5 +596,19 @@ public class Map {
 			return true;
 		else
 			return false;
+	}
+	/**
+	 * sets whether or not the ghost is scared from PacMan eating PowerPellet
+	 * @param scared true or false
+	 */
+	public void setScared(boolean scared) {
+		this.scared = scared;
+	}
+	/**
+	 * returns whether or not the ghost is scared
+	 * @return scared status of ghost
+	 */
+	public boolean isScared() {
+		return scared;
 	}
 }
