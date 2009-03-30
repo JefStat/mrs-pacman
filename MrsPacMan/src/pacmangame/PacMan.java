@@ -49,6 +49,15 @@ public class PacMan extends Character {
 	 */
 	private int lives = DEFAULTLIVES;
 	/**
+	 * keeps track of the players score
+	 */
+	private int score = 0;
+	
+	private int DOT = 10;
+	private int POWER = 50;
+	private int GHOST = 40;
+	private int FRUIT = 80;
+	/**
 	 * Creates a new PacMan object
 	 * @param m is the current map in use
 	 */
@@ -75,11 +84,15 @@ public class PacMan extends Character {
 		int identity =	map.getIdentity(map.getPacMan());
 		//this updates the map to remove the pacdot at pacmans location
 		if (identity == Coordinate.PACDOT){
-			map.setIdentity(map.getPacMan());	
+			map.setIdentity(map.getPacMan());
+			score += DOT;
+			freeLife();
 		}
 		//this updates the map to remove the powerpellet at pacmans location and sets scared
 		else if (identity == Coordinate.POWERPELLET){
 			map.setIdentity(map.getPacMan());
+			score += POWER;
+			freeLife();
 		}
 		// the following kills pac man when he lands on a ghost
 		if ((map.isScared() == false) && (map.getAmbusher().equals(map.getPacMan()))||(map.getChaser().equals(map.getPacMan()))||(map.getFickle().equals(map.getPacMan()))||(map.getStupid().equals(map.getPacMan()))){
@@ -96,21 +109,29 @@ public class PacMan extends Character {
 		else if (map.isScared() == true && (map.getAmbusher().equals(map.getPacMan()))){
 			map.setAmbusher(map.getPrison());
 			map.setScared(false);
+			score += GHOST;
+			freeLife();
 		}
 		//the following kills chaser if pacman ate a powerpellet
 		else if(map.isScared() == true && (map.getChaser().equals(map.getPacMan()))){
 			map.setChaser(map.getPrison());
 			map.setScared(false);
+			score += GHOST;
+			freeLife();
 		}
 		//the following kills fickle if pacman ate a powerpellet
 		else if(map.isScared() == true && (map.getFickle().equals(map.getPacMan()))){
 			map.setFickle(map.getPrison());
 			map.setScared(false);
+			score += GHOST;
+			freeLife();
 		}
 		//the following kills stupid if pacman ate a powerpellet 
 		else if(map.isScared() == true && (map.getStupid().equals(map.getPacMan()))){
 			map.setStupid(map.getPrison());
 			map.setScared(false);
+			score += GHOST;
+			freeLife();
 		}
 	}
 	/**
@@ -123,5 +144,10 @@ public class PacMan extends Character {
 			"\t<Coordinate>"+map.getPacMan().toString()+"</Coordinate>\n" +
 			"</Character>\n";
 		return c;
+	}
+	public void freeLife(){
+		if (score == 100){
+			lives++;
+		}
 	}
 }
