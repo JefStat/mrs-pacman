@@ -341,6 +341,15 @@ public class Map {
 	private void setSize(int size) {
 		this.size = size;
 	}
+	
+	public void refreshPacdots(){
+		NUMBEROFPACDOTS = 0;
+		for(int i = 0; i < getSize(); i++){
+			   for(int j = 0; j < getSize(); j++){
+				   if (level[j][i].getIdentity() == Coordinate.PACDOT){NUMBEROFPACDOTS++;}
+			     }
+			   }
+	}
 	/**
 	 * Get an identity from map location int x and y returns -1 if out of bounds
 	 * @param x is the x point of the coordinate
@@ -377,6 +386,10 @@ public class Map {
 			return true;
 		}
 		return false;	
+	}
+	
+	public void changeIdentity(int x, int y, int identity){
+		level[x][y].setIdentity(identity);
 	}
 	/**
 	 * Convert the map object to an xml document

@@ -16,11 +16,12 @@ import java.beans.PropertyVetoException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 @SuppressWarnings("serial")
-public class MapGUI extends JFrame implements ActionListener {
+public class MapGUI extends JFrame implements ActionListener, TableModelListener {
 	/**
 	 * These are the URLs for all the image icons
 	 */
@@ -43,6 +44,8 @@ public class MapGUI extends JFrame implements ActionListener {
 	private Map MapLevel;
 	private JInternalFrame Internal;
 	private JTextField input;
+	private JTable Table;
+	private int RefreshOverload;
 
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
@@ -173,7 +176,18 @@ public class MapGUI extends JFrame implements ActionListener {
 		}
 		
 	}
-
+	public void tableChanged(TableModelEvent arg0) {
+		RefreshOverload++;
+		if (RefreshOverload >= MapLevel.getSize()*MapLevel.getSize()){
+		int column = arg0.getColumn();
+		int row = arg0.getLastRow();
+		String input = (String)Table.getModel().getValueAt(row, column);
+		Integer iden = new Integer(input);
+		int identity = iden.intValue();
+		MapLevel.changeIdentity(column,row,identity);
+		MapLevel.refreshPacdots();
+		updateGUI(MapLevel);}
+	}
 	/**
 	 * Builds the internal frame of the map containing all the graphics Images
 	 * are stored as icons on JLabels
@@ -246,8 +260,9 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * @param size passed for the size of the array
 	 */
 	public void openEditor(int size){
+		RefreshOverload = 0;
 		JFrame Editor = new JFrame("Editor");
-		JTable Table = new JTable(size,size);
+		Table = new JTable(size,size);
 		Editor.setLayout(new BorderLayout());
 		Editor.add(Table, BorderLayout.CENTER);
 		JLabel Instructions = new JLabel(new ImageIcon(EDITORJPG));
@@ -256,9 +271,10 @@ public class MapGUI extends JFrame implements ActionListener {
 		Editor.setVisible(true);
 		Table.setBackground(Color.BLACK);
 		Table.setForeground(Color.WHITE);
+		Table.getModel().addTableModelListener(this);
 		for(int i = 0; i < size; i++){
 			   for(int j = 0; j < size; j++){
-				  Table.setValueAt(MapLevel.getIdentity(i, j), j, i);
+				  Table.setValueAt(""+ MapLevel.getIdentity(i, j), j, i);
 			     }
 			   }
 		Editor.setSize(500, 675);
