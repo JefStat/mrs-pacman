@@ -50,7 +50,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private JTable Table;
 	private int RefreshOverload;
 	private boolean skip = false;
-
+	private JLabel Lives;
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
 	 * 
@@ -97,6 +97,8 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		setVisible(true);
 		setLayout(new BorderLayout());
 		this.add(new JLabel(new ImageIcon(LOGOJPG)), BorderLayout.NORTH);
+		Lives = new JLabel("Number Of Lives Left:");
+		this.add(Lives,BorderLayout.SOUTH);
 		input = new JTextField("NULL");
 		new MapObserver(this, pmg);
 	}
@@ -213,6 +215,9 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		else {System.out.println("INPUT TOO LARGE ERROR");}
 		skip = false;
 		}
+	}
+	public void changeLives(int lives){
+		Lives.setText("Number Of Lives Left:" + lives);
 	}
 	/**
 	 * Builds the internal frame of the map containing all the graphics Images
