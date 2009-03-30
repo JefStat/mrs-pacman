@@ -52,6 +52,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private boolean skip = false; //Optimization variable for map editor, to avoid re-rendering the entire map again
 	private JLabel Lives;//JLabel Lives displays the number of lives left, in the GUI.
 	private JLabel OpStatus; //JLabel that displays status of the import/export operation
+	private JFrame popup; //this creates a window for receiving file name input
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
 	 * 
@@ -128,7 +129,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	 * @param actioncommand -- actioncommand string
 	 */
 	private void CreateButtonPopup(String label, String actioncommand){
-		JFrame popup = new JFrame(label);
+		popup = new JFrame(label);
 		JButton ok = new JButton("OK");
 		ok.setActionCommand(actioncommand);
 		ok.addActionListener(this);
@@ -177,6 +178,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
 			try {
+				popup.dispose();
 				importXML(input.getText());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -197,8 +199,8 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			PacManDefaultHandler parser = new PacManDefaultHandler();
 			saxParser.parse(file, parser);
 			//TODO Validate the map before using it.
-			MapLevel = parser.getMap();
-			updateGUI(MapLevel);
+			this.dispose();
+			new PacManGame(parser.getMap());
 			OpStatus.setText("Import Operation Complete");
 		} catch (Exception e) {
 			e.printStackTrace();
