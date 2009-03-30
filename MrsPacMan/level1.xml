@@ -1,0 +1,42 @@
+<Map size=20>
+	<Identities>		11111111111111111111
+		10222222222222222221
+		12322222222222224221
+		12211111111222422221
+		12212212222222222221
+		12210512222224324221
+		12212212222222222221
+		12212222222221221221
+		12211111111221221221
+		12222222221221221221
+		12222222221221221221
+		12211111111221221221
+		12212222222221111221
+		12221222222221222221
+		12222122222222222221
+		12222212222222222221
+		12222221222222222221
+		11111111111112322221
+		13223224322222222221
+		11111111111111111111
+	</Identities>	<Character>
+		<Name>PacMan</Name>
+		<Coordinate>pacmangame.Coordinate[x=1,y=1]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Pinky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Blinky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=4]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Inky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+	<Character>
+		<Name>CLYDE</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+</Map>
