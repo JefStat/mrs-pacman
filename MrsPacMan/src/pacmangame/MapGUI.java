@@ -51,6 +51,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private int RefreshOverload; //Optimization variable for map editor (so we don't over-render)
 	private boolean skip = false; //Optimization variable for map editor, to avoid re-rendering the entire map again
 	private JLabel Lives;//JLabel Lives displays the number of lives left, in the GUI.
+	private JLabel OpStatus; //JLabel that displays status of the import/export operation
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
 	 * 
@@ -131,11 +132,13 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		input = new JTextField();
 		input.setText("enter filename here");
 		input.setVisible(true);
-		popup.setLayout(new FlowLayout());
-		popup.add(input);
-		popup.add(ok);
+		popup.setLayout(new BorderLayout());
+		popup.add(input, BorderLayout.CENTER);
+		popup.add(ok, BorderLayout.EAST);
 		popup.setResizable(false);
 		popup.setVisible(true);
+		OpStatus = new JLabel("Opearation Status: Waiting for input and validation");
+		popup.add(OpStatus,BorderLayout.SOUTH);
 		popup.pack();
 	}
 	@Override
@@ -166,6 +169,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			OpStatus.setText(MapLevel.getOperationStatus());
 		}
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
@@ -174,6 +178,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			OpStatus.setText(MapLevel.getOperationStatus());
 		}
 		
 	}
