@@ -98,7 +98,7 @@ public class PacManGame extends Observable implements KeyListener{
 		//this.addObserver(new Ambusher(m));
 		//this.addObserver(new Fickle(m));
 		//this.addObserver(new Stupid(m));
-		//this.addObserver(new Chaser(m));
+		this.addObserver(new Chaser(m));
 		
 		startGame();
 

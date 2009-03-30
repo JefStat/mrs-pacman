@@ -467,6 +467,7 @@ public class Map {
 		}
 		else if ((getIdentity(p) > -1) && (getIdentity(p) == Coordinate.POWERPELLET)) {
 			level[(int) p.getX()][(int) p.getY()].setIdentity(Coordinate.EMPTY);
+			setScared(true);
 			return true;
 		}
 		return false;
