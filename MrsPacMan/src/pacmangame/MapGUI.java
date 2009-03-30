@@ -190,6 +190,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	 * @param file
 	 */
 	public void importXML(String filename){
+		//TODO add if(validatemap) etc.
 		File file = new java.io.File(filename+ ".xml");
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
@@ -201,6 +202,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//TODO OperationStatus = "good? bad?"
 	}
 	/**
 	 * Code for when a cell is changed in the map editor

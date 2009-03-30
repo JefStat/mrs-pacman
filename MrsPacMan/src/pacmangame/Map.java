@@ -78,9 +78,6 @@ public class Map {
 	private Coordinate chaser;
 	private String OperationStatus;
 	
-	public String getOperationStatus() {
-		return OperationStatus;
-	}
 
 	/**
 	 * Default constructor making the map the Defaultsize x Defaultsize Will
@@ -201,7 +198,14 @@ public class Map {
 	public void setChaser(Coordinate chaser) {
 		this.chaser = chaser;
 	}
-
+	
+	/**
+	 * Returns the status of the last import/export operation
+	 * @return
+	 */
+	public String getOperationStatus() {
+		return OperationStatus;
+	}
 	/**
 	 * This method returns the prisoner for Chaser as this ghost starts outside
 	 * the prison at the front of the prison
@@ -391,7 +395,6 @@ public class Map {
 				p.close();
 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			OperationStatus = "SUCCESSFUL EXPORT TO " + filename +".xml";
@@ -525,7 +528,6 @@ public class Map {
 	 *            a square matrix that is a valid level
 	 */
 	public void setLevel(Coordinate[][] level2) {
-		// TODO Auto-generated method stub
 		level = level2;
 	}
 
