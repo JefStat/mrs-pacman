@@ -49,6 +49,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private JTextField input;
 	private JTable Table;
 	private int RefreshOverload;
+	private boolean skip = false;
 
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
@@ -198,17 +199,19 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	}
 	public void tableChanged(TableModelEvent arg0) {
 		RefreshOverload++;
-		if (RefreshOverload >= MapLevel.getSize()*MapLevel.getSize()){
+		if (RefreshOverload >= MapLevel.getSize()*MapLevel.getSize() && skip == false){
 		int column = arg0.getColumn();
 		int row = arg0.getLastRow();
 		String input = (String)Table.getModel().getValueAt(row, column);
 		Integer iden = new Integer(input);
 		int identity = iden.intValue();
+		if (identity >= 10){identity = identity%10; skip = true; Table.setValueAt(""+identity, row, column);}
 		if (identity >= 0 && identity <6){
 		MapLevel.changeIdentity(column,row,identity);
 		MapLevel.refreshPacdots();
 		updateGUI(MapLevel);}
 		else {System.out.println("INPUT TOO LARGE ERROR");}
+		skip = false;
 		}
 	}
 	/**
