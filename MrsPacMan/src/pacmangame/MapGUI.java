@@ -23,7 +23,7 @@ import javax.swing.event.TableModelListener;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class MapGUI extends JFrame implements ActionListener, TableModelListener {
 	/**
 	 * These are the URLs for all the image icons
@@ -164,7 +164,6 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			try {
 				MapLevel.exportXML(input.getText());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -173,7 +172,6 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			try {
 				importXML(input.getText()); //FLAW IN IMPORTMAP IN THE MAPCLASS NOTED. MUST BE EXPLORED 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -193,7 +191,6 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			MapLevel = parser.getMap();
 			updateGUI(MapLevel);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

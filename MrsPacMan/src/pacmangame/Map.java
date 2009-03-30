@@ -32,9 +32,9 @@ import java.util.Scanner;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.SAXException;
 
+@SuppressWarnings("unused")
 public class Map {
 	/**
 	 * sets a constant default maximum for map
@@ -498,7 +498,7 @@ public class Map {
 	 * 
 	 * @return true if level meets the rules false otherwise.
 	 */
-	private boolean validateMap(Map m){
+	public boolean validateMap(Map m){
 		if (m.validateLevel(m.level, m.size) == true) return true;
 		else return false;
 	}
