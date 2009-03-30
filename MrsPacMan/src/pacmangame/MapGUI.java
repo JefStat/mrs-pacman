@@ -44,7 +44,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private final URL RULESJPG = this.getClass().getResource("rules.jpg");
 	private final URL EDITORJPG = this.getClass().getResource("editor.jpg");
 	
-	private Map MapLevel;
+	private Map MapLevel; //Logical Map, contains the array/data of the objects
 	private JInternalFrame Internal;//Internal frame that contains all the images
 	private JTextField input;//Input field for import/export pop-up box
 	private JTable Table; //Table field for map editor
@@ -103,7 +103,10 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		input = new JTextField("NULL");
 		new MapObserver(this, pmg);
 	}
-
+	/**
+	 * Setter for the logical map being used in this GUI.
+	 * @param x
+	 */
 	public void setMap(Map x) {
 		this.MapLevel = x;
 	}
@@ -142,8 +145,8 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		popup.pack();
 	}
 	@Override
-	/*
-	 * This is the code for the import map/export map button/menu
+	/**
+	 * This is the code for all actions performed in the main window
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if ("Create".equals(arg0.getActionCommand())) { // new
@@ -174,7 +177,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		//LISTENER WHEN OK IS PRESSED ON IMPORT POPUP
 		if ("importok".equals(arg0.getActionCommand())) {
 			try {
-				importXML(input.getText()); //FLAW IN IMPORTMAP IN THE MAPCLASS NOTED. MUST BE EXPLORED 
+				importXML(input.getText());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

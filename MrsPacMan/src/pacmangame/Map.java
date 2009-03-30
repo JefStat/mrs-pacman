@@ -396,7 +396,7 @@ public class Map {
 			}
 			OperationStatus = "SUCCESSFUL EXPORT TO " + filename +".xml";
 		} else {
-			OperationStatus = "MAP VALIDATION FAILED, UNABLE TO EXPORT" ;
+			OperationStatus = "MAP VALIDATION FAILED, UNABLE TO EXPORT";
 		}
 	}
 
