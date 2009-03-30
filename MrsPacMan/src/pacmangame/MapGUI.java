@@ -140,7 +140,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		popup.add(ok, BorderLayout.EAST);
 		popup.setResizable(false);
 		popup.setVisible(true);
-		OpStatus = new JLabel("Opearation Status: Waiting for input and validation");
+		OpStatus = new JLabel("Operation Status: Waiting for input and validation");
 		popup.add(OpStatus,BorderLayout.SOUTH);
 		popup.pack();
 	}
@@ -190,19 +190,19 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	 * @param file
 	 */
 	public void importXML(String filename){
-		//TODO add if(validatemap) etc.
 		File file = new java.io.File(filename+ ".xml");
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			SAXParser saxParser = factory.newSAXParser();
 			PacManDefaultHandler parser = new PacManDefaultHandler();
 			saxParser.parse(file, parser);
+			//TODO Validate the map before using it.
 			MapLevel = parser.getMap();
 			updateGUI(MapLevel);
+			OpStatus.setText("Import Operation Complete");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//TODO OperationStatus = "good? bad?"
 	}
 	/**
 	 * Code for when a cell is changed in the map editor
