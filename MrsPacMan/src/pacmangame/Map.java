@@ -451,15 +451,41 @@ public class Map {
 	 * 1. the map is surrounded by 4 walls.
 	 * 2. no pacdot is unreachable. ie inclosed in walls.
 	 * 3. it has a prison.
-	 * 5. the level is square.
 	 * 
 	 * The method may fix the matrix to include any of the missing points or it may return false
 	 * if one of the rules fails.
 	 * 
 	 * @return true if level meets the rules false otherwise.
 	 */
-	private boolean validateLevel(Coordinate[][] level2){
-		return false;
+	private boolean validateLevel(Coordinate[][] level2, int size){
+		boolean hasPrison = false;
+		boolean isBounded = false; 
+		boolean hasStart = false;
+		
+		
+		//TEST FOR BOUNDING WALLS
+		for (int i = 0; i<size; i++){
+			if (level2[size-1][i].getIdentity()!=Coordinate.WALL) return false; //Right wall test
+			if (level2[0][i].getIdentity()!=Coordinate.WALL) return false; //Left wall test
+			if (level2[i][0].getIdentity()!=Coordinate.WALL) return false; //Bottom wall test
+			if (level2[i][size-1].getIdentity()!=Coordinate.WALL) return false; //Top wall test
+		}
+		isBounded = true;
+		
+		for(int i = 0; i < getSize(); i++){
+			   for(int j = 0; j < getSize(); j++){
+				   if (level2[j][i].getIdentity()==Coordinate.PRISON) {hasPrison = true;}
+				   if (level2[j][i].getIdentity()==Coordinate.EMPTY) {hasStart = true;}
+				   if (level2[j][i].getIdentity()==Coordinate.PACDOT){
+					   if (level2[j+1][i].getIdentity()==Coordinate.WALL && level2[j-1][i].getIdentity()==Coordinate.WALL
+							   && level2[j][i+1].getIdentity()==Coordinate.WALL && level2[j][i-1].getIdentity()==Coordinate.WALL) return false;
+				   }
+			     }
+			   }
+		
+		
+		if (hasPrison == true && isBounded == true && hasStart == true) return true;
+		else return false;
 	}
 	/**
 	 * Validates that a given matrix of Coordinate is a valid level following the following rules.
