@@ -106,60 +106,58 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	public void setMap(Map x) {
 		this.MapLevel = x;
 	}
-
+	/**
+	 * Creates a simple image popup with the specified icon and title
+	 * @param icon
+	 * @param title
+	 */
+	private void CreateImagePopup(ImageIcon icon, String title){
+		JFrame popup = new JFrame(title);
+		popup.setLayout(new BorderLayout());
+		popup.add(new JLabel(icon), BorderLayout.CENTER);
+		popup.pack();
+		popup.setVisible(true);
+	}
+	/**
+	 * Creates a text box popup with an ok button
+	 * @param label -- title of the frame
+	 * @param actioncommand -- actioncommand string
+	 */
+	private void CreateButtonPopup(String label, String actioncommand){
+		JFrame popup = new JFrame(label);
+		JButton ok = new JButton("OK");
+		ok.setActionCommand(actioncommand);
+		ok.addActionListener(this);
+		input = new JTextField();
+		input.setText("enter filename here");
+		input.setVisible(true);
+		popup.setLayout(new FlowLayout());
+		popup.add(input);
+		popup.add(ok);
+		popup.setResizable(false);
+		popup.setVisible(true);
+		popup.pack();
+	}
 	@Override
 	/*
 	 * This is the code for the import map/export map button/menu
-	 * REPETITIVE CODE NEEDS TO BE REFACTORED
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if ("Create".equals(arg0.getActionCommand())) { // new
 			openEditor(MapLevel.getSize());
 		}
 		if ("Rules".equals(arg0.getActionCommand())) { // new
-			JFrame popup = new JFrame("Rules");
-			popup.setLayout(new BorderLayout());
-			popup.add(new JLabel(new ImageIcon(RULESJPG)), BorderLayout.CENTER);
-			popup.pack();
-			popup.setVisible(true);
+			CreateImagePopup(new ImageIcon(RULESJPG),"Rules");
 		}
 		if ("Credits".equals(arg0.getActionCommand())) { // new
-			JFrame popup = new JFrame("Credits");
-			popup.setLayout(new BorderLayout());
-			popup.add(new JLabel(new ImageIcon(SPLASHJPG)),BorderLayout.CENTER);
-			popup.pack();
-			popup.setVisible(true);
+			CreateImagePopup(new ImageIcon(SPLASHJPG),"Credits");
 		}
 		if ("import".equals(arg0.getActionCommand())) { // new
-			JFrame popup = new JFrame("Import Map");
-			JButton ok = new JButton("OK");
-			ok.setActionCommand("importok");
-			ok.addActionListener(this);
-			input = new JTextField();
-			input.setText("enter filename here");
-			input.setVisible(true);
-			popup.setLayout(new FlowLayout());
-			popup.add(input);
-			popup.add(ok);
-			popup.setResizable(false);
-			popup.setVisible(true);
-			popup.pack();
+			CreateButtonPopup("Import Map", "importok");
 		}
 		//EXPORT MENU BUTTON CODE
 		if ("export".equals(arg0.getActionCommand())) { // new
-			JFrame popup = new JFrame("Export Map");
-			JButton ok = new JButton("OK");
-			ok.setActionCommand("exportok");
-			ok.addActionListener(this);
-			input = new JTextField();
-			input.setText("enter filename here");
-			input.setVisible(true);
-			popup.setLayout(new FlowLayout());
-			popup.add(input);
-			popup.add(ok);
-			popup.setResizable(false);
-			popup.setVisible(true);
-			popup.pack();
+			CreateButtonPopup("Export Map", "exportok");
 		}
 		//LISTENER WHEN OK IS PRESSED ON EXPORT POPUP
 		if ("exportok".equals(arg0.getActionCommand())) {
