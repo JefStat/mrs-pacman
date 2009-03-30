@@ -30,7 +30,7 @@ public class Stupid extends Character implements Ghost {
 	/**
 	 * creates the name for stupid
 	 */
-	private final String NAME = "CLYDE";
+	private final String NAME = "Clyde";
 	/**
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */

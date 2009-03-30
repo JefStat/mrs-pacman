@@ -21,33 +21,35 @@ public class PacManDefaultHandler extends DefaultHandler{
 	private String[] coordinates = new String[5];
 	int index;
 	int size;
+	Coordinate[][] level;
 	
 	public void startElement(String uri, String localName, String qName, Attributes attributes) 
 	throws SAXException{
 		if (qName == MAP){
 			System.out.println(attributes.toString());
-			// Get value(int index), index is Get index (qName) lastly convert the value string into an integer
+			//Get value(int index), index is Get index (qName) lastly convert the value string into an integer
 			size = new Integer(attributes.getValue(attributes.getIndex(SIZE)));
 			newMap = new Map(size);
+			level = new Coordinate[size][size];
 		}
 	}
 
 	public void endElement(String uri, String localName, String qName)
      throws SAXException{
 		if (qName == NAME ){
-			if (c == PACMAN){
+			if (c.equals(PACMAN)){
 				index = 0;
 			}
-			if (c == AMBUSHER){
+			if (c.equals(AMBUSHER)){
 				index = 1;
 			}
-			if (c == CHASER){
+			if (c.equals(CHASER)){
 				index = 2;
 			}
-			if (c == FICKLE){
+			if (c.equals(FICKLE)){
 				index = 3;
 			}
-			if (c == STUPID){
+			if (c.equals(STUPID)){
 				index = 4;
 			}
 		}
@@ -55,13 +57,12 @@ public class PacManDefaultHandler extends DefaultHandler{
 			coordinates[index] = c;
 		}
 		if (qName == IDENTITIES){
-			Coordinate[][] level = new Coordinate[size][size];
-			//remove all the tab and newline characters from the string
-			c.replaceAll("[\\n\\t]", "");
 			//create the level matrix of coordinates
 			for (int i = 0; i<size;i++){
 				for (int j =0; j<size;j++){
-					level[i][j] = new Coordinate(i,j,c.charAt(i*size+j));
+					//System.out.print("["+i+"]"+"["+j+"]"+" "+(i*size+j));
+					level[i][j] = new Coordinate(i,j,c.charAt(i*size+j)-'0');
+					//System.out.println("  "+c.charAt(i*size+j));
 				}
 			}
 			newMap.setLevel(level);
@@ -85,7 +86,9 @@ public class PacManDefaultHandler extends DefaultHandler{
 			newMap.setFickle(coord);
 			x = new Integer(coordinates[4].charAt(coordinates[4].lastIndexOf('x')+2)) - '0';
 			y = new Integer(coordinates[4].charAt(coordinates[4].lastIndexOf('y')+2)) - '0';
+			System.out.println(x +" "+ y);
 			coord = new Coordinate(x,y,0);
+			System.out.println(coord.toString());
 			newMap.setStupid(coord);
 		}
 	}

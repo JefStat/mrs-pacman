@@ -22,16 +22,20 @@ Created targets to create a zipfile and jar file and compile the java contained 
 	
 	<target name="compile">
 		<javac srcdir="${src}" destdir="${build}" fork="true" debug="on"/>
-		<!--<javac srcdir="${srcTest}" destdir="${buildTest}" fork="true" debug="on"/>-->
+		<javac srcdir="${srcTest}" destdir="${buildTest}" fork="true" debug="on"/>
 	</target>
 	
 	<target name="testIt" depends="compile">
-		<!--<target name="testIt" depends="compile">
-			<junit printsummary="on" haltonfailure="on">
-				<batchtest>
-					<fileset dir="${buildTest}"/>	
-				</batchtest>
-			</junit>-->
+	  	<classpath>
+	  		<pathelement path="C:\Users\jef\Desktop\eclipse\plugins"/>
+	  	</classpath>
+		  <junit printsummary="yes">
+		    <classpath>
+		      <pathelement path="${buildTest}"/>
+		    </classpath>
+
+		    <test name="tests.junit.AllUnitTestsSuite"/>
+		  </junit>
 	</target>
 	
 	

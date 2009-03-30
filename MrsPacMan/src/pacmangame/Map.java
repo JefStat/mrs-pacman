@@ -483,16 +483,14 @@ public class Map {
 	 * @return the XML string ready to be output to a file
 	 */
 	public String toXML() {
-		String map = "<Map size=" + this.getSize() + ">\n" + "\t<Identities>";
+		String map = "<Map size=\"" + this.getSize() + "\">\n" + "\t<Identities>";
 		for (int i = 0; i < this.getSize(); i++) {
-			map += "\t\t";
 			for (int j = 0; j < this.getSize(); j++) {
 				map += this.getIdentity(i, j);
 			}
-			map += "\n";
 		}
-		map += "\t</Identities>";
-
+		map += "</Identities>";
+		map += "\n";
 		// converts the toXML of each character into a string split at the new
 		// line to insert the extra tab
 		// for more complete formatting in the XML save file.

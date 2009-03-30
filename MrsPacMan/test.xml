@@ -1,0 +1,23 @@
+<Map size="10">
+	<Identities>1111111111102222222112322222211222222221122222222112220522211222222221122222222112222222211111111111</Identities>
+	<Character>
+		<Name>PacMan</Name>
+		<Coordinate>pacmangame.Coordinate[x=1,y=1]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Pinky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Blinky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=4]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Inky</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+	<Character>
+		<Name>Clyde</Name>
+		<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>
+	</Character>
+</Map>

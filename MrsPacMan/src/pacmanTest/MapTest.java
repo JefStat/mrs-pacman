@@ -41,7 +41,7 @@ public class MapTest extends TestCase {
 		assertEquals(30,regularmap.getSize());
 		assertEquals(5,regularmap.getPrison().x);
 		assertEquals(5,regularmap.getPrison().y);
-		assertEquals(781,regularmap.getPacdots());
+		assertEquals(780,regularmap.getPacdots());
 	}
 
 	
@@ -75,19 +75,17 @@ public class MapTest extends TestCase {
 	public void testXML(){
 		
 		String MapXML =	
-				"<Map size=10>\n" +
-				"\t<Identities>" +
-				"\t\t1111111111\n" +
-				"\t\t1022222221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1222052221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1222222221\n" +
-				"\t\t1111111111\n" +
-				"\t</Identities>" +
+				"<Map size=\"10\">\n" +
+				"\t<Identities>1111111111" +
+				"1022222221" +
+				"1232222221" +
+				"1222222221" +
+				"1222222221" +
+				"1222052221" +
+				"1222222221" +
+				"1222222221" +
+				"1222222221" +
+				"1111111111</Identities>\n" +
 				"\t<Character>\n" +
 				"\t\t<Name>PacMan</Name>\n" +
 				"\t\t<Coordinate>pacmangame.Coordinate[x=1,y=1]</Coordinate>\n" +
@@ -105,7 +103,7 @@ public class MapTest extends TestCase {
 				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>\n" +
 				"\t</Character>\n" +
 				"\t<Character>\n" +
-				"\t\t<Name>CLYDE</Name>\n" +
+				"\t\t<Name>Clyde</Name>\n" +
 				"\t\t<Coordinate>pacmangame.Coordinate[x=5,y=5]</Coordinate>\n" +
 				"\t</Character>\n" +
 				"</Map>\n";
