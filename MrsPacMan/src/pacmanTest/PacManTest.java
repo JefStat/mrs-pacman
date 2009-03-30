@@ -42,9 +42,9 @@ public class PacManTest extends TestCase {
 		PacMan pacman = new PacMan(map);
 		String XMLstring = 
 			"<Character>\n" +
-			"\t<name>PacMan</name>\n" +
+			"\t<Name>PacMan</Name>\n" +
 			"\t<Coordinate>"+map.getPacMan().toString()+"</Coordinate>\n" +
-			"<Character>\n";
+			"</Character>\n";
 		assertEquals("Should equal the XML string " + XMLstring, XMLstring , pacman.toXML());
 		
 	}

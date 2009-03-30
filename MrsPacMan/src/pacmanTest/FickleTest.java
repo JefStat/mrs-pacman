@@ -54,9 +54,9 @@ public class FickleTest extends TestCase {
 		Fickle fickle = new Fickle(map);
 		String XMLstring = 
 			"<Character>\n" +
-			"\t<name>Inky</name>\n" +
+			"\t<Name>Inky</Name>\n" +
 			"\t<Coordinate>"+map.getFickle().toString()+"</Coordinate>\n" +
-			"<Character>\n";
+			"</Character>\n";
 		assertEquals("Should equal the XML string " + XMLstring, XMLstring , fickle.toXML());
 		
 	}

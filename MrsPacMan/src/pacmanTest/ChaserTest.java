@@ -55,9 +55,9 @@ public class ChaserTest extends TestCase {
 		Chaser chaser = new Chaser(map);
 		String XMLstring = 
 			"<Character>\n" +
-			"\t<name>Blinky</name>\n" +
+			"\t<Name>Blinky</Name>\n" +
 			"\t<Coordinate>"+map.getChaser().toString()+"</Coordinate>\n" +
-			"<Character>\n";
+			"</Character>\n";
 		assertEquals("Should equal the XML string " + XMLstring, XMLstring , chaser.toXML());
 		
 	}

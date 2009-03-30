@@ -53,9 +53,9 @@ public class AmbusherTest extends TestCase {
 		Ambusher ambusher = new Ambusher(map);
 		String XMLstring = 
 			"<Character>\n" +
-			"\t<name>Pinky</name>\n" +
+			"\t<Name>Pinky</Name>\n" +
 			"\t<Coordinate>"+map.getAmbusher().toString()+"</Coordinate>\n" +
-			"<Character>\n";
+			"</Character>\n";
 		assertEquals("Should equal the XML string " + XMLstring, XMLstring , ambusher.toXML());
 		
 	}
