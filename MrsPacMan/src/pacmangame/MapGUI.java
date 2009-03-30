@@ -104,7 +104,6 @@ public class MapGUI extends JFrame implements ActionListener {
 	 * REPETITIVE CODE NEEDS TO BE REFACTORED
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		//IMPORT MENU BUTTON CODE
 		if ("Create".equals(arg0.getActionCommand())) { // new
 			openEditor(MapLevel.getSize());
 		}
@@ -243,7 +242,8 @@ public class MapGUI extends JFrame implements ActionListener {
 		System.out.println(MapLevel.getPacdots());
 	}
 	/**
-	 * Editor Function, User controls element placement via a JTABLE implementation
+	 *  This function opens up an editor of the last state of the game.
+	 * @param size passed for the size of the array
 	 */
 	public void openEditor(int size){
 		JFrame Editor = new JFrame("Editor");
@@ -258,7 +258,7 @@ public class MapGUI extends JFrame implements ActionListener {
 		Table.setForeground(Color.WHITE);
 		for(int i = 0; i < size; i++){
 			   for(int j = 0; j < size; j++){
-				  Table.setValueAt(MapLevel.getIdentity(i, j), i, j);
+				  Table.setValueAt(MapLevel.getIdentity(i, j), j, i);
 			     }
 			   }
 		Editor.setSize(500, 675);
