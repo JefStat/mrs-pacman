@@ -204,9 +204,12 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		String input = (String)Table.getModel().getValueAt(row, column);
 		Integer iden = new Integer(input);
 		int identity = iden.intValue();
+		if (identity >= 0 && identity <6){
 		MapLevel.changeIdentity(column,row,identity);
 		MapLevel.refreshPacdots();
 		updateGUI(MapLevel);}
+		else {System.out.println("INPUT TOO LARGE ERROR");}
+		}
 	}
 	/**
 	 * Builds the internal frame of the map containing all the graphics Images
@@ -264,13 +267,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	 * @param p
 	 */
 	public void updateGUI(Map m) {
-		try {
-			Internal.setClosed(true);
-		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Internal.removeAll();
+		Internal.dispose();
 		MapLevel = m; 
 		buildGUI();
 		System.out.println(MapLevel.getPacdots());
