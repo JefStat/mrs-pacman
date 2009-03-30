@@ -47,9 +47,9 @@ public class StupidTest extends TestCase {
 		Stupid stupid = new Stupid(map);
 		String XMLstring = 
 			"<Character>\n" +
-			"\t<name>Clyde</name>\n" +
+			"\t<Name>Clyde</Name>\n" +
 			"\t<Coordinate>"+map.getStupid().toString()+"</Coordinate>\n" +
-			"<Character>\n";
+			"</Character>\n";
 		assertEquals("Should equal the XML string " + XMLstring, XMLstring , stupid.toXML());
 		
 	}
