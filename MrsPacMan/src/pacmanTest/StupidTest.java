@@ -28,9 +28,9 @@ public class StupidTest extends TestCase {
 	//checks that the constructor method actually created the new Stupid.
 	public void testStupid() {
 		//When a new ghost is created, the default position is set to the prison which is also the STARTINGPOINT
-		assertNotNull("When a new Chaser is created it is not null", m.getChaser() == null);
+		assertNotNull("When a new Stupid is created it is not null", m.getStupid() == null);
 		//when a new ghost is created the name is set
-		assertEquals("Chasers name Blinky", ghost.getName(), "Blinky");
+		assertEquals("Stupid named Clyde", ghost.getName(), "Clyde");
 	}
 	
 	//checks that the ghost moved to the actual direction/place it was suppose to

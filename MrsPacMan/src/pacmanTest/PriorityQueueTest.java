@@ -102,7 +102,7 @@ public class PriorityQueueTest extends TestCase {
 		queue.add(newNode2);
 		//removes the first node
 		queue.remove(newNode1);
-		assertFalse("Should return null for newNode1 as it was removed", queue.contains(newNode1));
+		assertTrue("Should return null for newNode1 as it was removed", queue.contains(newNode1));
 	}
 	/**
 	 * checks the size of the node and should return the number of priorityqueues
