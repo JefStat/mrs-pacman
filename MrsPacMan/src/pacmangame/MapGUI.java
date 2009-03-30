@@ -298,6 +298,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		MapLevel = m; 
 		buildGUI();
 		System.out.println(MapLevel.getPacdots());
+		
 	}
 	/**
 	 *  This function opens up an editor of the last state of the game.

@@ -33,6 +33,10 @@ import java.util.Observable;
 
 public class PacMan extends Character {
 	/**
+	 * default lives
+	 */
+	private final int DEFAULTLIVES = 3;
+	/**
 	 * creates the name of pacman
 	 */
 	private static final String PACMANNAME = "PacMan";
@@ -40,6 +44,10 @@ public class PacMan extends Character {
 	 * keeps track of the number of turns
 	 */
 	private int turns = 0;
+	/**
+	 * number of lives that PacMan has
+	 */
+	private int lives = DEFAULTLIVES;
 	/**
 	 * Creates a new PacMan object
 	 * @param m is the current map in use
@@ -75,6 +83,13 @@ public class PacMan extends Character {
 		}
 		// the following kills pac man when he lands on a ghost
 		if ((map.isScared() == false) && (map.getAmbusher().equals(map.getPacMan()))||(map.getChaser().equals(map.getPacMan()))||(map.getFickle().equals(map.getPacMan()))||(map.getStupid().equals(map.getPacMan()))){
+			if(lives > 0){
+				lives --;
+				map.setAmbusher(map.getPrison());
+				map.setChaser(map.getPrison());
+				map.setFickle(map.getPrison());
+				map.setStupid(map.getPrison());
+			}
 			this.setAlive(false);
 		}
 		// the follow kills ambusher if pacman ate a powerpellet

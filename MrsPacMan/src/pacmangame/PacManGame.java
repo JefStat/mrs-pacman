@@ -98,7 +98,7 @@ public class PacManGame extends Observable implements KeyListener{
 		//this.addObserver(new Ambusher(m));
 		//this.addObserver(new Fickle(m));
 		//this.addObserver(new Stupid(m));
-		this.addObserver(new Chaser(m));
+		//this.addObserver(new Chaser(m));
 		
 		startGame();
 
@@ -173,6 +173,9 @@ public class PacManGame extends Observable implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		
+		//System.out.println("Size of event queue: %d\n", )
+		
 			int keycode = arg0.getKeyCode();
 			if (map.getPacdots() == 0){
 				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);
