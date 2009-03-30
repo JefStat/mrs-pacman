@@ -3,8 +3,6 @@ package pacmangame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
-
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -125,7 +123,6 @@ public class PacManGame extends Observable implements KeyListener{
 		"New Game", "Close" };
 		final int NEWGAME = 0;
 		final int CLOSE = 1;
-		ImageIcon Splash = new ImageIcon("splash.jpg"); //IMPLEMENT A SPLASH ICON ON THE OPTION PANE--- SHOULD BE DONE
 		/**
 		 * Opens a window with Title
 		 */
