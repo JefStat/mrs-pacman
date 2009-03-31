@@ -56,7 +56,8 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	/**
 	 * This constructor creates the entire GUI including the menu bar.
 	 * 
-	 * @param label
+	 * @param label is the title 
+	 * @param pmg is PacManGame that is currently running
 	 */
 	public MapGUI(String label, PacManGame pmg) {
 		super(label);
@@ -106,15 +107,15 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	}
 	/**
 	 * Setter for the logical map being used in this GUI.
-	 * @param x
+	 * @param x is the map in use
 	 */
 	public void setMap(Map x) {
 		this.MapLevel = x;
 	}
 	/**
 	 * Creates a simple image popup with the specified icon and title
-	 * @param icon
-	 * @param title
+	 * @param icon is the image
+	 * @param title is the title
 	 */
 	private void CreateImagePopup(ImageIcon icon, String title){
 		JFrame popup = new JFrame(title);
@@ -148,6 +149,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	@Override
 	/**
 	 * This is the code for all actions performed in the main window
+	 * @param arg0 is the action being performed
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if ("Create".equals(arg0.getActionCommand())) { // new
@@ -189,7 +191,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	}
 	/**
 	 * Imports the xml file created from the toXML with exportXML needs to run in the gui.
-	 * @param file
+	 * @param filename is the file being imported
 	 */
 	public void importXML(String filename){
 		File file = new java.io.File(filename+ ".xml");
@@ -212,6 +214,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	/**
 	 * Code for when a cell is changed in the map editor
 	 * Directly updates the Internal JFrame containing all the images
+	 * @param arg0 is the table action to be used
 	 */
 	public void tableChanged(TableModelEvent arg0) {
 		RefreshOverload++;
@@ -233,7 +236,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	/**
 	 * Changes the number of lives displayed
 	 * in JLabel Lives
-	 * @param lives
+	 * @param lives are pacman's current lives
 	 */
 	public void changeLives(int lives){
 		Lives.setText("Number Of Lives Left:" + lives);
@@ -291,7 +294,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	 * Rebuilds the internal frame of the GUI, essentially updating the GUI with
 	 * new information if map has changed.
 	 * 
-	 * @param p
+	 * @param m is the current map in use
 	 */
 	public void updateGUI(Map m) {
 		Internal.dispose();
@@ -340,11 +343,19 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		}
 		return new Map();
 	}
-	
+	/**
+	 * This class observes the map to ensure that it is accurately displayed at all times
+	 * @author Nahim Nasser
+	 *
+	 */
 	private class MapObserver implements Observer {
-		
+		//the MapGUI
 		private MapGUI f;
-		
+		/**
+		 * observes the map and accomodates any functions/events that take place
+		 * @param f is the MapGUI
+		 * @param pmg is the PacManGame that is currently running
+		 */
 		public MapObserver(MapGUI f, PacManGame pmg){
 			this.f = f;
 			pmg.addObserver(this);
@@ -354,7 +365,9 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			f.Internal.addKeyListener(pmg);
 			f.input.addKeyListener(pmg);
 		}
-		
+		/**
+		 * updates that map to ensure that it is accurately displaying what is going on
+		 */
 		@Override
 		public void update(Observable arg0, Object arg1) {
 			if (arg1 instanceof NotifierObject ){
