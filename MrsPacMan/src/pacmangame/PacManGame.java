@@ -72,6 +72,8 @@ public class PacManGame extends Observable implements KeyListener{
 	public static final int RIGHT = 3;
 	public static final int EXIT = 4;
 	
+	private int level;
+	
 	protected Map map;
 	public PacMan myPacGirl;
 
@@ -90,9 +92,9 @@ public class PacManGame extends Observable implements KeyListener{
 	 * @param m is the current map that is created by PacManGame() constructor
 	 */
 	public PacManGame(Map m) {
-		/**
-		 * Creates a default map of MAX
-		 */
+		this (m ,1);
+	}
+	public PacManGame(Map m, int level){
 		map = m;
 		
 		myPacGirl = new PacMan(m);
@@ -101,7 +103,7 @@ public class PacManGame extends Observable implements KeyListener{
 		//this.addObserver(new Fickle(m));
 		this.addObserver(new Stupid(m));
 		this.addObserver(new Chaser(m));
-		
+		this.level = level;
 		startGame();
 
 	}
@@ -185,7 +187,13 @@ public class PacManGame extends Observable implements KeyListener{
 			if (map.getPacdots() == 0){
 				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);
 				this.setChanged();
-				notifyObservers(new NotifierObject(map.getPacMan(), map, 1));
+				if (level == 1 ){
+					this.map = MapGUI.importlevel("level2");
+					level = 2;
+					notifyObservers(new NotifierObject(map.getPacMan(),map , 2));  
+				} else {
+					notifyObservers(new NotifierObject(map.getPacMan(),map , 1));
+				}
 			}else if (!(myPacGirl.isAlive())){
 				JOptionPane.showMessageDialog(null, "You lost!", "FAILED", JOptionPane.INFORMATION_MESSAGE);
 				this.setChanged();
@@ -228,5 +236,9 @@ public class PacManGame extends Observable implements KeyListener{
 				notifyObservers(new NotifierObject(map.getPacMan(), map, 1));
 				break;
 		}
+	}
+
+	public int getLives() {
+		 return this.myPacGirl.getlives();
 	}
 }
