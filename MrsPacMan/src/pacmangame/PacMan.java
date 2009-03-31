@@ -52,7 +52,9 @@ public class PacMan extends Character {
 	 * keeps track of the players score
 	 */
 	private int score = 0;
-	
+	/**
+	 * creates the various points for each of these variables
+	 */
 	private int DOT = 10;
 	private int POWER = 50;
 	private int GHOST = 40;
@@ -144,6 +146,9 @@ public class PacMan extends Character {
 			"</Character>\n";
 		return c;
 	}
+	/**
+	 * gives pacman a free life after a certain number of points
+	 */
 	public void freeLife(){
 		if (score == 100){
 			lives++;

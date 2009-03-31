@@ -17,7 +17,7 @@ public class WindowHandler implements WindowListener {
 	private MapGUI frame;
 	/**
 	 * keep track of the start of the window
-	 * @param f
+	 * @param f the MapGUI
 	 */
 	public WindowHandler(MapGUI f) {
 		frame = f;

@@ -106,16 +106,20 @@ public class Stupid extends Character implements Ghost {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
+		//resets turns after 2 turns have been taken
 		if (turns == 2){
 			turns = 0;
 		}
+		//keeps the ghost in prison by tracking the turns taken
 		else if (map.getStupid() == map.getPrison()){
 			turns++;
 		}
+		//ghost is scared, run to corner
 		if (map.isScared() && map.getStupid() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getStupid(), Corner);
 			map.setStupid(whereImGoing);
 		}
+		//ghost isn't scared, get PacMan
 		else if (map.isScared()== false){
 			this.movetoPacMan(null);
 		}

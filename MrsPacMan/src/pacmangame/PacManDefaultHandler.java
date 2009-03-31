@@ -3,8 +3,15 @@ package pacmangame;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
+/**
+ * This class was created to parse all the XML files and the maps.
+ * @author Jef Statham
+ *
+ */
 public class PacManDefaultHandler extends DefaultHandler{
+	/**
+	 * these are all the varaibles required to properly parse the different aspects of PacMan
+	 */
 	final private String MAP = "Map";
 	final private String SIZE = "size";
 	final private String PACMAN = "PacMan";
@@ -22,7 +29,14 @@ public class PacManDefaultHandler extends DefaultHandler{
 	int index;
 	int size;
 	Coordinate[][] level;
-	
+	/**
+	 * is when you get a < bracket but no \
+	 * 
+	 * @param uri
+	 * @param localName
+	 * @param qName
+	 * @param attributes
+	 */
 	public void startElement(String uri, String localName, String qName, Attributes attributes) 
 	throws SAXException{
 		if (qName == MAP){
@@ -33,7 +47,12 @@ public class PacManDefaultHandler extends DefaultHandler{
 			level = new Coordinate[size][size];
 		}
 	}
-
+	/**
+	 * Whenever you get a / character
+	 * @param uri
+	 * @param localName 
+	 * @param qName
+	 */
 	public void endElement(String uri, String localName, String qName)
      throws SAXException{
 		if (qName == NAME ){
@@ -91,13 +110,19 @@ public class PacManDefaultHandler extends DefaultHandler{
 			newMap.setStupid(coord);
 		}
 	}
-	
+	/**
+	 * reads in characters whenever it is a textfield in XML
+	 * @param ch is the character
+	 * @param start is the start of the textfield
+	 * @param length is the length of the textfield
+	 */
 	public void characters(char[] ch, int start, int length)
      throws SAXException{
 		c = new String(ch, start, length);
 	}
 	
 	/**
+	 * will return the new map
 	 * @return the newMap
 	 */
 	public Map getMap() {

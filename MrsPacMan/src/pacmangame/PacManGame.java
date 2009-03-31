@@ -61,7 +61,9 @@ import javax.swing.JOptionPane;
  */
 
 public class PacManGame extends Observable implements KeyListener{
-
+	/**
+	 * all the variables required to properly implement the KeyListener of PacManGame
+	 */
 	private final String STARTMESSAGE = "Welcome to PacMan!\n Make your choice.";
 	private final String GAMETITLE = "Mrs Pac Man";
 	public static final int UP = 0;
@@ -158,19 +160,25 @@ public class PacManGame extends Observable implements KeyListener{
 	public static void main(String[] args) {
 		new PacManGame();
 	}
-
+	/**
+	 * when the key is typed by the user
+	 */
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * when the key is released by the user
+	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * when a key is pressed by the user
+	 */
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 			int keycode = arg0.getKeyCode();
