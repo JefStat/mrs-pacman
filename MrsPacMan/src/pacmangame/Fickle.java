@@ -36,7 +36,7 @@ public class Fickle extends Character implements Ghost{
 	/**
 	 * this identifies the location of fickles corner when in scared or scatter mode
 	 */
-	private Coordinate Corner = new Coordinate(map.getSize()-1,0,0);
+	private Coordinate Corner = new Coordinate(map.getSize()-2,1,0);
 	/**
 	 * this checks if fickle is on a path towards pacman
 	 */

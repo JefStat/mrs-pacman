@@ -575,7 +575,7 @@ public class Map {
 				}
 			}
 		}
-
+		this.refreshPacdots();
 		if (hasPrison == true && isBounded == true && hasStart == true)
 			return true;
 		else

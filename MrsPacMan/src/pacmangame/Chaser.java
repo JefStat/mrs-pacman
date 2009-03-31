@@ -37,7 +37,7 @@ public class Chaser extends Character implements Ghost {
 	/**
 	 * keeps track of the corner for blinky
 	 */
-	private Coordinate Corner  = new Coordinate(map.getSize() - 1, map.getSize() - 1, 0);
+	private Coordinate Corner  = new Coordinate(map.getSize() - 2, map.getSize() - 2, 0);
 	/**
 	 * keeps track of the number of turns
 	 */
@@ -58,8 +58,6 @@ public class Chaser extends Character implements Ghost {
 	 */
 	public void movetoPacMan(Coordinate p) {
 		Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), map.getPacMan());
-		map.setChaser(whereImGoing);
-		whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), map.getPacMan());
 		map.setChaser(whereImGoing);
 	}
 	/**

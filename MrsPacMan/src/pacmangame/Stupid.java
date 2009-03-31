@@ -34,7 +34,7 @@ public class Stupid extends Character implements Ghost {
 	/**
 	 * sets the corner that stupid retreats to when in scatter or scared mode
 	 */
-	private Coordinate Corner = new Coordinate(0,0,map.getIdentity(0,0));
+	private Coordinate Corner = new Coordinate(1,1,map.getIdentity(0,0));
 	/**
 	 * keeps track of the number of turns
 	 */

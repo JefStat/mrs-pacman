@@ -109,28 +109,24 @@ public class PacMan extends Character {
 		// the follow kills ambusher if pacman ate a powerpellet
 		else if (map.isScared() == true && (map.getAmbusher().equals(map.getPacMan()))){
 			map.setAmbusher(map.getPrison());
-			map.setScared(false);
 			score += GHOST;
 			freeLife();
 		}
 		//the following kills chaser if pacman ate a powerpellet
 		else if(map.isScared() == true && (map.getChaser().equals(map.getPacMan()))){
 			map.setChaser(map.getPrison());
-			map.setScared(false);
 			score += GHOST;
 			freeLife();
 		}
 		//the following kills fickle if pacman ate a powerpellet
 		else if(map.isScared() == true && (map.getFickle().equals(map.getPacMan()))){
 			map.setFickle(map.getPrison());
-			map.setScared(false);
 			score += GHOST;
 			freeLife();
 		}
 		//the following kills stupid if pacman ate a powerpellet 
 		else if(map.isScared() == true && (map.getStupid().equals(map.getPacMan()))){
 			map.setStupid(map.getPrison());
-			map.setScared(false);
 			score += GHOST;
 			freeLife();
 		}

@@ -33,7 +33,7 @@ public class Ambusher extends Character implements Ghost {
 	/**
 	 * sets the corner location for ambusher
 	 */
-	private Coordinate Corner = new Coordinate(0, map.getSize() - 2, map.getIdentity(0, map.getSize()-2));
+	private Coordinate Corner = new Coordinate(1, map.getSize() - 2, map.getIdentity(0, map.getSize()));
 	/**
 	 * counts the number of turns
 	 */
