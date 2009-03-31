@@ -374,6 +374,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 				if (((NotifierObject) arg1).getI() == 1)
 				{
 					f.dispose();
+				}else if (((NotifierObject) arg1).getI() == 2){
 				}else {
 				f.updateGUI(((NotifierObject) arg1).getM());
 				}
