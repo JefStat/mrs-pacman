@@ -25,7 +25,7 @@ Created targets to create a zipfile and jar file and compile the java contained 
 		<javac srcdir="${srcTest}" destdir="${buildTest}" fork="true" debug="on"/>
 	</target>
 	
-	<target name="testIt" depends="compile">
+	<!--<target name="testIt" depends="compile">
 	  	<classpath>
 	  		<pathelement path="C:\Users\jef\Desktop\eclipse\plugins"/>
 	  	</classpath>
@@ -36,13 +36,13 @@ Created targets to create a zipfile and jar file and compile the java contained 
 
 		    <test name="tests.junit.AllUnitTestsSuite"/>
 		  </junit>
-	</target>
+	</target>-->
 	
 	
 	<target name="jarIT" description="Builds the .jar excludes Test.class but includes the images">
 		<jar destfile="${HandIn}/MrsPacMan.jar" 
 			basedir="bin"
-			excludes="**Test">
+			excludes="**test">
 			<manifest>
 				<attribute name="Built-By" value="Group Awesomeness"/>
 				<attribute name="Class-path" value="MrsPacMan.jar"/>

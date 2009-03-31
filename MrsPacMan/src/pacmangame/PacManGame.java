@@ -84,7 +84,7 @@ public class PacManGame extends Observable implements KeyListener{
 	 */
 
 	public PacManGame() {
-		this(MapGUI.importlevel("level1"));
+		this(new GetFile().importlevel("level1"));
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class PacManGame extends Observable implements KeyListener{
 				JOptionPane.showMessageDialog(null, "You win!", "Iwinnar", JOptionPane.INFORMATION_MESSAGE);
 				this.setChanged();
 				if (level == 1 ){
-					this.map = MapGUI.importlevel("level2");
+					this.map = new GetFile().importlevel("level2");
 					level = 2;
 					notifyObservers(new NotifierObject(map.getPacMan(),map , 2));  
 				} else {
