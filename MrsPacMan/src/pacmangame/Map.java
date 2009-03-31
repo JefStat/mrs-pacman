@@ -66,6 +66,7 @@ public class Map {
 	 */
 	private boolean scared;
 	/**
+	 * creates each individual ghost position
 	 */
 	private Coordinate ambusher;
 	private Coordinate stupid;
@@ -85,8 +86,7 @@ public class Map {
 	/**
 	 * creates a map of the size that the player wants
 	 * 
-	 * @param s
-	 *            is the size of the map
+	 * @param s is the size of the map
 	 */
 	public Map(int s) {
 		level = new Coordinate[s][s];
@@ -167,8 +167,7 @@ public class Map {
 	/**
 	 * sets the prison location for ghost
 	 * 
-	 * @param prison
-	 *            the prison to set
+	 * @param prison the prison is set
 	 */
 	private void setPrison(Coordinate prison) {
 		this.prison = prison;
@@ -187,8 +186,7 @@ public class Map {
 	 * This method sets the prisoner for Chaser as this ghost starts outside the
 	 * prison at the front of the prison
 	 * 
-	 * @param chaser
-	 *            location in front of prison
+	 * @param chaser location
 	 */
 	public void setChaser(Coordinate chaser) {
 		this.chaser = chaser;
@@ -196,7 +194,7 @@ public class Map {
 	
 	/**
 	 * Returns the status of the last import/export operation
-	 * @return
+	 * @return OperationStatus is last import/export operation
 	 */
 	public String getOperationStatus() {
 		return OperationStatus;
@@ -216,8 +214,7 @@ public class Map {
 	 * method sets where pacman starts on the map at the beginning of the game
 	 * and after PacMan dies and a new round begins
 	 * 
-	 * @param pacManStart
-	 *            the pacManStart to set
+	 * @param pacMan the location to set
 	 */
 	public void setPacMan(Coordinate pacMan) {
 		this.pacMan = pacMan;
@@ -245,8 +242,7 @@ public class Map {
 	/**
 	 * sets stupid's location for the start of the game
 	 * 
-	 * @param stupid
-	 *            start location
+	 * @param stupid location
 	 */
 	public void setStupid(Coordinate stupid) {
 		this.stupid = stupid;
@@ -264,8 +260,7 @@ public class Map {
 	/**
 	 * sets fickle's location for the start of the game
 	 * 
-	 * @param fickle
-	 *            start location
+	 * @param fickle location
 	 */
 	public void setFickle(Coordinate fickle) {
 		this.fickle = fickle;
@@ -283,8 +278,7 @@ public class Map {
 	/**
 	 * sets ambusher's location for the start of the game
 	 * 
-	 * @param ambusher
-	 *            start location
+	 * @param ambusher location
 	 */
 	public void setAmbusher(Coordinate ambusher) {
 		this.ambusher = ambusher;
@@ -293,8 +287,7 @@ public class Map {
 	/**
 	 * Prints the map in a specified GUI
 	 * 
-	 * @param f
-	 *            is the frame for the map gui
+	 * @param f is the frame for the map gui
 	 */
 	public void printMap(MapGUI f) {
 		String strLevel = "\n";
@@ -315,6 +308,7 @@ public class Map {
 
 	/**
 	 * This will import a map Incomplete implementation of import map
+	 * @param filename is the name of the file imported
 	 */
 	public void ImportMap(String filename) throws Exception {
 		File file = new java.io.File(filename);
@@ -350,8 +344,7 @@ public class Map {
 	/**
 	 * Exports the map to filename.txt in the root directory.
 	 * 
-	 * @param filename
-	 *            is where the file exports to
+	 * @param filename is where the file exports to
 	 * @throws exception
 	 */
 	public void ExportMap(String filename) throws Exception {
@@ -377,6 +370,7 @@ public class Map {
 
 	/**
 	 * XML file export creates a file with the toXML string
+	 * @param filename the current file that is going to be used and exported
 	 */
 	public void exportXML(String filename) {
 		if (validateMap(this)) {
@@ -401,8 +395,7 @@ public class Map {
 	/**
 	 * sets the map size
 	 * 
-	 * @param size
-	 *            is the size of the map to be set
+	 * @param size is the size of the map to be set
 	 */
 	private void setSize(int size) {
 		this.size = size;
@@ -422,10 +415,8 @@ public class Map {
 	/**
 	 * Get an identity from map location int x and y returns -1 if out of bounds
 	 * 
-	 * @param x
-	 *            is the x point of the coordinate
-	 * @param y
-	 *            is the y point of the coordinate
+	 * @param x is the x point of the coordinate
+	 * @param y is the y point of the coordinate
 	 * @return -1 if x or y are out of bounds otherwise identity at location x y
 	 */
 	public int getIdentity(int x, int y) {
@@ -440,8 +431,7 @@ public class Map {
 	 * Allows you to check the identity of your coordinate object if it is the
 	 * same as the point on the map.
 	 * 
-	 * @param p
-	 *            is the currenly coordinate
+	 * @param p is the currenly coordinate
 	 * @return -1 if p is out of bounds otherwise identity at location p
 	 */
 	public int getIdentity(Coordinate p) {
@@ -455,8 +445,7 @@ public class Map {
 	/**
 	 * Will set identity to empty if is a pacdot
 	 * 
-	 * @param p
-	 *            is the coordinate location
+	 * @param p is the coordinate location
 	 * @return true if position is changed
 	 */
 	public boolean setIdentity(Coordinate p) {
@@ -521,8 +510,7 @@ public class Map {
 	 * Set the map level to a Coordinate matrix will run a level validate on the
 	 * matrix first in next revision.
 	 * 
-	 * @param level2
-	 *            a square matrix that is a valid level
+	 * @param level2 a square matrix that is a valid level
 	 */
 	public void setLevel(Coordinate[][] level2) {
 		level = level2;
