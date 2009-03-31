@@ -61,6 +61,9 @@ public class PacManDefaultHandler extends DefaultHandler{
 			for (int i = 0; i<size;i++){
 				for (int j =0; j<size;j++){
 					level[i][j] = new Coordinate(i,j,c.charAt(i*size+j)-'0');
+					if (c.charAt(i*size+j) == '5'){
+						newMap.setPrison(i,j);
+					}
 				}
 			}
 			newMap.setLevel(level);

@@ -615,4 +615,9 @@ public class Map {
 	public boolean isScared() {
 		return scared;
 	}
+
+	public void setPrison(int i, int j) {
+		// TODO Auto-generated method stub
+		this.prison = new Coordinate(i,j,Coordinate.PRISON);
+	}
 }

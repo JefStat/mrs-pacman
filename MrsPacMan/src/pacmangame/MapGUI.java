@@ -325,6 +325,22 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 		Editor.setSize(500, 675);
 	}
 	
+	public static Map importlevel(String filename){
+		File file = new java.io.File(filename+ ".xml");
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser saxParser = factory.newSAXParser();
+			PacManDefaultHandler parser = new PacManDefaultHandler();
+			saxParser.parse(file, parser);
+			if (parser.getMap().validateMap(parser.getMap())){
+				return parser.getMap();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new Map();
+	}
+	
 	private class MapObserver implements Observer {
 		
 		private MapGUI f;
