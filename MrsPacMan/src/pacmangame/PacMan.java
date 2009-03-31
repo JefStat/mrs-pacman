@@ -105,6 +105,7 @@ public class PacMan extends Character {
 				map.setChaser(map.getPrison());
 				map.setFickle(map.getPrison());
 				map.setStupid(map.getPrison());
+				
 			}else {
 				this.setAlive(false);
 			}
@@ -153,5 +154,9 @@ public class PacMan extends Character {
 		if (score == 100){
 			lives++;
 		}
+	}
+	public int getlives() {
+		// TODO Auto-generated method stub
+		return this.lives;
 	}
 }
