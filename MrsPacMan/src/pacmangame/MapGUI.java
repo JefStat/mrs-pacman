@@ -351,6 +351,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 	private class MapObserver implements Observer {
 		//the MapGUI
 		private MapGUI f;
+		private PacManGame pmg;
 		/**
 		 * observes the map and accomodates any functions/events that take place
 		 * @param f is the MapGUI
@@ -364,6 +365,7 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 			f.addKeyListener(pmg);
 			f.Internal.addKeyListener(pmg);
 			f.input.addKeyListener(pmg);
+			this.pmg = pmg;
 		}
 		/**
 		 * updates that map to ensure that it is accurately displaying what is going on
@@ -375,8 +377,11 @@ public class MapGUI extends JFrame implements ActionListener, TableModelListener
 				{
 					f.dispose();
 				}else if (((NotifierObject) arg1).getI() == 2){
+					f.dispose();
+					new PacManGame(((NotifierObject) arg1).getM(),2);
 				}else {
-				f.updateGUI(((NotifierObject) arg1).getM());
+					f.changeLives(pmg.getLives());
+					f.updateGUI(((NotifierObject) arg1).getM());
 				}
 			}
 		}
