@@ -66,16 +66,20 @@ public class Chaser extends Character implements Ghost {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
+		//resets turns to 0
 		if (turns ==2){
 			turns = 0;
 		}
+		//count the number of turns ghost is in prison
 		else if (map.getChaser() == map.getPrison()){
 			turns++;
 		}
+		//ghost is scared, run to corner
 		if (map.isScared() && map.getChaser() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getChaser(), Corner);
 			map.setChaser(whereImGoing);
 		}
+		//ghost isn't scared, get PacMan
 		else if (map.isScared() == false){
 			new GhostPath(NAME,map);
 			movetoPacMan(((NotifierObject)arg).getC());
@@ -92,5 +96,4 @@ public class Chaser extends Character implements Ghost {
 			"</Character>\n";
 		return c;
 	}
-	
 }

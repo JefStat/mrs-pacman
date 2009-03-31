@@ -58,7 +58,11 @@ public class Fickle extends Character implements Ghost{
 		onPath = false; //is not on pacman's path
 		m.setScared(false);
 	}
-	
+	/**
+	 * sets the position for fickle
+	 * @param p is the coordinate
+	 * @return true for tracking
+	 */
 	public boolean setPosition(Coordinate p){
 		int dx = (int) (p.getX() - map.getFickle().getX());
 		int dy = (int) (p.getY() - map.getFickle().getY());
@@ -268,16 +272,20 @@ public class Fickle extends Character implements Ghost{
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		//resets turns
 		if (turns == 2){
 			turns = 0;
 		}
+		//keeps track of turns ghost is in prison
 		else if (map.getFickle() == map.getPrison()){
 			turns++;
 		}
+		// ghost is scared, go to corner
 		if (map.isScared() && map.getFickle() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getFickle(), Corner);
 			map.setFickle(whereImGoing);
 		}
+		//ghost isn't scared, get pacman
 		else if (map.isScared() == false){
 			this.movetoPacMan(((NotifierObject)arg1).getC());
 	}

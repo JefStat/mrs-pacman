@@ -54,16 +54,20 @@ public class Ambusher extends Character implements Ghost {
 	 *  is pacman's position
 	 */
 	public void update(Observable o, Object arg) {
+		//resets turns after ghost has sat in prison for two turns
 		if (turns ==2){
 			turns = 0;
 		}
+		//if ghost is in prison add to turns
 		else if (map.getAmbusher() == map.getPrison()){
 			turns++;
 		}
+		//ghost is scared, run to a corner
 		if (map.isScared() && map.getAmbusher() != map.getPrison()){
 			Coordinate whereImGoing = GhostPath.AStarSearch(map, map.getAmbusher(), Corner);
 			map.setAmbusher(whereImGoing);
 		}
+		//ghost isn't scared, get PacMan
 		else if (map.isScared() == false){
 			movetoPacMan(((NotifierObject)arg).getC());
 		}
