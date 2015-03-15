@@ -1,0 +1,1 @@
+This game of Pacman is turn-based.  Through the effort of four students, we will recreate the Pacman game in Java.
